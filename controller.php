@@ -1,7 +1,7 @@
 <?php
 //error_reporting(0);
 /**
-* REFUNCIONALIZACIÓN WEB
+* SITIO WEB EDELAR SA
 *
 * FrontCrontoller de la Aplicación.
 * Rutea las peticiones del cliente teniendo en cuenta la estructura
