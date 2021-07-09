@@ -1,0 +1,102 @@
+<script src='https://www.google.com/recaptcha/api.js?render=6LfHQs8UAAAAAGkEGsygOS6jGhTDAThjRRzRMeLm'></script>
+<div class="center">
+    <div class="container">
+        <form action='{url_app}/clienteusuario/p1_signup_cliente' class="form form--flex form--auth js-register-form js-parsley" novalidate="" method="post">
+            <div class="row">
+                <div class="form-group form-group--col-12">
+                    <label for="correoelectronico" class="control-label">Correo Electrónico</label>
+                    <input type="text" name="correoelectronico" id="correoelectronico" required="" class="form-control">
+                </div>
+                <div class="form-group form-group--col-12">
+                    <label for="contrasena" class="control-label">Contraseña</label>
+                    <input type="password" name="contrasena" id="contrasena" required="" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+                <button type="submit" class="form__submit">CONTINUAR</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="modal fade" id="sistema_alertas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #191967;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">ATENCIÓN!</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-lg-2">
+          <center><h1><i class="fa fa-exclamation-triangle" style="color: #ff6c60;"></i></h1></center>
+        </div>
+        <div class="col-lg-10">
+            <p size="3" style="font-weight: bold; display: {modal-msj_ercaptcha};" >
+                Estimado cliente, ha ocurrido un error con el captcha. Por favor intente nuevamente.
+                <br>Disculpe las molestias ocasionadas!
+            </p>
+            
+        </div>
+        <br><br><br>
+      </div>
+      <div class="modal-footer">
+        <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6LfHQs8UAAAAAGkEGsygOS6jGhTDAThjRRzRMeLm', {action: 'process'}).then(function(token) {
+                var recaptchaResponse = document.getElementById('recaptchaResponse');
+                recaptchaResponse.value = token;
+            });
+    });
+
+    function validarSintaxisCorreo(mail) {
+        var regexp = /^[0-9a-zA-Z._.-]+\@[0-9a-zA-Z._.-]+\.[0-9a-zA-Z]+$/;
+        if(mail != 0) {
+            if (regexp.test(mail) == 0) {
+                document.getElementById("div_resultado_correo").style.display="block";
+                document.getElementById("span_resultado_correo").innerHTML="Ingrese una sintáxis correcta por favor! Ej: xxxxxxx@servidor.com";
+                document.getElementById("correo").focus;
+                document.getElementById("btnRegistrar").disabled = true;
+                return 0;
+            } else {
+                document.getElementById("div_resultado_correo").style.display="none";
+                document.getElementById("btnRegistrar").disabled = false;
+            }
+        }
+    }
+
+    function validarSintaxisTelefono(){
+        numero = document.getElementById("telefono").value.length;
+        if((document.getElementById("telefono").value.length  = 0)){
+            document.getElementById("div_resultado_telefono").style.display="block";
+            document.getElementById("span_resultado_telefono").innerHTML="Ingrese un teléfono correcto.";
+            document.getElementById("telefono").focus;
+            return 0;
+        } else if((numero < 11) || (numero > 13) || (numero == 12)) {
+            document.getElementById("div_resultado_telefono").style.display="block";
+            document.getElementById("span_resultado_telefono").innerHTML="Ingrese un teléfono correcto.";
+            document.getElementById("telefono").focus;
+        } else if(numero == 13) {
+            var aBuscar = document.getElementById("telefono").value;
+            var resultadoPos = aBuscar.indexOf("15",3);
+            if(resultadoPos == 3 || resultadoPos == 4 || resultadoPos == 5) {
+                document.getElementById("div_resultado_telefono").style.display="none";
+                var c_telefono=true;
+            } else if(numero == 11) {
+                return 0;
+            } else {
+            document.getElementById("div_resultado_telefono").style.display="block";
+            document.getElementById("span_resultado_telefono").innerHTML="Ingrese un teléfono correcto.";
+            document.getElementById("telefono").focus;
+        }
+    }
+}
+</script>

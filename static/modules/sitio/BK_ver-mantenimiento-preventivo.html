@@ -1,0 +1,55 @@
+<style type="text/css">
+#map,
+html,
+body {
+    padding: 0;
+    margin: 0;
+    height: 500px;
+}
+</style>
+<div class="post">
+    <div id="map" style="display: {imagen};"></div>
+    <div class="thumb-big" style="display: {sin-imagen};"><img src="{url_static}images/sin_mapa.png" style="width: 100%;" alt="#" ></div>
+    <div class="meta-box" style="margin-top: 35px;">
+        <img class="image-author" src="{url_static}images/autNovedades.jpg" alt="#">
+        <h2 style="margin-top: 1%;"> {mantenimientopreventivo-motivo} </h2>
+        <div class="meta-more" style="margin-left: 60px;">
+            <span><i class="icon-user"></i> <a href="#">Mantenimiento Preventivo</a></span>
+            <span><i class="icon-calendar"></i> <a href="#">{mantenimientopreventivo-fecha_inicio}</a></span>
+            <span><i class="icon-time"></i> <a href="#">Desde las {mantenimientopreventivo-hora_inicio} hasta las {mantenimientopreventivo-hora_fin} </a></span>
+        </div>
+    </div>
+    <p>
+        <strong><font style="font-size: 12px;">Departamentos: </font></strong> {mantenimientopreventivo-departamento}<br><br>
+        <strong><font style="font-size: 12px;">Sector/es: </font></strong> {mantenimientoubicacion-sector}<br><br>
+        <strong><font style="font-size: 12px;">Calle/s: </font></strong> {mantenimientoubicacion-calles}<br><br>
+    </p>
+</div>
+<script>
+     var map;
+     var infoWindow;
+     var coordenadas = [];
+     var poligono;
+
+     function initMap() {
+       map = new google.maps.Map(document.getElementById('map'), {
+         zoom: {zoom},
+         center: {lat: {latitud}, lng: {longitud}},
+         mapTypeId: google.maps.MapTypeId.ROADMAP,
+         mapTypeId: 'terrain'
+       });
+
+      {lst_coordenada}
+
+      infoWindow = new google.maps.InfoWindow;
+     }
+
+     function showArrays(etiqueta,evento) {
+       var contentString = '<b>Nombre Barrio:</b> '+ etiqueta +'</br></br><b>Ubicacion:</b> '+ evento.lat() + ',' + evento.lng();
+
+       infoWindow.setContent(contentString);
+       infoWindow.setPosition(evento);
+       infoWindow.open(map);
+      }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjaiPYw7NESR0E7y8i-6TMH8CEelde_Eg&callback=initMap"></script>

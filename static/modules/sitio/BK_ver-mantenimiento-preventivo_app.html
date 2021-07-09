@@ -1,0 +1,42 @@
+<style type="text/css">
+#map,
+html,
+body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+	width: 100%;
+}
+</style>
+<div class="post">
+    <div id="map" style="display: {imagen};"></div>
+    <div class="thumb-big" style="display: {sin-imagen};"><img src="{url_static}images/sin_mapa.png" style="width: 100%;height: 100%;" alt="#" ></div>
+</div>
+<script>
+     var map;
+     var infoWindow;
+     var coordenadas = [];
+     var poligono;
+
+     function initMap() {
+       map = new google.maps.Map(document.getElementById('map'), {
+         zoom: {zoom},
+         center: {lat: {latitud}, lng: {longitud}},
+         mapTypeId: google.maps.MapTypeId.ROADMAP,
+         mapTypeId: 'terrain'
+       });
+
+      {lst_coordenada}
+
+      infoWindow = new google.maps.InfoWindow;
+     }
+
+     function showArrays(etiqueta,evento) {
+       var contentString = '<b>Nombre Barrio:</b> '+ etiqueta +'</br></br><b>Ubicacion:</b> '+ evento.lat() + ',' + evento.lng();
+
+       infoWindow.setContent(contentString);
+       infoWindow.setPosition(evento);
+       infoWindow.open(map);
+      }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjaiPYw7NESR0E7y8i-6TMH8CEelde_Eg&callback=initMap"></script>

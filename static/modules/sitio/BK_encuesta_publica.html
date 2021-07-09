@@ -1,0 +1,14 @@
+<h3 class="col-title"> Encuesta activa</h3><span class="liner"></span>
+<p>Estimado usuario, a fines de mejorar contínuamente los servicios ofrecidos por nuestra empresa, nos gustaría que complete la siguiente encuesta.</p>
+<form method="post" class="formulario" action="{url_app}/site/procesar_encuesta" name="encuesta_formulario" style="margin-bottom: 5px;">
+    <div class="clearfix">
+        {lst_pregunta}
+    </div>
+    <div class="clearfix">
+        <input type="hidden" name="encuesta_id" value="{encuesta-encuesta_id}">
+        <input type="submit" class="sendMessage" value="Enviar encuesta" style=" background-color: #191967;"/>
+        <span>  </span>
+    </div>
+</form>
+<hr>
+

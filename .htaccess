@@ -1,0 +1,7 @@
+RewriteEngine On
+
+RewriteRule ^api/notificaciones.js controller.php
+RewriteRule !(^(static)) controller.php
+
+
+

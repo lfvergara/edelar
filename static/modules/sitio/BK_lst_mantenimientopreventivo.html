@@ -1,0 +1,49 @@
+<div class="breaking-news-bar mbt">
+    <span class="title"> Mantenimiento Preventivo:</span>
+    <ul id="news">
+        <!--LST_MANTENIMIENTOPREVENTIVO-->
+        <li>
+            <span style=" color: #E64343 !Important; font-weight:bold !Important;">
+                <b><i class="icon-cogs" style="color: #E64343 !Important;"></i>{mantenimientopreventivo-fecha_inicio} ({mantenimientopreventivo-hora_inicio}Hs.)</b>
+            </span> |
+            <!-- <a href="#" onClick="consultarMantenimiento({mantenimientopreventivo-mantenimientopreventivo_id})" title="Consultar corte">Localidad: {mantenimientopreventivo-departamentos} | Sector: {mantenimientoubicacion-sector}</a> -->
+            <a href="/web/app/sitio/ver_mantenimiento_preventivo/{mantenimientopreventivo-mantenimientopreventivo_id}" title="Consultar corte">Localidad: {mantenimientopreventivo-departamentos} | Sector: {mantenimientoubicacion-sector}</a>
+        </li>
+        <!--LST_MANTENIMIENTOPREVENTIVO-->
+    </ul>
+</div>
+<div class="modal fade" id="sistema_mantenimientos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #191967;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">MANTENIMIENTO PREVENTIVO</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-lg-2">
+          <center><h1><i class="fa fa-exclamation-triangle" style="color: #ff6c60;"></i></h1></center>
+        </div>
+        <div class="col-lg-10" id="alerta_mantenimiento">
+
+        </div>
+        <br><br><br>
+      </div>
+      <div class="modal-footer">
+        <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    function consultarMantenimiento(mantenimientopreventivo_id) {
+        var a = jQuery.noConflict();
+        var consultaMantenimiento = a.ajax({
+            url: '{url_app}/sitio/consultar_mantenimiento_ajax/' + mantenimientopreventivo_id,
+                dataType: 'text',
+                async: false
+        }).responseText;
+
+        document.getElementById("alerta_mantenimiento").innerHTML = consultaMantenimiento;
+        a('#sistema_mantenimientos').modal('show');
+    }
+</script>

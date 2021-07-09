@@ -1,0 +1,206 @@
+<script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
+<div class="clearfix">
+	<h3 class="col-title"> Trabajar en EDELAR S.A. </h3><span class="liner"></span>
+	<div id="big-map" class="mb official-map">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1461.2554871022148!2d-66.8564280000014!3d-29.415032062818273!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9427dbb54fdadaab%3A0x5b13dd86f806f740!2sEDELAR+S.A!5e0!3m2!1ses-419!2sus!4v1535647647900" width="700" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+	</div>
+	<p>Si Usted está interesado en formar parte de EDELAR, le solicitamos que por favor complete el siguiente formulario: </p>
+	<form method="post" id="trabajarForm" action="{url_app}/sitio/proceso_trabajar_edelar" enctype="multipart/form-data">
+		<div class="clearfix">
+            <div class="grid_12 alpha fll">
+    			<div class="grid_6 alpha fll">
+                    <label>Apellido:</label>
+                    <input type="text" name="apellido" id="apellido" placeholder="Apellido *" required />
+                </div>
+                <div class="grid_6 omega flr">
+                    <label>Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" placeholder="Nombre *" required />
+                </div>
+            </div>
+            <div class="grid_12 alpha fll">
+                <div class="grid_12 alpha fll">
+                    <label>Dirección:</label>
+                    <input type="text" name="direccion" id="direccion" placeholder="Dirección *" required />
+                </div>
+            </div>
+            <div class="grid_12 alpha fll">
+                <div class="grid_6 alpha fll">
+                    <label>Provincia:</label>
+                    <select  name="provincia" id="provincia" required>
+                        <option value="11" SELECTED>La Rioja</option>
+                        {slt_provincia}
+                    </select>
+                </div>
+                <div class="grid_6 omega flr">
+                    <label>Localidad:</label>
+                    <input type="text" name="localidad" id="localidad" placeholder="Localidad *" required style="width: 96%" />
+                </div>
+            </div>
+						<div class="grid_12 alpha fll">
+								<div class="grid_6 alpha fll">
+										<label>Edad:</label>
+										<input type="text" name="edad" id="edad" placeholder="Edad *" required />
+								</div>
+								<div class="grid_6 omega flr">
+										<label>Estado Civil:</label>
+										<input type="text" name="estadocivil" id="estadocivil" placeholder="Estado Civil *" required />
+								</div>
+						</div>
+						<div class="grid_12 alpha fll">
+								<div class="grid_6 alpha fll">
+										<label>Estudios:</label>
+										<select name="estudio" id="estudio" style="width: 96%" required>
+												<option value="Secundarios" SELECTED>Seleccionar Estudios</option>
+												<option value="Secundarios">Secundarios</option>
+												<option value="Terciarios">Terciarios</option>
+												<option value="Universitarios">Universitarios</option>
+										</select>
+								</div>
+								<div class="grid_6 omega flr">
+										<label>Título otorgado:</label>
+										<input type="text" name="titulo" id="titulo" placeholder="Título otorgado *" required />
+								</div>
+						</div>
+            <div class="grid_12 alpha fll">
+                <div class="grid_6 alpha fll">
+                    <label>Correo:</label>
+                    <input type="text" name="correo" id="correo" placeholder="Email *" onblur="validarSintaxisCorreo(this.value);"/>
+                    <div class="grid_12 alpha fll"  align="center" style="font-weight: bold !Important; display: none;" id="div_resultado_correo">
+                        <span id="span_resultado_correo" <span class='highlighter two-radius' style='color:#fff; background:#FD7F67; margin:0px; font-weight: bold !Important;'></span>
+                    </div>
+                </div>
+                <div class="grid_6 omega flr">
+                    <label>Teléfono:</label>
+                    <input type="text" name="telefono" id="telefono" placeholder="Teléfono *" class="requiredField" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" onblur="validarSintaxisTelefono();" />
+                    <p style="font-size: 10px;" id="p_telefono">Ingrese el código de área y 15 en celulares.</p>
+                    <div class="grid_12 alpha fll"  align="center" style="font-weight: bold !Important; display: none;" id="div_resultado_telefono">
+                        <span id="span_resultado_telefono" <span class='highlighter two-radius' style='color:#fff; background:#FD7F67; margin:0px; font-weight: bold !Important;'></span>
+                    </div>
+                </div>
+            </div>
+            <div class="grid_12 alpha fll">
+                <div class="grid_6 alpha fll">
+                    <label>Género:</label>
+                    <input type="radio" name="genero" id="genero" value="M" selected>&nbsp;<b>Masculino</b>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="genero" id="genero" value="F">&nbsp;<b>Femenino</b>
+                </div>
+                <div class="grid_6 omega flr">
+                    <label>Área de Interés:</label>
+                    <select  name="areainteres" id="interes" style="width: 96%" required>
+                        <option value="11" SELECTED>Seleccionar área de interés</option>
+                        {slt_areainteres}
+                    </select>
+                </div>
+            </div>
+            <div class="grid_12 alpha fll">
+                <div class="grid_12 alpha fll">
+                    <label>Mensaje:</label>
+                    <textarea name="mensaje" id="mensaje" placeholder="Mensaje *" required rows="8" style="width: 98%"></textarea>
+                </div>
+            </div>
+            <div class="grid_12 alpha fll">
+                <div class="grid_12 alpha fll">
+                    <p>Presione el botón Examinar para localizar en su PC el archivo del Curr&iacute;culum Vitae que desea enviarnos.</p>
+                    <div class="grid_6 alpha fll"><input type="file" name="senderFile" required /></div>
+                </div>
+            </div>
+            <div class="grid_12 alpha fll">
+                <div class="grid_12 aplha fll">
+                    <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
+                </div>
+            </div>
+            <div class="grid_12 alpha fll">
+                <div class="grid_12 aplha fll">
+                    <input type="submit" id="btnEnviar" name="btnEnviar" value="Enviar CV" style=" background-color: #191967;" />
+                    <span>  </span>
+                </div>
+            </div>
+        </div>
+	</form>
+</div>
+<div class="modal fade" id="sistema_alertas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #191967;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">ATENCIÓN!</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-lg-2">
+          <center><h1><i class="fa fa-exclamation-triangle" style="color: #ff6c60;"></i></h1></center>
+        </div>
+        <div class="col-lg-10">
+            <p size="3" style="font-weight: bold; display: {modal-msj_erarchivo};" >
+                Disculpe, ha ocurrido un error en la carga del archivo. Por favor intente nuevamente.
+                <br>Disculpe las molestias ocasionadas!
+            </p>
+            <p size="3" style="font-weight: bold; display: {modal-msj_erformato};" >
+                Solo se permiten documentos .PDF o .DOC(Word). Por favor intente nuevamente.
+                <br>Disculpe las molestias ocasionadas!
+            </p>
+            <p size="3" style="font-weight: bold; display: {modal-msj_ercaptcha};" >
+                Estimado cliente, ha ocurrido un error con el captcha. Por favor intente nuevamente.
+                <br>Disculpe las molestias ocasionadas!
+            </p>
+            <p size="3" style="font-weight: bold; display: {modal-msj_okcorreo};" >
+                Su mensaje ha sido enviado a nuestro staff.<br>Muchas gracias por comunicarse con nosotros!
+            </p>
+        </div>
+        <br><br><br>
+      </div>
+      <div class="modal-footer">
+        <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+    window.onload = function() {
+        var j = jQuery.noConflict();
+        j('#sistema_alertas').modal('{modal-display}');
+    };
+</script>
+<script type="text/javascript">
+    function validarSintaxisCorreo(mail) {
+        var regexp = /^[0-9a-zA-Z._.-]+\@[0-9a-zA-Z._.-]+\.[0-9a-zA-Z]+$/;
+        if(mail != 0) {
+            if (regexp.test(mail) == 0) {
+                document.getElementById("div_resultado_correo").style.display="block";
+                document.getElementById("span_resultado_correo").innerHTML="Ingrese una sintáxis correcta por favor! Ej: xxxxxxx@servidor.com";
+                document.getElementById("correo").focus;
+                document.getElementById("btnEnviar").disabled = true;
+                return 0;
+            } else {
+                document.getElementById("div_resultado_correo").style.display="none";
+                document.getElementById("btnEnviar").disabled = false;
+            }
+        }
+    }
+
+    function validarSintaxisTelefono(){
+        numero = document.getElementById("telefono").value.length;
+        if((document.getElementById("telefono").value.length  = 0)){
+            document.getElementById("div_resultado_telefono").style.display="block";
+            document.getElementById("span_resultado_telefono").innerHTML="Ingrese un teléfono correcto.";
+            document.getElementById("telefono").focus;
+            return 0;
+        } else if((numero < 11) || (numero > 13) || (numero == 12)) {
+            document.getElementById("div_resultado_telefono").style.display="block";
+            document.getElementById("span_resultado_telefono").innerHTML="Ingrese un teléfono correcto.";
+            document.getElementById("telefono").focus;
+        } else if(numero == 13) {
+            var aBuscar = document.getElementById("telefono").value;
+            var resultadoPos = aBuscar.indexOf("15",3);
+            if(resultadoPos == 3 || resultadoPos == 4 || resultadoPos == 5) {
+                document.getElementById("div_resultado_telefono").style.display="none";
+                var c_telefono=true;
+            } else if(numero == 11) {
+                return 0;
+            } else {
+            document.getElementById("div_resultado_telefono").style.display="block";
+            document.getElementById("span_resultado_telefono").innerHTML="Ingrese un teléfono correcto.";
+            document.getElementById("telefono").focus;
+        }
+    }
+}
+</script>

@@ -1,0 +1,131 @@
+<div class="center">
+    <div class="container">
+        <form action='{url_app}/clienteusuario/p3_signup_cliente' class="form form--flex form--auth js-register-form js-parsley" novalidate="" method="post">
+            <div class="row">
+                <div class="form-group form-group--col-12">
+                    <label for="pregunta_1" class="control-label">{equifax-pregunta1}</label>
+                    <div class="row">
+                        <div class="form-group form-group--col-12">
+                            <ul class="form-property__params">
+                                <li class="form-group--col-12">
+                                    <input id="preg1_opt1" type="radio" class="in-radio" name="preg1" value="1">
+                                    <label for="preg1_opt1" class="in-label">{equifax-pregunta1_respuesta1}</label>
+                                </li>
+                                <li class="form-group--col-12">
+                                    <input id="preg1_opt2" type="radio" class="in-radio" name="preg1" value="1">
+                                    <label for="preg1_opt2" class="in-label">{equifax-pregunta1_respuesta2}</label>
+                                </li>
+                                <li class="form-group--col-12">
+                                    <input id="preg1_opt3" type="radio" class="in-radio" name="preg1" value="1">
+                                    <label for="preg1_opt3" class="in-label">{equifax-pregunta1_respuesta3}</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-group--col-12">
+                    <label for="pregunta_1" class="control-label">{equifax-pregunta2}</label>
+                    <div class="row">
+                        <div class="form-group form-group--col-12">
+                            <ul class="form-property__params">
+                                <li class="form-group--col-12">
+                                    <input id="preg2_opt1" type="radio" class="in-radio" name="preg2" value="1">
+                                    <label for="preg2_opt1" class="in-label">{equifax-pregunta2_respuesta1}</label>
+                                </li>
+                                <li class="form-group--col-12">
+                                    <input id="preg2_opt2" type="radio" class="in-radio" name="preg2" value="1">
+                                    <label for="preg2_opt2" class="in-label">{equifax-pregunta2_respuesta2}</label>
+                                </li>
+                                <li class="form-group--col-12">
+                                    <input id="preg2_opt3" type="radio" class="in-radio" name="preg2" value="1">
+                                    <label for="preg2_opt3" class="in-label">{equifax-pregunta2_respuesta3}</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group form-group--col-12">
+                    <label for="pregunta_1" class="control-label">{equifax-pregunta3}</label>
+                    <div class="row">
+                        <div class="form-group form-group--col-12">
+                            <ul class="form-property__params">
+                                <li class="form-group--col-12">
+                                    <input id="preg3_opt1" type="radio" class="in-radio" name="preg3" value="1">
+                                    <label for="preg3_opt1" class="in-label">{equifax-pregunta3_respuesta1}</label>
+                                </li>
+                                <li class="form-group--col-12">
+                                    <input id="preg3_opt2" type="radio" class="in-radio" name="preg3" value="1">
+                                    <label for="preg3_opt2" class="in-label">{equifax-pregunta3_respuesta2}</label>
+                                </li>
+                                <li class="form-group--col-12">
+                                    <input id="preg3_opt3" type="radio" class="in-radio" name="preg3" value="1">
+                                    <label for="preg3_opt3" class="in-label">{equifax-pregunta3_respuesta3}</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+                <button type="submit" class="form__submit">CONTINUAR</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="sistema_alertas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #191967;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">ATENCIÓN!</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-lg-2">
+          <center><h1><i class="fa fa-exclamation-triangle" style="color: #ff6c60;"></i></h1></center>
+        </div>
+        <div class="col-lg-10">
+            <p size="3" style="font-weight: bold; display: {modal-msj_ercaptcha};" >
+                Estimado cliente, ha ocurrido un error con el captcha. Por favor intente nuevamente.
+                <br>Disculpe las molestias ocasionadas!
+            </p>
+        </div>
+        <br><br><br>
+      </div>
+      <div class="modal-footer">
+        <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    function validarSintaxisTelefono(){
+        numero = document.getElementById("telefono").value.length;
+        if((document.getElementById("telefono").value.length  = 0)){
+            document.getElementById("div_resultado_telefono").style.display="block";
+            document.getElementById("span_resultado_telefono").innerHTML="Ingrese un teléfono correcto.";
+            document.getElementById("telefono").focus;
+            return 0;
+        } else if((numero < 11) || (numero > 13) || (numero == 12)) {
+            document.getElementById("div_resultado_telefono").style.display="block";
+            document.getElementById("span_resultado_telefono").innerHTML="Ingrese un teléfono correcto.";
+            document.getElementById("telefono").focus;
+        } else if(numero == 13) {
+            var aBuscar = document.getElementById("telefono").value;
+            var resultadoPos = aBuscar.indexOf("15",3);
+            if(resultadoPos == 3 || resultadoPos == 4 || resultadoPos == 5) {
+                document.getElementById("div_resultado_telefono").style.display="none";
+                var c_telefono=true;
+            } else if(numero == 11) {
+                return 0;
+            } else {
+            document.getElementById("div_resultado_telefono").style.display="block";
+            document.getElementById("span_resultado_telefono").innerHTML="Ingrese un teléfono correcto.";
+            document.getElementById("telefono").focus;
+        }
+    }
+}
+</script>
