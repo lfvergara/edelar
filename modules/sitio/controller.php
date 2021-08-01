@@ -1,6 +1,6 @@
 <?php
 require_once "modules/sitio/view.php";
-require_once "modules/rse/model.php";
+//require_once "modules/rse/model.php";
 
 
 //LIBS ENCRIPT
@@ -29,8 +29,8 @@ class SitioController {
 	function rse() {
 		$select = "rse.denominacion AS TITULO, rse.epigrafe AS EPIGRAFE";
 		$from = "rse rse LIMIT 3";
-		$rse_collection = Collector()->get('RSE');
-		print_r($rse_collection);exit;
+		$rse_collection = CollectorCondition()->get('RSE', NULL, 4, $from, $select);
+		print_r($rse_collection);exit;		
 		$this->view->rse();
 	}
 

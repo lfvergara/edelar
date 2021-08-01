@@ -3,7 +3,6 @@ class Collector {
     public $coleccion = array();
 
     public function get($objeto) {
-        print_r($objeto);exit;
         $modelo = ucwords($objeto);
         $tabla = strtolower($objeto);
         $pid = "{$tabla}_id";
