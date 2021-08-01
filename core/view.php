@@ -40,9 +40,9 @@ abstract class View {
                       "{app_footer}"=>APP_TITTLE . " - " . date("Y"),
                       "{contenido}"=>$contenido);
         $plantilla = $this->render($dict, $plantilla);
+        $plantilla = ($flag_theme == 'SECCION') ? str_replace("{sidebar_login_autogestion}", $sidebar, $plantilla) : $plantilla;
         $plantilla = str_replace("{url_app}", URL_APP, $plantilla);
         $plantilla = str_replace("{url_static}", URL_STATIC, $plantilla);
-        $plantilla = ($flag_theme == 'SECCION') ? str_replace("{sidebar_login_autogestion}", $sidebar, $plantilla) : $plantilla;
         return $plantilla;
     }
 
