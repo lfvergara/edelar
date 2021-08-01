@@ -76,7 +76,7 @@ class SitioController {
 				$rst = $ws_get_deuda->documento($variable);
 				break;
 		}
-
+		print_r($rst);exit;
 		$this->view->ver_deuda($variable, $rst, $tipo);
 	}
 	/* MENU = DEUDA ********************************************************/
