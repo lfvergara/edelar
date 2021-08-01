@@ -22,15 +22,15 @@ class wsAgenteExternoGetDeudaHelper {
 			$cliente = null;
 			$deudas = array();
 			$tamr = count($http->respuesta["datos"]);
-			if ($tamr > 1){
-			$deudas_std = $http->respuesta["datos"][0];
-			$cliente_std = $http->respuesta["datos"][1]->cliente;
-			$cliente = wsCliente::CastStd($cliente_std);
-			$deudas = array();
-			foreach ($deudas_std as $deuda_std) {
-				$deuda = wsDeuda::CastStd($deuda_std);
-				$deudas[] = $deuda;
-			}
+			if ($tamr > 1) {
+				$deudas_std = $http->respuesta["datos"][0];
+				$cliente_std = $http->respuesta["datos"][1]->cliente;
+				$cliente = wsCliente::CastStd($cliente_std);
+				$deudas = array();
+				foreach ($deudas_std as $deuda_std) {
+					$deuda = wsDeuda::CastStd($deuda_std);
+					$deudas[] = $deuda;
+				}
 			} else {
 				$cliente_std = $http->respuesta["datos"][0]->cliente;
 				$cliente = wsCliente::CastStd($cliente_std);
@@ -74,7 +74,7 @@ class wsAgenteExternoGetDeudaHelper {
 			return $datos;
 		} else {
 			$flag_error = $http->respuesta["flag_error"];
-			header("Location: " . URL_APP . "/sitio/error_deuda/{$flag_error}");
+			header("Location: " . URL_APP . "/agenteexterno/deuda_cliente/{$flag_error}");
 		}
         
 	}

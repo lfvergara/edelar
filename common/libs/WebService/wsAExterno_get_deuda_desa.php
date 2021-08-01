@@ -9,8 +9,8 @@ require_once "Externos/cliente.php";
 
 
 class wsAgenteExternoGetDeudaHelper {
-	public function suministro($suministro) { 
-		$http = new HttpHelper("WsExternos");
+	public function suministro($suministro) {
+		$http = new HttpHelper("WsExternosDESA");
 		$http->setUser("externo01");
 		$http->setPw("092348230947256");
 		$http->setServlet("GetDeuda");
@@ -39,20 +39,20 @@ class wsAgenteExternoGetDeudaHelper {
 			return $datos;
 		} else {
 			$flag_error = $http->respuesta["flag_error"];
-			header("Location: " . URL_APP . "/sitio/error_deuda/{$flag_error}");
+			header("Location: " . URL_APP . "/agenteexterno/deuda_cliente/{$flag_error}");
 		}
-        
+
 	}
 
-	public function documento($documento) { 
-		$http = new HttpHelper("WsExternos");
+	public function documento($documento) {
+		$http = new HttpHelper("WsExternosDESA");
 		$http->setUser("externo01");
 		$http->setPw("092348230947256");
 		$http->setServlet("GetDeuda");
 		$http->agregarPeticion(Peticiones::DNI, $documento);
 		$http->setMetodo(Peticionable::POST);
 		$http->ejecutar();
-        
+
         if ($http->respuesta["haydatos"]) {
 			$cliente = null;
 			$deudas = array();
@@ -74,9 +74,9 @@ class wsAgenteExternoGetDeudaHelper {
 			return $datos;
 		} else {
 			$flag_error = $http->respuesta["flag_error"];
-			header("Location: " . URL_APP . "/sitio/error_deuda/{$flag_error}");
+			header("Location: " . URL_APP . "/agenteexterno/deuda_cliente/{$flag_error}");
 		}
-        
+
 	}
 }
 ?>

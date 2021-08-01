@@ -28,8 +28,6 @@ Class wsDeuda implements JsonSerializable {
 	public $consumo;
 	public $pot_contratada;
 	public $tarifa;
-	public $cadenaBP;
-	public $cadenaHashBP;
 	
 	public function __construct(){
 		$this->id = 0;
@@ -57,8 +55,6 @@ Class wsDeuda implements JsonSerializable {
 		$this->consumo = 0;
 		$this->pot_contratada = 0;
 		$this->tarifa = "";
-		$this->cadenaBP = "";
-		$this->cadenaHashBP = "";
 	}
 	
 	public function jsonSerialize() {
@@ -91,8 +87,6 @@ Class wsDeuda implements JsonSerializable {
 		$deuda->setConsumo($class->consumo);
 		$deuda->setPot_contratada($class->pot_contratada);
 		$deuda->setTarifa($class->tarifa);
-		$deuda->setCadenaBP($class->cadenaBP);
-		$deuda->setCadenaHashBP($class->cadenaHashBP);
 		return $deuda;
 	}
 	
@@ -297,20 +291,5 @@ Class wsDeuda implements JsonSerializable {
 		$this->tarifa = $tarifa;
 	}
 	
-	public function getCadenaBP() {
-		return $this->cadenaBP;
-	}
-
-	public function setCadenaBP($cadenaBP) {
-		$this->cadenaBP = $cadenaBP;
-	}
-	
-	public function getCadenaHashBP() {
-		return $this->cadenaHashBP;
-	}
-
-	public function setCadenaHashBP($cadenaHashBP) {
-		$this->cadenaHashBP = $cadenaHashBP;
-	}
 }
 ?>

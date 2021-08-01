@@ -7,12 +7,10 @@ require_once dirname(__FILE__)."/clases/Peticiones.php";
 require_once dirname(__FILE__)."/deuda.php";
 require_once dirname(__FILE__)."/deudapub.php";
 require_once dirname(__FILE__)."/cliente.php";
-require_once dirname(__FILE__)."/factura.php";
 
 if (!empty($argv[1]) && !empty($argv[2])){
 $busqueda = $argv[1];
 $valor = $argv[2];
-$valor2 = $argv[3];
 
 	if ($busqueda == "deudaidcliente"){
 		$http = new HttpHelper("WsAutogestion");
@@ -33,78 +31,6 @@ $valor2 = $argv[3];
 		$http->agregarPeticion(Peticiones::ID_CLIENTE, $valor);
 		$http->setMetodo(Peticionable::POST);
 		$http->ejecutar();
-	}
-	
-	if ($busqueda == "xmlfactura"){
-		$http = new HttpHelper("WsAutogestion");
-		$http->setUser("edelar01");
-		$http->setPw("9183217388123012");
-	
-		//$http->setProtocolo("http");
-		//$http->setServer("localhost");
-		//$http->setPuerto("7080");
-		$http->Debug(true);
-		$http->Consola(true);
-		$http->esArchivo(true);
-		//$http->loguear(false);
-		$http->setTimeout(10);
-
-		$http->regen();
-	
-		$http->setServlet("GetFactura");
-		$http->agregarPeticion(Peticiones::ID_XML, $valor);
-		$http->setMetodo(Peticionable::POST);
-		$http->ejecutar();
-		echo $http->getHeaders();
-		//$fp = fopen('pdftest.pdf', 'w');
-		//fwrite($fp, $http->respuesta_raw);
-		//fclose($fp);
-	}
-	
-	if ($busqueda == "xmlperiodos"){
-		$http = new HttpHelper("WsAutogestion");
-		$http->setUser("edelar01");
-		$http->setPw("9183217388123012");
-	
-		$http->setProtocolo("http");
-		$http->setServer("localhost");
-		$http->setPuerto("7080");
-		$http->Debug(true);
-		$http->Consola(true);
-		$http->loguear(false);
-		$http->setTimeout(5);
-
-		$http->regen();
-	
-		$http->setServlet("GetListaFacturas");
-		$http->agregarPeticion(Peticiones::NIS, $valor);
-		$http->setMetodo(Peticionable::POST);
-		$http->ejecutar();
-	}
-	
-	if ($busqueda == "xmlfacturanisperiodo"){
-		$http = new HttpHelper("WsAutogestion");
-		$http->setUser("edelar01");
-		$http->setPw("9183217388123012");
-	
-		//$http->setProtocolo("http");
-		//$http->setServer("localhost");
-		//$http->setPuerto("7080");
-		$http->Debug(false);
-		$http->Consola(true);
-		//$http->loguear(false);
-		$http->setTimeout(10);
-
-		$http->regen();
-	
-		$http->setServlet("GetFactura");
-		$http->agregarPeticion(Peticiones::NIS, $valor);
-		$http->agregarPeticion(Peticiones::PERIODO, $valor2);
-		$http->setMetodo(Peticionable::POST);
-		$http->ejecutarArchivo();
-		$fp = fopen('pdftest.pdf', 'w');
-		fwrite($fp, $http->respuesta_archivo);
-		fclose($fp);
 	}
 	
 	if ($busqueda == "validareg"){
@@ -247,16 +173,6 @@ $valor2 = $argv[3];
 		if($busqueda == "validareg"){
 			$cod = $http->respuesta["datos"];
 			var_dump($cod);
-		}
-		if($busqueda == "xmlperiodos"){
-			$facturas = array();
-			$facturas_std = $http->respuesta["datos"];
-				foreach ($facturas_std as $factura_std) {
-					$factura = wsFactura::CastStd($factura_std);
-					$facturas[] = $factura;
-				}
-			$datos = array('facturas' => $facturas);
-			echo Util::respuestaJSON($datos);
 		}
 	}
 	else{

@@ -10,12 +10,13 @@ require_once "Autogestion/historico.php";
 class wsAutogestionGetHistoricoHelper {
 	
 	
-	public function getPorNis($nis_id) {
-		$http = new HttpHelper("WsAutogestion");
+	public function getPorNis($nis_id,$cliente_token) {
+		$http = new HttpHelper("WsV10");
 		$http->setUser("edelar01");
 		$http->setPw("9183217388123012");
 		$http->setServlet("GetHistoricoCliente");
 		$http->agregarPeticion(Peticiones::NIS, $nis_id);
+		$http->agregarPeticion(Peticiones::ID_CLIENTE_TOKEN, $cliente_token);
 		$http->setMetodo(Peticionable::POST);
 		$http->ejecutar();
 		$historicos = array();

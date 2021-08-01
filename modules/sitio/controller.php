@@ -12,10 +12,11 @@ class SitioController {
         $this->view->home();
 	}
 
+	/* MENU = INSTITUCIONAL ************************************************/
 	function nosotros() {
 		$this->view->nosotros();
 	}
-	/* INSTITUCIONAL ******************************************/
+	
 	function oficinascomerciales() {
 		$this->view->oficinascomerciales();
 	}
@@ -27,9 +28,9 @@ class SitioController {
 	function trabajaedelar() {
 		$this->view->trabajaedelar();
 	}
-	/* INSTITUCIONAL ******************************************/
+	/* MENU = INSTITUCIONAL ************************************************/
 
-	/* MENU = CENTRO DE AYUDA ******************************************/
+	/* MENU = CENTRO DE AYUDA **********************************************/
 	function leerfactura() {
 		$this->view->leerfactura();
 	}
@@ -49,12 +50,32 @@ class SitioController {
 	function contacto() {
 		$this->view->contacto();
 	}
-	/* MENU = CENTRO DE AYUDA ******************************************/
+	/* MENU = CENTRO DE AYUDA **********************************************/
 
 	function tramites_hogares_comercios() {
 		$this->view->tramites_hogares_comercios();
 	}
 
+	/* MENU = DEUDA ********************************************************/
+	function ver_deuda() {
+		require_once "common/libs/WebService/wsAExterno_get_deuda.php";
+		$ws_get_deuda = new wsAgenteExternoGetDeudaHelper();
+
+		$tipo = filter_input(INPUT_POST, 'tipo');
+		switch ($tipo) {
+			case 1:
+				$variable = filter_input(INPUT_POST, 'nis');
+				$rst = $ws_get_deuda->suministro($variable);
+				break;
+			case 2:
+				$variable = filter_input(INPUT_POST, 'dni');
+				$rst = $ws_get_deuda->documento($variable);
+				break;
+		}
+
+		$this->view->ver_deuda($variable, $rst, $tipo);
+	}
+	/* MENU = DEUDA ********************************************************/
 
 	/* PARA PRUEBA DE FORMULARIOS ******************************************/
 	function p1_signup_cliente() {

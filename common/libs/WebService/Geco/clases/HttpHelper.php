@@ -215,7 +215,7 @@ Class HttpHelper implements Peticionable {
 			return true;
 		}
 		error_reporting(1);
-		$array_datos = array('datos'=>$datos->respuesta);
+		$array_datos = array('datos'=>$datos->respuesta[0]);
 		if($array_datos ==null || !empty($array_datos)){
 			$this->respuesta = array_merge($array_respuesta,$array_datos);
 		}

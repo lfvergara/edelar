@@ -1,18 +1,18 @@
 <?php
-require_once "Externos/clases/HttpHelper.php";
-require_once "Externos/clases/Util.php";
-require_once "Externos/clases/Peticiones.php";
-require_once "Externos/deuda.php";
-require_once "Externos/cliente.php";
+require_once "Geco/clases/HttpHelper.php";
+require_once "Geco/clases/Util.php";
+require_once "Geco/clases/Peticiones.php";
+require_once "Geco/deuda.php";
+require_once "Geco/cliente.php";
 //error_reporting(E_ALL);
 //ini_set('display_errors', 1);
 
 
 class wsAgenteExternoGetDeudaHelper {
 	public function suministro($suministro) { 
-		$http = new HttpHelper("WsExternos");
-		$http->setUser("externo01");
-		$http->setPw("092348230947256");
+		$http = new HttpHelper("WsGeco");
+		$http->setUser("geco01");
+		$http->setPw("983458734623049");
 		$http->setServlet("GetDeuda");
 		$http->agregarPeticion(Peticiones::NIS, $suministro);
 		$http->setMetodo(Peticionable::POST);
@@ -39,15 +39,15 @@ class wsAgenteExternoGetDeudaHelper {
 			return $datos;
 		} else {
 			$flag_error = $http->respuesta["flag_error"];
-			header("Location: " . URL_APP . "/sitio/error_deuda/{$flag_error}");
+			header("Location: " . URL_APP . "/agenteexterno/deuda_cliente/{$flag_error}");
 		}
         
 	}
 
 	public function documento($documento) { 
-		$http = new HttpHelper("WsExternos");
-		$http->setUser("externo01");
-		$http->setPw("092348230947256");
+		$http = new HttpHelper("WsGeco");
+		$http->setUser("geco01");
+		$http->setPw("983458734623049");
 		$http->setServlet("GetDeuda");
 		$http->agregarPeticion(Peticiones::DNI, $documento);
 		$http->setMetodo(Peticionable::POST);
@@ -74,7 +74,7 @@ class wsAgenteExternoGetDeudaHelper {
 			return $datos;
 		} else {
 			$flag_error = $http->respuesta["flag_error"];
-			header("Location: " . URL_APP . "/sitio/error_deuda/{$flag_error}");
+			header("Location: " . URL_APP . "/agenteexterno/deuda_cliente/{$flag_error}");
 		}
         
 	}

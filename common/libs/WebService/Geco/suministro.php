@@ -6,8 +6,6 @@ Class wsSuministro implements JsonSerializable {
 	public $direccion;
 	public $localidad;
 	public $barrio;
-	public $idCliente;
-	public $idCuenta;
 	
 	public function __construct(){
 		$this->id = 0;
@@ -15,8 +13,6 @@ Class wsSuministro implements JsonSerializable {
 		$this->direccion = "";
 		$this->localidad = "";
 		$this->barrio = "";
-		$this->idCliente = 0;
-		$this->idCuenta = 0;
 	}
 	
 	public function jsonSerialize() {
@@ -30,8 +26,6 @@ Class wsSuministro implements JsonSerializable {
 		$suministro->setDireccion($class->direccion);
 		$suministro->setLocalidad($class->localidad);
 		$suministro->setBarrio($class->barrio);
-		$suministro->setIdCliente($class->idCliente);
-		$suministro->setIdCuenta($class->idCuenta);
 		return $suministro;
 	}
 	
@@ -41,22 +35,6 @@ Class wsSuministro implements JsonSerializable {
 	
 	public function setId($id){
 		$this->id = $id;
-	}
-	
-	public function getIdCliente(){
-		return $this->idCliente;
-	}
-	
-	public function setIdCliente($id){
-		$this->idCliente = $id;
-	}
-	
-	public function getIdCuenta(){
-		return $this->idCuenta;
-	}
-	
-	public function setIdCuenta($id){
-		$this->idCuenta = $id;
 	}
 
 	public function getLocalidad(){
