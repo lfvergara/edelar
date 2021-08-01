@@ -210,6 +210,21 @@
         </form>
         <!--FORM LOGIN-->
 
+        <script>
+            function tipoConsultaDeuda(tipoConsulta) {
+                if (tipoConsulta == 1) {
+                    document.getElementById('btn_nis').style.display = 'inline-block';
+                    document.getElementById('btn_dni').style.display = 'none';
+                    document.getElementById('lbl_consulta_deuda').innerHTML = 'INGRESE SU SUMINISTRO (NIS)';
+                    document.getElementById('tipo_consulta_deuda').value = 1;
+                } else {
+                    document.getElementById('btn_nis').style.display = 'none';
+                    document.getElementById('btn_dni').style.display = 'inline-block';
+                    document.getElementById('lbl_consulta_deuda').innerHTML = 'INGRESE SU DOCUMENTO';
+                    document.getElementById('tipo_consulta_deuda').value = 2;
+                }
+            }
+        </script>
 
         <!-- BEGIN SCRIPTS and INCLUDES-->
         <script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=places,drawing,geometry"></script>
@@ -245,41 +260,38 @@
         <!-- endbuild--><!-- inject:ga  -->
         <!-- endinject -->
         <!-- END SCRIPTS and INCLUDES-->
-
-
-
-
-
         <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase.js"></script>
 
         <script>
-          // Your web app's Firebase configuration
-          var firebaseConfig = {
-            apiKey: "AIzaSyBdphlzB-hnt7YWwLk12ybJOIECAuCozgE",
-            authDomain: "edelar-app-e7600.firebaseapp.com",
-            databaseURL: "https://edelar-app-e7600.firebaseio.com",
-            projectId: "edelar-app-e7600",
-            storageBucket: "edelar-app-e7600.appspot.com",
-            messagingSenderId: "670237904251",
-            appId: "1:670237904251:web:a20963b32883f455c641de",
-            measurementId: "G-JMWBTT0V6K"
-          };
-          // Initialize Firebase
-          firebase.initializeApp(firebaseConfig);
+            // Your web app's Firebase configuration
+            var firebaseConfig = {
+                apiKey: "AIzaSyBdphlzB-hnt7YWwLk12ybJOIECAuCozgE",
+                authDomain: "edelar-app-e7600.firebaseapp.com",
+                databaseURL: "https://edelar-app-e7600.firebaseio.com",
+                projectId: "edelar-app-e7600",
+                storageBucket: "edelar-app-e7600.appspot.com",
+                messagingSenderId: "670237904251",
+                appId: "1:670237904251:web:a20963b32883f455c641de",
+                measurementId: "G-JMWBTT0V6K"
+            };
+            
+            // Initialize Firebase
+            firebase.initializeApp(firebaseConfig);
 
-          // creo el provider de autenticación
-          var provider = new firebase.auth.FacebookAuthProvider();
+            // creo el provider de autenticación
+            var provider = new firebase.auth.FacebookAuthProvider();
 
-          // opcionalmente modifico el scope
-          provider.addScope('user_friends');
+            // opcionalmente modifico el scope
+            provider.addScope('user_friends');
 
-          // accedo al servicio de autenticación
-          var authService = firebase.auth();
+            // accedo al servicio de autenticación
+            var authService = firebase.auth();
 
-          // evento para el botón de login con facebook
-          document.getElementById('loginfacebook').addEventListener('click', function() {
-          // autentico con Facebook
-          authService.signInWithPopup(provider).then(function(result) {
+            // evento para el botón de login con facebook
+            document.getElementById('loginfacebook').addEventListener('click', function() {
+            
+                // autentico con Facebook
+                authService.signInWithPopup(provider).then(function(result) {
                     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
                     var token = result.credential.accessToken;
                     // The signed-in user info.
@@ -292,12 +304,11 @@
                     document.getElementById("f_correo").value = email;
                     form.submit();
 
-                  })
-                  .catch(function(error) {
-                      console.log('Detectado un error:', error);
-                  });
-          })
-
+                })
+                .catch(function(error) {
+                    console.log('Detectado un error:', error);
+                });
+            })
         </script>
     </body>
 </html>
