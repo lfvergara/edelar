@@ -1,5 +1,6 @@
 <?php
 require_once "modules/sitio/view.php";
+require_once "modules/rse/model.php";
 
 
 //LIBS ENCRIPT
