@@ -1,4 +1,6 @@
 <?php
+
+
 class Peticiones {
     const NIS = "nis";
     const ID_CLIENTE = "id_cliente";

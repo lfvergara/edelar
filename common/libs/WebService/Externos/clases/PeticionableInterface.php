@@ -11,5 +11,4 @@ interface Peticionable {
     const DELETE = 2;
     const PUT = 3;
 }
-
 ?>

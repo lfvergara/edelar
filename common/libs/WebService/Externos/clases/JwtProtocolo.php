@@ -13,13 +13,13 @@ Class JwtProtocolo {
 	private $hora_exp;
 	private $hora_exp_cliente;
 
-	public function __construct(){
+	public function __construct() {
 		$this->hora = time();
 		$this->hora_exp = $this->hora + ($this->session_tiempo_auth * 60);
 		$this->hora_exp_cliente = $this->hora + ($this->session_tiempo_cliente * 60);
 	}
 
-	public function autenticar($user,$pw){
+	public function autenticar($user,$pw) {
 		$kfinal = $this->keyjwt.$this->keyjwt.$this->keyjwt.$this->keyjwt.$this->keyjwt;
 		$datos = array(
 		"jti" => "0",
@@ -34,7 +34,7 @@ Class JwtProtocolo {
     	return $token;
 	}
 
-	public function crearTokenUsuario($usuario){
+	public function crearTokenUsuario($usuario) {
 		$kfinal = $this->keyjwt.$this->keyjwt.$this->keyjwt.$this->keyjwt.$this->keyjwt;
 		$datos = array(
 		"jti" => $usuario->getId(),
@@ -50,7 +50,7 @@ Class JwtProtocolo {
     	return $usuario;
 	}
 
-	public function descifar ($respuesta){
+	public function descifar ($respuesta) {
 		$kfinal = $this->keyjwt.$this->keyjwt.$this->keyjwt.$this->keyjwt.$this->keyjwt;
 		try {
 			$decoded = JWT::decode($respuesta , $kfinal , array('HS256'));

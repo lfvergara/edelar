@@ -1,11 +1,8 @@
 <?php
 
-class SHA256Encript
-{
-    public function Generate($ipAddress, $secretKey, $comercio, $sucursal, $amount)
-    {
-		if($this->IsNullOrEmptyString($ipAddress))
-		{
+class SHA256Encript {
+    public function Generate($ipAddress, $secretKey, $comercio, $sucursal, $amount) {
+		if($this->IsNullOrEmptyString($ipAddress)) {
 			$ipAddress = $this->getRealIpAddr();
 		}
 
@@ -19,8 +16,7 @@ class SHA256Encript
         return $string;
     }
 
-    private function getRealIpAddr()
-    {
+    private function getRealIpAddr() {
         if (!empty($_SERVER['HTTP_CLIENT_IP']))
             return $_SERVER['HTTP_CLIENT_IP'];
 
@@ -30,7 +26,8 @@ class SHA256Encript
         return $_SERVER['REMOTE_ADDR'];
     }
 
-	private function IsNullOrEmptyString($str){
+	private function IsNullOrEmptyString($str) {
 		return (!isset($str) || trim($str) === '');
 	}
 }
+?>

@@ -1,6 +1,7 @@
 <?php
 require_once dirname(__FILE__)."/suministro.php";
 
+
 Class wsDeuda implements JsonSerializable {
 	
 	public $id;
@@ -31,7 +32,7 @@ Class wsDeuda implements JsonSerializable {
 	public $cadenaBP;
 	public $cadenaHashBP;
 	
-	public function __construct(){
+	public function __construct() {
 		$this->id = 0;
 		$this->id_cliente = 0;
 		$this->id_factura = 0;
@@ -65,7 +66,7 @@ Class wsDeuda implements JsonSerializable {
 		return get_object_vars($this);
 	}
 	
-	public static function CastStd($class){
+	public static function CastStd($class) {
 		$deuda = new wsDeuda();
 		$deuda->setId($class->id);
 		$deuda->setIdCliente($class->id_cliente);
@@ -96,164 +97,164 @@ Class wsDeuda implements JsonSerializable {
 		return $deuda;
 	}
 	
-	public function getId(){
+	public function getId() {
 		return $this->id;
 	}
 	
-	public function setId($id){
+	public function setId($id) {
 		$this->id = $id;
 	}
 	
-	public function getIdCliente(){
+	public function getIdCliente() {
 		return $this->id_cliente;
 	}
 	
-	public function setIdCliente($id_cliente){
+	public function setIdCliente($id_cliente) {
 		$this->id_cliente = $id_cliente;
 	}
 	
-	public function getIdFactura(){
+	public function getIdFactura() {
 		return $this->id_factura;
 	}
 	
-	public function setIdFactura($id_factura){
+	public function setIdFactura($id_factura) {
 		$this->id_factura = $id_factura;
 	}
 	
-	public function getSuministro(){
+	public function getSuministro() {
 		return $this->suministro;
 	}
 	
-	public function setSuministro($suministro){
+	public function setSuministro($suministro) {
 		$this->suministro = $suministro;
 	}
 	
-	public function getFechaFactura(){
+	public function getFechaFactura() {
 		return $this->fecha_factura;
 	}
 	
-	public function setFechaFactura($fecha_factura){
+	public function setFechaFactura($fecha_factura) {
 		$this->fecha_factura = $fecha_factura;
 	}
 	
-	public function getFechaFacturaVenc(){
+	public function getFechaFacturaVenc() {
 		return $this->fecha_factura_vencimiento;
 	}
 	
-	public function setFechaFacturaVenc($fecha_factura_vencimiento){
+	public function setFechaFacturaVenc($fecha_factura_vencimiento) {
 		$this->fecha_factura_vencimiento = $fecha_factura_vencimiento;
 	}
 	
-	public function getFechaFacturaVenc2(){
+	public function getFechaFacturaVenc2() {
 		return $this->fecha_factura_segundo_vencimiento;
 	}
 	
-	public function setFechaFacturaVenc2($fecha_factura_segundo_vencimiento){
+	public function setFechaFacturaVenc2($fecha_factura_segundo_vencimiento) {
 		$this->fecha_factura_segundo_vencimiento = $fecha_factura_segundo_vencimiento;
 	}
 	
-	public function getFechaFacturaProximo(){
+	public function getFechaFacturaProximo() {
 		return $this->fecha_factura_proximo_vencimiento;
 	}
 	
-	public function setFechaFacturaProximo($fecha_factura_proximo_vencimiento){
+	public function setFechaFacturaProximo($fecha_factura_proximo_vencimiento) {
 		$this->fecha_factura_proximo_vencimiento = $fecha_factura_proximo_vencimiento;
 	}
 	
-	public function getFechaFacturaEmision(){
+	public function getFechaFacturaEmision() {
 		return $this->fecha_factura_emision;
 	}
 	
-	public function setFechaFacturaEmision($fecha_factura_emision){
+	public function setFechaFacturaEmision($fecha_factura_emision) {
 		$this->fecha_factura_emision = $fecha_factura_emision;
 	}
 	
-	public function getFechaFacturaPuestaCobro(){
+	public function getFechaFacturaPuestaCobro() {
 		return $this->fecha_factura_emision;
 	}
 	
-	public function setFechaFacturaPuestaCobro($fecha_factura_puestacobro){
+	public function setFechaFacturaPuestaCobro($fecha_factura_puestacobro) {
 		$this->fecha_factura_puestacobro = $fecha_factura_puestacobro;
 	}
 	
-	public function getPeriodo(){
+	public function getPeriodo() {
 		return $this->periodo_factura;
 	}
 	
-	public function setPeriodo($periodo_factura){
+	public function setPeriodo($periodo_factura) {
 		$explode_periodo = explode('/', $periodo_factura); 
 		$this->periodo_factura = $explode_periodo[1].$explode_periodo[0];
 	}
 	
-	public function getTipoRec(){
+	public function getTipoRec() {
 		return $this->tipo_rec;
 	}
 	
-	public function setTipoRec($tipo_rec){
+	public function setTipoRec($tipo_rec) {
 		$this->tipo_rec = $tipo_rec;
 	}
 	
-	public function getImporteEnergia(){
+	public function getImporteEnergia() {
 		return $this->importe_energia;
 	}
 	
-	public function setImporteEnergia($importe_energia){
+	public function setImporteEnergia($importe_energia) {
 		$this->importe_energia = $importe_energia;
 	}
 	
-	public function getImporteAgua(){
+	public function getImporteAgua() {
 		return $this->importe_agua;
 	}
 	
-	public function setImporteAgua($importe_agua){
+	public function setImporteAgua($importe_agua) {
 		$this->importe_agua = $importe_agua;
 	}
 	
-	public function getImporteTotal(){
+	public function getImporteTotal() {
 		return $this->importe_total;
 	}
 	
-	public function setImporteTotal($importe_total){
+	public function setImporteTotal($importe_total) {
 		$this->importe_total = $importe_total;
 	}
 	
-	public function getColEstado(){
+	public function getColEstado() {
 		return $this->col_status;
 	}
 	
-	public function setColEstado($col_status){
+	public function setColEstado($col_status) {
 		$this->col_status = $col_status;
 	}
 	
-	public function getEstadoFactura(){
+	public function getEstadoFactura() {
 		return $this->estado_factura;
 	}
 	
-	public function setEstadoFactura($estado_factura){
+	public function setEstadoFactura($estado_factura) {
 		$this->estado_factura = $estado_factura;
 	}
 	
-	public function getFechaPago(){
+	public function getFechaPago() {
 		return $this->fecha_pago;
 	}
 	
-	public function setFechaPago($fecha_pago){
+	public function setFechaPago($fecha_pago) {
 		$this->fecha_pago = $fecha_pago;
 	}
 	
-	public function getCod_barra(){
+	public function getCod_barra() {
 		return $this->cod_barra;
 	}
 	
-	public function setCod_barra($cod_barra){
+	public function setCod_barra($cod_barra) {
 		$this->cod_barra = $cod_barra;
 	}
 	
-	public function getCod_barra_img(){
+	public function getCod_barra_img() {
 		return $this->cod_barra_img;
 	}
 	
-	public function setCod_barra_img($cod_barra_img){
+	public function setCod_barra_img($cod_barra_img) {
 		$this->cod_barra_img = $cod_barra_img;
 	}
 	

@@ -2,6 +2,10 @@
 require_once "modules/sitio/view.php";
 
 
+//LIBS ENCRIPT
+require_once "common/libs/sha256encript/SHA256Encript.php";
+require_once "common/libs/sha256encript/AESEncrypter.php";
+
 class SitioController {
 
 	function __construct() {
@@ -58,7 +62,7 @@ class SitioController {
 
 	/* MENU = DEUDA ********************************************************/
 	function ver_deuda() {
-		require_once "common/libs/WebService/wsAExterno_get_deuda.php";
+		require_once "common/libs/WebService/wsAExterno_get_deuda_desa.php";
 		$ws_get_deuda = new wsAgenteExternoGetDeudaHelper();
 
 		$tipo = filter_input(INPUT_POST, 'tipo');

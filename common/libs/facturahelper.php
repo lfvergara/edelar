@@ -4,11 +4,11 @@ class FacturaHelper {
 	private $NIS = "";
 	private $ARCHIVOS="";
 
-	function FacturaHelper($nis){
+	function FacturaHelper($nis) {
 		$this->NIS = $nis;
 	}
 
-	public function validarNIS(){
+	public function validarNIS() {
 		$archivosasd = $this->readService();
 		if ($archivosasd!="<result></result>") {
 			$this->ARCHIVOS = $archivosasd;
@@ -19,19 +19,19 @@ class FacturaHelper {
 		}	
 	}
 
-	public function getArchivos(){
+	public function getArchivos() {
 		return $this->ARCHIVOS;
 
 	}
 
-	private function parseArchivo($mvalues){
+	private function parseArchivo($mvalues) {
 		for ($i=0; $i < count($mvalues); $i++) {
 			$mol[$mvalues[$i]["tag"]] = $mvalues[$i]["value"];
 		}
 		return new Archivo($mol);
 	}
 
-	private function readService(){
+	private function readService() {
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
 			CURLOPT_RETURNTRANSFER => 1,
@@ -44,5 +44,4 @@ class FacturaHelper {
 		return $archivohttp;
 	}
 }
-
 ?>

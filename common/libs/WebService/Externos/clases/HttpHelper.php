@@ -31,7 +31,7 @@ Class HttpHelper implements Peticionable {
 	private $pass;
 	private $CA_PATH;
 
-	public function __construct($s){
+	public function __construct($s) {
 		$this->servicio_nombre = $s;
 		$this->PROTOCOLO = "https";
 		$this->SERVER = servidor;
@@ -52,77 +52,77 @@ Class HttpHelper implements Peticionable {
 		$this->user_agent_cliente = "";
 	}
 
-	public function regen(){
+	public function regen() {
 		$this->url_conexion = $this->PROTOCOLO."://".$this->SERVER.":".$this->PUERTO."/".$this->servicio_nombre."/";
 		$this->peticiones = array();
 	}
 
-	public function setServer($sv){
+	public function setServer($sv) {
 		$this->SERVER = $sv;
 	}
 
-	public function loguear($l){
+	public function loguear($l) {
 		$this->log = $l;
 	}
 
-	public function setTimeout($to){
+	public function setTimeout($to) {
 		$this->timeout = $to * 1000;
 	}
 	
-	public function setCaPath($path){
+	public function setCaPath($path) {
 		$this->CA_PATH = $path;
 	}
 	
-	public function setUser($u){
+	public function setUser($u) {
 		$this->user = $u;
 	}
 	
-	public function setPw($p){
+	public function setPw($p) {
 		$this->pass = $p;
 	}
 	
-	public function Debug($d){
+	public function Debug($d) {
 		$this->debug = $d;
 	}
 
-	public function Consola($c){
+	public function Consola($c) {
 		$this->consola = $c;
 	}
 
-	public function setProtocolo($proto){
+	public function setProtocolo($proto) {
 		$this->PROTOCOLO = $proto;
 	}
 
-	public function setPuerto($puerto){
+	public function setPuerto($puerto) {
 		$this->PUERTO = $puerto;
 	}
 
-	public function agregarPeticion($parametro, $valor){
+	public function agregarPeticion($parametro, $valor) {
 		$peticion = new Peticion();
 		$peticion->setParametro($parametro);
 		$peticion->setValor($valor);
 		$peticiones = array_push($this->peticiones,$peticion);
 	}
 
-	public function limpiarPeticiones(){
+	public function limpiarPeticiones() {
 		$this->peticiones = array();
 	}
 
-	public function setServlet($serv){
+	public function setServlet($serv) {
 		$this->servlet = $serv;
 	}
 
-	public function setMetodo($m){
+	public function setMetodo($m) {
 		$this->metodo = $m;
 	}
 
-	public function ejecutar(){
+	public function ejecutar() {
 		$this->cliente_curl = curl_init();
 		$jwt = new JwtProtocolo();
 		$token = $jwt->autenticar($this->user, $this->pass);
 		curl_setopt_array($this->cliente_curl,array(CURLOPT_RETURNTRANSFER => 1, CURLOPT_USERAGENT => $this->user_agent, CURLOPT_TIMEOUT => $this->timeout, CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSLVERSION=> 6, CURLOPT_SSL_VERIFYHOST => 2, CURLOPT_CAINFO => $this->CA_PATH, CURLOPT_VERBOSE => $this->debug));	
 		$this->ip = "";
-		if($this->consola){
+		if($this->consola) {
 			$this->ip = ip_servidor;
 			$this->user_agent_cliente = PHP_OS;
 		}
@@ -150,7 +150,7 @@ Class HttpHelper implements Peticionable {
 
 	}
 
-	public function ejecutarContoken($token){
+	public function ejecutarContoken($token) {
 		$this->cliente_curl = curl_init();
 		curl_setopt_array($this->cliente_curl,array(CURLOPT_RETURNTRANSFER => 1, CURLOPT_USERAGENT => $this->user_agent, CURLOPT_TIMEOUT => $this->timeout, CURLOPT_SSL_VERIFYPEER => true, CURLOPT_SSLVERSION=> 6, CURLOPT_SSL_VERIFYHOST => 2, CURLOPT_CAINFO => $this->CA_PATH, CURLOPT_VERBOSE => $this->debug));
 		curl_setopt($this->cliente_curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json',"auth-token: $token"));
@@ -173,7 +173,7 @@ Class HttpHelper implements Peticionable {
 
 	}
 
-	public function enviarPost(){
+	public function enviarPost() {
 		$session_id = $this->getSession();
 		$p = $this->getPeticionString($this->peticiones);
 		$this->respuesta_raw = "";
@@ -192,14 +192,14 @@ Class HttpHelper implements Peticionable {
 		$datos = null;
 		$array_respuesta = Util::comprobarRespuestaDatos($this->respuesta_raw);
 		$flag_haydatos = $array_respuesta['haydatos'];
-		if ($flag_haydatos){
+		if ($flag_haydatos) {
 			$this->respuesta_raw = $jwt->descifar($this->respuesta_raw);
 			if($this->log)Util::UpdateAccessLog($session_id,"ok");
 		}
 		else{
 			$this->respuesta = $array_respuesta;
 			if($this->log)Util::LogError($array_respuesta["flag_error"],$this->servlet,$this->servicio_nombre,$this->ip,$session_id);
-			if(Util::islogearError($array_respuesta["flag_error"])){
+			if(Util::islogearError($array_respuesta["flag_error"])) {
 				if($this->log)Util::UpdateAccessLog($session_id,"error");
 			}
 			else{
@@ -216,12 +216,12 @@ Class HttpHelper implements Peticionable {
 		}
 		error_reporting(1);
 		$array_datos = array('datos'=>$datos->respuesta);
-		if($array_datos ==null || !empty($array_datos)){
+		if($array_datos ==null || !empty($array_datos)) {
 			$this->respuesta = array_merge($array_respuesta,$array_datos);
 		}
 	}
 
-	private function getSession(){
+	private function getSession() {
 		$session = "";
 		$letras = "abcdefghijkmnopqrstuvwxyw0123456789";
 		$tam = 12;
@@ -230,10 +230,10 @@ Class HttpHelper implements Peticionable {
   		return $session;
 	}
 
-	public function enviarGet(){
+	public function enviarGet() {
 		$p = $this->getPeticionString($this->peticiones);
 		$this->respuesta_raw = "";
-		if (!empty($p)){
+		if (!empty($p)) {
 			curl_setopt($this->cliente_curl,CURLOPT_URL,$this->url_conexion.$this->servlet."?".$p);
 		}
 		else{
@@ -249,14 +249,14 @@ Class HttpHelper implements Peticionable {
 		$datos = null;
 		$array_respuesta = Util::comprobarRespuestaDatos($this->respuesta_raw);
 		$flag_haydatos = $array_respuesta['haydatos'];
-		if ($flag_haydatos){
+		if ($flag_haydatos) {
 			$this->respuesta_raw = $jwt->descifar($this->respuesta_raw);
 			if($this->log)Util::UpdateAccessLog($session_id,"ok");
 		}
 		else{
 			$this->respuesta = $array_respuesta;
 			if($this->log)Util::LogError($array_respuesta["flag_error"],$this->servlet,$this->servicio_nombre,$this->ip,$session_id);
-			if(Util::islogearError($array_respuesta["flag_error"])){
+			if(Util::islogearError($array_respuesta["flag_error"])) {
 				if($this->log)Util::UpdateAccessLog($session_id,"error");
 			}
 			else{
@@ -273,17 +273,17 @@ Class HttpHelper implements Peticionable {
 		}
 		error_reporting(1);
 		$array_datos = array('datos'=>$datos->respuesta[0]);
-		if($array_datos ==null || !empty($array_datos)){
+		if($array_datos ==null || !empty($array_datos)) {
 			$this->respuesta = array_merge($array_respuesta,$array_datos);
 		}
 	}
 
-	private function getPeticionString($peticiones){
+	private function getPeticionString($peticiones) {
 		$p = "";
 		$cantidad = count($peticiones);
 		$i = 1;
 		foreach ($peticiones as $peticion) {
-			if ($i<$cantidad){
+			if ($i<$cantidad) {
 				$p = $p.$peticion->getParametro()."=".urlencode($peticion->getValor())."&";
 			}
 			else{
@@ -294,15 +294,15 @@ Class HttpHelper implements Peticionable {
 		return $p;
 	}
 
-	public function enviarPut(){
+	public function enviarPut() {
 
 	}
 
-	public function enviarDelete(){
+	public function enviarDelete() {
 
 	}
 
-	private function cerrarConexion(){
+	private function cerrarConexion() {
 		curl_close($this->cliente_curl);
 	}
 

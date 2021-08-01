@@ -1,4 +1,6 @@
 <?php
+
+
 Class Errores {
 	public $COD_NOAUTH_JWT = "ERROR_TOKEN";
 	public $COD_NO_JWT = "ERROR_NOTOKEN";

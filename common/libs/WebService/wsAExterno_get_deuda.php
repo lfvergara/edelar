@@ -10,13 +10,15 @@ require_once "Externos/cliente.php";
 
 class wsAgenteExternoGetDeudaHelper {
 	public function suministro($suministro) { 
-		$http = new HttpHelper("WsExternos");
+		$http = new HttpHelper("WsExternosDESA"); //Para prod quitar DESA
 		$http->setUser("externo01");
 		$http->setPw("092348230947256");
 		$http->setServlet("GetDeuda");
 		$http->agregarPeticion(Peticiones::NIS, $suministro);
 		$http->setMetodo(Peticionable::POST);
 		$http->ejecutar();
+
+		
 
 		if ($http->respuesta["haydatos"]) {
 			$cliente = null;
@@ -45,7 +47,7 @@ class wsAgenteExternoGetDeudaHelper {
 	}
 
 	public function documento($documento) { 
-		$http = new HttpHelper("WsExternos");
+		$http = new HttpHelper("WsExternosDESA"); //Para prod quitar DESA
 		$http->setUser("externo01");
 		$http->setPw("092348230947256");
 		$http->setServlet("GetDeuda");

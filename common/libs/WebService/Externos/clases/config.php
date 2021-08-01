@@ -1,7 +1,6 @@
 <?php
 const HTTPS_CA_PATH = '/srv/websites/www.edelar.com.ar/application/web/app/common/libs/WebService/ca/EdelarCA.pem';
 
-
 const timeout_connection = 30000;
 const puerto = "58921";
 const servidor = "ws.edelar.com.ar";

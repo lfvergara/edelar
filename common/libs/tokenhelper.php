@@ -3,6 +3,7 @@ require_once "jtwToken/JWT.php";
 require_once "jtwToken/ExpiredException.php";
 use \Firebase\JWT\JWTT;
 
+
 class TokenHelper {
 	
 	private $keyjwt = "751425294079043";
@@ -10,12 +11,12 @@ class TokenHelper {
 	private $hora;
 	private $hora_exp;
 	
-	public function __construct(){
+	public function __construct() {
 		$this->hora = time();
 		$this->hora_exp = $this->hora + ($this->session_tiempo_auth * 60);
 	}
 	
-	public static function autenticar($token){
+	public static function autenticar($token) {
 		$keyjwt = "751425294079043";
 		$kfinal = $keyjwt.$keyjwt.$keyjwt.$keyjwt.$keyjwt;
 		$hash;
@@ -23,7 +24,7 @@ class TokenHelper {
 			$dec = JWTT::decode($token, $kfinal, array('HS256'));
 			$dec_array = (array) $dec;
 			$aud = $dec_array["aud"];
-			if($aud == "www.edelar.com.ar"){
+			if($aud == "www.edelar.com.ar") {
 				$hash = $dec_array["auth"]->hashp;
 			}
 			else{
@@ -36,7 +37,7 @@ class TokenHelper {
     	return $hash;
 	}
 	
-	public static function getClienteToken($token){
+	public static function getClienteToken($token) {
 		$keyjwt = "751425294079043";
 		$kfinal = $keyjwt.$keyjwt.$keyjwt.$keyjwt.$keyjwt;
 		$cliente;
@@ -44,7 +45,7 @@ class TokenHelper {
 			$dec = JWTT::decode($token, $kfinal, array('HS256'));
 			$dec_array = (array) $dec;
 			$aud = $dec_array["aud"];
-			if($aud == "www.edelar.com.ar"){
+			if($aud == "www.edelar.com.ar") {
 				$cliente = $dec_array["jti"];
 			}
 			else{
@@ -57,7 +58,7 @@ class TokenHelper {
     	return $cliente;
 	}
 
-	public function crearTokenUsuario($usuario,$cliente){
+	public function crearTokenUsuario($usuario,$cliente) {
 		$kfinal = $this->keyjwt.$this->keyjwt.$this->keyjwt.$this->keyjwt.$this->keyjwt;
 		$datos = array(
 		"jti" => $cliente->cliente_id,
@@ -71,8 +72,6 @@ class TokenHelper {
     	$token = JWTT::encode($datos, $kfinal);
     	$usuario->clienteusuariodetalle->token = $token;
     	return $usuario;
-	}
-	
+	}	
 }
-
 ?>

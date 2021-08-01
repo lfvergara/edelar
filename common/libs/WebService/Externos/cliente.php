@@ -1,4 +1,6 @@
 <?php
+
+
 Class wsCliente implements JsonSerializable {
 	
 	public $id;
@@ -20,7 +22,7 @@ Class wsCliente implements JsonSerializable {
 	public $fecha_alta;
 	public $fecha_baja;
 	
-	public function __construct(){	
+	public function __construct() {	
 		$this->id = 0;
 		$this->documento = 0;
 		$this->nombre = "";
@@ -45,7 +47,7 @@ Class wsCliente implements JsonSerializable {
 		return get_object_vars($this);
 	}
 	
-	public static function CastStd($class){
+	public static function CastStd($class) {
 		$cliente = new wsCliente();
 		$cliente->setId($class->id);
 		$cliente->setDocumento($class->documento);
@@ -209,7 +211,6 @@ Class wsCliente implements JsonSerializable {
 
 	public function setFecha_baja($fecha_baja) {
 		$this->fecha_baja = $fecha_baja;
-	}
-	
+	}	
 }
 ?>

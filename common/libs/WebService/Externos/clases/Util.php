@@ -1,8 +1,9 @@
 <?php
 
+
 Class Util {
 
-    public static function comprobarRespuestaDatos($respuesta){
+    public static function comprobarRespuestaDatos($respuesta) {
         $haydatos = true;
         $flag_error = 0;
         $r = trim($respuesta);
@@ -65,19 +66,19 @@ Class Util {
                 $flag_error = 90;
                 break;
     		default:
-				if(Util::contiene($errores->COD_CONEXION_SERVLET,$r)){
+				if(Util::contiene($errores->COD_CONEXION_SERVLET,$r)) {
 					$haydatos = false;
 					$flag_error = 78;	
 				}
-                if(Util::contiene($errores->COD_CONEXION_SERVLET_GATEWAY,$r)){
+                if(Util::contiene($errores->COD_CONEXION_SERVLET_GATEWAY,$r)) {
                     $haydatos = false;
                     $flag_error = 79;
                 }
-                if(Util::contiene($errores->COD_CONEXION_SERVLET_CONCURRENCIA,$r)){
+                if(Util::contiene($errores->COD_CONEXION_SERVLET_CONCURRENCIA,$r)) {
                     $haydatos = false;
                     $flag_error = 80;
                 }
-                if(Util::contiene($errores->COD_CONEXION_PROHIBIDO,$r)){
+                if(Util::contiene($errores->COD_CONEXION_PROHIBIDO,$r)) {
                     $haydatos = false;
                     $flag_error = 81;
                 }
@@ -87,13 +88,13 @@ Class Util {
     	return $array_haydatos;
     }
 
-    public static function LogError($codigo,$servlet,$ws,$ip,$session_id){
-        if (Util::islogearError($codigo)){
+    public static function LogError($codigo,$servlet,$ws,$ip,$session_id) {
+        if (Util::islogearError($codigo)) {
             Util::insertarLog($codigo,$servlet,$ws,$ip,$session_id);
         }
     }
 
-    public static function islogearError($codigo){
+    public static function islogearError($codigo) {
         $logear = false;
         switch ($codigo) {
             case 71:
@@ -138,7 +139,7 @@ Class Util {
         return $logear;
     }
 
-    public static function LogAccess($servlet,$ws,$ip,$debug,$extras,$session_id,$uagent,$user_ws){
+    public static function LogAccess($servlet,$ws,$ip,$debug,$extras,$session_id,$uagent,$user_ws) {
         $conexion_config = "mysql:host=localhost;dbname=". LOG_BASE ."";
         $opciones = array(PDO::ATTR_PERSISTENT=>false);
         $sql = "INSERT INTO log_ws_acceso (ws,servlet,ip,session,parametros,debug,estado,fecha,uagent,usuario_ws) VALUES (?,?,?,?,?,?,?,now(),?,?)";
@@ -161,15 +162,15 @@ Class Util {
                  $stmt->execute([$ws,$servlet,$ip,$session_id,$parametros,$d,"ejecutando",$uagent,$user_ws]);
                  $conexion->commit();
             }
-            catch (Exception $ex){
+            catch (Exception $ex) {
                 $conexion->rollback();
             }    
         }
-        catch (PDOException $e){
+        catch (PDOException $e) {
         }
     }
 
-    public static function insertarLog($codigo,$servlet,$ws,$ip,$session_id){
+    public static function insertarLog($codigo,$servlet,$ws,$ip,$session_id) {
         $denominacion = Util::getTextoCodigo($codigo);
         $conexion_config = "mysql:host=localhost;dbname=". LOG_BASE ."";
         $opciones = array(PDO::ATTR_PERSISTENT=>true);
@@ -183,15 +184,15 @@ Class Util {
                  $stmt->execute([$codigo,$denominacion,$ws,$servlet,$ip,$session_id]);
                  $conexion->commit();
             }
-            catch (Exception $ex){
+            catch (Exception $ex) {
                 $conexion->rollback();
             }    
         }
-        catch (PDOException $e){
+        catch (PDOException $e) {
         }     
     }
 
-    public static function UpdateAccessLog($session_id,$estado){
+    public static function UpdateAccessLog($session_id,$estado) {
         $conexion_config = "mysql:host=localhost;dbname=". LOG_BASE ."";
         $opciones = array(PDO::ATTR_PERSISTENT=>true);
         $sql = "UPDATE log_ws_acceso SET estado = ? WHERE session = ?";
@@ -204,15 +205,15 @@ Class Util {
                  $stmt->execute([$estado,$session_id]);
                  $conexion->commit();
             }
-            catch (Exception $ex){
+            catch (Exception $ex) {
                 $conexion->rollback();
             }    
         }
-        catch (PDOException $e){
+        catch (PDOException $e) {
         }
     }
 
-    public static function getTextoCodigo($codigo){
+    public static function getTextoCodigo($codigo) {
         $error_texto="";
         switch ($codigo) {
                 case 71:
@@ -276,13 +277,13 @@ Class Util {
         return $error_texto;
     }
 
-    public static function respuestaJSON($datos){
+    public static function respuestaJSON($datos) {
         $json = "";
         $json = json_encode($datos, JSON_UNESCAPED_UNICODE);
         return $json;
     }
 	
-	public static function contiene($buscar, $texto){
+	public static function contiene($buscar, $texto) {
 		return strpos($texto, $buscar) !== false;
 	}
 }
