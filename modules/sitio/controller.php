@@ -41,11 +41,11 @@ class SitioController {
 		$where = "rse.rse_id = {$rse_id}";
 		$rse_collection = CollectorCondition()->get('RSE', $where, 4, $from, $select);
 		
-		$select = "a.archivo_id AS ID, a.url AS URL";
+		$select = "a.archivo_id AS ID, a.url AS URL, a.denominacion AS DENOMINACION";
 		$from = "archivo a INNER JOIN archivorse ar ON a.archivo_id = ar.compositor";
 		$where = "ar.compuesto = {$rse_id}";
 		$archivo_collection = CollectorCondition()->get('Archivo', $where, 4, $from, $select);
-		
+
 		$select = "v.video_id AS ID, v.url AS URL";
 		$from = "video v INNER JOIN videorse vr ON v.video_id = vr.compositor";
 		$where = "vr.compuesto = {$rse_id}";
