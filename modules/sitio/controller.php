@@ -26,7 +26,7 @@ class SitioController {
 	}
 
 	function rse() {
-		$select = "rse.denominacion AS TITULO, rse.epigrafe AS EPIGRAFE";
+		$select = "rse.rse_id AS ID, rse.denominacion AS TITULO, rse.epigrafe AS EPIGRAFE";
 		$from = "rse rse LIMIT 3";
 		$rse_collection = CollectorCondition()->get('RSE', NULL, 4, $from, $select);
 		
