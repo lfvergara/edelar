@@ -46,7 +46,7 @@ class SitioController {
 		$where = "ar.compuesto = {$rse_id}";
 		$archivo_collection = CollectorCondition()->get('Archivo', $where, 4, $from, $select);
 
-		$select = "v.video_id AS ID, v.url AS URL";
+		$select = "v.video_id AS ID, v.url AS URL, v.denominacion AS DENOMINACION";
 		$from = "video v INNER JOIN videorse vr ON v.video_id = vr.compositor";
 		$where = "vr.compuesto = {$rse_id}";
 		$video_collection = CollectorCondition()->get('Video', $where, 4, $from, $select);
