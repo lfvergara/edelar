@@ -25,7 +25,7 @@ class SitioView extends View {
 		$gui = file_get_contents("static/modules/sitio/rse.html");
 		$gui_lst_rse = file_get_contents("static/modules/sitio/lst_rse.html");
 		$gui_lst_rse = $this->render_regex_dict('LST_RSE', $gui_lst_rse, $rse_collection);
-		
+
 		$render = str_replace('{lst_rse}', $gui_lst_rse, $gui);
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
@@ -37,6 +37,10 @@ class SitioView extends View {
 		$gui_lst_archivorse = $this->render_regex_dict('LST_ARCHIVORSE', $gui_lst_archivorse, $archivo_collection);
 		$gui_lst_videorse = file_get_contents("static/modules/sitio/lst_videorse.html");
 		$gui_lst_videorse = $this->render_regex_dict('LST_VIDEORSE', $gui_lst_videorse, $video_collection);
+
+		$obj_archivo = $archivo_collection[0];
+		$obj_archivo = $this->set_dict_array('archivo', $obj_archivo[0]);
+		print_r($obj_archivo);exit;
 
 		$obj_rse = $this->set_dict_array('rse', $obj_rse[0]);
 		$render = str_replace('{lst_archivorse}', $gui_lst_archivorse, $gui);
