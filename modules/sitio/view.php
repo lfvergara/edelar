@@ -39,7 +39,7 @@ class SitioView extends View {
 		$gui_lst_videorse = $this->render_regex_dict('LST_VIDEORSE', $gui_lst_videorse, $video_collection);
 
 		$obj_rse = $this->set_dict_array('rse', $obj_rse[0]);
-		$render = str_replace('{lst_archivorse}', $gui_lst_rse, $gui);
+		$render = str_replace('{lst_archivorse}', $gui_lst_archivorse, $gui);
 		$render = $this->render($obj_rse, $render);
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
