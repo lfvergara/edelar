@@ -40,8 +40,7 @@ class SitioView extends View {
 
 		$obj_archivo = $archivo_collection[0];
 		$obj_archivo = $this->set_dict_array('archivo', $archivo_collection[0]);
-		print_r($obj_archivo);exit;
-
+		
 		$obj_rse = $this->set_dict_array('rse', $obj_rse[0]);
 		$render = str_replace('{lst_archivorse}', $gui_lst_archivorse, $gui);
 		$render = $this->render($obj_rse, $render);
