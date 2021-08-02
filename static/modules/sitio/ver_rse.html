@@ -35,11 +35,19 @@
           <div class="listing__item">
             <article class="article--list">
               <div class="article__item-header">
-                <p>En Edelar estamos comprometidos con la comunidad y creemos que las buenas acciones se contagian.
-                Trabajamos activamente para que todos los riojanos cuidemos la energía, realicemos un consumo eficiente y juntos construyamos una comunidad 100% comprometida con sus recursos y con el futuro</p>                              
+                <p>{rse-epigrafe}</p>
               </div>
-              <div class="clearfix"></div>    
-              {lst_rse}              
+              <div class="clearfix"></div>
+              <div class="article__preview">
+                <a href="{url_app}/sitio/ver_rse/ID" title="Ver nota" target="_blank">
+                  <img src="{url_app}/sitio/ver_archivo/files.php?f=rse_ID_URL" style="width: 870px; height: 480px; padding-bottom: 4px;">
+                </a>
+              </div>
+              <div class="">
+                <h3 class=""><a href="#">{rse-denominacion}</a></h3>
+              </div>
+              <div class="article__intro">
+                {rse-contenido}
             </article>
           </div>
         </div>
