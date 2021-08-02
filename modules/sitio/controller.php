@@ -29,7 +29,7 @@ class SitioController {
 		$select = "rse.rse_id AS ID, rse.denominacion AS TITULO, rse.epigrafe AS EPIGRAFE, (SELECT a.url FROM archivo a INNER JOIN archivorse ar ON a.archivo_id = ar.compositor WHERE ar.compuesto = rse.rse_id LIMIT 1) AS URL";
 		$from = "rse rse";
 		$from = "rse.activo = 1 LIMIT 3";
-		$rse_collection = CollectorCondition()->get('RSE', NULL, 4, $from, $select);
+		$rse_collection = CollectorCondition()->get('RSE', $where, 4, $from, $select);
 		
 		$this->view->rse($rse_collection);
 	}
@@ -39,17 +39,17 @@ class SitioController {
 		$select = "rse.rse_id AS rse_id, rse.denominacion AS denominacion, rse.epigrafe AS epigrafe, rse.contenido AS contenido, DATE_FORMAT(rse.fecha, '%d/%m/%Y') AS fecha, rse.hora AS hora";
 		$from = "rse rse";
 		$where = "rse.rse_id = {$rse_id}";
-		$rse_collection = CollectorCondition()->get('RSE', NULL, 4, $from, $select);
+		$rse_collection = CollectorCondition()->get('RSE', $where, 4, $from, $select);
 		
 		$select = "a.archivo_id AS ID, a.url AS URL";
 		$from = "archivo a INNER JOIN archivorse ar ON a.archivo_id = ar.compositor";
 		$where = "ar.compuesto = {$rse_id}";
-		$archivo_collection = CollectorCondition()->get('Archivo', NULL, 4, $from, $select);
+		$archivo_collection = CollectorCondition()->get('Archivo', $where, 4, $from, $select);
 
 		$select = "v.video_id AS ID, v.url AS URL";
 		$from = "video v INNER JOIN videorse vr ON v.video_id = vr.compositor";
 		$where = "vr.compuesto = {$rse_id}";
-		$video_collection = CollectorCondition()->get('Video', NULL, 4, $from, $select);
+		$video_collection = CollectorCondition()->get('Video', $where, 4, $from, $select);
 
 		$this->view->ver_rse($rse_collection, $archivo_collection, $video_collection);
 	}
