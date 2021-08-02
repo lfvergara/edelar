@@ -26,7 +26,7 @@ class SitioController {
 	}
 
 	function rse() {
-		$select = "rse.rse_id AS ID, rse.denominacion AS TITULO, rse.epigrafe AS EPIGRAFE";
+		$select = "rse.rse_id AS ID, rse.denominacion AS TITULO, rse.epigrafe AS EPIGRAFE, (SELECT a.url FROM archivo a INNER JOIN archivorse ar ON a.archivo_id = ar.compositor WHERE ar.compuesto = rse.rse_id LIMIT 1)";
 		$from = "rse rse LIMIT 3";
 		$rse_collection = CollectorCondition()->get('RSE', NULL, 4, $from, $select);
 		
