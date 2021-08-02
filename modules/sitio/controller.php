@@ -108,4 +108,10 @@ class SitioController {
 	}
 	/* PARA PRUEBA DE FORMULARIOS ******************************************/
 }
+	/* COMMON **************************************************************/
+	function ver_archivo(){
+		SessionHandler()->check_session();
+		require_once "core/helpers/files.php";
+	}
+	/* COMMON **************************************************************/
 ?>
