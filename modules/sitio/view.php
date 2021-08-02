@@ -25,7 +25,7 @@ class SitioView extends View {
 		$gui = file_get_contents("static/modules/sitio/rse.html");
 		$gui_lst_rse = file_get_contents("static/modules/sitio/lst_rse.html");
 		$gui_lst_rse = $this->render_regex_dict('LST_RSE', $gui_lst_rse, $rse_collection);
-		print_r($rse_collection);exit;
+		
 		$render = str_replace('{lst_rse}', $gui_lst_rse, $gui);
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
