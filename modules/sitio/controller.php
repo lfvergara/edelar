@@ -36,7 +36,7 @@ class SitioController {
 
 	function ver_rse($arg) {
 		$rse_id = $arg;
-		$select = "rse.rse_id AS rse_id, rse.denominacion AS denominacion, rse.epigrafe AS epigrafe, rse.contenido AS contenido, DATE_FORMAT('%d/%m/%Y', rse.fecha) AS fecha, rse.hora AS hora";
+		$select = "rse.rse_id AS rse_id, rse.denominacion AS denominacion, rse.epigrafe AS epigrafe, rse.contenido AS contenido, DATE_FORMAT(rse.fecha, '%d/%m/%Y') AS fecha, rse.hora AS hora";
 		$from = "rse rse";
 		$where = "rse.rse_id = {$rse_id}";
 		$rse_collection = CollectorCondition()->get('RSE', NULL, 4, $from, $select);
