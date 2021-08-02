@@ -45,7 +45,7 @@ class SitioController {
 		$from = "archivo a INNER JOIN archivorse ar ON a.archivo_id = ar.compositor";
 		$where = "ar.compuesto = {$rse_id}";
 		$archivo_collection = CollectorCondition()->get('Archivo', $where, 4, $from, $select);
-		print_r($archivo_collection);exit;
+		
 		$select = "v.video_id AS ID, v.url AS URL";
 		$from = "video v INNER JOIN videorse vr ON v.video_id = vr.compositor";
 		$where = "vr.compuesto = {$rse_id}";
