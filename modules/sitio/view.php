@@ -44,6 +44,7 @@ class SitioView extends View {
 		$obj_rse = $this->set_dict_array('rse', $obj_rse[0]);
 		$render = str_replace('{lst_archivorse}', $gui_lst_archivorse, $gui);
 		$render = $this->render($obj_rse, $render);
+		$render = $this->render($obj_archivo, $render);
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 	}
