@@ -31,6 +31,18 @@ class SitioView extends View {
 		print $template;
 	}
 
+	function ver_rse($obj_rse, $archivo_collection, $video_collection) {
+		$gui = file_get_contents("static/modules/sitio/ver_rse.html");
+		$gui_lst_archivorse = file_get_contents("static/modules/sitio/lst_archivorse.html");
+		$gui_lst_archivorse = $this->render_regex_dict('LST_ARCHIVORSE', $gui_lst_archivorse, $archivo_collection);
+		$gui_lst_videorse = file_get_contents("static/modules/sitio/lst_videorse.html");
+		$gui_lst_videorse = $this->render_regex_dict('LST_VIDEORSE', $gui_lst_videorse, $video_collection);
+
+		$obj_rse = $this->set_dict_array('rse', $obj_rse[0]);
+		print_r($obj_rse);exit;
+
+	}
+
 	function trabajaedelar() {
 		$gui = file_get_contents("static/modules/sitio/trabajaedelar.html");
 		$template = $this->render_sitio("THEME_SECCION", $gui);

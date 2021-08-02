@@ -267,9 +267,9 @@ abstract class View {
         return $new_dict;
     }
 
-    function set_dict_array($obj) {
+    function set_dict_array($name_object, $array) {
         $new_dict = array();
-        foreach($obj as $clave=>$valor) $new_dict["{{$clave}}"] = $valor;
+        foreach($array as $clave=>$valor) $new_dict["{{$name_object}-{$clave}}"] = $valor;
         return $new_dict;
     }
 
