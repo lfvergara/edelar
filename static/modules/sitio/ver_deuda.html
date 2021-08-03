@@ -1,0 +1,74 @@
+<div class="widget js-widget">
+  <div class="widget__content">
+    <div class="banner js-banner-slider banner--slider">
+      <div class="slider">
+        <div class="slider__block js-slick-slider">
+          <div class="slider__item">
+            <div class="slider__preview">
+              <div class="slider__img"><img src="{url_static}assets/img/header_nosotros.png" class="photo"/></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="center">
+  <div class="container">
+    <div class="row">
+      <div class="site site--main">
+        <header class="site__header">
+          <h1 class="site__title">RSE</h1>
+          <h2 class="site__headline">
+            <nav class="breadcrumbs">
+              <div class="container">
+                <ul>
+                  <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link">Home</a></li>
+                  <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link">Institucional</a></li>
+                  <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link__current">RSE</a></li>
+                </ul>
+              </div>
+            </nav>
+          </h2>
+        </header>        
+        <div class="widget js-widget widget--main">
+          <div class="widget__content">
+            
+            <table class="js-properties-table">
+              <thead>
+                <tr>
+                  <th class="datatable__head-1">NIS</th>
+                  <th class="datatable__head-2 datatable__head-sort">N° FACT</th>
+                  <th class="datatable__head-3 datatable__head-sort">PER</th>
+                  <th class="datatable__head-4 datatable__head-sort">VTO</th>
+                  <th class="datatable__head-5">TOTAL</th>
+                  <th class="datatable__head-6"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <!--TBL_DEUDA-->
+                <tr>
+                  <td class="datatable__cell-1">{wssuministro-id}</td>
+                  <td class="datatable__cell-2"><strong>{stdclass-id_factura}</strong></td>
+                  <td class="datatable__cell-3">{stdclass-periodo_factura}</td>
+                  <td class="datatable__cell-4">{stdclass-fecha_factura_vencimiento}</td>
+                  <td class="datatable__cell-5">${stdclass-importe_total}</td>
+                  <td class="datatable__cell-6"></td>
+                </tr>
+                <!--TBL_DEUDA-->
+              </tbody>
+            </table>
+            
+            
+          </div>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="widget js-widget widget--sidebar widget--dark">      
+          {sidebar_login_autogestion}
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>

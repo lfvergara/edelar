@@ -118,28 +118,15 @@ class SitioView extends View {
 
 	/* WS ******************************************************************/
 	function ver_deuda($array_deuda, $metodo) {
+		$gui = file_get_contents("static/modules/sitio/ver_deuda.html");
 		$deuda_collection = json_decode($array_deuda);
 		$deuda_collection = $deuda_collection[0];
 
-		switch ($metodo) {
-			case 'nis':
-				$gui = file_get_contents("static/modules/sitio/resultado_deuda_nis_prod.html");
-				$render = $this->render_regex('TBL_DEUDA', $gui, $deuda_collection);
-				$render = $this->render($obj_cliente, $render);
-				$render = str_replace('{wssuministro}', $metodo, $render);
-				break;
-			case 'documento':
-				$gui = file_get_contents("static/modules/sitio/resultado_deuda_dni_prod.html");
-				$render = $this->render_regex('TBL_DEUDA', $gui, $deuda_collection);
-				$render = $this->render($obj_cliente, $render);
-				$render = str_replace('{wsdocumento}', $metodo, $render);
-				break;
-		}
-
+		$render = $this->render_regex('TBL_DEUDA', $gui, $deuda_collection);		
+		$render = str_replace('{wssuministro}', $metodo, $render);
 		$render = str_replace('{fecha_sys}', date('d/m/Y'), $render);
 		$render = str_replace('{hora_sys}', date('h:i:s'), $render);
 		$render = str_replace('{wsdeudasjson}', $jsondeudas, $render);
-		$render = str_replace('{wsclientejson}', $jsoncliente, $render);
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 	}
