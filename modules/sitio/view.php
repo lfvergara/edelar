@@ -117,24 +117,24 @@ class SitioView extends View {
 	/* PARA PRUEBA DE FORMULARIOS ******************************************/
 
 	/* WS ******************************************************************/
-	function ver_deuda($deuda_collection, $metodo) {
+	function ver_deuda($array_deuda, $metodo) {
 
-		$deuda_collection = $deuda_collection['deuda_collection'];
-		$obj_cliente = $deuda_collection['cliente'];
+		$deuda_collection = $array_deuda['deuda_collection'];
+		$obj_cliente = $array_deuda['cliente'];
 		$jsoncliente = addslashes(json_encode($obj_cliente));
 		$obj_cliente = $this->set_dict($obj_cliente);
-
 		$jsondeudas = addslashes(json_encode($deuda_collection));
 		print_r($deuda_collection);exit;
-		switch ($metodo) {
-				case 'nis':
+
+		switch ($tipo) {
+				case 1:
 						$gui = file_get_contents("static/modules/sitio/resultado_deuda_nis_prod.html");
 						$render = $this->render_regex('TBL_DEUDA', $gui, $deuda_collection);
 						$render = $this->render($obj_cliente, $render);
 						$render = str_replace('{wssuministro}', $metodo, $render);
 
 						break;
-				case 'documento':
+				case 2:
 						$gui = file_get_contents("static/modules/sitio/resultado_deuda_dni_prod.html");
 						$render = $this->render_regex('TBL_DEUDA', $gui, $deuda_collection);
 						$render = $this->render($obj_cliente, $render);
