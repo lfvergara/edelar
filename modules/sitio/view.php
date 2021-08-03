@@ -118,11 +118,9 @@ class SitioView extends View {
 
 	/* WS ******************************************************************/
 	function ver_deuda($array_deuda, $metodo) {
-		//$array_deuda = str_replace("[", "", $array_deuda);
-		//$array_deuda = str_replace("]", "", $array_deuda);
-		//$deuda_collection = $array_deuda['deuda_collection'];
-		//$jsondeudas = addslashes(json_encode($array_deuda));
-		print_r(json_decode($array_deuda));exit;
+		$deuda_collection = json_decode($array_deuda);
+		$deuda_collection = $deuda_collection[0];
+		print_r($deuda_collection);exit;
 
 
 
