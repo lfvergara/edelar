@@ -118,12 +118,16 @@ class SitioView extends View {
 
 	/* WS ******************************************************************/
 	function ver_deuda($array_deuda, $metodo) {
-		print_r($array_deuda);exit;
 		$deuda_collection = $array_deuda['deuda_collection'];
-		$obj_cliente = $array_deuda['cliente'];
-		$jsoncliente = addslashes(json_encode($obj_cliente));
-		$obj_cliente = $this->set_dict($obj_cliente);
 		$jsondeudas = addslashes(json_encode($array_deuda));
+		print_r($deuda_collection);exit;
+
+
+
+
+		//$obj_cliente = $array_deuda['cliente'];
+		//$jsoncliente = addslashes(json_encode($obj_cliente));
+		//$obj_cliente = $this->set_dict($obj_cliente);
 		switch ($metodo) {
 			case 'nis':
 				$gui = file_get_contents("static/modules/sitio/resultado_deuda_nis_prod.html");
