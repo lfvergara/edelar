@@ -33,33 +33,34 @@
         </header>        
         <div class="widget js-widget widget--main">
           <div class="widget__content">
-            
-            <table class="js-properties-table">
-              <thead>
-                <tr>
-                  <th class="datatable__head-1">NIS</th>
-                  <th class="datatable__head-2 datatable__head-sort">N° FACT</th>
-                  <th class="datatable__head-3 datatable__head-sort">PER</th>
-                  <th class="datatable__head-4 datatable__head-sort">VTO</th>
-                  <th class="datatable__head-5">TOTAL</th>
-                  <th class="datatable__head-6"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <!--TBL_DEUDA-->
-                <tr>
-                  <td class="datatable__cell-1">{wssuministro-id}</td>
-                  <td class="datatable__cell-2"><strong>{stdclass-id_factura}</strong></td>
-                  <td class="datatable__cell-3">{stdclass-periodo_factura}</td>
-                  <td class="datatable__cell-4">{stdclass-fecha_factura_vencimiento}</td>
-                  <td class="datatable__cell-5">${stdclass-importe_total}</td>
-                  <td class="datatable__cell-6"></td>
-                </tr>
-                <!--TBL_DEUDA-->
-              </tbody>
-            </table>
-            
-            
+            <div class="datatable datatable--properties">
+              <div class="datatable__wrap">
+                <table class="js-properties-table">
+                  <thead>
+                    <tr>
+                      <th class="datatable__head-1">NIS</th>
+                      <th class="datatable__head-2 datatable__head-sort">N° FACT</th>
+                      <th class="datatable__head-3 datatable__head-sort">PER</th>
+                      <th class="datatable__head-4 datatable__head-sort">VTO</th>
+                      <th class="datatable__head-5">TOTAL</th>
+                      <th class="datatable__head-6"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!--TBL_DEUDA-->
+                    <tr>
+                      <td class="datatable__cell-1">{wssuministro-id}</td>
+                      <td class="datatable__cell-2"><strong>{stdclass-id_factura}</strong></td>
+                      <td class="datatable__cell-3">{stdclass-periodo_factura}</td>
+                      <td class="datatable__cell-4">{stdclass-fecha_factura_vencimiento}</td>
+                      <td class="datatable__cell-5">${stdclass-importe_total}</td>
+                      <td class="datatable__cell-6"></td>
+                    </tr>
+                    <!--TBL_DEUDA-->
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
