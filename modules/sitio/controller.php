@@ -2,10 +2,6 @@
 require_once "modules/sitio/view.php";
 
 
-//LIBS ENCRIPT
-require_once "common/libs/sha256encript/SHA256Encript.php";
-require_once "common/libs/sha256encript/AESEncrypter.php";
-
 class SitioController {
 
 	function __construct() {
@@ -87,6 +83,15 @@ class SitioController {
 
 	/* MENU = DEUDA ********************************************************/
 	function ver_deuda() {
+		require_once "tools/getDeuda.php";
+		$metodo = filter_input(INPUT_POST, 'metodo');
+		$valor = filter_input(INPUT_POST, 'valor');
+		
+		$deuda = getDeuda()->getDeuda($metodo, $valor);
+		print_r($deuda);exit;
+
+
+		/*
 		require_once "common/libs/WebService/wsAExterno_get_deuda_desa.php";
 		$ws_get_deuda = new wsAgenteExternoGetDeudaHelper();
 
@@ -101,8 +106,8 @@ class SitioController {
 				$rst = $ws_get_deuda->documento($variable);
 				break;
 		}
-		print_r($rst);exit;
 		$this->view->ver_deuda($variable, $rst, $tipo);
+		*/
 	}
 	/* MENU = DEUDA ********************************************************/
 

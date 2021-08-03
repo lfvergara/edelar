@@ -264,15 +264,15 @@
         <script>
             function tipoConsultaDeuda(tipoConsulta) {
                 if (tipoConsulta == 1) {
-                    document.getElementById('btn_nis').style.display = 'none';
-                    document.getElementById('btn_dni').style.display = 'inline-block';
-                    document.getElementById('lbl_consulta_deuda').innerHTML = 'INGRESE SU SUMINISTRO (NIS)';
-                    document.getElementById('tipo_consulta_deuda').value = 1;
-                } else {
                     document.getElementById('btn_nis').style.display = 'inline-block';
                     document.getElementById('btn_dni').style.display = 'none';
+                    document.getElementById('lbl_consulta_deuda').innerHTML = 'INGRESE SU SUMINISTRO (NIS)';
+                    document.getElementById('tipo_consulta_deuda').value = 'nis';
+                } else {
+                    document.getElementById('btn_nis').style.display = 'none';
+                    document.getElementById('btn_dni').style.display = 'inline-block';
                     document.getElementById('lbl_consulta_deuda').innerHTML = 'INGRESE SU DOCUMENTO';
-                    document.getElementById('tipo_consulta_deuda').value = 2;
+                    document.getElementById('tipo_consulta_deuda').value = 'documento';
                 }
             }
         </script>
