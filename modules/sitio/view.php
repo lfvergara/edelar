@@ -125,15 +125,15 @@ class SitioView extends View {
 		$obj_cliente = $this->set_dict($obj_cliente);
 		$jsondeudas = addslashes(json_encode($array_deuda));
 		
-		switch ($tipo) {
-				case 1:
+		switch ($metodo) {
+				case 'nis':
 						$gui = file_get_contents("static/modules/sitio/resultado_deuda_nis_prod.html");
 						$render = $this->render_regex('TBL_DEUDA', $gui, $deuda_collection);
 						$render = $this->render($obj_cliente, $render);
 						$render = str_replace('{wssuministro}', $metodo, $render);
 
 						break;
-				case 2:
+				case 'documento':
 						$gui = file_get_contents("static/modules/sitio/resultado_deuda_dni_prod.html");
 						$render = $this->render_regex('TBL_DEUDA', $gui, $deuda_collection);
 						$render = $this->render($obj_cliente, $render);
