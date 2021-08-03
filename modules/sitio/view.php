@@ -115,7 +115,7 @@ class SitioView extends View {
 		print $template;	
 	}
 	/* PARA PRUEBA DE FORMULARIOS ******************************************/
-}
+
 	/* WS ******************************************************************/
 	function ver_deuda($deuda_collection, $metodo) {
 
@@ -150,4 +150,5 @@ class SitioView extends View {
 		print $template;
 	}
 	/* WS ******************************************************************/
+}
 ?>
