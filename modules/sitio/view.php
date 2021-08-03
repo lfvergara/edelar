@@ -122,6 +122,7 @@ class SitioView extends View {
 		$deuda_collection = json_decode($array_deuda);
 		$deuda_collection = $deuda_collection[0];
 
+		print_r($deuda_collection);exit;
 		$render = $this->render_regex('TBL_DEUDA', $gui, $deuda_collection);		
 		$render = str_replace('{wssuministro}', $metodo, $render);
 		$render = str_replace('{fecha_sys}', date('d/m/Y'), $render);
