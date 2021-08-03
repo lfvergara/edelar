@@ -12,21 +12,21 @@ class getDeuda {
 		$secretKey = 'PROVEEDOR_cwcFscHTl6UD9MWsnqUHE17wxXqfvHLmaDC9PfHl_WEB'; 
 		$ente = 'GtO9lF1FsExXcrSgq9Kpw3stFkct5mt_E007';
 		//Generacion de firma
-		$sha256= new SHA256Encript();
+		$sha256 = new SHA256Encript();
 		$firma = $sha256->Generate($ip, $secretKey, $ente, $usuario, $clave);
 
 		//Definicion de metodo y valor
 		//$metodo = 'nis';
 		//$valor = '5050150';
 		//Creacion de array de envio con los datos encriptados
-		$aes= new AESEncrypter();
+		$aes = new AESEncrypter();
 		$data = array();
-		$data ['firma']= $firma;
-		$data ['usuario']= $aes-> EncrypString($usuario, $secretKey);
-		$data ['clave']= $aes-> EncrypString($clave, $secretKey);
-		$data ['ente']= $ente; //Este dato no debe ir encriptado
-		$data ['metodo']= $aes-> EncrypString($metodo, $secretKey);
-		$data ['valor']= $aes-> EncrypString($valor, $secretKey);
+		$data['firma'] = $firma;
+		$data['usuario'] = $aes->EncrypString($usuario, $secretKey);
+		$data['clave'] = $aes->EncrypString($clave, $secretKey);
+		$data['ente'] = $ente; //Este dato no debe ir encriptado
+		$data['metodo'] = $aes->EncrypString($metodo, $secretKey);
+		$data['valor'] = $aes->EncrypString($valor, $secretKey);
 		//Implementacion cURL
 		$ch = curl_init("https://servicios.edelar.com.ar/api_servicios_desa/wsServicios_deuda.php");
 		curl_setopt($ch, CURLOPT_TIMEOUT, 120000);
