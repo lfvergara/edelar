@@ -122,7 +122,7 @@ class SitioView extends View {
 		$array_deuda = str_replace("]", "", $array_deuda);
 		//$deuda_collection = $array_deuda['deuda_collection'];
 		//$jsondeudas = addslashes(json_encode($array_deuda));
-		print_r(json_encode($array_deuda));exit;
+		print_r(json_decode($array_deuda));exit;
 
 
 
