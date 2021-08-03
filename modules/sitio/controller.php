@@ -87,27 +87,8 @@ class SitioController {
 		$metodo = filter_input(INPUT_POST, 'metodo');
 		$valor = filter_input(INPUT_POST, 'valor');
 		
-		$deuda = getDeuda()->getDeuda($metodo, $valor);
-		print_r($deuda);exit;
-
-
-		/*
-		require_once "common/libs/WebService/wsAExterno_get_deuda_desa.php";
-		$ws_get_deuda = new wsAgenteExternoGetDeudaHelper();
-
-		$tipo = filter_input(INPUT_POST, 'tipo');
-		switch ($tipo) {
-			case 1:
-				$variable = filter_input(INPUT_POST, 'nis');
-				$rst = $ws_get_deuda->suministro($variable);
-				break;
-			case 2:
-				$variable = filter_input(INPUT_POST, 'dni');
-				$rst = $ws_get_deuda->documento($variable);
-				break;
-		}
-		$this->view->ver_deuda($variable, $rst, $tipo);
-		*/
+		$deuda_collection = getDeuda()->getDeuda($metodo, $valor);
+		$this->view->ver_deuda($deuda_collection, $metodo);
 	}
 	/* MENU = DEUDA ********************************************************/
 
