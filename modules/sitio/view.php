@@ -125,7 +125,7 @@ class SitioView extends View {
 		$obj_cliente = $this->set_dict($obj_cliente);
 
 		$jsondeudas = addslashes(json_encode($deuda_collection));
-		print_r($jsondeudas);exit;
+		print_r($deuda_collection);exit;
 		switch ($metodo) {
 				case 'nis':
 						$gui = file_get_contents("static/modules/sitio/resultado_deuda_nis_prod.html");
