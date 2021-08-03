@@ -124,28 +124,26 @@ class SitioView extends View {
 		$jsoncliente = addslashes(json_encode($obj_cliente));
 		$obj_cliente = $this->set_dict($obj_cliente);
 		$jsondeudas = addslashes(json_encode($array_deuda));
-		print_r($metodo);exit;
 		switch ($metodo) {
-				case 'nis':
-						$gui = file_get_contents("static/modules/sitio/resultado_deuda_nis_prod.html");
-						$render = $this->render_regex('TBL_DEUDA', $gui, $deuda_collection);
-						$render = $this->render($obj_cliente, $render);
-						$render = str_replace('{wssuministro}', $metodo, $render);
-
-						break;
-				case 'documento':
-						$gui = file_get_contents("static/modules/sitio/resultado_deuda_dni_prod.html");
-						$render = $this->render_regex('TBL_DEUDA', $gui, $deuda_collection);
-						$render = $this->render($obj_cliente, $render);
-						$render = str_replace('{wsdocumento}', $metodo, $render);
-						break;
+			case 'nis':
+				$gui = file_get_contents("static/modules/sitio/resultado_deuda_nis_prod.html");
+				$render = $this->render_regex('TBL_DEUDA', $gui, $deuda_collection);
+				$render = $this->render($obj_cliente, $render);
+				$render = str_replace('{wssuministro}', $metodo, $render);
+				break;
+			case 'documento':
+				$gui = file_get_contents("static/modules/sitio/resultado_deuda_dni_prod.html");
+				$render = $this->render_regex('TBL_DEUDA', $gui, $deuda_collection);
+				$render = $this->render($obj_cliente, $render);
+				$render = str_replace('{wsdocumento}', $metodo, $render);
+				break;
 		}
 
 		$render = str_replace('{fecha_sys}', date('d/m/Y'), $render);
 		$render = str_replace('{hora_sys}', date('h:i:s'), $render);
 		$render = str_replace('{wsdeudasjson}', $jsondeudas, $render);
 		$render = str_replace('{wsclientejson}', $jsoncliente, $render);
-		$template = $this->render_sitio($render);
+		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 	}
 	/* WS ******************************************************************/
