@@ -237,10 +237,7 @@ abstract class View {
         $render = '';
         $codigo = $this->get_regex($tag, $base);
         $coleccion = $this->set_collection_dict($coleccion);
-        print_r($coleccion);exit;
-        foreach($coleccion as $dict) {
-            $render .= $this->render($dict, $codigo);
-        }
+        foreach($coleccion as $dict) $render .= $this->render($dict, $codigo);
         $render_final = str_replace($codigo, $render, $base);
         return $render_final;
     }
