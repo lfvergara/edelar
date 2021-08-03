@@ -120,11 +120,11 @@ class SitioView extends View {
 	function ver_deuda($array_deuda, $metodo) {
 
 		$deuda_collection = $array_deuda['deuda_collection'];
+		print_r($deuda_collection);exit;
 		$obj_cliente = $array_deuda['cliente'];
 		$jsoncliente = addslashes(json_encode($obj_cliente));
 		$obj_cliente = $this->set_dict($obj_cliente);
 		$jsondeudas = addslashes(json_encode($deuda_collection));
-		print_r($deuda_collection);exit;
 
 		switch ($tipo) {
 				case 1:
