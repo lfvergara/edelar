@@ -120,14 +120,7 @@ class SitioView extends View {
 	function ver_deuda($array_deuda, $metodo) {
 		$deuda_collection = json_decode($array_deuda);
 		$deuda_collection = $deuda_collection[0];
-		print_r($deuda_collection);exit;
 
-
-
-
-		//$obj_cliente = $array_deuda['cliente'];
-		//$jsoncliente = addslashes(json_encode($obj_cliente));
-		//$obj_cliente = $this->set_dict($obj_cliente);
 		switch ($metodo) {
 			case 'nis':
 				$gui = file_get_contents("static/modules/sitio/resultado_deuda_nis_prod.html");
