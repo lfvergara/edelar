@@ -20,6 +20,7 @@ class getDeuda {
 		//$valor = '5050150';
 		//Creacion de array de envio con los datos encriptados
 		$aes = new AESEncrypter();
+		print_r($aes);exit;
 		$data = array();
 		$data['firma'] = $firma;
 		$data['usuario'] = $aes->EncrypString($usuario, $secretKey);
