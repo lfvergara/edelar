@@ -20,7 +20,6 @@ class getDeuda {
 		//$valor = '5050150';
 		//Creacion de array de envio con los datos encriptados
 		$aes = new AESEncrypter();
-		print_r($firma);exit;
 		$data = array();
 		$data['firma'] = $firma;
 		$data['usuario'] = $aes->EncrypString($usuario, $secretKey);
@@ -28,6 +27,7 @@ class getDeuda {
 		$data['ente'] = $ente; //Este dato no debe ir encriptado
 		$data['metodo'] = $aes->EncrypString($metodo, $secretKey);
 		$data['valor'] = $aes->EncrypString($valor, $secretKey);
+		print_r($data);exit;
 		//Implementacion cURL
 		$ch = curl_init("https://servicios.edelar.com.ar/api_servicios_desa/wsServicios_deuda.php");
 		curl_setopt($ch, CURLOPT_TIMEOUT, 120000);
