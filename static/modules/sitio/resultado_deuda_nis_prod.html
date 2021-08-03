@@ -1,0 +1,58 @@
+<div class="clearfix mbs">
+    <h3 class="col-title"> SUMINISTRO: {wssuministro} </h3><span class="liner"></span>
+    <div class="grid_12">
+        <table class="table table-hover personal-task">
+            <thead>
+                <tr style="background: #000067; font-weight: bold !Important;">
+                    <th style="background: #000067; font-weight: bold !Important;">Nº</th>
+                    <th style="background: #000067; font-weight: bold !Important;">PER</th>
+                    <th style="background: #000067; font-weight: bold !Important;">VTO.</th>
+                    <th style="background: #000067; font-weight: bold !Important;">TOTAL</th>
+                    <th style="background: #000067; font-weight: bold !Important;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--TBL_DEUDA-->
+                <tr>
+                    <td>{wsdeuda-id_factura}</td>
+                    <td class="numeric">{wsdeuda-periodo_factura}</td>
+                    <td class="numeric">{wsdeuda-fecha_factura_vencimiento}</td>
+                    <td class="numeric">${wsdeuda-importe_total}</td>
+                    <td>
+                        <center>
+                            <button class="btn btn-default btn-xs" onclick="consultaFactura({wssuministro},{wsdeuda-id_factura});" title="Ver factura" style=""><i class="icon-search"></i></button>
+                        </center>
+                    </td>
+                </tr>
+                <!--TBL_DEUDA-->
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="clearfix mbs" id="divFactura"></div>
+<script>
+    function consultaFactura(suministro, factura_id) {
+        var tpj=jQuery;
+        tpj.noConflict();
+        var consultar_factura_ajax = tpj.ajax({
+            url: '{url_app}/sitio/consultar_factura_ajax/' + suministro + '@' + factura_id,
+                dataType: 'text',
+                async: false
+        }).responseText;
+
+        document.getElementById('divFactura').innerHTML = consultar_factura_ajax;
+    }
+
+    function consultarTransaccion(suministro,id_deuda) {
+      var tpj=jQuery;
+      tpj.noConflict();
+      var data = tpj.ajax({
+          url: '{url_app}/psitio/obtener_transaccion/'+ suministro + '@' + id_deuda,
+          dataType: 'text',
+        async: false
+      }).responseText;
+
+      document.getElementById('TransaccionComercioId').value = data;
+      document.pagosForm.submit();
+    }
+</script>
