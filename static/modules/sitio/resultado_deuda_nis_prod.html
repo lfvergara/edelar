@@ -14,13 +14,13 @@
             <tbody>
                 <!--TBL_DEUDA-->
                 <tr>
-                    <td>{wsdeuda-id_factura}</td>
-                    <td class="numeric">{wsdeuda-periodo_factura}</td>
-                    <td class="numeric">{wsdeuda-fecha_factura_vencimiento}</td>
-                    <td class="numeric">${wsdeuda-importe_total}</td>
+                    <td>{stdclass-id_factura}</td>
+                    <td class="numeric">{stdclass-periodo_factura}</td>
+                    <td class="numeric">{stdclass-fecha_factura_vencimiento}</td>
+                    <td class="numeric">${stdclass-importe_total}</td>
                     <td>
                         <center>
-                            <button class="btn btn-default btn-xs" onclick="consultaFactura({wssuministro},{wsdeuda-id_factura});" title="Ver factura" style=""><i class="icon-search"></i></button>
+                            <button class="btn btn-default btn-xs" onclick="consultaFactura({wssuministro},{stdclass-id_factura});" title="Ver factura" style=""><i class="icon-search"></i></button>
                         </center>
                     </td>
                 </tr>
