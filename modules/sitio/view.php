@@ -124,10 +124,8 @@ class SitioView extends View {
 
 		foreach ($deuda_collection as $clave=>$valor) $deuda_collection[$clave]->nis = $valor->suministro->id; 
 		$render = $this->render_regex('TBL_DEUDA', $gui, $deuda_collection);		
-		$render = str_replace('{wssuministro}', $metodo, $render);
 		$render = str_replace('{fecha_sys}', date('d/m/Y'), $render);
 		$render = str_replace('{hora_sys}', date('h:i:s'), $render);
-		$render = str_replace('{wsdeudasjson}', $jsondeudas, $render);
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 	}
