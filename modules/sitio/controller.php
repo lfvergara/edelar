@@ -9,12 +9,24 @@ class SitioController {
 	}
 
     function home() {
-    	$select = "mp.mantenimientopreventivo_id AS MANTENIMIENTO_ID, CONCAT('<b>(', mp.numero_eucop, ')</b> ', mp.motivo) AS MOTIVO, CONCAT('El ', mp.fecha_inicio, ', Desde ', SUBSTRING(mp.hora_inicio, 1, 5), ' Hasta las ', SUBSTRING(mp.hora_fin, 1, 5)) AS FECHA, DATEDIFF(mp.fecha_inicio, CURDATE()) AS DIAS_RESTANTES, IF(mp.fecha_inicio = CURDATE() AND mp.hora_fin > CURTIME() AND mp.hora_inicio < CURTIME(), 'EN EJECUCIÓN', 'PENDIENTE') AS ESTADO, CASE WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) = 0 THEN 'danger' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) <= 3 THEN 'warning' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) >= 5 AND DATEDIFF(mp.fecha_inicio, CURDATE()) <= 10 THEN 'success' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) > 10 THEN 'info' END AS MANTENIMIENTO_CLASS";
-    	$from = "mantenimientopreventivo mp";
+    	$select = "mp.mantenimientopreventivo_id AS MANTENIMIENTO_ID, CONCAT('<b>(', mp.numero_eucop, ')</b> ', mp.motivo) AS MOTIVO, CONCAT('El ', mp.fecha_inicio, ', Desde ', SUBSTRING(mp.hora_inicio, 1, 5), ' Hasta las ', SUBSTRING(mp.hora_fin, 1, 5)) AS FECHA, DATEDIFF(mp.fecha_inicio, CURDATE()) AS DIAS_RESTANTES, IF(mp.fecha_inicio = CURDATE() AND mp.hora_fin > CURTIME() AND mp.hora_inicio < CURTIME(), 'EN EJECUCIÓN', 'PENDIENTE') AS ESTADO, CASE WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) = 0 THEN 'danger' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) <= 3 THEN 'warning' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) >= 5 AND DATEDIFF(mp.fecha_inicio, CURDATE()) <= 10 THEN 'success' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) > 10 THEN 'info' END AS MANTENIMIENTO_CLASS, mu.sector AS SECTOR, mu.calles AS CALLES, mu.mantenimientoubicacion_id AS MANUBID";
+    	$from = "mantenimientopreventivo mp INNER JOIN mantenimientoubicacion mu ON mp.mantenimientoubicacion = mu.mantenimientoubicacion_id";
     	$where = "mp.fecha_inicio > CURDATE() OR (mp.fecha_inicio = CURDATE() AND mp.hora_fin >= CURTIME()) ORDER BY DIAS_RESTANTES ASC, mp.hora_inicio ASC";
     	$mantenimiento_collection = CollectorCondition()->get('MantenimientoPreventivo', $where, 4, $from, $select);
-    	print_r($mantenimiento_collection);exit;
-        $this->view->home();
+
+    	if (is_array($mantenimiento_collection) AND !empty($mantenimiento_collection)) {
+    		foreach ($mantenimiento_collection as $clave=>$valor) {
+    			$mantenimientoubicacion_id = $valor['MANUBID'];
+    			$select = "d.denominacion";
+    			$from = "departamento d INNER JOIN departamentomantenimientoubicacion dmu ON d.departamento = dmu.compositor";
+    			$where = "dmu.compuesto = {$mantenimientoubicacion_id}";
+    			$departamento_collection = CollectorCondition()->get('Departamento', $where, 4, $from, $select);
+
+    			print_r($departamento_collection);exit;
+    		}
+    	}
+    	
+        $this->view->home($mantenimiento_collection);
 	}
 
 	/* MENU = INSTITUCIONAL ************************************************/
