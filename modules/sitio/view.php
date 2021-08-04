@@ -144,6 +144,7 @@ class SitioView extends View {
 
 	function imprimir_factura_ajax($obj_deuda, $factura_id, $suministro) {
 		$gui = file_get_contents("static/modules/sitio/imprimir_factura_ajax.html");
+		print_r($obj_deuda);exit;
 		$obj_deuda = $this->set_dict($obj_deuda);
 		$render = $this->render($obj_deuda, $gui);
 		$render = str_replace('{wsfactura-id}', $factura_id, $render);
