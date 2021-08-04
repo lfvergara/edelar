@@ -114,7 +114,7 @@ class SitioController {
 		require_once "tools/getDeuda.php";
 		require_once 'common/libs/domPDF/dompdf_config.inc.php';
 	    $ids = explode('@', $arg);
-		$suministro_id = $ids[0];
+		$suministro = $ids[0];
 		$factura_id = $ids[1];
 
 		$deuda_collection = getDeuda()->getDeuda('nis', $suministro);
@@ -127,7 +127,7 @@ class SitioController {
 			if ($tmp_factura_id == $factura_id) $obj_deuda = $deuda_collection[$clave];
 		}
 
-		$gui = $this->view->imprimir_factura_ajax($obj_deuda, $factura_id, $suministro_id);
+		$gui = $this->view->imprimir_factura_ajax($obj_deuda, $factura_id, $suministro);
 		print_r($gui);exit;
 		$mipdf = new DOMPDF();
         $mipdf->set_paper("A4", "portrait");
