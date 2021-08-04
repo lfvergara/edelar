@@ -65,6 +65,8 @@
             </div>
           </div>
         </div>
+        <div class="widget js-widget widget--main" id="div_factura_deuda" style="display: none;">
+        </div>
       </div>
       <div class="sidebar">
         <div class="widget js-widget widget--sidebar widget--dark">      
@@ -83,7 +85,8 @@
       async: false
     }).responseText;
 
-    document.getElementById('divFactura').innerHTML = consultar_factura_ajax;
+    document.getElementById('div_factura_deuda').style.display = 'block';
+    document.getElementById('div_factura_deuda').innerHTML = consultar_factura_ajax;
   }
 
   function consultarTransaccion(suministro,id_deuda) {
