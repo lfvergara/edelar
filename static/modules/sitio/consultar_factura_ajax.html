@@ -6,45 +6,36 @@
     </thead>
     <tbody>
         <tr>
-            <td style="color: #89817f; font-size: 14px;">
-                <i class="fa fa-info-circle" style="font-size: 14px;"></i> Período:
-                <span class="badge bg-important">{stdclass-periodo_factura}</span></td>
-            <td style="color: #89817f; font-size: 14px;">
-                <i class="fa fa-info-circle" style="font-size: 14px;"></i> Fecha de Vencimiento:
-                <span class="badge bg-important">{stdclass-fecha_factura_vencimiento}</span>
-            </td>
+            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Período</td>
+            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">{stdclass-periodo_factura}</span></td>
         </tr>
-        <tr>					
-            <td style="color: #89817f; font-size: 14px;">
-                <i class="fa fa-info-circle" style="font-size: 14px;"></i> Fecha de 2° Vencimiento (Agente Externo): 
-                <span class="badge bg-important">{stdclass-fecha_factura_segundo_vencimiento}</span>
-            </td>
-            <td style="color: #89817f; font-size: 14px;">
-                <i class="fa fa-info-circle" style="font-size: 14px;"></i> Fecha de Próximo Vencimiento (Próxima Factura):
-                <span class="badge bg-important">{stdclass-fecha_factura_proximo_vencimiento}</span>
-            </td>
+        <tr>
+            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Fecha de Vencimiento</td>
+            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">{stdclass-fecha_factura_vencimiento}</span></td>
+		</tr>
+		<tr>					
+            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Fecha de Segundo Vencimiento (Agente Externo)</td>
+            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">{stdclass-fecha_factura_segundo_vencimiento}</span></td>
         </tr>
-		<tr>
-            <td style="color: #89817f; font-size: 14px;">
-                <i class="fa fa-info-circle" style="font-size: 14px;"></i> Consumo(kWh):
-                <span class="badge bg-important">{stdclass-consumo}</span>
-            </td>
-            <td style="color: #89817f; font-size: 14px;">
-                <i class="fa fa-info-circle" style="font-size: 14px;"></i> Tarifa:
-                <span class="badge bg-important">{stdclass-tarifa}</span>
-            </td>
-            
+		<tr>					
+            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Fecha de Próximo Vencimiento (Próxima Factura)</td>
+            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">{stdclass-fecha_factura_proximo_vencimiento}</span></td>
+        </tr>
+        <tr>
+            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Consumo(kWh)</td>
+            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">{stdclass-consumo}</span></td>
 		</tr>
 		<tr>
-            <td style="color: #89817f; font-size: 14px;">
-                <i class="fa fa-info-circle" style="font-size: 14px;"></i> Cód. Electrónico Banelco:
-                <span class="badge bg-important">{wssuministro-id}</span>
-            </td>
-            <td style="color: #89817f; font-size: 14px;">
-                <i class="fa fa-info-circle" style="font-size: 14px;"></i> Cód. Electrónico Link:
-                <span class="badge bg-important">092{wssuministro-id}</span>
-            </td>
-            
+            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Tarifa</td>
+            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">{stdclass-tarifa}</span></td>
+        </tr>
+        <tr>
+            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Cód. Electrónico Banelco</td>
+            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">{wssuministro-id}</span></td>
+        </tr>
+        <tr>
+            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Cód. Electrónico Link</td>
+            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">092{wssuministro-id}</span></td>
         </tr>
         <tr>
             <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Total A Pagar</td>
@@ -53,7 +44,7 @@
         <tr>
             <td colspan="2">
                 <img src="data:image/png;base64,{stdclass-cod_barra_img}"><br>
-                <center>{stdclass-cod_barra}</center>
+                {stdclass-cod_barra}
             </td>
         </tr>
         <tr>
