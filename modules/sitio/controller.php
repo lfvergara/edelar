@@ -109,6 +109,33 @@ class SitioController {
 
 		$this->view->consultar_factura_ajax($obj_deuda, $factura_id, $suministro);
 	}
+
+	function imprimir_factura($arg) {
+		require_once "tools/getDeuda.php";
+		require_once 'common/libs/domPDF/dompdf_config.inc.php';
+	    $ids = explode('@', $arg);
+		$suministro_id = $ids[0];
+		$factura_id = $ids[1];
+
+		$deuda_collection = getDeuda()->getDeuda('nis', $suministro);
+		$obj_deuda = null;
+		$deuda_collection = json_decode($deuda_collection);
+		$deuda_collection = $deuda_collection[0];
+		foreach ($deuda_collection as $clave=>$valor) {
+			$tmp_factura_id = $valor->id_factura;
+			$deuda_collection[$clave]->nis = $valor->suministro->id;
+			if ($tmp_factura_id == $factura_id) $obj_deuda = $deuda_collection[$clave];
+		}
+
+		$gui = $this->view->imprimir_factura_ajax($obj_deuda, $factura_id, $suministro_id);
+		$mipdf = new DOMPDF();
+        $mipdf->set_paper("A4", "portrait");
+        $mipdf->load_html($gui);
+        $mipdf->render();
+        $mipdf->output();
+        $mipdf->stream('CuponPagoEDELAR.pdf');
+        exit;
+	}
 	/* MENU = DEUDA ********************************************************/
 
 	/* PARA PRUEBA DE FORMULARIOS ******************************************/

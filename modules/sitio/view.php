@@ -116,7 +116,7 @@ class SitioView extends View {
 	}
 	/* PARA PRUEBA DE FORMULARIOS ******************************************/
 
-	/* WS ******************************************************************/
+	/* WS DEUDA ************************************************************/
 	function ver_deuda($array_deuda, $metodo) {
 		$gui = file_get_contents("static/modules/sitio/ver_deuda.html");
 		$gui_tbl_deuda = file_get_contents("static/modules/sitio/tbl_deuda.html");
@@ -141,6 +141,15 @@ class SitioView extends View {
 		$render = str_replace('{url_app}', URL_APP, $render);
 		print $render;
 	}
-	/* WS ******************************************************************/
+
+	function imprimir_factura_ajax($array_deuda, $factura_id, $suministro) {
+		$gui = file_get_contents("static/modules/sitio/imprimir_factura_ajax.html");
+		$obj_deuda = $this->set_dict($obj_deuda);
+		$render = $this->render($obj_deuda, $gui);
+		$render = str_replace('{wsfactura-id}', $factura_id, $render);
+		$render = str_replace('{wssuministro-id}', $suministro, $render);
+		return $render;
+	}
+	/* WS DEUDA ************************************************************/
 }
 ?>

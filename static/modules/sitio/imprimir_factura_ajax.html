@@ -1,0 +1,68 @@
+<table>
+    <tr>
+        <td align="center" style="text-align: center;">
+            <table>
+                <thead>
+                    <tr>
+                        <td colspan="2"  style="background-color: rgba(44,62,80,0.7); color: #FFF; font-size: 30px; text-align: center; padding: 20px;"> EDELAR SA</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="color: #000000; font-size: 18px; font-weight: bold; padding-left: 3%; padding-bottom: 10px;">Factura</td>
+                        <td style="color: #2c3e50; font-size: 18px; font-weight: bold; text-align: right; padding-right: 8px; padding-bottom: 10px;">{wsfactura-id}</span></td>
+                    </tr>
+                    <tr>
+                        <td style="color: #000000; font-size: 18px; font-weight: bold; padding-left: 3%; padding-bottom: 10px;">NIS</td>
+                        <td style="color: #2c3e50; font-size: 18px; font-weight: bold; text-align: right; padding-right: 8px; padding-bottom: 10px;">{wssuministro-id}</span></td>
+                    </tr>
+                    <tr>
+                        <td style="color: #000000; font-size: 18px; font-weight: bold; padding-left: 3%; padding-bottom: 10px;">Período</td>
+                        <td style="color: #2c3e50; font-size: 18px; font-weight: bold; text-align: right; padding-right: 8px; padding-bottom: 10px;">{wsdeuda-periodo_factura}</span></td>
+                    </tr>
+                    <tr>
+                        <td style="color: #000000; font-size: 18px; padding-left: 3%; padding-bottom: 10px;">Fecha de Vencimiento</td>
+                        <td style="color: #2c3e50; font-size: 18px; text-align: right; padding-right: 8px; padding-bottom: 10px;">{wsdeuda-fecha_factura_vencimiento}</span></td>
+            		</tr>
+            		<tr>					
+                        <td style="color: #000000; font-size: 18px; padding-left: 3%; padding-bottom: 10px;">Fecha de Segundo Vencimiento (Agente Externo)</td>
+                        <td style="color: #2c3e50; font-size: 18px; text-align: right; padding-right: 8px; padding-bottom: 10px;">{wsdeuda-fecha_factura_segundo_vencimiento}</span></td>
+                    </tr>
+            		<tr>					
+                        <td style="color: #000000; font-size: 18px; padding-left: 3%; padding-bottom: 10px;">Fecha de Próximo Vencimiento (Próxima Factura)</td>
+                        <td style="color: #2c3e50; font-size: 18px; text-align: right; padding-right: 8px; padding-bottom: 10px;">{wsdeuda-fecha_factura_proximo_vencimiento}</span></td>
+                    </tr>
+                    <tr>
+                        <td style="color: #000000; font-size: 18px; padding-left: 3%; padding-bottom: 10px;">Consumo(kWh)</td>
+                        <td style="color: #2c3e50; font-size: 18px; text-align: right; padding-right: 8px; padding-bottom: 10px;">{wsdeuda-consumo}</span></td>
+            		</tr>
+            		<tr>
+                        <td style="color: #000000; font-size: 18px; padding-left: 3%; padding-bottom: 10px;">Tarifa</td>
+                        <td style="color: #2c3e50; font-size: 18px; text-align: right; padding-right: 8px; padding-bottom: 10px;">{wsdeuda-tarifa}</span></td>
+                    </tr>
+                    <tr>
+                        <td style="color: #000000; font-size: 18px; padding-left: 3%; padding-bottom: 10px;">Cód. Electrónico Banelco</td>
+                        <td style="color: #2c3e50; font-size: 18px; text-align: right; padding-right: 8px; padding-bottom: 10px;">{wssuministro-id}</span></td>
+                    </tr>
+                    <tr>
+                        <td style="color: #000000; font-size: 18px; padding-left: 3%; padding-bottom: 10px;">Cód. Electrónico Link</td>
+                        <td style="color: #2c3e50; font-size: 18px; text-align: right; padding-right: 8px; padding-bottom: 10px;">092{wssuministro-id}</span></td>
+                    </tr>
+                    <tr>
+                        <td style="color: #000000; font-size: 25px; font-weight: bold; padding-left: 3%; padding-bottom: 10px;">Total A Pagar</td>
+                        <td style="color: #2c3e50; font-size: 25px; font-weight: bold; text-align: right; padding-right: 8px; padding-bottom: 10px;">${wsdeuda-importe_total}</span></td>
+                    </tr>
+                    <tr><td colspan="2" style="height: 50px"></td></tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center;">
+                            <center>
+                                <img src="data:image/png;base64,{wsdeuda-cod_barra_img}" style="width: 80%;"><br>
+                                {wsdeuda-cod_barra}
+                            </center>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>
