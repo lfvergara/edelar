@@ -1,54 +1,50 @@
 <table class="table table-hover personal-task">
     <thead>
         <tr>
-            <td colspan="2" style="background-color: rgba(209,70,65,0.9); color: #FFF; font-size: 15px;"><i class="fa fa-info-circle" style="font-size: 16px;"></i> Factura: {wsfactura-id}</td>
+            <td colspan="2" class="datatable__head-1"><i class="fa fa-info-circle" style="font-size: 16px;"></i> Factura: {wsfactura-id}</td>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Período</td>
-            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">{stdclass-periodo_factura}</span></td>
+            <td class="datatable__cell-1"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Período</td>
+            <td sclass="datatable__cell-1"><span class="badge bg-important">{stdclass-periodo_factura}</span></td>
         </tr>
         <tr>
-            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Fecha de Vencimiento</td>
-            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">{stdclass-fecha_factura_vencimiento}</span></td>
+            <td sclass="datatable__cell-1"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Fecha de Vencimiento</td>
+            <td sclass="datatable__cell-1"><span class="badge bg-important">{stdclass-fecha_factura_vencimiento}</span></td>
 		</tr>
 		<tr>					
-            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Fecha de Segundo Vencimiento (Agente Externo)</td>
-            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">{stdclass-fecha_factura_segundo_vencimiento}</span></td>
+            <td sclass="datatable__cell-1"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Fecha de Segundo Vencimiento (Agente Externo)</td>
+            <td sclass="datatable__cell-1"><span class="badge bg-important">{stdclass-fecha_factura_segundo_vencimiento}</span></td>
         </tr>
 		<tr>					
-            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Fecha de Próximo Vencimiento (Próxima Factura)</td>
-            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">{stdclass-fecha_factura_proximo_vencimiento}</span></td>
+            <td sclass="datatable__cell-1"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Fecha de Próximo Vencimiento (Próxima Factura)</td>
+            <td sclass="datatable__cell-1"><span class="badge bg-important">{stdclass-fecha_factura_proximo_vencimiento}</span></td>
         </tr>
         <tr>
-            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Consumo(kWh)</td>
-            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">{stdclass-consumo}</span></td>
+            <td sclass="datatable__cell-1"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Consumo(kWh)</td>
+            <td sclass="datatable__cell-1"><span class="badge bg-important">{stdclass-consumo}</span></td>
 		</tr>
 		<tr>
-            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Tarifa</td>
-            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">{stdclass-tarifa}</span></td>
+            <td sclass="datatable__cell-1"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Tarifa</td>
+            <td sclass="datatable__cell-1"><span class="badge bg-important">{stdclass-tarifa}</span></td>
         </tr>
         <tr>
-            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Cód. Electrónico Banelco</td>
-            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">{wssuministro-id}</span></td>
+            <td sclass="datatable__cell-1"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Cód. Electrónico Banelco</td>
+            <td sclass="datatable__cell-1"><span class="badge bg-important">{wssuministro-id}</span></td>
         </tr>
         <tr>
-            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Cód. Electrónico Link</td>
-            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">092{wssuministro-id}</span></td>
+            <td sclass="datatable__cell-1"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Cód. Electrónico Link</td>
+            <td sclass="datatable__cell-1"><span class="badge bg-important">092{wssuministro-id}</span></td>
         </tr>
         <tr>
-            <td style="color: #89817f; font-size: 14px;"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Total A Pagar</td>
-            <td style="color: #89817f; font-size: 14px;"><span class="badge bg-important">${stdclass-importe_total}</span></td>
+            <td sclass="datatable__cell-1"><i class="fa fa-info-circle" style="font-size: 14px;"></i> Total A Pagar</td>
+            <td sclass="datatable__cell-1"><span class="badge bg-important">${stdclass-importe_total}</span></td>
         </tr>
         <tr>
-            <td colspan="2">
+            <td colspan="2" class="datatable__cell-1">
                 <img src="data:image/png;base64,{stdclass-cod_barra_img}"><br>
                 {stdclass-cod_barra}
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
             </td>
         </tr>
     </tbody>
