@@ -13,6 +13,7 @@ class SitioController {
     	$from = "mantenimientopreventivo mp INNER JOIN mantenimientoubicacion mu ON mp.mantenimientoubicacion = mu.mantenimientoubicacion_id";
     	$where = "mp.fecha_inicio > CURDATE() OR (mp.fecha_inicio = CURDATE() AND mp.hora_fin >= CURTIME()) ORDER BY DIAS_RESTANTES ASC, mp.hora_inicio ASC";
     	$mantenimiento_collection = CollectorCondition()->get('MantenimientoPreventivo', $where, 4, $from, $select);
+    			print_r($mantenimiento_collection);exit;
 
     	if (is_array($mantenimiento_collection) AND !empty($mantenimiento_collection)) {
     		foreach ($mantenimiento_collection as $clave=>$valor) {
@@ -22,7 +23,6 @@ class SitioController {
     			$where = "dmu.compuesto = {$mantenimientoubicacion_id}";
     			$departamento_collection = CollectorCondition()->get('Departamento', $where, 4, $from, $select);
 
-    			print_r($departamento_collection);exit;
     		}
     	}
     	
