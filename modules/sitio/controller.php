@@ -17,11 +17,11 @@ class SitioController {
     	if (is_array($mantenimiento_collection) AND !empty($mantenimiento_collection)) {
     		foreach ($mantenimiento_collection as $clave=>$valor) {
     			$mantenimientoubicacion_id = $valor['MANUBID'];
-    			print_r($mantenimientoubicacion_id);exit;
     			$select = "d.denominacion";
-    			$from = "departamento d INNER JOIN departamentomantenimientoubicacion dmu ON d.departamento = dmu.compositor";
+    			$from = "departamento d INNER JOIN departamentomantenimientoubicacion dmu ON d.departamento_id = dmu.compositor";
     			$where = "dmu.compuesto = {$mantenimientoubicacion_id}";
     			$departamento_collection = CollectorCondition()->get('Departamento', $where, 4, $from, $select);
+    			print_r($departamento_collection);exit;
 
     		}
     	}
