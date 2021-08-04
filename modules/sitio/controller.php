@@ -88,7 +88,26 @@ class SitioController {
 		$valor = filter_input(INPUT_POST, 'valor');
 		
 		$deuda_collection = getDeuda()->getDeuda($metodo, $valor);
+		print_r($deuda_collection);exit;
 		$this->view->ver_deuda($deuda_collection, $metodo);
+	}
+
+	function consultar_factura_ajax($arg) {
+		require_once "tools/getDeuda.php";
+		$ids = explode("@", $arg);
+		$suministro = $ids[0];
+		$factura_id = $ids[1];
+		
+		$deuda_collection = getDeuda()->getDeuda('nis', $suministro);
+		$obj_deuda = null;
+		$deuda_collection = json_decode($array_deuda);
+		$deuda_collection = $deuda_collection[0];
+		foreach ($deuda_collection as $clave=>$valor) {
+			$tmp_factura_id = $valor->id_factura;
+			if ($tmp_factura_id == $factura_id) $obj_deuda = $deuda_collection[$clave];
+		}
+
+		$this->view->consultar_factura_ajax($obj_deuda, $factura_id, $suministro);
 	}
 	/* MENU = DEUDA ********************************************************/
 
