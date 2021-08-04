@@ -21,14 +21,13 @@ class SitioController {
     			$from = "departamento d INNER JOIN departamentomantenimientoubicacion dmu ON d.departamento_id = dmu.compositor";
     			$where = "dmu.compuesto = {$mantenimientoubicacion_id}";
     			$departamento_collection = CollectorCondition()->get('Departamento', $where, 4, $from, $select);
-    			foreach ($departamento_collection as $departamento) {
-    				# code...
-    			print_r($departamento);exit;
-    			}
-
+    			$tmp_array = array();
+    			foreach ($departamento_collection as $departamento) $tmp_array[] = $departamento['denominacion'];
+    			$departamentos = implode(' - ', $tmp_array);
+    			$mantenimiento_collection[$clave]['DEPARTAMENTOS'] = $departamentos;
     		}
     	}
-    	
+    			
         $this->view->home($mantenimiento_collection);
 	}
 
