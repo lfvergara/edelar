@@ -69,6 +69,11 @@
   </div>
 </div>
 <script>
+  function verListadoDeuda() {
+    document.getElementById('div_factura_deuda').style.display = 'none';
+    document.getElementById('div_listado_deuda').style.display = 'block';
+  }
+  
   function consultaFactura(suministro, factura_id) {
     var consultar_factura_ajax = $.ajax({
       url: '{url_app}/sitio/consultar_factura_ajax/' + suministro + '@' + factura_id,
