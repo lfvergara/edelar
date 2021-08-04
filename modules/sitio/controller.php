@@ -94,11 +94,11 @@ class SitioController {
 	function consultar_factura_ajax($arg) {
 		require_once "tools/getDeuda.php";
 		$ids = explode("@", $arg);
-		print_r($ids);exit;
 		$suministro = $ids[0];
 		$factura_id = $ids[1];
 		
 		$deuda_collection = getDeuda()->getDeuda('nis', $suministro);
+		print_r($deuda_collection);exit;
 		$obj_deuda = null;
 		$deuda_collection = json_decode($array_deuda);
 		$deuda_collection = $deuda_collection[0];
