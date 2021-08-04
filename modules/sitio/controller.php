@@ -103,6 +103,7 @@ class SitioController {
 		$deuda_collection = $deuda_collection[0];
 		foreach ($deuda_collection as $clave=>$valor) {
 			$tmp_factura_id = $valor->id_factura;
+			$deuda_collection[$clave]->nis = $valor->suministro->id;
 			if ($tmp_factura_id == $factura_id) $obj_deuda = $deuda_collection[$clave];
 		}
 
