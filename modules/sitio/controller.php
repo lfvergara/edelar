@@ -101,6 +101,7 @@ class SitioController {
 		$obj_deuda = null;
 		$deuda_collection = json_decode($array_deuda);
 		$deuda_collection = $deuda_collection[0];
+		print_r($deuda_collection);exit;
 		foreach ($deuda_collection as $clave=>$valor) {
 			$tmp_factura_id = $valor->id_factura;
 			if ($tmp_factura_id == $factura_id) $obj_deuda = $deuda_collection[$clave];
