@@ -119,11 +119,14 @@ class SitioView extends View {
 	/* WS ******************************************************************/
 	function ver_deuda($array_deuda, $metodo) {
 		$gui = file_get_contents("static/modules/sitio/ver_deuda.html");
+		$gui_tbl_deuda = file_get_contents("static/modules/sitio/tbl_deuda.html");
 		$deuda_collection = json_decode($array_deuda);
 		$deuda_collection = $deuda_collection[0];
 
-		foreach ($deuda_collection as $clave=>$valor) $deuda_collection[$clave]->nis = $valor->suministro->id; 
-		$render = $this->render_regex('TBL_DEUDA', $gui, $deuda_collection);		
+		foreach ($deuda_collection as $clave=>$valor) $deuda_collection[$clave]->nis = $valor->suministro->id;
+
+		$gui_tbl_deuda = $this->render_regex('TBL_DEUDA', $gui_tbl_deuda, $deuda_collection);		
+		$render = str_replace('{tbl_deuda}', $gui_tbl_deuda, $gui);
 		$render = str_replace('{fecha_sys}', date('d/m/Y'), $render);
 		$render = str_replace('{hora_sys}', date('h:i:s'), $render);
 		$template = $this->render_sitio("THEME_SECCION", $render);
