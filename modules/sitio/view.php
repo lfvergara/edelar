@@ -151,5 +151,12 @@ class SitioView extends View {
 		return $render;
 	}
 	/* WS DEUDA ************************************************************/
+
+	/* WS MANTENIMIENTOS PREVENTIVOS ***************************************/
+	function ver_mantenimiento() {
+		
+	}
+	/* WS MANTENIMIENTOS PREVENTIVOS ***************************************/
+	
 }
 ?>
