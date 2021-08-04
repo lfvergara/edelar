@@ -124,7 +124,6 @@ class SitioView extends View {
 		$deuda_collection = $deuda_collection[0];
 
 		foreach ($deuda_collection as $clave=>$valor) $deuda_collection[$clave]->nis = $valor->suministro->id;
-
 		$gui_tbl_deuda = $this->render_regex('TBL_DEUDA', $gui_tbl_deuda, $deuda_collection);		
 		$render = str_replace('{tbl_deuda}', $gui_tbl_deuda, $gui);
 		$render = str_replace('{fecha_sys}', date('d/m/Y'), $render);
@@ -136,7 +135,6 @@ class SitioView extends View {
 	function consultar_factura_ajax($obj_deuda, $factura_id, $suministro) {
 		$gui = file_get_contents("static/modules/sitio/consultar_factura_ajax.html");
 		$obj_deuda = $this->set_dict($obj_deuda);
-		print_r($obj_deuda);exit;
 		$render = $this->render($obj_deuda, $gui);
 		$render = str_replace('{wsfactura-id}', $factura_id, $render);
 		$render = str_replace('{wssuministro-id}', $suministro, $render);
