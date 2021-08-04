@@ -128,7 +128,6 @@ class SitioController {
 		}
 
 		$gui = $this->view->imprimir_factura_ajax($obj_deuda, $factura_id, $suministro);
-		print_r($gui);exit;
 		$mipdf = new DOMPDF();
         $mipdf->set_paper("A4", "portrait");
         $mipdf->load_html($gui);
