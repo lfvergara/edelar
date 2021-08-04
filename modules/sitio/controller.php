@@ -21,7 +21,10 @@ class SitioController {
     			$from = "departamento d INNER JOIN departamentomantenimientoubicacion dmu ON d.departamento_id = dmu.compositor";
     			$where = "dmu.compuesto = {$mantenimientoubicacion_id}";
     			$departamento_collection = CollectorCondition()->get('Departamento', $where, 4, $from, $select);
-    			print_r($departamento_collection);exit;
+    			foreach ($departamento_collection as $departamento) {
+    				# code...
+    			print_r($departamento);exit;
+    			}
 
     		}
     	}
