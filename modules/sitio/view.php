@@ -6,7 +6,7 @@ class SitioView extends View {
 		$gui = file_get_contents("static/modules/sitio/home.html");
 		$gui_lst_mantenimientopreventivo = file_get_contents("static/modules/sitio/lst_mantenimientopreventivo.html");
 		$gui_lst_mantenimientopreventivo = $this->render_regex_dict('LST_MANTENIMIENTOPREVENTIVO', $gui_lst_mantenimientopreventivo, $mantenimientopreventivo_collection);
-		print_r($mantenimientopreventivo_collection);exit;
+		
 		$render = str_replace('{lst_mantenimientopreventivo}', $gui_lst_mantenimientopreventivo, $gui);
 		$template = $this->render_sitio("THEME_HOME", $render);
 		print $template;
