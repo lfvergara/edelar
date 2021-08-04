@@ -88,6 +88,7 @@ class SitioController {
 		$valor = filter_input(INPUT_POST, 'valor');
 		
 		$deuda_collection = getDeuda()->getDeuda($metodo, $valor);
+		print_r($deuda_collection);exit;
 		$this->view->ver_deuda($deuda_collection, $metodo);
 	}
 
