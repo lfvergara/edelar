@@ -98,9 +98,8 @@ class SitioController {
 		$factura_id = $ids[1];
 		
 		$deuda_collection = getDeuda()->getDeuda('nis', $suministro);
-		print_r($deuda_collection);exit;
 		$obj_deuda = null;
-		$deuda_collection = json_decode($array_deuda);
+		$deuda_collection = json_decode($deuda_collection);
 		$deuda_collection = $deuda_collection[0];
 		foreach ($deuda_collection as $clave=>$valor) {
 			$tmp_factura_id = $valor->id_factura;
