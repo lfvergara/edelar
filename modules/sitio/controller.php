@@ -94,6 +94,7 @@ class SitioController {
 	function consultar_factura_ajax($arg) {
 		require_once "tools/getDeuda.php";
 		$ids = explode("@", $arg);
+		print_r($ids);exit;
 		$suministro = $ids[0];
 		$factura_id = $ids[1];
 		
@@ -101,7 +102,6 @@ class SitioController {
 		$obj_deuda = null;
 		$deuda_collection = json_decode($array_deuda);
 		$deuda_collection = $deuda_collection[0];
-		print_r($deuda_collection);exit;
 		foreach ($deuda_collection as $clave=>$valor) {
 			$tmp_factura_id = $valor->id_factura;
 			if ($tmp_factura_id == $factura_id) $obj_deuda = $deuda_collection[$clave];
