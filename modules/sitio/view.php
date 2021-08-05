@@ -6,7 +6,7 @@ class SitioView extends View {
 		$gui = file_get_contents("static/modules/sitio/home.html");
 		$gui_lst_mantenimientopreventivo = file_get_contents("static/modules/sitio/lst_mantenimientopreventivo.html");
 		$gui_lst_mantenimientopreventivo = $this->render_regex_dict('LST_MANTENIMIENTOPREVENTIVO', $gui_lst_mantenimientopreventivo, $mantenimientopreventivo_collection);
-		
+
 		$render = str_replace('{lst_mantenimientopreventivo}', $gui_lst_mantenimientopreventivo, $gui);
 		$template = $this->render_sitio("THEME_HOME", $render);
 		print $template;
@@ -157,8 +157,11 @@ class SitioView extends View {
 	/* WS DEUDA ************************************************************/
 
 	/* WS MANTENIMIENTOS PREVENTIVOS ***************************************/
-	function ver_mantenimiento() {
-
+	function ver_mantenimiento($mantenimiento_collection, $obj_mantenimiento) {
+		$gui = file_get_contents("static/modules/sitio/ver_mantenimiento.html");
+		
+		$template = $this->render_sitio("THEME_SECCION", $render);
+		print $template;	
 	}
 	/* WS MANTENIMIENTOS PREVENTIVOS ***************************************/
 	

@@ -161,7 +161,7 @@ class SitioController {
 	function ver_mantenimiento($arg) {
 		$mantenimientopreventivo_id = $arg;
 
-		$select = "mp.motivo AS motivo, CONCAT('El ', mp.fecha_inicio, ', Desde ', SUBSTRING(mp.hora_inicio, 1, 5), ' Hasta las ', SUBSTRING(mp.hora_fin, 1, 5)) AS fecha, DATEDIFF(mp.fecha_inicio, CURDATE()) AS dias_restantes, IF(mp.fecha_inicio = CURDATE() AND mp.hora_fin > CURTIME() AND mp.hora_inicio < CURTIME(), 'EN EJECUCIÓN', 'PENDIENTE') AS estado, CASE WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) = 0 THEN 'danger' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) <= 3 THEN 'warning' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) >= 5 AND DATEDIFF(mp.fecha_inicio, CURDATE()) <= 10 THEN 'success' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) > 10 THEN 'info' END AS class, mu.sector AS SECTOR, mu.calles AS CALLES, mu.mantenimientoubicacion_id AS MANUBID, date_format(mp.fecha_inicio, '%d.%m.%Y') AS fecfor, SUBSTRING(mp.hora_inicio, 1, 5) AS horini";
+		$select = "mp.motivo AS motivo, CONCAT('El ', date_format(mp.fecha_inicio, '%d.%m.%Y'), ', Desde ', SUBSTRING(mp.hora_inicio, 1, 5), ' Hasta las ', SUBSTRING(mp.hora_fin, 1, 5)) AS fecha, DATEDIFF(mp.fecha_inicio, CURDATE()) AS dias_restantes, IF(mp.fecha_inicio = CURDATE() AND mp.hora_fin > CURTIME() AND mp.hora_inicio < CURTIME(), 'EN EJECUCIÓN', 'PENDIENTE') AS estado, CASE WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) = 0 THEN 'danger' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) <= 3 THEN 'warning' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) >= 5 AND DATEDIFF(mp.fecha_inicio, CURDATE()) <= 10 THEN 'success' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) > 10 THEN 'info' END AS class, mu.sector AS SECTOR, mu.calles AS CALLES, mu.mantenimientoubicacion_id AS MANUBID, date_format(mp.fecha_inicio, '%d.%m.%Y') AS fecfor, SUBSTRING(mp.hora_inicio, 1, 5) AS horini";
     	$from = "mantenimientopreventivo mp INNER JOIN mantenimientoubicacion mu ON mp.mantenimientoubicacion = mu.mantenimientoubicacion_id";
     	$where = "mp.mantenimientopreventivo_id = {$mantenimientopreventivo_id}";
     	$mantenimiento_collection = CollectorCondition()->get('MantenimientoPreventivo', $where, 4, $from, $select);
@@ -175,12 +175,8 @@ class SitioController {
 		$tmp_array = array();
 		foreach ($departamento_collection as $departamento) $tmp_array[] = $departamento['denominacion'];
 		$departamentos = implode(' - ', $tmp_array);
-		$mantenimiento_collection[$clave]['departamentos'] = $departamentos;
+		$obj_mantenimiento['departamentos'] = $departamentos;
     	
-    		
-    	print_r($obj_mantenimiento);exit;
-    	
-
     	$select = "mp.mantenimientopreventivo_id AS MANPREID, CONCAT('<b>(', mp.numero_eucop, ')</b> ', mp.motivo) AS MOTIVO, CONCAT('El ', mp.fecha_inicio, ', Desde ', SUBSTRING(mp.hora_inicio, 1, 5), ' Hasta las ', SUBSTRING(mp.hora_fin, 1, 5)) AS FECHA, DATEDIFF(mp.fecha_inicio, CURDATE()) AS DIAS_RESTANTES, IF(mp.fecha_inicio = CURDATE() AND mp.hora_fin > CURTIME() AND mp.hora_inicio < CURTIME(), 'EN EJECUCIÓN', 'PENDIENTE') AS ESTADO, CASE WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) = 0 THEN 'danger' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) <= 3 THEN 'warning' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) >= 5 AND DATEDIFF(mp.fecha_inicio, CURDATE()) <= 10 THEN 'success' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) > 10 THEN 'info' END AS MANTENIMIENTO_CLASS, mu.sector AS SECTOR, mu.calles AS CALLES, mu.mantenimientoubicacion_id AS MANUBID, date_format(mp.fecha_inicio, '%d.%m.%Y') AS FECFOR, SUBSTRING(mp.hora_inicio, 1, 5) AS HORINI";
     	$from = "mantenimientopreventivo mp INNER JOIN mantenimientoubicacion mu ON mp.mantenimientoubicacion = mu.mantenimientoubicacion_id";
     	$where = "mp.fecha_inicio > CURDATE() OR (mp.fecha_inicio = CURDATE() AND mp.hora_fin >= CURTIME()) ORDER BY DIAS_RESTANTES ASC, mp.hora_inicio ASC";
@@ -199,6 +195,8 @@ class SitioController {
     			$mantenimiento_collection[$clave]['DEPARTAMENTOS'] = $departamentos;
     		}
     	}
+
+    	$this->view->ver_mantenimiento($mantenimiento_collection, $obj_mantenimiento);
 	}
 	/* MENU = MANTENIMIENTOS PREVENTIVOS ***********************************/
 
