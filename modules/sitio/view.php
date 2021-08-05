@@ -157,7 +157,7 @@ class SitioView extends View {
 	/* WS DEUDA ************************************************************/
 
 	/* WS MANTENIMIENTOS PREVENTIVOS ***************************************/
-	function ver_mantenimiento($mantenimiento_collection, $obj_mantenimiento) {
+	function ver_mantenimiento($mantenimientopreventivo_collection, $obj_mantenimiento) {
 		$gui = file_get_contents("static/modules/sitio/ver_mantenimiento.html");
 		$gui_lst_mantenimientopreventivo = file_get_contents("static/modules/sitio/lst_mantenimientopreventivo.html");
 		$gui_lst_mantenimientopreventivo = $this->render_regex_dict('LST_MANTENIMIENTOPREVENTIVO', $gui_lst_mantenimientopreventivo, $mantenimientopreventivo_collection);
