@@ -176,6 +176,44 @@ class SitioController {
 		foreach ($departamento_collection as $departamento) $tmp_array[] = $departamento['denominacion'];
 		$departamentos = implode(' - ', $tmp_array);
 		$obj_mantenimiento['departamentos'] = $departamentos;
+
+		$select = "cmp.coordenadamantenimientopreventivo_id AS ID, cmp.latitud AS LATITUD, cmp.longitud AS LONGITUD, cmp.altitud AS ALTITUD, cmp.etiqueta AS ETIQUETA, cmp.fillcolor AS FILLCOLOR, cmp.strokecolor AS STROKECOLOR, cmp.indice AS INDICE, cmp.mantenimientopreventivo_id AS MANPREID";
+		$from = "coordenadamantenimientopreventivo cmp";
+		$where = "cmp.mantenimientopreventivo_id = {$mantenimientopreventivo_id}";
+		$coordenadamantenimientopreventivo_collection = CollectorCondition()->get('CoordenadaMantenimientoPreventivo', $where, 4, $from, $select);
+
+		if(is_array($coordenadamantenimientopreventivo_collection)){
+			$tmp_array = array();
+			foreach ($coordenadamantenimientopreventivo_collection as $clave=>$valor) {
+				$etiqueta = $valor["ETIQUETA"];
+		   		if(!in_array($etiqueta, $tmp_array)) $tmp_array[] = $etiqueta;
+			}
+
+			$coordenadas = array();
+			foreach ($tmp_array as $claves=>$valores) {
+				$array_coordenada = array();
+				foreach ($coordenadamantenimientopreventivo_collection as $clave=>$valor) {
+					if ($valor["ETIQUETA"] == $valores) {
+						$array_temp = array("latitud"=>$valor["LATITUD"],
+											"longitud"=>$valor["LONGITUD"],
+											"etiqueta"=>$valor["ETIQUETA"],
+											"filcolor"=>$valor["FILLCOLOR"],
+											"strockcolor"=>$valor["STROKECOLOR"],
+											"indice"=>$valor["INDICE"],
+											"mantenimientopreventivo_id"=>$valor["MANPREID"]);
+						$array_coordenada[] = $array_temp;
+					}
+				}
+
+				$coordenadas[] = $array_coordenada;
+			}
+		} else {
+			$coordenadas = array();
+		}
+
+		print_r($coordenadas);exit;
+
+
     	
     	$select = "mp.mantenimientopreventivo_id AS MANPREID, CONCAT('<b>(', mp.numero_eucop, ')</b> ', mp.motivo) AS MOTIVO, CONCAT('El ', mp.fecha_inicio, ', Desde ', SUBSTRING(mp.hora_inicio, 1, 5), ' Hasta las ', SUBSTRING(mp.hora_fin, 1, 5)) AS FECHA, DATEDIFF(mp.fecha_inicio, CURDATE()) AS DIAS_RESTANTES, IF(mp.fecha_inicio = CURDATE() AND mp.hora_fin > CURTIME() AND mp.hora_inicio < CURTIME(), 'EN EJECUCIÓN', 'PENDIENTE') AS ESTADO, CASE WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) = 0 THEN 'danger' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) <= 3 THEN 'warning' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) >= 5 AND DATEDIFF(mp.fecha_inicio, CURDATE()) <= 10 THEN 'success' WHEN DATEDIFF(mp.fecha_inicio, CURDATE()) > 10 THEN 'info' END AS MANTENIMIENTO_CLASS, mu.sector AS SECTOR, mu.calles AS CALLES, mu.mantenimientoubicacion_id AS MANUBID, date_format(mp.fecha_inicio, '%d.%m.%Y') AS FECFOR, SUBSTRING(mp.hora_inicio, 1, 5) AS HORINI";
     	$from = "mantenimientopreventivo mp INNER JOIN mantenimientoubicacion mu ON mp.mantenimientoubicacion = mu.mantenimientoubicacion_id";
