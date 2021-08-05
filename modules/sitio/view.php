@@ -57,7 +57,7 @@ class SitioView extends View {
 	function trabajaedelar($areainteres_collection) {
 		$gui = file_get_contents("static/modules/sitio/trabajaedelar.html");
 		$gui_slt_areainteres = file_get_contents("static/modules/sitio/slt_areainteres.html");
-		$gui_slt_areainteres = $this->render_regex_dict('SLT_AREAINTERES', $gui_slt_areainteres, $archivo_collection);
+		$gui_slt_areainteres = $this->render_regex_dict('SLT_AREAINTERES', $gui_slt_areainteres, $areainteres_collection);
 		$render = str_replace('{slt_areainteres}', $gui_slt_areainteres, $gui);
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
