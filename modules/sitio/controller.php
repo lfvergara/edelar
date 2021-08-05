@@ -71,7 +71,7 @@ class SitioController {
 
 	function trabajaedelar() {
 		$select = "ain.areainteres_id AS AREINTID, ain.denominacion AS DENOMINACION";
-		$from = "areainteres ain ORDER BY ain.denominacion ASC";
+		$from = "areainteres ain";
 		$areainteres_collection = CollectorCondition()->get('AreaInteres', NULL, 4, $from, $select);
 		print_r($areainteres_collection);exit;
 		$this->view->trabajaedelar($areainteres_collection);
