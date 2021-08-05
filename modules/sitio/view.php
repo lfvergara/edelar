@@ -157,11 +157,62 @@ class SitioView extends View {
 	/* WS DEUDA ************************************************************/
 
 	/* WS MANTENIMIENTOS PREVENTIVOS ***************************************/
-	function ver_mantenimiento($mantenimientopreventivo_collection, $obj_mantenimiento) {
+	function ver_mantenimiento($mantenimientopreventivo_collection, $coordenadas, $obj_mantenimiento) {
 		$gui = file_get_contents("static/modules/sitio/ver_mantenimiento.html");
+		$gui_lst_coordenada = file_get_contents("static/modules/sitio/lst_coordenada.js");
 		$gui_lst_mantenimientopreventivo = file_get_contents("static/modules/sitio/lst_mantenimientopreventivo.html");
 		$gui_lst_mantenimientopreventivo = $this->render_regex_dict('LST_MANTENIMIENTOPREVENTIVO', $gui_lst_mantenimientopreventivo, $mantenimientopreventivo_collection);
 		
+		if(is_array($coordenadas)){
+			$array_coordenadas = array();
+			foreach ($coordenadas as $clave=>$valor) {
+				$array_coordenadas[$clave] = array("mantenimientopreventivo_id"=>$valor[$clave]['mantenimientopreventivo_id'],
+												   "etiqueta"=>$valor[$clave]['etiqueta'],
+												   "filcolor"=>$valor[$clave]['filcolor'],
+												   "strockcolor"=>$valor[$clave]['strockcolor'],
+												   "coordenadas"=> array());
+
+				$var_coordenadas = Array();
+				foreach ($valor as $c=>$v) $var_coordenadas[] = array("latitud"=>$v['latitud'], "longitud"=>$v['longitud']);
+				$array_coordenadas[$clave]['coordenadas'] = $var_coordenadas;
+			}
+
+			$render_coordenada = '';
+			$cod_lst_coordenada= $this->get_regex('LST_COORDENADA', $gui_lst_coordenada);
+
+			foreach ($array_coordenadas as $clave=>$valor) {
+				$cod_opt_coordenada = file_get_contents("static/modules/sitio/opt_coordenada.html");
+				$etiqueta = $valor['etiqueta'];
+				$coordenadas = $valor['coordenadas'];
+				$i = $clave;
+				unset($valor['coordenadas']);
+				$gui_lst_coordenada = $this->render($valor, $cod_lst_coordenada);
+
+				$cod_option_coordenada = $this->get_regex('OPT_COORDENADA', $cod_opt_coordenada);
+				$render_opcion_coordenada = '';
+				foreach($coordenadas as $coordenada) {
+					$opt_coordenada = $this->render($coordenada, $cod_option_coordenada);
+					$render_opcion_coordenada .= $opt_coordenada;
+				}
+
+				$render_opcion_coordenada = str_replace($this->get_regex('OPT_COORDENADA', $cod_opt_coordenada), $render_opcion_coordenada, $cod_opt_coordenada);
+				$gui_lst_coordenada = str_replace('{lista_coordenadas}', $render_opcion_coordenada, $gui_lst_coordenada);
+				$gui_lst_coordenada = str_replace('{i}', $i, $gui_lst_coordenada);
+				$render_coordenada .= $gui_lst_coordenada;
+			}
+
+			$render_coordenada = str_replace('<!--LST_COORDENADA-->', '', $render_coordenada);
+			$render_coordenada = str_replace('<!--OPT_COORDENADA-->', '', $render_coordenada);
+			$gui = str_replace('{latitud}', $latitud, $gui);
+			$gui = str_replace('{longitud}', $longitud, $gui);
+			$gui = str_replace('{zoom}', $zoom, $gui);
+			$gui = str_replace('{lst_coordenada}', $render_coordenada, $gui);
+		}
+
+
+
+
+
 		$obj_mantenimiento = $this->set_dict_array('mantenimientopreventivo', $obj_mantenimiento);
 		$render = str_replace('{lst_mantenimientopreventivo}', $gui_lst_mantenimientopreventivo, $gui);
 		$render = $this->render($obj_mantenimiento, $render);
