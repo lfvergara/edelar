@@ -70,6 +70,7 @@ class SitioController {
 	}
 
 	function trabajaedelar() {
+		require_once "core/helpers/recaptcha_lib.php";
 		$select = "ain.areainteres_id AS AREINTID, ain.denominacion AS DENOMINACION";
 		$from = "areainteres ain ORDER BY ain.denominacion ASC";
 		$areainteres_collection = CollectorCondition()->get('AreaInteres', NULL, 4, $from, $select);
