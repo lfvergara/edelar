@@ -40,32 +40,32 @@
                   <form action="#" method="POST" class="form form--flex js-contact-form form--contacts">
                     <div class="row">
                       <div class="form-group form-group--col-6 required">
-                        <label for="in-form-nombre" class="control-label">NOMBRE</label>
-                        <input id="in-form-nombre" type="text" name="nombre" class="form-control">
+                        <label for="nombre" class="control-label">NOMBRE</label>
+                        <input id="nombre" type="text" name="nombre" class="form-control" required>
                       </div>
                       <div class="form-group form-group--col-6 required">
-                        <label for="in-form-apellido" class="control-label">APELLIDO</label>
-                        <input id="in-form-apellido" type="text" name="apellido" class="form-control">
+                        <label for="apellido" class="control-label">APELLIDO</label>
+                        <input id="apellido" type="text" name="apellido" class="form-control" required>
                       </div>
                       <div class="form-group form-group--col-6 required">
-                        <label for="in-form-email" class="control-label">MAIL</label>
-                        <input id="in-form-email" type="text" name="email" class="form-control">
+                        <label for="email" class="control-label">MAIL</label>
+                        <input id="email" type="text" name="email" class="form-control" required>
                       </div>
                       <div class="form-group form-group--col-6">
-                        <label for="in-areainteres" class="control-label">ÁREA DE INTERÉS</label>
-                        <select id="in-areainteres" data-placeholder="Área de Interés" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="areainteres">
+                        <label for="areainteres" class="control-label">ÁREA DE INTERÉS</label>
+                        <select id="areainteres" data-placeholder="Área de Interés" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="areainteres">
                           {slt_areainteres}
                         </select>
                       </div>
                       <div class="form-group required">
-                        <label for="in-form-message" class="control-label">CONSULTA/RECLAMO</label>
-                        <textarea id="in-form-message" name="message" required data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-validation-threshold="10" data-parsley-minlength-message="You need to enter at least a 20 caracters long comment.." class="form-control"></textarea>
+                        <label for="mensaje" class="control-label">MENSAJE</label>
+                        <textarea id="mensaje" name="mensaje" class="form-control"></textarea>
                       </div>
                       <div class="form-group form-group--col-6 required">
                         <div class="form-property__upload" style="width: 100%;">
                           <label for="form-property__upload-title" class="control-label">SUBIR CV</label>
                           <div class="form-property__upload-border">
-                            <input type="file" class="form-property__upload-btn-choose">
+                            <input type="file" class="form-property__upload-btn-choose" required>
                           </div>
                         </div>
                       </div>
