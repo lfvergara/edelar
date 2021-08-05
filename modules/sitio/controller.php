@@ -70,7 +70,10 @@ class SitioController {
 	}
 
 	function trabajaedelar() {
-		$this->view->trabajaedelar();
+		$select = "ai.areainteres_id AS AREINTID, ai.denominacion AS DENOMINACION";
+		$from = "areainteres ai ORDER BY ai.denominacion ASC";
+		$areainteres_collection = CollectorCondition()->get('AreaInteres', NULL, 4, $from, $select);
+		$this->view->trabajaedelar($areainteres_collection);
 	}
 	/* MENU = INSTITUCIONAL ************************************************/
 

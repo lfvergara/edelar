@@ -54,9 +54,12 @@ class SitioView extends View {
 		print $template;
 	}
 
-	function trabajaedelar() {
+	function trabajaedelar($areainteres_collection) {
 		$gui = file_get_contents("static/modules/sitio/trabajaedelar.html");
-		$template = $this->render_sitio("THEME_SECCION", $gui);
+		$gui_slt_areainteres = file_get_contents("static/modules/sitio/slt_areainteres.html");
+		$gui_slt_areainteres = $this->render_regex_dict('SLT_AREAINTERES', $gui_slt_areainteres, $archivo_collection);
+		$render = str_replace('{slt_areainteres}', $gui_slt_areainteres, $gui);
+		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 	}
 	/* INSTITUCIONAL ******************************************/
