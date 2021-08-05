@@ -167,7 +167,7 @@ class SitioController {
     	$mantenimiento_collection = CollectorCondition()->get('MantenimientoPreventivo', $where, 4, $from, $select);
     	$obj_mantenimiento = $mantenimiento_collection[0];
 
-		$mantenimientoubicacion_id = $obj_mantenimiento['MANUBID'];
+		$mantenimientoubicacion_id = $obj_mantenimiento['manubid'];
 		$select = "d.denominacion";
 		$from = "departamento d INNER JOIN departamentomantenimientoubicacion dmu ON d.departamento_id = dmu.compositor";
 		$where = "dmu.compuesto = {$mantenimientoubicacion_id}";
