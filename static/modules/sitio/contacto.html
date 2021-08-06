@@ -73,32 +73,32 @@
                   <form action="{url_app}/sitio/enviar_contacto" method="POST" class="form form--flex js-contact-form form--contacts">
                     <div class="row">
                       <div class="form-group form-group--col-6 required">
-                        <label for="in-form-phone" class="control-label">NOMBRE</label>
-                        <input id="in-form-phone" type="text" name="phone" class="form-control">
+                        <label for="nombre" class="control-label">NOMBRE</label>
+                        <input id="nombre" type="text" name="nombre" class="form-control">
                       </div>
                       <div class="form-group form-group--col-6 required">
-                        <label for="in-form-phone" class="control-label">APELLIDO</label>
-                        <input id="in-form-phone" type="text" name="phone" class="form-control">
+                        <label for="apellido" class="control-label">APELLIDO</label>
+                        <input id="apellido" type="text" name="apellido" class="form-control">
                       </div>
                       <div class="form-group form-group--col-6">
-                        <label for="in-form-phone" class="control-label">DIRECCIÓN</label>
-                        <input id="in-form-phone" type="text" name="phone" class="form-control">
+                        <label for="direccion" class="control-label">DIRECCIÓN</label>
+                        <input id="direccion" type="text" name="direccion" class="form-control">
                       </div>
                       <div class="form-group form-group--col-6">
-                        <label for="in-form-email" class="control-label">LOCALIDAD</label>
-                        <input id="in-form-email" type="email" name="email" required data-parsley-trigger="change" class="form-control">
+                        <label for="localidad" class="control-label">LOCALIDAD</label>
+                        <input id="localidad" type="text" name="localidad" class="form-control">
                       </div>
-                      <div class="form-group form-group--col-6">
-                        <label for="in-form-phone" class="control-label">TELÉFONO</label>
-                        <input id="in-form-phone" type="text" name="phone" class="form-control">
+                      <div class="form-group form-group--col-6 required">
+                        <label for="telefono" class="control-label">TELÉFONO</label>
+                        <input id="telefono" type="text" name="telefono" required class="form-control">
                       </div>
-                      <div class="form-group form-group--col-6">
-                        <label for="in-form-phone" class="control-label">E-MAIL</label>
-                        <input id="in-form-phone" type="text" name="phone" class="form-control">
+                      <div class="form-group form-group--col-6 required">
+                        <label for="correo" class="control-label">E-MAIL</label>
+                        <input id="correo" type="text" name="correo" required data-parsley-trigger="change" class="form-control">
                       </div>
                       <div class="form-group required">
-                        <label for="in-form-message" class="control-label">CONSULTA/RECLAMO</label>
-                        <textarea id="in-form-message" name="message" required data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-validation-threshold="10" data-parsley-minlength-message="You need to enter at least a 20 caracters long comment.." class="form-control"></textarea>
+                        <label for="mensaje" class="control-label">CONSULTA/RECLAMO</label>
+                        <textarea id="mensaje" name="mensaje" required data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-validation-threshold="10" data-parsley-minlength-message="Su comentario debe poseer al menos 30 caracteres..." class="form-control"></textarea>
                       </div>
                       <div class="form-group form-group--col-6 required">
                         <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
