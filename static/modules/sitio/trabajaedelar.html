@@ -49,14 +49,36 @@
                         <input id="apellido" type="text" name="apellido" class="form-control" required>
                       </div>
                       <div class="form-group form-group--col-6 required">
-                        <label for="email" class="control-label">MAIL</label>
-                        <input id="email" type="text" name="email" class="form-control" required>
+                        <label for="provincia" class="control-label">PROVINCIA</label>                        
+                        <select id="provincia" data-placeholder="Provincia" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="provincia" required="">
+                          {slt_provincia}
+                        </select>
+                      </div>
+                      <div class="form-group form-group--col-6 required">
+                        <label for="localidad" class="control-label">LOCALIDAD</label>
+                        <input id="localidad" type="text" name="localidad" class="form-control" required>
+                      </div>
+                      <div class="form-group required">
+                        <label for="direccion" class="control-label">DOMICILIO</label>
+                        <input id="direccion" type="text" name="direccion" class="form-control" required>
+                      </div>
+                      <div class="form-group form-group--col-6 required">
+                        <label for="estadocivil" class="control-label">ESTADO CIVIL</label>
+                        <input id="estadocivil" type="text" name="estadocivil" class="form-control" required>
                       </div>
                       <div class="form-group form-group--col-6 required">
                         <label for="areainteres" class="control-label">ÁREA DE INTERÉS</label>
                         <select id="areainteres" data-placeholder="Área de Interés" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="areainteres" required="">
                           {slt_areainteres}
                         </select>
+                      </div>
+                      <div class="form-group form-group--col-6 required">
+                        <label for="correo" class="control-label">E-MAIL</label>
+                        <input id="correo" type="text" name="correo" class="form-control" required>
+                      </div>
+                      <div class="form-group form-group--col-6 required">
+                        <label for="telefono" class="control-label">TELÉFONO</label>
+                        <input id="telefono" type="text" name="telefono" class="form-control" required>
                       </div>
                       <div class="form-group">
                         <label for="mensaje" class="control-label">MENSAJE</label>
@@ -66,7 +88,7 @@
                         <div class="form-property__upload" style="width: 100%;">
                           <label for="form-property__upload-title" class="control-label">SUBIR CV</label>
                           <div class="form-property__upload-border">
-                            <input type="file" class="form-property__upload-btn-choose" required>
+                            <input type="file" class="form-property__upload-btn-choose" name="archivo" required>
                           </div>
                         </div>
                       </div>

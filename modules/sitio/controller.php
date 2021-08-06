@@ -1,5 +1,8 @@
 <?php
 require_once "modules/sitio/view.php";
+require_once "modules/areainteres/model.php";
+require_once "modules/provincia/model.php";
+require_once "modules/curriculum/model.php";
 
 
 class SitioController {
@@ -69,12 +72,77 @@ class SitioController {
 		$this->view->ver_rse($rse_collection, $archivo_collection, $video_collection);
 	}
 
-	function trabajaedelar() {
+	function trabajaedelar($arg) {
 		require_once "core/helpers/recaptcha_lib.php";
-		$select = "ain.areainteres_id AS AREINTID, ain.denominacion AS DENOMINACION";
-		$from = "areainteres ain ORDER BY ain.denominacion ASC";
-		$areainteres_collection = CollectorCondition()->get('AreaInteres', NULL, 4, $from, $select);
-		$this->view->trabajaedelar($areainteres_collection);
+		$areainteres_collection = Collector()->get('AreaInteres');
+		$provincia_collection = Collector()->get('Provincia');
+		$this->view->trabajaedelar($areainteres_collection, $provincia_collection, $arg);
+	}
+
+	function guardar_trabajaedelar() {
+		require_once "core/helpers/recaptcha_lib.php";
+		require_once 'core/helpers/emailHelper.php';
+
+		$recaptcha = filter_input(INPUT_POST, "g-recaptcha-response");
+		$secret = "6Lck8w8UAAAAAIBpLWv_HUcU4SHS61WZbaxON3sa";
+		$response = null;
+		$reCaptcha = new ReCaptcha($secret);
+		if ($recaptcha != '') {
+		    $response = $reCaptcha->verifyResponse($_SERVER["REMOTE_ADDR"],$recaptcha);
+		    if ($response != null AND $response->success == true) {
+
+				if($_FILES['archivo']['error'] == 0) {
+					$archivo = $_FILES["archivo"]["tmp_name"];
+					$finfo = new finfo(FILEINFO_MIME_TYPE);
+					$mime = $finfo->file($archivo);
+					$formato = explode("/", $mime);
+					$mimes_permitidos = array("application/pdf", "application/msword");
+
+					if(in_array($mime, $mimes_permitidos)) {
+						$cm = new Curriculum();
+						$cm->apellido = filter_input(INPUT_POST, 'apellido');
+						$cm->nombre = filter_input(INPUT_POST, 'nombre');
+						$cm->localidad = filter_input(INPUT_POST, 'localidad');
+					    $cm->direccion = filter_input(INPUT_POST, 'direccion');
+					    $cm->correo = filter_input(INPUT_POST, 'correo');
+					    $cm->telefono = filter_input(INPUT_POST, 'telefono');
+						$cm->estudio = filter_input(INPUT_POST, 'estudio');
+						$cm->titulo = filter_input(INPUT_POST, 'titulo');
+						$cm->estadocivil = filter_input(INPUT_POST, 'estadocivil');
+					    $cm->mensaje = filter_input(INPUT_POST, 'mensaje');
+					    $cm->fecha_carga = date('Y-m-d');
+					    $cm->areainteres = filter_input(INPUT_POST, 'areainteres');
+					    $cm->provincia = filter_input(INPUT_POST, 'provincia');
+					    $cm->save();
+					    $curriculum_id = $cm->curriculum_id;
+						$directorio = URL_PRIVATE . "curriculum/";
+						$name = $curriculum_id;
+						move_uploaded_file($archivo, "{$directorio}/{$name}");
+
+						$array_dict = array("{denominacion}"=>filter_input(INPUT_POST, "nombre") . ', ' . filter_input(INPUT_POST, "apellido"),
+						        			"{localidad}"=>filter_input(INPUT_POST, "localidad"),
+									        "{correo}"=>filter_input(INPUT_POST, "correo"),
+									        "{telefono}"=>filter_input(INPUT_POST, "telefono"),
+						        			"{mensaje}"=>filter_input(INPUT_POST, "mensaje"),
+						        			"{url_static}"=>URL_STATIC);
+
+						$emailHelper = new EmailHelper();
+						$emailHelper->envia_curriculum($array_dict);
+						header("Location: " . URL_APP . "/sitio/trabajaedelar/okCorreo");
+					} else {
+						header("Location: " . URL_APP . "/sitio/trabajaedelar/erFormato");
+					}
+				} else {
+					header("Location: " . URL_APP . "/sitio/trabajaedelar/erArchivo");
+				}
+	    	} elseif (isset($recaptcha) AND $response->success == false) {
+				header("Location: " . URL_APP . "/sitio/trabajaedelar/erCaptcha");
+			} else {
+				header("Location: " . URL_APP . "/sitio/trabajaedelar/erCaptcha");
+			}
+		} else {
+			header("Location: " . URL_APP . "/sitio/trabajaedelar/erCaptcha");
+		}
 	}
 	/* MENU = INSTITUCIONAL ************************************************/
 

@@ -4,7 +4,7 @@
 class SitioView extends View {
 	function home($mantenimientopreventivo_collection) {
 		$gui = file_get_contents("static/modules/sitio/home.html");
-		$gui_lst_mantenimientopreventivo = file_get_contents("static/modules/sitio/lst_mantenimientopreventivo.html");
+		$gui_lst_mantenimientopreventivo = file_get_contents("static/common/lst_mantenimientopreventivo.html");
 		$gui_lst_mantenimientopreventivo = $this->render_regex_dict('LST_MANTENIMIENTOPREVENTIVO', $gui_lst_mantenimientopreventivo, $mantenimientopreventivo_collection);
 
 		$render = str_replace('{lst_mantenimientopreventivo}', $gui_lst_mantenimientopreventivo, $gui);
@@ -27,7 +27,7 @@ class SitioView extends View {
 
 	function rse($rse_collection) {
 		$gui = file_get_contents("static/modules/sitio/rse.html");
-		$gui_lst_rse = file_get_contents("static/modules/sitio/lst_rse.html");
+		$gui_lst_rse = file_get_contents("static/common/lst_rse.html");
 		$gui_lst_rse = $this->render_regex_dict('LST_RSE', $gui_lst_rse, $rse_collection);
 
 		$render = str_replace('{lst_rse}', $gui_lst_rse, $gui);
@@ -37,9 +37,9 @@ class SitioView extends View {
 
 	function ver_rse($obj_rse, $archivo_collection, $video_collection) {
 		$gui = file_get_contents("static/modules/sitio/ver_rse.html");
-		$gui_lst_archivorse = file_get_contents("static/modules/sitio/lst_archivorse.html");
+		$gui_lst_archivorse = file_get_contents("static/common/lst_archivorse.html");
 		$gui_lst_archivorse = $this->render_regex_dict('LST_ARCHIVORSE', $gui_lst_archivorse, $archivo_collection);
-		$gui_lst_videorse = file_get_contents("static/modules/sitio/lst_videorse.html");
+		$gui_lst_videorse = file_get_contents("static/common/lst_videorse.html");
 		$gui_lst_videorse = $this->render_regex_dict('LST_VIDEORSE', $gui_lst_videorse, $video_collection);
 
 		$obj_archivo = $archivo_collection[0];
@@ -54,11 +54,14 @@ class SitioView extends View {
 		print $template;
 	}
 
-	function trabajaedelar($areainteres_collection) {
+	function trabajaedelar($areainteres_collection, $provincia_collection, $msj_modal) {
 		$gui = file_get_contents("static/modules/sitio/trabajaedelar.html");
-		$gui_slt_areainteres = file_get_contents("static/modules/sitio/slt_areainteres.html");
-		$gui_slt_areainteres = $this->render_regex_dict('SLT_AREAINTERES', $gui_slt_areainteres, $areainteres_collection);
+		$gui_slt_areainteres = file_get_contents("static/common/slt_areainteres.html");
+		$gui_slt_areainteres = $this->render_regex('SLT_AREAINTERES', $gui_slt_areainteres, $areainteres_collection);
+		$gui_slt_provincia = file_get_contents("static/common/slt_provincia.html");
+		$gui_slt_provincia = $this->render_regex('SLT_PROVINCIA', $gui_slt_provincia, $provincia_collection);
 		$render = str_replace('{slt_areainteres}', $gui_slt_areainteres, $gui);
+		$render = str_replace('{slt_provincia}', $gui_slt_provincia, $render);
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 	}
@@ -126,7 +129,7 @@ class SitioView extends View {
 	/* WS DEUDA ************************************************************/
 	function ver_deuda($array_deuda, $metodo) {
 		$gui = file_get_contents("static/modules/sitio/ver_deuda.html");
-		$gui_tbl_deuda = file_get_contents("static/modules/sitio/tbl_deuda.html");
+		$gui_tbl_deuda = file_get_contents("static/common/tbl_deuda.html");
 		$deuda_collection = json_decode($array_deuda);
 		$deuda_collection = $deuda_collection[0];
 
@@ -162,8 +165,8 @@ class SitioView extends View {
 	/* WS MANTENIMIENTOS PREVENTIVOS ***************************************/
 	function ver_mantenimiento($mantenimientopreventivo_collection, $coordenadas, $obj_mantenimiento) {
 		$gui = file_get_contents("static/modules/sitio/ver_mantenimiento.html");
-		$gui_lst_coordenada = file_get_contents("static/modules/sitio/lst_coordenada.js");
-		$gui_lst_mantenimientopreventivo = file_get_contents("static/modules/sitio/lst_mantenimientopreventivo.html");
+		$gui_lst_coordenada = file_get_contents("static/common/lst_coordenada.js");
+		$gui_lst_mantenimientopreventivo = file_get_contents("static/common/lst_mantenimientopreventivo.html");
 		$gui_lst_mantenimientopreventivo = $this->render_regex_dict('LST_MANTENIMIENTOPREVENTIVO', $gui_lst_mantenimientopreventivo, $mantenimientopreventivo_collection);
 		
 		if(is_array($coordenadas)){
@@ -184,7 +187,7 @@ class SitioView extends View {
 			$cod_lst_coordenada= $this->get_regex('LST_COORDENADA', $gui_lst_coordenada);
 
 			foreach ($array_coordenadas as $clave=>$valor) {
-				$cod_opt_coordenada = file_get_contents("static/modules/sitio/opt_coordenada.html");
+				$cod_opt_coordenada = file_get_contents("static/common/opt_coordenada.html");
 				$etiqueta = $valor['etiqueta'];
 				$coordenadas = $valor['coordenadas'];
 				$i = $clave;
