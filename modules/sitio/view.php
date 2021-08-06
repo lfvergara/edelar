@@ -269,13 +269,13 @@ class SitioView extends View {
 		$gui_msj_alert = file_get_contents("static/common/msj_alert.html");
 
 		switch ($msj_alert) {
-			case 'erCaptcha':
+			case 'erTramite':
 				$msj = 'Estimado cliente, ha ocurrido un error con el captcha. Por favor intente nuevamente. <br>Disculpe las molestias ocasionadas!';
 				$alert_array = array('{display_commit}'=>'block', '{msj_commit}'=>$msj, '{class_commit}'=>'danger', '{icon_commit}'=>'error');
 				$msj_alert = $this->render($alert_array, $msj_alert);
 				$gui = str_replace('{msj_alert}', $gui_msj_alert, $gui);
 				break;
-			case 'okCorreo':
+			case 'okTramite':
 				$msj = 'Su mensaje ha sido enviado a nuestro staff. <br>Muchas gracias por comunicarse con nosotros!';
 				$alert_array = array('{display_commit}'=>'block', '{msj_commit}'=>$msj, '{class_commit}'=>'success', '{icon_commit}'=>'valid');
 				$gui = $this->render($alert_array, $gui);
