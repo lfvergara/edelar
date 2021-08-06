@@ -113,6 +113,7 @@ class SitioController {
 					    $cm->fecha_carga = date('Y-m-d');
 					    $cm->areainteres = filter_input(INPUT_POST, 'areainteres');
 					    $cm->provincia = filter_input(INPUT_POST, 'provincia');
+					    print_r($cm);exit;
 					    $cm->save();
 					    $curriculum_id = $cm->curriculum_id;
 						$directorio = URL_PRIVATE . "curriculum/";
