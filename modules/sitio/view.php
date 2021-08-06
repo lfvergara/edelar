@@ -12,7 +12,7 @@ class SitioView extends View {
 		print $template;
 	}
 
-	/* INSTITUCIONAL ******************************************/
+	/* INSTITUCIONAL *******************************************************/
 	function nosotros() {
 		$gui = file_get_contents("static/modules/sitio/nosotros.html");
 		$template = $this->render_sitio("THEME_SECCION", $gui);
@@ -89,9 +89,9 @@ class SitioView extends View {
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 	}
-	/* INSTITUCIONAL ******************************************/
+	/* INSTITUCIONAL *******************************************************/
 
-	/* MENU = CENTRO DE AYUDA ******************************************/
+	/* CENTRO DE AYUDA *****************************************************/
 	function leerfactura() {
 		$gui = file_get_contents("static/modules/sitio/leerfactura.html");
 		$template = $this->render_sitio("THEME_SECCION", $gui);
@@ -137,13 +137,7 @@ class SitioView extends View {
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 	}
-	/* MENU = CENTRO DE AYUDA ******************************************/
-
-	function tramites_hogares_comercios() {
-		$gui = file_get_contents("static/modules/sitio/hogares_comercios_tramites.html");
-		$template = $this->render_sitio("THEME_SECCION", $gui);
-		print $template;
-	}
+	/* CENTRO DE AYUDA *****************************************************/
 
 	/* PARA PRUEBA DE FORMULARIOS ******************************************/
 	function p1_signup_cliente() {
@@ -166,7 +160,7 @@ class SitioView extends View {
 	}
 	/* PARA PRUEBA DE FORMULARIOS ******************************************/
 
-	/* WS DEUDA ************************************************************/
+	/* DEUDA ***************************************************************/
 	function ver_deuda($array_deuda, $metodo) {
 		$gui = file_get_contents("static/modules/sitio/ver_deuda.html");
 		$gui_tbl_deuda = file_get_contents("static/common/tbl_deuda.html");
@@ -200,9 +194,9 @@ class SitioView extends View {
 		$render = str_replace('{wssuministro-id}', $suministro, $render);
 		return $render;
 	}
-	/* WS DEUDA ************************************************************/
+	/* DEUDA ***************************************************************/
 
-	/* WS MANTENIMIENTOS PREVENTIVOS ***************************************/
+	/* MANTENIMIENTOS PREVENTIVOS ******************************************/
 	function ver_mantenimiento($mantenimientopreventivo_collection, $coordenadas, $obj_mantenimiento) {
 		$gui = file_get_contents("static/modules/sitio/ver_mantenimiento.html");
 		$gui_lst_coordenada = file_get_contents("static/common/lst_coordenada.js");
@@ -261,7 +255,21 @@ class SitioView extends View {
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;	
 	}
-	/* WS MANTENIMIENTOS PREVENTIVOS ***************************************/
+	/* MANTENIMIENTOS PREVENTIVOS ******************************************/
 	
+	/* TRAMITES COMERCIALES ************************************************/
+	function tramites_hogares_comercios() {
+		$gui = file_get_contents("static/modules/sitio/hogares_comercios_tramites.html");
+		$template = $this->render_sitio("THEME_SECCION", $gui);
+		print $template;
+	}
+
+	function adhesion_debito($tarjetacredito_collection) {
+		$gui = file_get_contents("static/modules/sitio/adhesion_debito.html");
+		$template = $this->render_sitio("THEME_SECCION", $gui);
+		print $template;
+
+	}
+	/* TRAMITES COMERCIALES ************************************************/
 }
 ?>

@@ -3,6 +3,7 @@ require_once "modules/sitio/view.php";
 require_once "modules/areainteres/model.php";
 require_once "modules/provincia/model.php";
 require_once "modules/curriculum/model.php";
+require_once "modules/tarjetacredito/model.php";
 
 
 class SitioController {
@@ -201,10 +202,6 @@ class SitioController {
 	}
 	/* MENU = CENTRO DE AYUDA **********************************************/
 
-	function tramites_hogares_comercios() {
-		$this->view->tramites_hogares_comercios();
-	}
-
 	/* MENU = DEUDA ********************************************************/
 	function ver_deuda() {
 		require_once "tools/getDeuda.php";
@@ -361,11 +358,23 @@ class SitioController {
 		$this->view->p3_signup_cliente();
 	}
 	/* PARA PRUEBA DE FORMULARIOS ******************************************/
-}
+
+	/* GESTIONES COMERCIALES ***********************************************/
+	function tramites_hogares_comercios() {
+		$this->view->tramites_hogares_comercios();
+	}
+
+	function adhesiondebito() {
+		$tarjetacredito_collection = Collector()->get('TarjetaCredito');
+		$this->view->adhesion_debito($tarjetacredito_collection);
+	}
+	/* GESTIONES COMERCIALES ***********************************************/
+
 	/* COMMON **************************************************************/
 	function ver_archivo(){
 		SessionHandler()->check_session();
 		require_once "core/helpers/files.php";
 	}
 	/* COMMON **************************************************************/
+}
 ?>
