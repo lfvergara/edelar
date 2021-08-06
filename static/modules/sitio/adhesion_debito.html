@@ -67,25 +67,33 @@
                           <label for="apellido" class="control-label">APELLIDO</label>
                           <input id="apellido" type="text" name="apellido" class="form-control" required>
                         </div>
-                        <div class="form-group form-group--col-6">
-                          <label for="direccion" class="control-label">DIRECCIÓN</label>
-                          <input id="direccion" type="text" name="direccion" class="form-control">
-                        </div>
-                        <div class="form-group form-group--col-6">
-                          <label for="localidad" class="control-label">LOCALIDAD</label>
-                          <input id="localidad" type="text" name="localidad" class="form-control">
+                        <div class="form-group form-group--col-6 required">
+                          <label for="dni" class="control-label">DNI</label>
+                          <input id="dni" minlength="7" maxlength="11" pattern="[0-9]+" type="text" name="dni" class="form-control" required>
                         </div>
                         <div class="form-group form-group--col-6 required">
-                          <label for="telefono" class="control-label">TELÉFONO</label>
-                          <input id="telefono" type="text" name="telefono" required class="form-control">
+                          <label for="nis" class="control-label">NIS</label>
+                          <input id="nis" minlength="7" maxlength="11" pattern="[0-9]+" type="text" name="nis" class="form-control" required>
                         </div>
                         <div class="form-group form-group--col-6 required">
                           <label for="correo" class="control-label">E-MAIL</label>
-                          <input id="correo" type="text" name="correo" required data-parsley-trigger="change" class="form-control">
+                          <input id="correo" type="text" name="correo" data-parsley-trigger="change" class="form-control" required>
                         </div>
-                        <div class="form-group required">
-                          <label for="mensaje" class="control-label">CONSULTA/RECLAMO</label>
-                          <textarea id="mensaje" name="mensaje" required data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-validation-threshold="10" data-parsley-minlength-message="Su comentario debe poseer al menos 30 caracteres..." class="form-control"></textarea>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="telefono" class="control-label">TELÉFONO</label>
+                          <input id="telefono" type="text" name="telefono"  class="form-control" required>
+                        </div>
+                        <div class="form-group form-group--col-12 required">
+                          <label for="titular_cbu" class="control-label">NOMBRE TITULAR CBU</label>
+                          <input id="titular_cbu" type="text" name="titular_cbu" class="form-control" required>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="cbu" class="control-label">CBU</label>
+                          <input id="cbu" type="text" name="cbu" data-parsley-trigger="change" class="form-control" required>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="entidad_bancaria" class="control-label">ENTIDAD BANCARIA</label>
+                          <input id="entidad_bancaria" type="text" name="entidad_bancaria" class="form-control" required>
                         </div>
                         <div class="form-group form-group--col-6 required">
                           <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
