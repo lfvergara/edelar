@@ -84,7 +84,7 @@ class SitioView extends View {
 		}
 
 		$render = $this->render($alert_array, $gui);
-		$render = str_replace('{slt_areainteres}', $gui_slt_areainteres, $gui);
+		$render = str_replace('{slt_areainteres}', $gui_slt_areainteres, $render);
 		$render = str_replace('{slt_provincia}', $gui_slt_provincia, $render);
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
