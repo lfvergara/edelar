@@ -32,17 +32,15 @@
             </nav>
           </h2>
         </header>
-        <div class="widget__content">
-          
-            <div class="alert ui-pnotify-container alert-{class_commit} ui-pnotify-shadow" style="display: {display_commit}">
-              <h4 class="ui-pnotify-title">
-                <svg class="notify-icon">
-                  <use xlink:href="#icon-{icon_commit}"></use>
-                </svg>{msj_commit}
-              </h4>
-              <div style="display: none;" class="ui-pnotify-text"></div>
-            </div>
-          
+        <div class="widget__content">          
+          <div class="alert ui-pnotify-container alert-{class_commit} ui-pnotify-shadow" style="display: {display_commit}">
+            <h4 class="ui-pnotify-title">
+              <svg class="notify-icon">
+                <use xlink:href="#icon-{icon_commit}"></use>
+              </svg>{msj_commit}
+            </h4>
+            <div style="display: none;" class="ui-pnotify-text"></div>
+          </div>          
         </div>
         <div class="widget__content">
           <div class="contacts">
@@ -50,7 +48,7 @@
               <div class="col-lg-12">
                 <span class="contacts__address-title text-center">¿Querés formar parte de <h2>EDELAR?</h2></span>
                 <div class="contacts__form">                        
-                  <form action="#" method="POST" class="form form--flex js-contact-form form--contacts">
+                  <form action="{url_app}/sitio/guardar_trabajaedelar" method="POST" class="form form--flex js-contact-form form--contacts" enctype="multipart/form-data">
                     <div class="row">
                       <div class="form-group form-group--col-6 required">
                         <label for="nombre" class="control-label">NOMBRE</label>
