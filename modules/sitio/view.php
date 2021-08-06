@@ -264,8 +264,29 @@ class SitioView extends View {
 		print $template;
 	}
 
-	function adhesion_debito($tarjetacredito_collection) {
+	function adhesion_debito($tarjetacredito_collection, $msj_alert) {
 		$gui = file_get_contents("static/modules/sitio/adhesion_debito.html");
+		$gui_msj_alert = file_get_contents("static/common/msj_alert.html");
+
+		switch ($msj_alert) {
+			case 'erCaptcha':
+				$msj = 'Estimado cliente, ha ocurrido un error con el captcha. Por favor intente nuevamente. <br>Disculpe las molestias ocasionadas!';
+				$alert_array = array('{display_commit}'=>'block', '{msj_commit}'=>$msj, '{class_commit}'=>'danger', '{icon_commit}'=>'error');
+				$msj_alert = $this->render($alert_array, $msj_alert);
+				$gui = str_replace('{msj_alert}', $gui_msj_alert, $gui);
+				break;
+			case 'okCorreo':
+				$msj = 'Su mensaje ha sido enviado a nuestro staff. <br>Muchas gracias por comunicarse con nosotros!';
+				$alert_array = array('{display_commit}'=>'block', '{msj_commit}'=>$msj, '{class_commit}'=>'success', '{icon_commit}'=>'valid');
+				$gui = $this->render($alert_array, $gui);
+				$gui = str_replace('{msj_alert}', $gui_msj_alert, $gui);
+				break;
+			default:
+				$alert_array = array('{display_commit}'=>'none','{msj_commit}'=>$msj,'{class_commit}'=>'', '{icon_commit}'=>'');
+				$gui = str_replace('{msj_alert}', '', $gui);
+				break;
+		}
+		
 		$template = $this->render_sitio("THEME_SECCION", $gui);
 		print $template;
 

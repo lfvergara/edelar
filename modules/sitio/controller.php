@@ -364,9 +364,9 @@ class SitioController {
 		$this->view->tramites_hogares_comercios();
 	}
 
-	function adhesion_debito() {
+	function adhesion_debito($arg) {
 		$tarjetacredito_collection = Collector()->get('TarjetaCredito');
-		$this->view->adhesion_debito($tarjetacredito_collection);
+		$this->view->adhesion_debito($tarjetacredito_collection, $arg);
 	}
 	/* GESTIONES COMERCIALES ***********************************************/
 
