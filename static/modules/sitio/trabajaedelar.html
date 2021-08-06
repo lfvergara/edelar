@@ -115,3 +115,45 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="sistema_alertas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background: #191967;">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">ATENCIÓN!</h4>
+      </div>
+      <div class="modal-body">
+        <div class="col-lg-2">
+          <center><h1><i class="fa fa-exclamation-triangle" style="color: #ff6c60;"></i></h1></center>
+        </div>
+        <div class="col-lg-10">
+            <p size="3" style="font-weight: bold; display: {modal-msj_erarchivo};" >
+                Disculpe, ha ocurrido un error en la carga del archivo. Por favor intente nuevamente.
+                <br>Disculpe las molestias ocasionadas!
+            </p>
+            <p size="3" style="font-weight: bold; display: {modal-msj_erformato};" >
+                Solo se permiten documentos .PDF o .DOC(Word). Por favor intente nuevamente.
+                <br>Disculpe las molestias ocasionadas!
+            </p>
+            <p size="3" style="font-weight: bold; display: {modal-msj_ercaptcha};" >
+                Estimado cliente, ha ocurrido un error con el captcha. Por favor intente nuevamente.
+                <br>Disculpe las molestias ocasionadas!
+            </p>
+            <p size="3" style="font-weight: bold; display: {modal-msj_okcorreo};" >
+                Su mensaje ha sido enviado a nuestro staff.<br>Muchas gracias por comunicarse con nosotros!
+            </p>
+        </div>
+        <br><br><br>
+      </div>
+      <div class="modal-footer">
+        <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  window.onload = function() {
+    var j = jQuery.noConflict();
+    j('#sistema_alertas').modal('{modal-display}');
+  };
+</script>

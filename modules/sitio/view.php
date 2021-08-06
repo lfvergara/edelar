@@ -60,6 +60,31 @@ class SitioView extends View {
 		$gui_slt_areainteres = $this->render_regex('SLT_AREAINTERES', $gui_slt_areainteres, $areainteres_collection);
 		$gui_slt_provincia = file_get_contents("static/common/slt_provincia.html");
 		$gui_slt_provincia = $this->render_regex('SLT_PROVINCIA', $gui_slt_provincia, $provincia_collection);
+
+		switch ($msj_modal) {
+			case 'erFormato':
+				$modal_array = array('{modal-display}'=>'show', '{modal-msj_erformato}'=>'block', '{modal-msj_erarchivo}'=>'none',
+									 '{modal-msj_ercaptcha}'=>'none','{modal-msj_okcorreo}'=>'none');
+				break;
+			case 'erArchivo':
+				$modal_array = array('{modal-display}'=>'show','{modal-msj_erformato}'=>'none','{modal-msj_erarchivo}'=>'block',
+									 '{modal-msj_ercaptcha}'=>'none','{modal-msj_okcorreo}'=>'none');
+				break;
+			case 'erCaptcha':
+				$modal_array = array('{modal-display}'=>'show','{modal-msj_erformato}'=>'none','{modal-msj_erarchivo}'=>'none',
+									 '{modal-msj_ercaptcha}'=>'block','{modal-msj_okcorreo}'=>'none');
+				break;
+			case 'okCorreo':
+				$modal_array = array('{modal-display}'=>'show','{modal-msj_erformato}'=>'none','{modal-msj_erarchivo}'=>'none',
+									 '{modal-msj_ercaptcha}'=>'none','{modal-msj_okcorreo}'=>'block');
+				break;
+			default:
+				$modal_array = array('{modal-display}'=>'','{modal-msj_erformato}'=>'none','{modal-msj_erarchivo}'=>'none',
+									 '{modal-msj_ercaptcha}'=>'none','{modal-msj_okcorreo}'=>'none');
+				break;
+		}
+
+		$render = $this->render($modal_array, $gui);
 		$render = str_replace('{slt_areainteres}', $gui_slt_areainteres, $gui);
 		$render = str_replace('{slt_provincia}', $gui_slt_provincia, $render);
 		$template = $this->render_sitio("THEME_SECCION", $render);
@@ -214,10 +239,6 @@ class SitioView extends View {
 			$gui = str_replace('{zoom}', $zoom, $gui);
 			$gui = str_replace('{lst_coordenada}', $render_coordenada, $gui);
 		}
-
-
-
-
 
 		$obj_mantenimiento = $this->set_dict_array('mantenimientopreventivo', $obj_mantenimiento);
 		$render = str_replace('{lst_mantenimientopreventivo}', $gui_lst_mantenimientopreventivo, $gui);
