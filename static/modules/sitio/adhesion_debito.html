@@ -38,8 +38,8 @@
             <div class="row">
               <div class="col-lg-12">
                 <center>
-                  <button class="button__default ui__button"><i class="fa fa-credit-card"></i> DÉBITO POR TARJETA</button>
-                  <button class="button__default ui__button"><i class="fa fa-university"></i> DÉBITO BANCARIO</button>
+                  <button class="button__default ui__button" onclick="verDebitoTarjeta();"><i class="fa fa-credit-card"></i> DÉBITO POR TARJETA</button>
+                  <button class="button__default ui__button" onclick="verDebitoBancario();"><i class="fa fa-university"></i> DÉBITO BANCARIO</button>
                 </center>
                 <div class="contacts__address" div="requisitos_debitobancario">
                   <address class="contacts__address-item">
@@ -67,6 +67,94 @@
                 </div>
               </div>
               <div class="col-lg-12" div="form_debitobancario">
+                <div class="col-lg-12">
+                  <div class="contacts__form" style="margin-top: 0px;">                        
+                    <form action="{url_app}/sitio/enviar_contacto" method="POST" class="form form--flex js-contact-form form--contacts">
+                      <div class="row">
+                        <div class="form-group form-group--col-6 required">
+                          <label for="nombre" class="control-label">NOMBRE</label>
+                          <input id="nombre" type="text" name="nombre" class="form-control" required>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="apellido" class="control-label">APELLIDO</label>
+                          <input id="apellido" type="text" name="apellido" class="form-control" required>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="dni" class="control-label">DNI</label>
+                          <input id="dni" minlength="7" maxlength="11" pattern="[0-9]+" type="text" name="dni" class="form-control" required>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="nis" class="control-label">NIS</label>
+                          <input id="nis" minlength="7" maxlength="11" pattern="[0-9]+" type="text" name="nis" class="form-control" required>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="correo" class="control-label">E-MAIL</label>
+                          <input id="correo" type="text" name="correo" data-parsley-trigger="change" class="form-control" required>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="telefono" class="control-label">TELÉFONO</label>
+                          <input id="telefono" type="text" name="telefono"  class="form-control" required>
+                        </div>
+                        <div class="form-group form-group--col-12 required">
+                          <label for="titular_cbu" class="control-label">NOMBRE TITULAR CBU</label>
+                          <input id="titular_cbu" type="text" name="titular_cbu" class="form-control" required>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="cbu" class="control-label">CBU</label>
+                          <input id="cbu" type="text" name="cbu" data-parsley-trigger="change" class="form-control" required>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="entidad_bancaria" class="control-label">ENTIDAD BANCARIA</label>
+                          <input id="entidad_bancaria" type="text" name="entidad_bancaria" class="form-control" required>
+                        </div>
+                        <div class="form-group form-group--col-12 required">
+                          <h4>TÉRMINOS Y CONDICIONES</h4>
+                          <hr class="divider divider--solid-light">
+                        </div>
+                        <div class="form-group form-group--col-12 required">
+                          <input id="terminos_condiciones" type="checkbox" class="in-checkbox" required>
+                          <label for="terminos_condiciones" class="in-label">Acepto los <b>Términos y Condiciones</b> impuestos por EDELAR S.A.</label>
+                        </div>
+                        <div class="form-group form-group--col-12 required">
+                          <h4>LOS TIPOS DE ARCHIVO DEBEN SER JPG/JPEG O PDF.</h4>
+                          <hr class="divider divider--solid-light">
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <div class="form-property__upload" style="width: 100%;">
+                            <label for="form-property__upload-title" class="control-label">DNI ANVERSO</label>
+                            <div class="form-property__upload-border">
+                              <input type="file" class="form-property__upload-btn-choose" name="dni_anverso" required>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <div class="form-property__upload" style="width: 100%;">
+                            <label for="form-property__upload-title" class="control-label">DNI REVERSO</label>
+                            <div class="form-property__upload-border">
+                              <input type="file" class="form-property__upload-btn-choose" name="dni_reverso" required>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <div class="form-property__upload" style="width: 100%;">
+                            <label for="form-property__upload-title" class="control-label">CONSTANCIA CBU</label>
+                            <div class="form-property__upload-border">
+                              <input type="file" class="form-property__upload-btn-choose" name="constancia_cbu" required>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group form-group--col-12 required">
+                          <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
+                        </div>
+                        <div class="form-group form-group--col-12">
+                          <button type="submit" class="form__submit">ENVIAR</button>      
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12" div="form_debitotarjeta" style="display: none;">
                 <div class="col-lg-12">
                   <div class="contacts__form" style="margin-top: 0px;">                        
                     <form action="{url_app}/sitio/enviar_contacto" method="POST" class="form form--flex js-contact-form form--contacts">
@@ -158,94 +246,6 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-12" div="form_debitotarjeta">
-                <div class="col-lg-12">
-                  <div class="contacts__form" style="margin-top: 0px;">                        
-                    <form action="{url_app}/sitio/enviar_contacto" method="POST" class="form form--flex js-contact-form form--contacts">
-                      <div class="row">
-                        <div class="form-group form-group--col-6 required">
-                          <label for="nombre" class="control-label">NOMBRE</label>
-                          <input id="nombre" type="text" name="nombre" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="apellido" class="control-label">APELLIDO</label>
-                          <input id="apellido" type="text" name="apellido" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="dni" class="control-label">DNI</label>
-                          <input id="dni" minlength="7" maxlength="11" pattern="[0-9]+" type="text" name="dni" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="nis" class="control-label">NIS</label>
-                          <input id="nis" minlength="7" maxlength="11" pattern="[0-9]+" type="text" name="nis" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="correo" class="control-label">E-MAIL</label>
-                          <input id="correo" type="text" name="correo" data-parsley-trigger="change" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="telefono" class="control-label">TELÉFONO</label>
-                          <input id="telefono" type="text" name="telefono"  class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-12 required">
-                          <label for="titular_cbu" class="control-label">NOMBRE TITULAR CBU</label>
-                          <input id="titular_cbu" type="text" name="titular_cbu" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="cbu" class="control-label">CBU</label>
-                          <input id="cbu" type="text" name="cbu" data-parsley-trigger="change" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="entidad_bancaria" class="control-label">ENTIDAD BANCARIA</label>
-                          <input id="entidad_bancaria" type="text" name="entidad_bancaria" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-12 required">
-                          <h4>TÉRMINOS Y CONDICIONES</h4>
-                          <hr class="divider divider--solid-light">
-                        </div>
-                        <div class="form-group form-group--col-12 required">
-                          <input id="terminos_condiciones" type="checkbox" class="in-checkbox" required>
-                          <label for="terminos_condiciones" class="in-label">Acepto los <b>Términos y Condiciones</b> impuestos por EDELAR S.A.</label>
-                        </div>
-                        <div class="form-group form-group--col-12 required">
-                          <h4>LOS TIPOS DE ARCHIVO DEBEN SER JPG/JPEG O PDF.</h4>
-                          <hr class="divider divider--solid-light">
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <div class="form-property__upload" style="width: 100%;">
-                            <label for="form-property__upload-title" class="control-label">DNI ANVERSO</label>
-                            <div class="form-property__upload-border">
-                              <input type="file" class="form-property__upload-btn-choose" name="dni_anverso" required>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <div class="form-property__upload" style="width: 100%;">
-                            <label for="form-property__upload-title" class="control-label">DNI REVERSO</label>
-                            <div class="form-property__upload-border">
-                              <input type="file" class="form-property__upload-btn-choose" name="dni_reverso" required>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <div class="form-property__upload" style="width: 100%;">
-                            <label for="form-property__upload-title" class="control-label">CONSTANCIA CBU</label>
-                            <div class="form-property__upload-border">
-                              <input type="file" class="form-property__upload-btn-choose" name="constancia_cbu" required>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group form-group--col-12 required">
-                          <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
-                        </div>
-                        <div class="form-group form-group--col-12">
-                          <button type="submit" class="form__submit">ENVIAR</button>      
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -259,3 +259,18 @@
     </div>
   </div>
 </div>
+<script>
+  function verDebitoBancario() {
+    document.getElementById('requisitos_debitobancario').style.display = 'block';
+    document.getElementById('form_debitobancario').style.display = 'block';
+    document.getElementById('requisitos_debitotarjeta').style.display = 'none';
+    document.getElementById('form_debitotarjeta').style.display = 'none';
+  }
+
+  function verDebitoTarjeta() {
+    document.getElementById('requisitos_debitobancario').style.display = 'none';
+    document.getElementById('form_debitobancario').style.display = 'none';
+    document.getElementById('requisitos_debitotarjeta').style.display = 'block';
+    document.getElementById('form_debitotarjeta').style.display = 'block';
+  }
+</script>
