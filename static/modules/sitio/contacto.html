@@ -1,24 +1,23 @@
+<script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
 <div class="widget js-widget">
-    <div class="widget__content">
-        <div class="banner js-banner-slider banner--slider">
-            <div class="slider">
-                <div class="slider__block js-slick-slider">
-                    <div class="slider__item">
-                        <div class="slider__preview">
-                            <div class="slider__img"><img src="{url_static}assets/img/header_nosotros.png" class="photo"/></div>
-                        </div>
-                    </div>
-                </div>
+  <div class="widget__content">
+    <div class="banner js-banner-slider banner--slider">
+      <div class="slider">
+        <div class="slider__block js-slick-slider">
+          <div class="slider__item">
+            <div class="slider__preview">
+              <div class="slider__img"><img src="{url_static}assets/img/header_nosotros.png" class="photo"/></div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 <div class="center">
   <div class="container">
     <div class="row">
       <div class="site site--main">
-        
-
         <header class="site__header">
           <h1 class="site__title">CONTACTO</h1>
           <h2 class="site__headline">
@@ -33,92 +32,94 @@
             </nav>
           </h2>
         </header>
-
-
-        <!-- CONTACTO-->
-       <div class="widget__content">
-                <div class="contacts">
-                  <div class="row">
-                    <div class="col-lg-6">
-                      <div class="contacts__address">
-                        <address class="contacts__address-item"><span class="contacts__address-title">OFICINA CENTRAL</span>
-                          <dl class="contacts__address-column">
-                            <dt class="contacts__address-column__title">Dirección:</dt>
-                              <dd>Buenos Aires 73</dd>
-                            <dt class="contacts__address-column__title">Código Postal:</dt>
-                              <dd>5300</dd>
-                            <dt class="contacts__address-column__title">Departamento:</dt>
-                              <dd>Capital</dd>
-                            <dt class="contacts__address-column__title">Provincia:</dt>
-                              <dd>La Rioja</dd>
-                            <span class="contacts__address-title"></span>
-                              <dd>CONSULTAS Y RECLAMOS</dd>
-                            <dt class="contacts__address-column__title">Centro de atención las 24 hs</dt>
-                            <dt class="contacts__address-column__title">Línea gratuita</dt>
-                              <dd>0800.777.333527</dd>
-                            <span class="contacts__address-title"></span>
-                            <dt class="contacts__address-column__title">Mirá el listado completo de nuestras oficinas comerciales <a href="">AQUÍ</a></dt>                              
-                          </dl>
-                        </address>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <div class="contacts__form">                        
-                        <form action="#" method="POST" class="form form--flex js-contact-form form--contacts">
-                          <div class="row">
-                            <div class="form-group form-group--col-6 required">
-                              <label for="in-form-phone" class="control-label">NOMBRE</label>
-                              <input id="in-form-phone" type="text" name="phone" class="form-control">
-                            </div>
-                            <div class="form-group form-group--col-6 required">
-                              <label for="in-form-phone" class="control-label">APELLIDO</label>
-                              <input id="in-form-phone" type="text" name="phone" class="form-control">
-                            </div>
-                            <div class="form-group form-group--col-6">
-                              <label for="in-form-phone" class="control-label">DIRECCIÓN</label>
-                              <input id="in-form-phone" type="text" name="phone" class="form-control">
-                            </div>
-                            <div class="form-group form-group--col-6">
-                              <label for="in-form-email" class="control-label">LOCALIDAD</label>
-                              <input id="in-form-email" type="email" name="email" required data-parsley-trigger="change" class="form-control">
-                            </div>
-                            <div class="form-group form-group--col-6">
-                              <label for="in-form-phone" class="control-label">TELÉFONO</label>
-                              <input id="in-form-phone" type="text" name="phone" class="form-control">
-                            </div>
-                            <div class="form-group form-group--col-6">
-                              <label for="in-form-phone" class="control-label">E-MAIL</label>
-                              <input id="in-form-phone" type="text" name="phone" class="form-control">
-                            </div>
-                            <div class="form-group required">
-                              <label for="in-form-message" class="control-label">CONSULTA/RECLAMO</label>
-                              <textarea id="in-form-message" name="message" required data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-validation-threshold="10" data-parsley-minlength-message="You need to enter at least a 20 caracters long comment.." class="form-control"></textarea>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <button type="submit" class="form__submit">ENVIAR</button>      
-                          </div>
-                        </form>
-                        <!-- end of block form-->
-                      </div>
-                    </div>
-                  </div>
+        <div class="widget__content">          
+          <div class="alert ui-pnotify-container alert-{class_commit} ui-pnotify-shadow" style="display: {display_commit}">
+            <h4 class="ui-pnotify-title">
+              <svg class="notify-icon">
+                <use xlink:href="#icon-{icon_commit}"></use>
+              </svg>{msj_commit}
+            </h4>
+            <div style="display: none;" class="ui-pnotify-text"></div>
+          </div>          
+        </div>
+        <div class="widget__content">
+          <div class="contacts">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="contacts__address">
+                  <address class="contacts__address-item"><span class="contacts__address-title">OFICINA CENTRAL</span>
+                    <dl class="contacts__address-column">
+                      <dt class="contacts__address-column__title">Dirección:</dt>
+                      <dd>Buenos Aires 73</dd>
+                      <dt class="contacts__address-column__title">Código Postal:</dt>
+                      <dd>5300</dd>
+                      <dt class="contacts__address-column__title">Departamento:</dt>
+                      <dd>Capital</dd>
+                      <dt class="contacts__address-column__title">Provincia:</dt>
+                      <dd>La Rioja</dd>
+                      <span class="contacts__address-title"></span>
+                      <dd>CONSULTAS Y RECLAMOS</dd>
+                      <dt class="contacts__address-column__title">Centro de atención las 24 hs</dt>
+                      <dt class="contacts__address-column__title">Línea gratuita</dt>
+                      <dd>0800.777.333527</dd>
+                      <span class="contacts__address-title"></span>
+                      <dt class="contacts__address-column__title">Mirá el listado completo de nuestras oficinas comerciales <a href="">AQUÍ</a></dt>
+                    </dl>
+                  </address>
                 </div>
               </div>
-        <!-- CONTACTO-->
-
+              <div class="col-lg-6">
+                <div class="contacts__form">                        
+                  <form action="{url_app}/sitio/enviar_contacto" method="POST" class="form form--flex js-contact-form form--contacts">
+                    <div class="row">
+                      <div class="form-group form-group--col-6 required">
+                        <label for="in-form-phone" class="control-label">NOMBRE</label>
+                        <input id="in-form-phone" type="text" name="phone" class="form-control">
+                      </div>
+                      <div class="form-group form-group--col-6 required">
+                        <label for="in-form-phone" class="control-label">APELLIDO</label>
+                        <input id="in-form-phone" type="text" name="phone" class="form-control">
+                      </div>
+                      <div class="form-group form-group--col-6">
+                        <label for="in-form-phone" class="control-label">DIRECCIÓN</label>
+                        <input id="in-form-phone" type="text" name="phone" class="form-control">
+                      </div>
+                      <div class="form-group form-group--col-6">
+                        <label for="in-form-email" class="control-label">LOCALIDAD</label>
+                        <input id="in-form-email" type="email" name="email" required data-parsley-trigger="change" class="form-control">
+                      </div>
+                      <div class="form-group form-group--col-6">
+                        <label for="in-form-phone" class="control-label">TELÉFONO</label>
+                        <input id="in-form-phone" type="text" name="phone" class="form-control">
+                      </div>
+                      <div class="form-group form-group--col-6">
+                        <label for="in-form-phone" class="control-label">E-MAIL</label>
+                        <input id="in-form-phone" type="text" name="phone" class="form-control">
+                      </div>
+                      <div class="form-group required">
+                        <label for="in-form-message" class="control-label">CONSULTA/RECLAMO</label>
+                        <textarea id="in-form-message" name="message" required data-parsley-trigger="keyup" data-parsley-minlength="20" data-parsley-validation-threshold="10" data-parsley-minlength-message="You need to enter at least a 20 caracters long comment.." class="form-control"></textarea>
+                      </div>
+                      <div class="form-group form-group--col-6 required">
+                        <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <button type="submit" class="form__submit">ENVIAR</button>      
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <!-- SIDEBAR -->
       <div class="sidebar">
         <div class="widget js-widget widget--sidebar widget--dark">      
           {sidebar_login_autogestion}
-          <!-- AGREGAR DEBAJO CONTENIDO EXTRA EN SIDEBAR -->
         </div>
       </div>
-      <!-- SIDEBAR -->
       <div class="clearfix"></div>
     </div>
-
   </div>
 </div>

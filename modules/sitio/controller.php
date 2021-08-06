@@ -164,8 +164,40 @@ class SitioController {
 		$this->view->usoenergia();
 	}
 
-	function contacto() {
-		$this->view->contacto();
+	function contacto($arg) {
+		require_once "core/helpers/recaptcha_lib.php";
+		$this->view->contacto($arg);
+	}
+
+	function enviar_contacto() {
+		require_once "core/helpers/recaptcha_lib.php";
+		require_once 'core/helpers/emailHelper.php';
+
+		$array_dict = array("{nombre}"=>filter_input(INPUT_POST, "nombre"),
+							"{apellido}"=>filter_input(INPUT_POST, "apellido"),
+					        "{localidad}"=>filter_input(INPUT_POST, "localidad"),
+					        "{direccion}"=>filter_input(INPUT_POST, "direccion"),
+					        "{correo}"=>filter_input(INPUT_POST, "correo"),
+					        "{telefono}"=>filter_input(INPUT_POST, "telefono"),
+					        "{mensaje}"=>filter_input(INPUT_POST, "mensaje"),
+					        "{url_static}"=>URL_STATIC);
+
+		$recaptcha = filter_input(INPUT_POST, "g-recaptcha-response");
+		$secret = "6Lck8w8UAAAAAIBpLWv_HUcU4SHS61WZbaxON3sa";
+		$response = null;
+		$reCaptcha = new ReCaptcha($secret);
+		if ($recaptcha != '') {
+		    $response = $reCaptcha->verifyResponse($_SERVER["REMOTE_ADDR"],$recaptcha);
+		    if ($response != null AND $response->success == true) {
+				//$emailHelper = new EmailHelper();
+				//$emailHelper->envia_contacto($array_dict);
+				header("Location: " . URL_APP . "/sitio/contacto/okCorreo");
+		    }
+		} elseif (isset($recaptcha) AND $response->success == false) {
+			header("Location: " . URL_APP . "/sitio/contacto/erCaptcha");
+		} else {
+			header("Location: " . URL_APP . "/sitio/contacto/erCaptcha");
+		}
 	}
 	/* MENU = CENTRO DE AYUDA **********************************************/
 

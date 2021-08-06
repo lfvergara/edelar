@@ -54,14 +54,14 @@ class SitioView extends View {
 		print $template;
 	}
 
-	function trabajaedelar($areainteres_collection, $provincia_collection, $msj_modal) {
+	function trabajaedelar($areainteres_collection, $provincia_collection, $msj_alert) {
 		$gui = file_get_contents("static/modules/sitio/trabajaedelar.html");
 		$gui_slt_areainteres = file_get_contents("static/common/slt_areainteres.html");
 		$gui_slt_areainteres = $this->render_regex('SLT_AREAINTERES', $gui_slt_areainteres, $areainteres_collection);
 		$gui_slt_provincia = file_get_contents("static/common/slt_provincia.html");
 		$gui_slt_provincia = $this->render_regex('SLT_PROVINCIA', $gui_slt_provincia, $provincia_collection);
 
-		switch ($msj_modal) {
+		switch ($msj_alert) {
 			case 'erFormato':
 				$msj = 'Solo se permiten documentos .PDF o .DOC(Word). Por favor intente nuevamente. <br>Disculpe las molestias ocasionadas!';
 				$alert_array = array('{display_commit}'=>'block', '{msj_commit}'=>$msj, '{class_commit}'=>'danger', '{icon_commit}'=>'error');
@@ -116,9 +116,25 @@ class SitioView extends View {
 		print $template;
 	}
 
-	function contacto() {
+	function contacto($msj_alert) {
 		$gui = file_get_contents("static/modules/sitio/contacto.html");
-		$template = $this->render_sitio("THEME_SECCION", $gui);
+
+		switch ($msj_alert) {
+			case 'erCaptcha':
+				$msj = 'Estimado cliente, ha ocurrido un error con el captcha. Por favor intente nuevamente. <br>Disculpe las molestias ocasionadas!';
+				$alert_array = array('{display_commit}'=>'block', '{msj_commit}'=>$msj, '{class_commit}'=>'danger', '{icon_commit}'=>'error');
+				break;
+			case 'okCorreo':
+				$msj = 'Su mensaje ha sido enviado a nuestro staff. <br>Muchas gracias por comunicarse con nosotros!';
+				$alert_array = array('{display_commit}'=>'block', '{msj_commit}'=>$msj, '{class_commit}'=>'success', '{icon_commit}'=>'valid');
+				break;
+			default:
+				$alert_array = array('{display_commit}'=>'none','{msj_commit}'=>$msj,'{class_commit}'=>'', '{icon_commit}'=>'');
+				break;
+		}
+	
+		$render = $this->render($alert_array, $gui);
+		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 	}
 	/* MENU = CENTRO DE AYUDA ******************************************/
