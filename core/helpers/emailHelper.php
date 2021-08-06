@@ -45,8 +45,7 @@ class EmailHelper extends View {
                 $mail->From = $origen;
                 $mail->FromName = $nombre;
                 $mail->AddAddress("jmiranday.edelar@emdersa.com.ar");
-								$mail->AddAddress("mzucal.edelar@emdersa.com.ar"); 
-                $mail->AddReplyTo($origen);
+		$mail->AddReplyTo($origen);
                 $mail->IsHTML(true);
                 $mail->Subject = utf8_decode($nombre);
                 $mail->Body = $gui;

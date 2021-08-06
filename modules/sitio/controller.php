@@ -127,8 +127,8 @@ class SitioController {
 						        			"{mensaje}"=>filter_input(INPUT_POST, "mensaje"),
 						        			"{url_static}"=>URL_STATIC);
 
-						$emailHelper = new EmailHelper();
-						$emailHelper->envia_curriculum($array_dict);
+						//$emailHelper = new EmailHelper();
+						//$emailHelper->envia_curriculum($array_dict);
 						header("Location: " . URL_APP . "/sitio/trabajaedelar/okCorreo");
 					} else {
 						header("Location: " . URL_APP . "/sitio/trabajaedelar/erFormato");
