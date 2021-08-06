@@ -63,28 +63,27 @@ class SitioView extends View {
 
 		switch ($msj_modal) {
 			case 'erFormato':
-				$modal_array = array('{modal-display}'=>'show', '{modal-msj_erformato}'=>'block', '{modal-msj_erarchivo}'=>'none',
-									 '{modal-msj_ercaptcha}'=>'none','{modal-msj_okcorreo}'=>'none');
+				$msj = 'Solo se permiten documentos .PDF o .DOC(Word). Por favor intente nuevamente. <br>Disculpe las molestias ocasionadas!';
+				$alert_array = array('{display_commit}'=>'block', '{msj_commit}'=>$msj, '{class_commit}'=>'danger', '{icon_commit}'=>'error');
 				break;
 			case 'erArchivo':
-				$modal_array = array('{modal-display}'=>'show','{modal-msj_erformato}'=>'none','{modal-msj_erarchivo}'=>'block',
-									 '{modal-msj_ercaptcha}'=>'none','{modal-msj_okcorreo}'=>'none');
+				$msj = 'Disculpe, ha ocurrido un error en la carga del archivo. Por favor intente nuevamente.<br>Disculpe las molestias ocasionadas!';
+				$alert_array = array('{display_commit}'=>'block', '{msj_commit}'=>$msj, '{class_commit}'=>'danger', '{icon_commit}'=>'error');
 				break;
 			case 'erCaptcha':
-				$modal_array = array('{modal-display}'=>'show','{modal-msj_erformato}'=>'none','{modal-msj_erarchivo}'=>'none',
-									 '{modal-msj_ercaptcha}'=>'block','{modal-msj_okcorreo}'=>'none');
+				$msj = 'Estimado cliente, ha ocurrido un error con el captcha. Por favor intente nuevamente. <br>Disculpe las molestias ocasionadas!';
+				$alert_array = array('{display_commit}'=>'block', '{msj_commit}'=>$msj, '{class_commit}'=>'danger', '{icon_commit}'=>'error');
 				break;
 			case 'okCorreo':
-				$modal_array = array('{modal-display}'=>'show','{modal-msj_erformato}'=>'none','{modal-msj_erarchivo}'=>'none',
-									 '{modal-msj_ercaptcha}'=>'none','{modal-msj_okcorreo}'=>'block');
+				$msj = 'Su mensaje ha sido enviado a nuestro staff. <br>Muchas gracias por comunicarse con nosotros!';
+				$alert_array = array('{display_commit}'=>'block', '{msj_commit}'=>$msj, '{class_commit}'=>'success', '{icon_commit}'=>'valid');
 				break;
 			default:
-				$modal_array = array('{modal-display}'=>'','{modal-msj_erformato}'=>'none','{modal-msj_erarchivo}'=>'none',
-									 '{modal-msj_ercaptcha}'=>'none','{modal-msj_okcorreo}'=>'none');
+				$alert_array = array('{display_commit}'=>'none','{msj_commit}'=>$msj,'{class_commit}'=>'', '{icon_commit}'=>'');
 				break;
 		}
 
-		$render = $this->render($modal_array, $gui);
+		$render = $this->render($alert_array, $gui);
 		$render = str_replace('{slt_areainteres}', $gui_slt_areainteres, $gui);
 		$render = str_replace('{slt_provincia}', $gui_slt_provincia, $render);
 		$template = $this->render_sitio("THEME_SECCION", $render);
