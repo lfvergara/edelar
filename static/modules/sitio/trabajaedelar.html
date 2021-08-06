@@ -83,12 +83,25 @@
                         </select>
                       </div>
                       <div class="form-group form-group--col-6 required">
+                        <label for="estudio" class="control-label">ESTUDIO</label>
+                        <select id="estudio" data-placeholder="Estudio" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="estudio" required="">
+                          <option value="Primario">Primario</option>
+                          <option value="Secundario">Secundario</option>
+                          <option value="Terciario">Terciario</option>
+                          <option value="Universitario">Universitario</option>
+                        </select>
+                      </div>
+                      <div class="form-group form-group--col-6 required">
+                        <label for="telefono" class="control-label">TELÉFONO</label>
+                        <input id="telefono" type="number" name="telefono" class="form-control" required>
+                      </div>
+                      <div class="form-group form-group--col-6 required">
                         <label for="correo" class="control-label">E-MAIL</label>
                         <input id="correo" type="text" name="correo" class="form-control" required>
                       </div>
                       <div class="form-group form-group--col-6 required">
                         <label for="telefono" class="control-label">TELÉFONO</label>
-                        <input id="telefono" type="text" name="telefono" class="form-control" required>
+                        <input id="telefono" type="number" name="telefono" class="form-control" required>
                       </div>
                       <div class="form-group">
                         <label for="mensaje" class="control-label">MENSAJE</label>
