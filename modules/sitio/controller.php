@@ -368,6 +368,37 @@ class SitioController {
 		$tarjetacredito_collection = Collector()->get('TarjetaCredito');
 		$this->view->adhesion_debito($tarjetacredito_collection, $arg);
 	}
+
+	function guardar_tramite() {
+		$nombre = filter_input(INPUT_POST, 'nombre');
+		$apellido = filter_input(INPUT_POST, 'apellido');
+		$nis = filter_input(INPUT_POST, 'nis');
+		$telefono = filter_input(INPUT_POST, 'telefono');
+		$dni = filter_input(INPUT_POST, 'dni');
+		$correo = filter_input(INPUT_POST, 'correo');
+		$tipo_gestion = filter_input(INPUT_POST, 'tipo_gestion');
+
+		switch ($tipo_gestion) {
+			case 2:
+				$tipo_adhesiondebito = filter_input(INPUT_POST, 'tipo_adhesiondebito');
+				if ($tipo_adhesiondebito == 1) {
+					$nombre = filter_input(INPUT_POST, 'nombre');
+					$apellido = filter_input(INPUT_POST, 'apellido');
+					$nis = filter_input(INPUT_POST, 'nis');
+					$telefono = filter_input(INPUT_POST, 'telefono');
+					$dni = filter_input(INPUT_POST, 'dni');
+					$correo = filter_input(INPUT_POST, 'correo');
+					$tipo_gestion = filter_input(INPUT_POST, 'tipo_gestion');
+				} else {
+
+				}
+				break;
+			
+			default:
+				# code...
+				break;
+		}
+	}
 	/* GESTIONES COMERCIALES ***********************************************/
 
 	/* COMMON **************************************************************/
