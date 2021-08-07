@@ -409,14 +409,14 @@ class SitioController {
 		switch ($tipo_gestion) {
 			case 7:
 				$dtdm = New DetalleTarjetaDebito();
-				$dtdm->institucion_financiera =  filter_input(INPUT_POST, 'banco');
-				$dtdm->titular =  filter_input(INPUT_POST, 'nombreTitularCbuTarj');
-				$dtdm->cbu =  filter_input(INPUT_POST, 'cbu');
-				$dtdm->numero_tarjeta = filter_input(INPUT_POST, 'nro_tarjeta');
-				$fecha_vencimiento = filter_input(INPUT_POST, 'fecha_vencimiento_tarj');
+				$dtdm->institucion_financiera =  filter_input(INPUT_POST, 'db_institucion_financiera');
+				$dtdm->titular =  filter_input(INPUT_POST, 'titular');
+				$dtdm->cbu =  filter_input(INPUT_POST, 'db_cbu');
+				$dtdm->numero_tarjeta = filter_input(INPUT_POST, 'dt_numero_tarjeta');
+				$fecha_vencimiento = filter_input(INPUT_POST, 'dt_vencimiento_tarjeta');
 				$fecha_vencimiento = (is_null($fecha_vencimiento)) ? date('Y-m-d') : $fecha_vencimiento . "-01";
 				$dtdm->fecha_vencimiento =  $fecha_vencimiento;
-				$dtdm->tarjetacredito =  filter_input(INPUT_POST, 'tarjeta');
+				$dtdm->tarjetacredito =  filter_input(INPUT_POST, 'dt_tarjeta');
 				$dtdm->save();
 				$dtdm->get();
 				$detalletarjetadebito_id = $dtdm->detalletarjetadebito_id;
@@ -424,7 +424,7 @@ class SitioController {
 				$dadm = New DetalleAdhesionDebito();
 				$dadm->numero_tramite = $gestioncomercial_id;
 				$dadm->metodo_envio = 1;
-				$dadm->termino_condiciones = filter_input(INPUT_POST, 'termino_condiciones');
+				$dadm->termino_condiciones = filter_input(INPUT_POST, 'dt_terminos_condiciones');
 				$dadm->fecha_termino_condiciones = date('Y-m-d h:i:s');
 				$dadm->ip = $_SERVER['REMOTE_ADDR'];
 				$dadm->so = $_SERVER['HTTP_USER_AGENT'];
