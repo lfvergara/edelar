@@ -4,6 +4,10 @@ require_once "modules/areainteres/model.php";
 require_once "modules/provincia/model.php";
 require_once "modules/curriculum/model.php";
 require_once "modules/tarjetacredito/model.php";
+require_once "modules/gestioncomercial/model.php";
+require_once "modules/gestioncomercialhistorico/model.php";
+require_once "modules/detalletarjetadebito/model.php";
+require_once "modules/detalleadhesiondebito/model.php";
 
 
 class SitioController {
@@ -370,6 +374,7 @@ class SitioController {
 	}
 
 	function guardar_tramite() {
+		$array_gestionescomerciales_online = array(1, 3, 4, 5, 6, 7);
 		$nombre = filter_input(INPUT_POST, 'nombre');
 		$apellido = filter_input(INPUT_POST, 'apellido');
 		$nis = filter_input(INPUT_POST, 'nis');
@@ -378,26 +383,131 @@ class SitioController {
 		$correo = filter_input(INPUT_POST, 'correo');
 		$tipo_gestion = filter_input(INPUT_POST, 'tipo_gestion');
 
-		switch ($tipo_gestion) {
-			case 2:
-				$tipo_adhesiondebito = filter_input(INPUT_POST, 'tipo_adhesiondebito');
-				if ($tipo_adhesiondebito == 1) {
-					$nombre = filter_input(INPUT_POST, 'nombre');
-					$apellido = filter_input(INPUT_POST, 'apellido');
-					$nis = filter_input(INPUT_POST, 'nis');
-					$telefono = filter_input(INPUT_POST, 'telefono');
-					$dni = filter_input(INPUT_POST, 'dni');
-					$correo = filter_input(INPUT_POST, 'correo');
-					$tipo_gestion = filter_input(INPUT_POST, 'tipo_gestion');
-				} else {
+		$gcm = New GestionComercial();
+		$gcm->suministro = $nis;
+		$gcm->fecha = date('Y-m-d');
+		$gcm->dni = $dni;
+		$gcm->apellido = $apellido;
+		$gcm->nombre = $nombre;
+		$gcm->correoelectronico = $correo;
+		$gcm->telefono = $telefono;
+		$gcm->tipogestioncomercial = $tipo_gestion;
+		$gcm->save();
+		$gcm->get();
+		$gestioncomercial_id = $gcm->gestioncomercial_id;
 
-				}
+		$gchm = New GestionComercialHistorico();
+		$gchm->fecha = date('Y-m-d');
+		$gchm->hora = date('h:i:s');
+		$gchm->estadogestioncomercial = 1;
+		$gchm->save();
+		$gcm->add_gestioncomercialhistorico($gchm);
+
+		$gchgcm = New GestionComercialHistoricoGestionComercial($gcm);
+		$gchgcm->save();
+
+		switch ($tipo_gestion) {
+			case 7:
+				$dtdm = New DetalleTarjetaDebito();
+				$dtdm->institucion_financiera =  filter_input(INPUT_POST, 'banco');
+				$dtdm->titular =  filter_input(INPUT_POST, 'nombreTitularCbuTarj');
+				$dtdm->cbu =  filter_input(INPUT_POST, 'cbu');
+				$dtdm->numero_tarjeta = filter_input(INPUT_POST, 'nro_tarjeta');
+				$fecha_vencimiento = filter_input(INPUT_POST, 'fecha_vencimiento_tarj');
+				$fecha_vencimiento = (is_null($fecha_vencimiento)) ? date('Y-m-d') : $fecha_vencimiento . "-01";
+				$dtdm->fecha_vencimiento =  $fecha_vencimiento;
+				$dtdm->tarjetacredito =  filter_input(INPUT_POST, 'tarjeta');
+				$dtdm->save();
+				$dtdm->get();
+				$detalletarjetadebito_id = $dtdm->detalletarjetadebito_id;
+
+				$dadm = New DetalleAdhesionDebito();
+				$dadm->numero_tramite = $gestioncomercial_id;
+				$dadm->metodo_envio = 1;
+				$dadm->termino_condiciones = filter_input(INPUT_POST, 'termino_condiciones');
+				$dadm->fecha_termino_condiciones = date('Y-m-d h:i:s');
+				$dadm->ip = $_SERVER['REMOTE_ADDR'];
+				$dadm->so = $_SERVER['HTTP_USER_AGENT'];
+				$dadm->detalle = 'Gestión comercial online';
+				$dadm->gestioncomercial = $gestioncomercial_id;
+				$dadm->detalletarjetadebito = $detalletarjetadebito_id;
+				$dadm->save();
+				$dadm->get();
+				$detalleadhesiondebito_id = $dadm->detalleadhesiondebito_id;
+
+				$dadm = new DetalleAdhesionDebito();
+				$dadm->detalleadhesiondebito_id = $detalleadhesiondebito_id;
+				$dadm->get();				
 				break;
 			
 			default:
 				# code...
 				break;
 		}
+
+
+		if (!empty($_FILES['archivo'])) {
+			$directorio = URL_APPFILES . "gestioncomercial/{$gestioncomercial_id}";
+			$array_archivos = $_FILES['archivo']["tmp_name"];
+			$tmp_array = array();
+			foreach ($array_archivos as $key=>$archivo) {
+				$finfo = new finfo(FILEINFO_MIME_TYPE);
+				$mime = $finfo->file($archivo);
+				$formato = explode("/", $mime);
+				$mimes_permitidos = array("image/jpg", "image/jpeg", "application/pdf");
+			  	$name = $gestioncomercial_id . date("Ymd") . rand();
+  				$nombre_archivo = 'archivo_tramite-'.$key.'-'.$gestioncomercial_id;
+
+				if (in_array($mime, $mimes_permitidos)) {
+					if(!file_exists($directorio)) {
+						mkdir($directorio);
+						chmod($directorio, 0777);
+						move_uploaded_file($archivo, "{$directorio}/{$name}");
+					} else {
+						move_uploaded_file($archivo, "{$directorio}/{$name}");
+					}
+
+					$am = new Archivo();
+					$am->denominacion = $nombre_archivo;
+					$am->url = $name;
+					$am->fecha_carga = date('Y-m-d');
+					$am->formato = $formato[1];
+					$am->save();
+					$archivo_id = $am->archivo_id;
+
+					$am = new Archivo();
+					$am->archivo_id = $archivo_id;
+					$am->get();
+					$gcm->add_archivo($am);
+					$agcm = new ArchivoGestionComercial($gcm);
+					$agcm->save();
+
+					if(file_exists("{$directorio}/{$name}")) {
+						$archivos = array();
+						$im = file_get_contents("{$directorio}/{$name}");
+						$data = base64_encode($im);
+
+						$archivos['denominacion'] = $nombre_archivo;
+						$archivos['archivo'] = $data;
+						$archivos['fecha_carga'] = date('Y-m-d');
+						$archivos['formato'] = $formato[1];
+
+						array_push($tmp_array, $archivos);
+					}
+				}
+			}
+
+  	  		$dadm->gestioncomercial->archivos_collection = $tmp_array;
+	 	}
+
+	 	$argumento = json_encode($dadm);
+		if (in_array($tipo_gestion, $array_gestionescomerciales_online)) {
+	 		//$resultado = sincroniza_geco_tramite($argumento);	 		
+	 	} else {
+		 	//$resultado = sincroniza_geco_tramite_desa($argumento);
+	 	}
+
+	 	header("Location: " . URL_APP . "/sitio/adhesion_debito/okTramite");
 	}
 	/* GESTIONES COMERCIALES ***********************************************/
 
