@@ -184,20 +184,20 @@
                           <input id="dt_telefono" type="text" name="dt_telefono"  class="form-control" required>
                         </div>
                         <div class="form-group form-group--col-12 required">
-                          <label for="dt_titular_cbu" class="control-label">NOMBRE TITULAR DE LA TARJETA</label>
-                          <input id="dt_titular_cbu" type="text" name="dt_titular_cbu" class="form-control" required>
+                          <label for="dt_titular_tarjeta" class="control-label">NOMBRE TITULAR DE LA TARJETA</label>
+                          <input id="dt_titular_tarjeta" type="text" name="dt_titular_tarjeta" class="form-control" required>
                         </div>
                         <div class="form-group form-group--col-6 required">
-                          <label for="dt_cbu" class="control-label">TARJETA</label>
-                          <input id="dt_cbu" type="text" name="dt_cbu" data-parsley-trigger="change" class="form-control" required>
+                          <label for="dt_tarjeta" class="control-label">TARJETA</label>
+                          <input id="dt_tarjeta" type="text" name="dt_tarjeta" data-parsley-trigger="change" class="form-control" required>
                         </div>
                         <div class="form-group form-group--col-6 required">
-                          <label for="dt_entidad_bancaria" class="control-label">NÚMERO DE LA TARJETA</label>
-                          <input id="dt_entidad_bancaria" type="text" name="dt_entidad_bancaria" class="form-control" required>
+                          <label for="dt_numero_tarjeta" class="control-label">NÚMERO DE LA TARJETA</label>
+                          <input id="dt_numero_tarjeta" type="text" name="dt_numero_tarjeta" class="form-control" required>
                         </div>
                         <div class="form-group form-group--col-12 required">
-                          <label for="dt_titular_cbu" class="control-label">FECHA VENCIMIENTO TARJETA</label>
-                          <input id="dt_titular_cbu" type="month" name="dt_titular_cbu" class="form-control" required>
+                          <label for="dt_vencimiento_tarjeta" class="control-label">FECHA VENCIMIENTO TARJETA</label>
+                          <input id="dt_vencimiento_tarjeta" type="month" name="dt_vencimiento_tarjeta" class="form-control" required>
                         </div>
                         <div class="form-group form-group--col-12 required">
                           <h4>TÉRMINOS Y CONDICIONES</h4>
@@ -229,9 +229,17 @@
                         </div>
                         <div class="form-group form-group--col-6 required">
                           <div class="form-property__upload" style="width: 100%;">
-                            <label for="form-property__upload-title" class="control-label">CONSTANCIA CBU</label>
+                            <label for="form-property__upload-title" class="control-label">TARJETA ANVERSO</label>
                             <div class="form-property__upload-border">
-                              <input type="file" class="form-property__upload-btn-choose" name="constancia_cbu" required>
+                              <input type="file" class="form-property__upload-btn-choose" name="tarjeta_anverso" required>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <div class="form-property__upload" style="width: 100%;">
+                            <label for="form-property__upload-title" class="control-label">TARJETA REVERSO</label>
+                            <div class="form-property__upload-border">
+                              <input type="file" class="form-property__upload-btn-choose" name="tarjeta_reverso" required>
                             </div>
                           </div>
                         </div>
