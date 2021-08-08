@@ -393,6 +393,10 @@ class SitioController {
 		$this->view->nnss_reconexion_propietario($arg);
 	}
 
+	function nnss_reconexion_inquilino($arg) {
+		$this->view->nnss_reconexion_inquilino($arg);
+	}
+
 	function ver_frm_nuevosuministroreconexion_inquilino($arg) {
 		$ids = explode('@', $arg);
 		$tipo_persona = $ids[0];
