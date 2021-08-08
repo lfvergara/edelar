@@ -42,12 +42,13 @@
                     <div class="col-lg-12">
                       <span class="contacts__address-title" style="color: #f28c33">ADHESIÓN A LA FACTURA DIGITAL</span>
                       <span class="contacts__address-title">
-                        Quien suscribe, en carácter de titular de la cuenta del suministro anteriormente detallado, autoriza la Adhesión/ baja al envío de la factura digital del servicio de energía eléctrica, aceptando los Términos y Condiciones de Adhesión a la Factura Digital ** para tal fin.<br>
-                        La misma rige a partir de la próxima facturación. Si al momento de la gestión registrara deuda, me comprometo a abonarla en un plazo no mayor a 14 consecutivos a partir del día de la fecha.<br>
-                        Esta gestión no anula suspensión/desconexión si Ud. registra deuda.
+                        Puede elegir la fecha de vencimiento entre las fechas posibles: 05, 11 y 16 aproximadamente.
                       </span>
                       <dl class="contacts__address-column" style="width: 100%;">
                         <dt class="contacts__address-column__title">REQUISITOS:</dt>
+                        <dd>Ser titular del suministro.</dd>
+                        <dd>Recibo de Haberes.</dd>
+                        <dd>Factura del suministro del cual se peticiona el cambio.</dd>
                         <dd>Fotocopia de Documento (Anverso y reverso)</dd>
                       </dl>
                     </div>
@@ -84,10 +85,11 @@
                           <input id="db_telefono" type="text" name="telefono"  class="form-control" required>
                         </div>
                         <div class="form-group form-group--col-6 required">
-                          <label for="tipo" class="control-label">TIPO GESTIÓN</label>
-                          <select id="tipo" data-placeholder="Tipo Gestión" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="tipo" required="">
-                            <option value="alta">Alta</option>
-                            <option value="baja">Baja</option>
+                          <label for="fecha" class="control-label">TIPO GESTIÓN</label>
+                          <select id="fecha" data-placeholder="Tipo Gestión" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="fecha" required="">
+                            <option value="05">05</option>
+                            <option value="11">11</option>
+                            <option value="16">16</option>
                           </select>
                         </div>
                         <div class="form-group form-group--col-12 required">
@@ -118,25 +120,32 @@
                             </div>
                           </div>
                         </div>
+                        <div class="form-group form-group--col-6 required">
+                          <div class="form-property__upload" style="width: 100%;">
+                            <label for="form-property__upload-title" class="control-label">FACTURA DEL SUMINISTRO</label>
+                            <div class="form-property__upload-border">
+                              <input type="file" class="form-property__upload-btn-choose" name="archivo[]" required>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <div class="form-property__upload" style="width: 100%;">
+                            <label for="form-property__upload-title" class="control-label">RECIBO DE HABERES</label>
+                            <div class="form-property__upload-border">
+                              <input type="file" class="form-property__upload-btn-choose" name="archivo[]" required>
+                            </div>
+                          </div>
+                        </div>
                         <div class="form-group form-group--col-12 required">
                           <hr class="divider divider--solid-light">
-                          <h4>** Términos y Condiciones de Adhesión a la Factura Digital:</h4>
-                          <ol class="ul-list ul-list--ordered">
-                            <li>Con su adhesión al sistema de “Factura Digital”, usted solicita expresamente al EDELAR S.A. no recibir su facturas impresas en papel a través del servicio postal.</li>
-                            <li>El Servicio de “Factura Digital” es sin costo.</li>
-                            <li>Usted puede volver a recibir sus facturas impresas en papel en su domicilio postal que dio de alta oportunamente, a partir del próximo ciclo de facturación siguiente a la desactivación de la opción de inscripción en la modalidad digital, firmando nuevamente la solicitud de Baja al envío de factura digital, en cualquier de nuestras oficinas comerciales.</li>
-                            <li>En caso de que usted quiera actualizar o cambiar los datos del correo electrónico a donde se le enviará la información relativa a su factura, favor de dirigirse a cualquier oficina comercial de la provincia con su DNI para realizar la modificación.</li>
-                            <li>En caso de que la dirección de correo electrónico que usted proporcione sea incorrecta, no pueda ser registrada y validada por el sistema de EDELAR S.A. o los correos que se envíen sobre su factura sean devueltos y/o no sean recibidos por usted, EDELAR S.A. tendrá la facultad de darlo de baja del sistema de “Factura Digital” sin previo aviso y enviarle la factura impresa en papel a través del correo.</li>
-                            <li>EDELAR S.A. no será responsable en caso de que la información relativa a su factura no sea recibida por usted por caso fortuito, fuerza mayor, interrupción en los sistemas de comunicación online o cualquier otra causa fuera del control de EDELAR S.A. En estos casos, usted deberá comunicarse al teléfono 0800-777-333-527 para solicitar su saldo, o ingresando a nuestra página web reimprimir su factura si no se encuentra vencida, ya que el hecho de que Usted no reciba su notificación de factura vía e-mail no constituye una excepción a su obligación de pago.</li>
-                            <li>EDELAR S.A. se reserva el derecho de discontinuar los servicios presentados bajo el sistema de “Factura Digital” en cualquier momento, a su sola discreción. En dicho caso, procederá a la correspondiente notificación previa.</li>
-                            <li>Acepta suscripción a todos los suministros asociados a su cuenta.</li>
-                          </ol>
+                          En el día de la fecha, solicito el cambio de vencimiento de las próximas doce facturaciones, las cuales operarán los días elegidos arriba de cada mes o el día anterior a la fecha prevista cuando esta impacta en día inhábil.<br>
+                          Este beneficio se otorga por 1 año, por la que acepto renovarlo en pasado dicho plazo.
                         </div>
                         <div class="form-group form-group--col-12 required">
                           <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
                         </div>
                         <div class="form-group form-group--col-12">
-                          <input type="hidden" name="tipo_gestion" value="1">
+                          <input type="hidden" name="tipo_gestion" value="6">
                           <button type="submit" class="form__submit">ENVIAR</button>      
                         </div>
                       </div>
