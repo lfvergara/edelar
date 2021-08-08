@@ -448,6 +448,7 @@ class SitioController {
 
 		if (!empty($_FILES['archivo'])) {
 			$directorio = URL_PRIVATE . "gestioncomercial/{$gestioncomercial_id}";
+			print_r($directorio);exit;
 			$array_archivos = $_FILES['archivo']["tmp_name"];
 			$tmp_array = array();
 			foreach ($array_archivos as $key=>$archivo) {
