@@ -294,7 +294,7 @@ class SitioView extends View {
 				break;
 		}
 		
-		$render = str_replace('{slt_areainteres}', $gui_slt_tarjetacredito, $gui);
+		$render = str_replace('{slt_tarjetacredito}', $gui_slt_tarjetacredito, $gui);
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 
