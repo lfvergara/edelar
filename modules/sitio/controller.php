@@ -459,6 +459,8 @@ class SitioController {
 				$tmp_dgcm = new DetalleBajaVoluntaria();
 				$tmp_dgcm->detallebajavoluntaria_id = $detallebajavoluntaria_id;
 				$tmp_dgcm->get();
+
+				$url = 'baja_voluntaria';
 				break;
 			case 6:
 				$tmp_dgcm = New DetalleCambioVencimientoJubilado();
