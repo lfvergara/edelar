@@ -415,11 +415,12 @@ class SitioController {
 			case 1:
 				$tmp_dgcm = New DetalleAdhesionFacturaDigital();
 				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
-				$tmp_dgcm->termino_condiciones = filter_input(INPUT_POST, 'termino_condiciones');
+				$tmp_dgcm->termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
 				$tmp_dgcm->fecha_termino_condiciones = date('Y-m-d h:i:s');
 				$tmp_dgcm->ip = $_SERVER['REMOTE_ADDR'];
 				$tmp_dgcm->so = $_SERVER['HTTP_USER_AGENT'];
 				$tmp_dgcm->tipo = filter_input(INPUT_POST, 'tipo');
+				$tmp_dgcm->detalle = 'Gestión comercial online: Adhesión a la Factura Digital.';
 				$tmp_dgcm->gestioncomercial = $gestioncomercial_id;
 				$tmp_dgcm->save();
 				$tmp_dgcm->get();
