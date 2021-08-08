@@ -11,6 +11,7 @@ require_once "modules/detalleadhesiondebito/model.php";
 require_once "modules/detalleadhesionfacturadigital/model.php";
 require_once "modules/detallecambiovencimientojubilado/model.php";
 require_once "modules/detallebajavoluntaria/model.php";
+require_once "modules/detallenuevosuministroreconexion/model.php";
 
 
 class SitioController {
