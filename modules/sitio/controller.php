@@ -424,11 +424,11 @@ class SitioController {
 				$dadm = New DetalleAdhesionDebito();
 				$dadm->numero_tramite = $gestioncomercial_id;
 				$dadm->metodo_envio = 1;
-				$dadm->termino_condiciones = filter_input(INPUT_POST, 'dt_terminos_condiciones');
+				$dadm->termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
 				$dadm->fecha_termino_condiciones = date('Y-m-d h:i:s');
 				$dadm->ip = $_SERVER['REMOTE_ADDR'];
 				$dadm->so = $_SERVER['HTTP_USER_AGENT'];
-				$dadm->detalle = 'Gestión comercial online';
+				$dadm->detalle = 'Gestión comercial online: Adhesión Débito Automático. Débito Bancario.';
 				$dadm->gestioncomercial = $gestioncomercial_id;
 				$dadm->detalletarjetadebito = $detalletarjetadebito_id;
 				$dadm->save();
