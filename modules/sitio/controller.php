@@ -445,6 +445,7 @@ class SitioController {
 				$tmp_dgcm->fecha_termino_condiciones = date('Y-m-d h:i:s');
 				$tmp_dgcm->ip = $_SERVER['REMOTE_ADDR'];
 				$tmp_dgcm->so = $_SERVER['HTTP_USER_AGENT'];
+				$tmp_dgcm->detalle = 'Gestión comercial online: cambio Vencimiento de Jubilados.';
 				$tmp_dgcm->gestioncomercial = $gestioncomercial_id;
 				$tmp_dgcm->save();
 				$tmp_dgcm->get();
