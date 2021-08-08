@@ -78,186 +78,9 @@
                   <button class="button__default ui__button" onclick="traerFormulario(2);"><i class="fa fa-retweet"></i> RECONEXIÓN</button>
                 </center>
               </div>
-              <div class="col-lg-12" id="form_nuevosuministro" style="display: none;">
+              <div class="col-lg-12">
                 <div class="col-lg-12">
-                  <div class="contacts__form" style="margin-top: 0px;">                        
-                    <form action="{url_app}/sitio/guardar_tramite" method="POST" class="form form--flex js-contact-form form--contacts" enctype="multipart/form-data">
-                      <div class="row">
-                        <div class="form-group form-group--col-6 required">
-                          <label for="db_nombre" class="control-label">NOMBRE</label>
-                          <input id="db_nombre" type="text" name="nombre" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="db_apellido" class="control-label">APELLIDO</label>
-                          <input id="db_apellido" type="text" name="apellido" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="db_dni" class="control-label">DNI</label>
-                          <input id="db_dni" minlength="7" maxlength="11" pattern="[0-9]+" type="text" name="dni" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="db_nis" class="control-label">NIS VECINO</label>
-                          <input id="db_nis" minlength="7" maxlength="11" pattern="[0-9]+" type="text" name="nis" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="db_correo" class="control-label">E-MAIL</label>
-                          <input id="db_correo" type="text" name="correo" data-parsley-trigger="change" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="db_telefono" class="control-label">TELÉFONO</label>
-                          <input id="db_telefono" type="text" name="telefono"  class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="tipo_persona" class="control-label">TIPO PERSONA</label>
-                          <select id="tipo_persona" data-placeholder="Tipo Persona" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="tipo_persona" required="">
-                            <option value="Física">Física</option>
-                            <option value="Jurídica">Jurídica</option>
-                            <option value="Física precaria">Física precaria</option>
-                          </select>
-                        </div>
-                        <div class="form-group form-group--col-12 required">
-                          <h4>TÉRMINOS Y CONDICIONES</h4>
-                          <hr class="divider divider--solid-light">
-                        </div>
-                        <div class="form-group form-group--col-12 required">
-                          <input id="db_terminos_condiciones" type="checkbox" class="in-checkbox" name="terminos_condiciones" value="1" required>
-                          <label for="db_terminos_condiciones" class="in-label">Acepto los <b>Términos y Condiciones</b> impuestos por EDELAR S.A.</label>
-                        </div>
-                        <div class="form-group form-group--col-12 required">
-                          <h4>LOS TIPOS DE ARCHIVO DEBEN SER JPG/JPEG O PDF.</h4>
-                          <hr class="divider divider--solid-light">
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <div class="form-property__upload" style="width: 100%;">
-                            <label for="form-property__upload-title" class="control-label">DNI ANVERSO</label>
-                            <div class="form-property__upload-border">
-                              <input type="file" class="form-property__upload-btn-choose" name="archivo[]" required>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <div class="form-property__upload" style="width: 100%;">
-                            <label for="form-property__upload-title" class="control-label">DNI REVERSO</label>
-                            <div class="form-property__upload-border">
-                              <input type="file" class="form-property__upload-btn-choose" name="archivo[]" required>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <div class="form-property__upload" style="width: 100%;">
-                            <label for="form-property__upload-title" class="control-label">CERTIFICADO DE ELECTRÓMECÁNICA MUNICIPAL</label>
-                            <div class="form-property__upload-border">
-                              <input type="file" class="form-property__upload-btn-choose" name="archivo[]" required>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <div class="form-property__upload" style="width: 100%;">
-                            <label for="form-property__upload-title" class="control-label">DOC. QUE AVALE POSESIÓN LEGÍTIMA DEL INMUEBLE</label>
-                            <div class="form-property__upload-border">
-                              <input type="file" class="form-property__upload-btn-choose" name="archivo[]" required>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group form-group--col-12 required">
-                          <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
-                        </div>
-                        <div class="form-group form-group--col-12">
-                          <input type="hidden" name="tipo_gestion" value="3">
-                          <input type="hidden" name="tipo" value="nnss">
-                          <input type="hidden" name="tipo_titularidad" value="Propietario">
-                          <button type="submit" class="form__submit">ENVIAR</button>      
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-12" id="form_reconexion" style="display: none;">
-                <div class="col-lg-12">
-                  <div class="contacts__form" style="margin-top: 0px;">                        
-                    <form action="{url_app}/sitio/guardar_tramite" method="POST" class="form form--flex js-contact-form form--contacts" enctype="multipart/form-data">
-                      <div class="row">
-                        <div class="form-group form-group--col-6 required">
-                          <label for="dt_nombre" class="control-label">NOMBRE</label>
-                          <input id="dt_nombre" type="text" name="nombre" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="dt_apellido" class="control-label">APELLIDO</label>
-                          <input id="dt_apellido" type="text" name="apellido" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="dt_dni" class="control-label">DNI</label>
-                          <input id="dt_dni" minlength="7" maxlength="11" pattern="[0-9]+" type="text" name="dni" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="dt_nis" class="control-label">NIS</label>
-                          <input id="dt_nis" minlength="7" maxlength="11" pattern="[0-9]+" type="text" name="nis" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="dt_correo" class="control-label">E-MAIL</label>
-                          <input id="dt_correo" type="text" name="correo" data-parsley-trigger="change" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="dt_telefono" class="control-label">TELÉFONO</label>
-                          <input id="dt_telefono" type="text" name="telefono"  class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="tipo_persona" class="control-label">TIPO PERSONA</label>
-                          <select id="tipo_persona" data-placeholder="Tipo Persona" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="tipo_persona" required="">
-                            <option value="Física">Física</option>
-                            <option value="Jurídica">Jurídica</option>
-                            <option value="Física precaria">Física precaria</option>
-                          </select>
-                        </div>
-                        <div class="form-group form-group--col-12 required">
-                          <h4>TÉRMINOS Y CONDICIONES</h4>
-                          <hr class="divider divider--solid-light">
-                        </div>
-                        <div class="form-group form-group--col-12 required">
-                          <input id="dt_terminos_condiciones" type="checkbox" class="in-checkbox" name="terminos_condiciones" value="1" required>
-                          <label for="dt_terminos_condiciones" class="in-label">Acepto los <b>Términos y Condiciones</b> impuestos por EDELAR S.A.</label>
-                        </div>
-                        <div class="form-group form-group--col-12 required">
-                          <h4>LOS TIPOS DE ARCHIVO DEBEN SER JPG/JPEG O PDF.</h4>
-                          <hr class="divider divider--solid-light">
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <div class="form-property__upload" style="width: 100%;">
-                            <label for="form-property__upload-title" class="control-label">DNI ANVERSO</label>
-                            <div class="form-property__upload-border">
-                              <input type="file" class="form-property__upload-btn-choose" name="archivo[]" required>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <div class="form-property__upload" style="width: 100%;">
-                            <label for="form-property__upload-title" class="control-label">DNI REVERSO</label>
-                            <div class="form-property__upload-border">
-                              <input type="file" class="form-property__upload-btn-choose" name="archivo[]" required>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <div class="form-property__upload" style="width: 100%;">
-                            <label for="form-property__upload-title" class="control-label">DOC. QUE AVALE POSESIÓN LEGÍTIMA DEL INMUEBLE</label>
-                            <div class="form-property__upload-border">
-                              <input type="file" class="form-property__upload-btn-choose" name="archivo[]" required>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group form-group--col-12 required">
-                          <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
-                        </div>
-                        <div class="form-group form-group--col-12">
-                          <input type="hidden" name="tipo_gestion" value="3">
-                          <input type="hidden" name="tipo" value="reconexión">
-                          <input type="hidden" name="tipo_titularidad" value="Propietario">
-                          <button type="submit" class="form__submit">ENVIAR</button>      
-                        </div>
-                      </div>
-                    </form>
-                  </div>
+                  <div class="contacts__form" style="margin-top: 0px;" id="frm_nuevosuministroreconexion"></div>
                 </div>
               </div>
             </div>
@@ -293,10 +116,12 @@
   }
 
   function traerFormulario(tipo_gestion) {    
-    var consultaMantenimiento = $.ajax({
+    var frm_nuevosuministroreconexion = $.ajax({
       url: '{url_app}/sitio/ver_frm_nuevosuministroreconexion_inquilino/' + tipo_persona + '@' + tipo_gestion,
       dataType: 'text',
       async: false
-    }).responseText;    
+    }).responseText;
+
+    document.getElementById('frm_nuevosuministroreconexion').innerHTML = frm_nuevosuministroreconexion;
   }
 </script>
