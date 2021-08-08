@@ -8,6 +8,7 @@ require_once "modules/gestioncomercial/model.php";
 require_once "modules/gestioncomercialhistorico/model.php";
 require_once "modules/detalletarjetadebito/model.php";
 require_once "modules/detalleadhesiondebito/model.php";
+require_once "modules/detalleadhesionfacturadigital/model.php";
 
 
 class SitioController {
@@ -411,6 +412,23 @@ class SitioController {
 		$gchgcm->save();
 
 		switch ($tipo_gestion) {
+			case 1:
+				$tmp_dgcm = New DetalleAdhesionFacturaDigital();
+				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
+				$tmp_dgcm->termino_condiciones = filter_input(INPUT_POST, 'termino_condiciones');
+				$tmp_dgcm->fecha_termino_condiciones = date('Y-m-d h:i:s');
+				$tmp_dgcm->ip = $_SERVER['REMOTE_ADDR'];
+				$tmp_dgcm->so = $_SERVER['HTTP_USER_AGENT'];
+				$tmp_dgcm->tipo = filter_input(INPUT_POST, 'tipo');
+				$tmp_dgcm->gestioncomercial = $gestioncomercial_id;
+				$tmp_dgcm->save();
+				$tmp_dgcm->get();
+				$detalleadhesionfacturadigital_id = $tmp_dgcm->detalleadhesionfacturadigital_id;
+
+				$tmp_dgcm = new DetalleAdhesionFacturaDigital();
+				$tmp_dgcm->detalleadhesionfacturadigital_id = $detalleadhesionfacturadigital_id;
+				$tmp_dgcm->get();
+				break;
 			case 7:
 				$dtdm = New DetalleTarjetaDebito();
 				$dtdm->institucion_financiera =  filter_input(INPUT_POST, 'db_institucion_financiera');
@@ -425,23 +443,23 @@ class SitioController {
 				$dtdm->get();
 				$detalletarjetadebito_id = $dtdm->detalletarjetadebito_id;
 
-				$dadm = New DetalleAdhesionDebito();
-				$dadm->numero_tramite = $gestioncomercial_id;
-				$dadm->metodo_envio = 1;
-				$dadm->termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
-				$dadm->fecha_termino_condiciones = date('Y-m-d h:i:s');
-				$dadm->ip = $_SERVER['REMOTE_ADDR'];
-				$dadm->so = $_SERVER['HTTP_USER_AGENT'];
-				$dadm->detalle = 'Gestión comercial online: Adhesión Débito Automático. Débito Bancario.';
-				$dadm->gestioncomercial = $gestioncomercial_id;
-				$dadm->detalletarjetadebito = $detalletarjetadebito_id;
-				$dadm->save();
-				$dadm->get();
-				$detalleadhesiondebito_id = $dadm->detalleadhesiondebito_id;
+				$tmp_dgcm = New DetalleAdhesionDebito();
+				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
+				$tmp_dgcm->metodo_envio = 1;
+				$tmp_dgcm->termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
+				$tmp_dgcm->fecha_termino_condiciones = date('Y-m-d h:i:s');
+				$tmp_dgcm->ip = $_SERVER['REMOTE_ADDR'];
+				$tmp_dgcm->so = $_SERVER['HTTP_USER_AGENT'];
+				$tmp_dgcm->detalle = 'Gestión comercial online: Adhesión Débito Automático. Débito Bancario.';
+				$tmp_dgcm->gestioncomercial = $gestioncomercial_id;
+				$tmp_dgcm->detalletarjetadebito = $detalletarjetadebito_id;
+				$tmp_dgcm->save();
+				$tmp_dgcm->get();
+				$detalleadhesiondebito_id = $tmp_dgcm->detalleadhesiondebito_id;
 
-				$dadm = new DetalleAdhesionDebito();
-				$dadm->detalleadhesiondebito_id = $detalleadhesiondebito_id;
-				$dadm->get();				
+				$tmp_dgcm = new DetalleAdhesionDebito();
+				$tmp_dgcm->detalleadhesiondebito_id = $detalleadhesiondebito_id;
+				$tmp_dgcm->get();				
 				break;
 			
 			default:
@@ -501,10 +519,10 @@ class SitioController {
 				}
 			}
 
-  	  		$dadm->gestioncomercial->archivos_collection = $tmp_array;
+  	  		$tmp_dgcm->gestioncomercial->archivos_collection = $tmp_array;
 	 	}
 
-	 	$argumento = json_encode($dadm);
+	 	$argumento = json_encode($tmp_dgcm);
 		if (in_array($tipo_gestion, $array_gestionescomerciales_online)) {
 	 		//$resultado = sincroniza_geco_tramite($argumento);	 		
 	 	} else {
