@@ -426,6 +426,11 @@ class SitioView extends View {
 		$template = $this->render_sitio("THEME_SECCION", $gui);
 		print $template;
 	}
+
+	function ver_frm_nuevosuministroreconexion_inquilino($html) {
+		$gui = file_get_contents("static/modules/sitio/{$html}.html");
+		print $gui;
+	}
 	/* TRAMITES COMERCIALES ************************************************/
 }
 ?>

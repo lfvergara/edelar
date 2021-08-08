@@ -393,6 +393,29 @@ class SitioController {
 		$this->view->nnss_reconexion_propietario($arg);
 	}
 
+	function ver_frm_nuevosuministroreconexion_inquilino($arg) {
+		$ids = explode('@', $arg);
+		$tipo_persona = $ids[0];
+		$tipo_gestion = $ids[1];
+		$concat = $tipo_persona . $tipo_gestion;
+		switch ($concat) {
+			case 11:
+				$html = 'ver_frm_nuevosuministro_inquilino_fisico';
+				break;
+			case 12:
+				$html = 'ver_frm_reconexion_inquilino_fisico';
+				break;
+			case 21:
+				$html = 'ver_frm_nuevosuministro_inquilino_juridico';
+				break;
+			case 22:
+				$html = 'ver_frm_reconexion_inquilino_juridico';
+				break;
+		}
+
+		$this->view->ver_frm_nuevosuministroreconexion_inquilino($html);
+	}
+
 	function guardar_tramite() {
 		$array_gestionescomerciales_online = array(1, 3, 4, 5, 6, 7);
 		$nombre = filter_input(INPUT_POST, 'nombre');
