@@ -190,7 +190,9 @@
                         </div>
                         <div class="form-group form-group--col-6 required">
                           <label for="dt_tarjeta" class="control-label">TARJETA</label>
-                          <input id="dt_tarjeta" type="text" name="dt_tarjeta" data-parsley-trigger="change" class="form-control" required>
+                          <select id="tarjetacredito" data-placeholder="Tarjeta de Crédito/Débito" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="tarjetacredito" required="">
+                            {slt_tarjetacredito}
+                          </select>
                         </div>
                         <div class="form-group form-group--col-6 required">
                           <label for="dt_numero_tarjeta" class="control-label">NÚMERO DE LA TARJETA</label>
