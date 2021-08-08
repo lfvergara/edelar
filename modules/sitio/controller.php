@@ -416,7 +416,7 @@ class SitioController {
 				$fecha_vencimiento = filter_input(INPUT_POST, 'dt_vencimiento_tarjeta');
 				$fecha_vencimiento = (is_null($fecha_vencimiento)) ? date('Y-m-d') : $fecha_vencimiento . "-01";
 				$dtdm->fecha_vencimiento =  $fecha_vencimiento;
-				$dtdm->tarjetacredito =  filter_input(INPUT_POST, 'dt_tarjeta');
+				$dtdm->tarjetacredito =  filter_input(INPUT_POST, 'dt_tarjetacredito');
 				$dtdm->save();
 				$dtdm->get();
 				$detalletarjetadebito_id = $dtdm->detalletarjetadebito_id;
