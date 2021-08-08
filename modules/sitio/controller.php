@@ -388,6 +388,10 @@ class SitioController {
 		$this->view->baja_voluntaria($arg);
 	}
 
+	function nnss_reconexion_propietario($arg) {
+		$this->view->nnss_reconexion_propietario($arg);
+	}
+
 	function guardar_tramite() {
 		$array_gestionescomerciales_online = array(1, 3, 4, 5, 6, 7);
 		$nombre = filter_input(INPUT_POST, 'nombre');
