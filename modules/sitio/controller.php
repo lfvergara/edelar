@@ -481,6 +481,7 @@ class SitioController {
 				$tmp_dgcm->tipo = filter_input(INPUT_POST, 'tipo');
 				$tmp_dgcm->tipo_titularidad = filter_input(INPUT_POST, 'tipo_titularidad');
 				$tmp_dgcm->tipo_persona = filter_input(INPUT_POST, 'tipo_persona');
+				$tmp_dgcm->tiempo_baja = filter_input(INPUT_POST, 'tiempo_baja');
 				$tmp_dgcm->detalle = 'Gestión comercial online: Nuevo Suministro - Reconexión.';
 				$tmp_dgcm->gestioncomercial = $gestioncomercial_id;
 				$tmp_dgcm->save();

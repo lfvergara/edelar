@@ -145,6 +145,7 @@
                           <input type="hidden" name="tipo_gestion" value="3">
                           <input type="hidden" name="tipo" value="nnss">
                           <input type="hidden" name="tipo_titularidad" value="Propietario">
+                          <input type="hidden" name="tiempo_baja" value="1">
                           <button type="submit" class="form__submit">ENVIAR</button>      
                         </div>
                       </div>
@@ -188,6 +189,11 @@
                             <option value="Jurídica">Jurídica</option>
                             <option value="Física precaria">Física precaria</option>
                           </select>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="db_telefono" class="control-label">TIEMPO DESDE LA BAJA</label>
+                          <input id="menor_60" type="radio" name="tiempo_baja" class="in-radio"> Menor a 60 Días
+                          <input id="mayor_60" type="radio" name="tiempo_baja" class="in-radio"> Mayor a 60 Días
                         </div>
                         <div class="form-group form-group--col-12 required">
                           <h4>TÉRMINOS Y CONDICIONES</h4>
