@@ -38,35 +38,27 @@
             <div class="row">
               <div class="col-lg-12">
                 <center>
-                  <button class="button__default ui__button" onclick="verDebitoTarjeta();"><i class="fa fa-credit-card"></i> DÉBITO POR TARJETA</button>
-                  <button class="button__default ui__button" onclick="verDebitoBancario();"><i class="fa fa-university"></i> DÉBITO BANCARIO</button>
+                  <button class="button__default ui__button" onclick="verTitular();"><i class="fa fa-credit-card"></i> TITULAR</button>
+                  <button class="button__default ui__button" onclick="verApoderado();"><i class="fa fa-university"></i> APODERADO</button>
                 </center>
-                <div class="contacts__address" id="requisitos_debitobancario">
+                <div class="contacts__address" id="requisitos_titular">
                   <address class="contacts__address-item">
                     <div class="col-lg-12">
-                      <span class="contacts__address-title" style="color: #f28c33">ADHESIÓN AL DÉBITO AUTOMÁTICO: DÉBITO BANCARIO</span>
+                      <span class="contacts__address-title" style="color: #f28c33">BAJA VOLUNTARIA</span>
                       <dl class="contacts__address-column" style="width: 100%;">
                         <dt class="contacts__address-column__title">REQUISITOS:</dt>
-                        <dd>Fotocopia de Documento (Anverso y reverso)</dd>
-                        <dd>Constancia CBU emitida por el banco de la cuenta.</dd>
-                      </dl>
-                    </div>
-                  </address>
-                </div>
-                <div class="contacts__address" id="requisitos_debitotarjeta" style="display: none;">
-                  <address class="contacts__address-item">
-                    <div class="col-lg-12">
-                      <span class="contacts__address-title" style="color: #f28c33">ADHESIÓN AL DÉBITO AUTOMÁTICO: DÉBITO POR TARJETA</span>
-                      <dl class="contacts__address-column" style="width: 100%;">
-                        <dt class="contacts__address-column__title">REQUISITOS:</dt>
-                        <dd>Fotocopia de Documento (Anverso y reverso)</dd>
-                        <dd>Fotocopia anverso y reverso de la tarjeta de crédito.</dd>
+                        <dd>Ser titular del suministro, o facultado con poder autorizado por Escribano o Juez de Paz.</dd>
+                        <dd>Fotocopia de Documento (Anverso y reverso).</dd>
+                        <dd>Factura del suministro del cual se peticiona la baja.</dd>
+                        <dd>EL FUTURO TITULAR NO DEBE REGISTRAR DEUDA.</dd>
+                        <dd>EL PILAR DEBE SER CONSTRUIDO SOBRE LA LINEA MUNICIPAL E IDENTIFICADO CON EL APELLIDO DEL FUTURO CLIENTE.</dd>
+                        <dd>PRESENTAR EL PLANO CATASTRAL DEL INMUEBLE, EN CASO DE VERIFICAR QUE EL FUTURO SUMINISTRO SE ENCUENTRA EN LOTEO O EXTENSION DE LINEA NO CONVENCIONAL.</dd>
                       </dl>
                     </div>
                   </address>
                 </div>
               </div>
-              <div class="col-lg-12" id="form_debitobancario" style="display: none;">
+              <div class="col-lg-12" id="form_titular" style="display: none;">
                 <div class="col-lg-12">
                   <div class="contacts__form" style="margin-top: 0px;">                        
                     <form action="{url_app}/sitio/guardar_tramite" method="POST" class="form form--flex js-contact-form form--contacts" enctype="multipart/form-data">
@@ -94,18 +86,6 @@
                         <div class="form-group form-group--col-6 required">
                           <label for="db_telefono" class="control-label">TELÉFONO</label>
                           <input id="db_telefono" type="text" name="telefono"  class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-12 required">
-                          <label for="db_titular_cbu" class="control-label">NOMBRE TITULAR CBU</label>
-                          <input id="db_titular_cbu" type="text" name="titular" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="db_cbu" class="control-label">CBU</label>
-                          <input id="db_cbu" type="text" name="db_cbu" data-parsley-trigger="change" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="db_institucion_financiera" class="control-label">ENTIDAD BANCARIA</label>
-                          <input id="db_institucion_financiera" type="text" name="db_institucion_financiera" class="form-control" required>
                         </div>
                         <div class="form-group form-group--col-12 required">
                           <h4>TÉRMINOS Y CONDICIONES</h4>
@@ -137,7 +117,7 @@
                         </div>
                         <div class="form-group form-group--col-6 required">
                           <div class="form-property__upload" style="width: 100%;">
-                            <label for="form-property__upload-title" class="control-label">CONSTANCIA CBU</label>
+                            <label for="form-property__upload-title" class="control-label">FACTURA DEL SUMINISTRO</label>
                             <div class="form-property__upload-border">
                               <input type="file" class="form-property__upload-btn-choose" name="archivo[]" required>
                             </div>
@@ -147,7 +127,8 @@
                           <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
                         </div>
                         <div class="form-group form-group--col-12">
-                          <input type="hidden" name="tipo_gestion" value="7">
+                          <input type="hidden" name="tipo_gestion" value="5">
+                          <input type="hidden" id="ti_tipo_propietario" name="tipo_propietario" value="Titular">
                           <button type="submit" class="form__submit">ENVIAR</button>      
                         </div>
                       </div>
@@ -155,7 +136,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-12" id="form_debitotarjeta" style="display: none;">
+              <div class="col-lg-12" id="form_apoderado" style="display: none;">
                 <div class="col-lg-12">
                   <div class="contacts__form" style="margin-top: 0px;">                        
                     <form action="{url_app}/sitio/guardar_tramite" method="POST" class="form form--flex js-contact-form form--contacts" enctype="multipart/form-data">
@@ -183,24 +164,6 @@
                         <div class="form-group form-group--col-6 required">
                           <label for="dt_telefono" class="control-label">TELÉFONO</label>
                           <input id="dt_telefono" type="text" name="telefono"  class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-12 required">
-                          <label for="dt_titular_tarjeta" class="control-label">NOMBRE TITULAR DE LA TARJETA</label>
-                          <input id="dt_titular_tarjeta" type="text" name="titular" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="dt_tarjetacredito" class="control-label">TARJETA</label>
-                          <select id="dt_tarjetacredito" data-placeholder="Tarjeta de Crédito/Débito" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="dt_tarjetacredito" required="">
-                            {slt_tarjetacredito}
-                          </select>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="dt_numero_tarjeta" class="control-label">NÚMERO DE LA TARJETA</label>
-                          <input id="dt_numero_tarjeta" type="text" name="dt_numero_tarjeta" class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-12 required">
-                          <label for="dt_vencimiento_tarjeta" class="control-label">FECHA VENCIMIENTO TARJETA</label>
-                          <input id="dt_vencimiento_tarjeta" type="month" name="dt_vencimiento_tarjeta" class="form-control" required>
                         </div>
                         <div class="form-group form-group--col-12 required">
                           <h4>TÉRMINOS Y CONDICIONES</h4>
@@ -232,7 +195,7 @@
                         </div>
                         <div class="form-group form-group--col-6 required">
                           <div class="form-property__upload" style="width: 100%;">
-                            <label for="form-property__upload-title" class="control-label">TARJETA ANVERSO</label>
+                            <label for="form-property__upload-title" class="control-label">FACTURA DEL SUMINISTRO</label>
                             <div class="form-property__upload-border">
                               <input type="file" class="form-property__upload-btn-choose" name="archivo[]" required>
                             </div>
@@ -240,7 +203,7 @@
                         </div>
                         <div class="form-group form-group--col-6 required">
                           <div class="form-property__upload" style="width: 100%;">
-                            <label for="form-property__upload-title" class="control-label">TARJETA REVERSO</label>
+                            <label for="form-property__upload-title" class="control-label">PODER AUTORIZADO POR ESCRIBANO O JUEZ DE PAZ</label>
                             <div class="form-property__upload-border">
                               <input type="file" class="form-property__upload-btn-choose" name="archivo[]" required>
                             </div>
@@ -250,7 +213,8 @@
                           <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
                         </div>
                         <div class="form-group form-group--col-12">
-                          <input type="hidden" name="tipo_gestion" value="7">
+                          <input type="hidden" name="tipo_gestion" value="5">
+                          <input type="hidden" id="ap_tipo_propietario" name="tipo_propietario" value="Apoderado">
                           <button type="submit" class="form__submit">ENVIAR</button>      
                         </div>
                       </div>
@@ -272,17 +236,13 @@
   </div>
 </div>
 <script>
-  function verDebitoBancario() {
-    document.getElementById('requisitos_debitobancario').style.display = 'block';
-    document.getElementById('form_debitobancario').style.display = 'block';
-    document.getElementById('requisitos_debitotarjeta').style.display = 'none';
-    document.getElementById('form_debitotarjeta').style.display = 'none';
+  function verTitular() {
+    document.getElementById('form_titular').style.display = 'block';
+    document.getElementById('form_apoderado').style.display = 'none';
   }
 
-  function verDebitoTarjeta() {
-    document.getElementById('requisitos_debitobancario').style.display = 'none';
-    document.getElementById('form_debitobancario').style.display = 'none';
-    document.getElementById('requisitos_debitotarjeta').style.display = 'block';
-    document.getElementById('form_debitotarjeta').style.display = 'block';
+  function verApoderado() {
+    document.getElementById('form_titular').style.display = 'block';
+    document.getElementById('form_apoderado').style.display = 'none';
   }
 </script>

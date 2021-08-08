@@ -383,6 +383,10 @@ class SitioController {
 		$this->view->cambio_vencimiento_jubilados($arg);
 	}
 
+	function baja_voluntaria($arg) {
+		$this->view->baja_voluntaria($arg);
+	}
+
 	function guardar_tramite() {
 		$array_gestionescomerciales_online = array(1, 3, 4, 5, 6, 7);
 		$nombre = filter_input(INPUT_POST, 'nombre');
@@ -436,6 +440,24 @@ class SitioController {
 				$tmp_dgcm->get();
 
 				$url = 'adhesion_facturadigital';
+				break;
+			case 5:
+				$tmp_dgcm = New DetalleBajaVoluntaria();
+				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
+				$tmp_dgcm->termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
+				$tmp_dgcm->fecha_termino_condiciones = date('Y-m-d h:i:s');
+				$tmp_dgcm->ip =	$_SERVER['REMOTE_ADDR'];
+				$tmp_dgcm->so = $_SERVER['HTTP_USER_AGENT'];
+				$tmp_dgcm->tipo_propietario = filter_input(INPUT_POST, 'tipo_propietario');
+				$tmp_dgcm->detalle = 'Gestión comercial online: Baja Voluntaria.';
+				$tmp_dgcm->gestioncomercial = $gestioncomercial_id;
+				$tmp_dgcm->save();
+				$tmp_dgcm->get();
+				$detallebajavoluntaria_id = $tmp_dgcm->detallebajavoluntaria_id;
+
+				$tmp_dgcm = new DetalleBajaVoluntaria();
+				$tmp_dgcm->detallebajavoluntaria_id = $detallebajavoluntaria_id;
+				$tmp_dgcm->get();
 				break;
 			case 6:
 				$tmp_dgcm = New DetalleCambioVencimientoJubilado();

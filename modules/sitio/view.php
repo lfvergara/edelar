@@ -297,7 +297,6 @@ class SitioView extends View {
 		$render = str_replace('{slt_tarjetacredito}', $gui_slt_tarjetacredito, $gui);
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
-
 	}
 
 	function adhesion_facturadigital($msj_alert) {
@@ -330,7 +329,6 @@ class SitioView extends View {
 		
 		$template = $this->render_sitio("THEME_SECCION", $gui);
 		print $template;
-
 	}
 
 	function cambio_vencimiento_jubilados($msj_alert) {
@@ -363,7 +361,38 @@ class SitioView extends View {
 		
 		$template = $this->render_sitio("THEME_SECCION", $gui);
 		print $template;
+	}
 
+	function baja_voluntaria($msj_alert) {
+		$gui = file_get_contents("static/modules/sitio/baja_voluntaria.html");
+		$gui_msj_alert = file_get_contents("static/common/msj_alert.html");
+
+		switch ($msj_alert) {
+			case 'erCaptcha':
+				$msj = 'Estimado cliente, ha ocurrido un error con el captcha. Por favor intente nuevamente. <br>Disculpe las molestias ocasionadas!';
+				$alert_array = array('{msj_commit}'=>$msj, '{class_commit}'=>'danger', '{icon_commit}'=>'error');
+				$gui_msj_alert = $this->render($alert_array, $gui_msj_alert);
+				$gui = str_replace('{msj_alert}', $gui_msj_alert, $gui);
+				break;
+			case 'erTramite':
+				$msj = 'Estimado cliente, ha ocurrido un error con la carga de su gestión. Por favor intente nuevamente. <br>Disculpe las molestias ocasionadas!';
+				$alert_array = array('{msj_commit}'=>$msj, '{class_commit}'=>'danger', '{icon_commit}'=>'error');
+				$gui_msj_alert = $this->render($alert_array, $gui_msj_alert);
+				$gui = str_replace('{msj_alert}', $gui_msj_alert, $gui);
+				break;
+			case 'okTramite':
+				$msj = 'Estimado cliente, su gestión ha sido ingresada a nuestro sistema. <br>Muchas gracias por confiar en nosotros!';
+				$alert_array = array('{msj_commit}'=>$msj, '{class_commit}'=>'success', '{icon_commit}'=>'valid');
+				$gui_msj_alert = $this->render($alert_array, $gui_msj_alert);
+				$gui = str_replace('{msj_alert}', $gui_msj_alert, $gui);
+				break;
+			default:
+				$gui = str_replace('{msj_alert}', '', $gui);
+				break;
+		}
+		
+		$template = $this->render_sitio("THEME_SECCION", $gui);
+		print $template;
 	}
 	/* TRAMITES COMERCIALES ************************************************/
 }
