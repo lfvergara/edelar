@@ -266,6 +266,8 @@ class SitioView extends View {
 
 	function adhesion_debito($tarjetacredito_collection, $msj_alert) {
 		$gui = file_get_contents("static/modules/sitio/adhesion_debito.html");
+		$gui_slt_tarjetacredito = file_get_contents("static/common/slt_tarjetacredito.html");
+		$gui_slt_tarjetacredito = $this->render_regex('SLT_TARJETACREDITO', $gui_slt_tarjetacredito, $tarjetacredito_collection);
 		$gui_msj_alert = file_get_contents("static/common/msj_alert.html");
 
 		switch ($msj_alert) {
@@ -292,7 +294,8 @@ class SitioView extends View {
 				break;
 		}
 		
-		$template = $this->render_sitio("THEME_SECCION", $gui);
+		$render = str_replace('{slt_areainteres}', $gui_slt_tarjetacredito, $gui);
+		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 
 	}
