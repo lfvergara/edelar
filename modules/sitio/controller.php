@@ -373,6 +373,10 @@ class SitioController {
 		$this->view->adhesion_debito($tarjetacredito_collection, $arg);
 	}
 
+	function adhesion_facturadigital($arg) {
+		$this->view->adhesion_debito($arg);
+	}
+
 	function guardar_tramite() {
 		$array_gestionescomerciales_online = array(1, 3, 4, 5, 6, 7);
 		$nombre = filter_input(INPUT_POST, 'nombre');
