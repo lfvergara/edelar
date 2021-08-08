@@ -446,6 +446,27 @@ class SitioController {
 
 				$url = 'adhesion_facturadigital';
 				break;
+			case 3:
+				$tmp_dgcm = New DetalleNuevoSuministroReconexion();
+				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
+				$tmp_dgcm->nis = $nis;
+				$tmp_dgcm->termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
+				$tmp_dgcm->fecha_termino_condiciones = date('Y-m-d h:i:s');
+				$tmp_dgcm->ip =	$_SERVER['REMOTE_ADDR'];
+				$tmp_dgcm->so = $_SERVER['HTTP_USER_AGENT'];
+				$tmp_dgcm->tipo = filter_input(INPUT_POST, 'tipo');
+				$tmp_dgcm->tipo_titularidad = filter_input(INPUT_POST, 'tipo_titularidad');
+				$tmp_dgcm->tipo_persona = filter_input(INPUT_POST, 'tipo_persona');
+				$tmp_dgcm->detalle = 'Gestión comercial online: Nuevo Suministro - Reconexión.';
+				$tmp_dgcm->gestioncomercial = $gestioncomercial_id;
+				$tmp_dgcm->save();
+				$tmp_dgcm->get();
+				$detallenuevosuministroreconexion_id = $tmp_dgcm->detallenuevosuministroreconexion_id;
+
+				$tmp_dgcm = new DetalleNuevoSuministroReconexion();
+				$tmp_dgcm->detallenuevosuministroreconexion_id = $detallenuevosuministroreconexion_id;
+				$tmp_dgcm->get();
+	      		break;
 			case 5:
 				$tmp_dgcm = New DetalleBajaVoluntaria();
 				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
