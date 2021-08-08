@@ -430,6 +430,23 @@ class SitioController {
 				$tmp_dgcm->detalleadhesionfacturadigital_id = $detalleadhesionfacturadigital_id;
 				$tmp_dgcm->get();
 				break;
+			case 6:
+				$tmp_dgcm = New DetalleCambioVencimientoJubilado();
+				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
+				$tmp_dgcm->dia_vencimiento = filter_input(INPUT_POST, 'fecha');
+				$tmp_dgcm->termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
+				$tmp_dgcm->fecha_termino_condiciones = date('Y-m-d h:i:s');
+				$tmp_dgcm->ip = $_SERVER['REMOTE_ADDR'];
+				$tmp_dgcm->so = $_SERVER['HTTP_USER_AGENT'];
+				$tmp_dgcm->gestioncomercial = $gestioncomercial_id;
+				$tmp_dgcm->save();
+				$tmp_dgcm->get();
+				$detallecambiovencimientojubilado_id = $tmp_dgcm->detallecambiovencimientojubilado_id;
+
+				$tmp_dgcm = new DetalleCambioVencimientoJubilado();
+				$tmp_dgcm->detallecambiovencimientojubilado_id = $detallecambiovencimientojubilado_id;
+				$tmp_dgcm->get();
+				break;
 			case 7:
 				$dtdm = New DetalleTarjetaDebito();
 				$dtdm->institucion_financiera =  filter_input(INPUT_POST, 'db_institucion_financiera');
