@@ -374,7 +374,7 @@ class SitioController {
 	}
 
 	function adhesion_facturadigital($arg) {
-		$this->view->adhesion_debito($arg);
+		$this->view->adhesion_facturadigital($arg);
 	}
 
 	function guardar_tramite() {
