@@ -378,6 +378,10 @@ class SitioController {
 		$this->view->adhesion_facturadigital($arg);
 	}
 
+	function cambio_vencimiento_jubilados($arg) {
+		$this->view->cambio_vencimiento_jubilados($arg);
+	}
+
 	function guardar_tramite() {
 		$array_gestionescomerciales_online = array(1, 3, 4, 5, 6, 7);
 		$nombre = filter_input(INPUT_POST, 'nombre');
@@ -429,6 +433,8 @@ class SitioController {
 				$tmp_dgcm = new DetalleAdhesionFacturaDigital();
 				$tmp_dgcm->detalleadhesionfacturadigital_id = $detalleadhesionfacturadigital_id;
 				$tmp_dgcm->get();
+
+				$url = 'adhesion_facturadigital';
 				break;
 			case 6:
 				$tmp_dgcm = New DetalleCambioVencimientoJubilado();
@@ -446,6 +452,8 @@ class SitioController {
 				$tmp_dgcm = new DetalleCambioVencimientoJubilado();
 				$tmp_dgcm->detallecambiovencimientojubilado_id = $detallecambiovencimientojubilado_id;
 				$tmp_dgcm->get();
+
+				$url = 'cambio_vencimiento_jubilados';
 				break;
 			case 7:
 				$dtdm = New DetalleTarjetaDebito();
@@ -477,7 +485,9 @@ class SitioController {
 
 				$tmp_dgcm = new DetalleAdhesionDebito();
 				$tmp_dgcm->detalleadhesiondebito_id = $detalleadhesiondebito_id;
-				$tmp_dgcm->get();				
+				$tmp_dgcm->get();
+
+				$url = 'adhesion_debito';
 				break;
 			
 			default:
@@ -547,7 +557,7 @@ class SitioController {
 		 	//$resultado = sincroniza_geco_tramite_desa($argumento);
 	 	}
 
-	 	header("Location: " . URL_APP . "/sitio/adhesion_debito/okTramite");
+	 	header("Location: " . URL_APP . "/sitio/{$url}/okTramite");
 	}
 	/* GESTIONES COMERCIALES ***********************************************/
 
