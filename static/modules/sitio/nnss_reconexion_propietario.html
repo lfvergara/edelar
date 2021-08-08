@@ -38,8 +38,8 @@
             <div class="row">
               <div class="col-lg-12">
                 <center>
-                  <button class="button__default ui__button" onclick="verDebitoTarjeta();"><i class="fa fa-plus-square"></i> NUEVO SUMINISTRO</button>
-                  <button class="button__default ui__button" onclick="verDebitoBancario();"><i class="fa fa-retweet"></i> RECONEXIÓN</button>
+                  <button class="button__default ui__button" onclick="verNuevoSuministro();"><i class="fa fa-plus-square"></i> NUEVO SUMINISTRO</button>
+                  <button class="button__default ui__button" onclick="verReconexion();"><i class="fa fa-retweet"></i> RECONEXIÓN</button>
                 </center>
                 <div class="contacts__address" id="requisitos" style="display: none;">
                   <address class="contacts__address-item">
@@ -152,7 +152,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-12" id="form_debitotarjeta" style="display: none;">
+              <div class="col-lg-12" id="form_reconexion" style="display: none;">
                 <div class="col-lg-12">
                   <div class="contacts__form" style="margin-top: 0px;">                        
                     <form action="{url_app}/sitio/guardar_tramite" method="POST" class="form form--flex js-contact-form form--contacts" enctype="multipart/form-data">
@@ -253,17 +253,15 @@
   </div>
 </div>
 <script>
-  function verDebitoBancario() {
-    document.getElementById('requisitos_debitobancario').style.display = 'block';
-    document.getElementById('form_debitobancario').style.display = 'block';
-    document.getElementById('requisitos_debitotarjeta').style.display = 'none';
-    document.getElementById('form_debitotarjeta').style.display = 'none';
+  function verNuevoSuministro() {
+    document.getElementById('requisitos').style.display = 'block';
+    document.getElementById('form_nuevosuministro').style.display = 'block';
+    document.getElementById('form_reconexion').style.display = 'none';
   }
 
-  function verDebitoTarjeta() {
-    document.getElementById('requisitos_debitobancario').style.display = 'none';
-    document.getElementById('form_debitobancario').style.display = 'none';
-    document.getElementById('requisitos_debitotarjeta').style.display = 'block';
-    document.getElementById('form_debitotarjeta').style.display = 'block';
+  function verReconexion() {
+    document.getElementById('requisitos').style.display = 'block';
+    document.getElementById('form_nuevosuministro').style.display = 'none';
+    document.getElementById('form_reconexion').style.display = 'block';
   }
 </script>
