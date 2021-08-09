@@ -83,7 +83,7 @@ function cerrarVentanas() {
 	}
 }
 
-$.ajax(function () {
+$(function () {
     function initMap() {
         var location = new google.maps.LatLng(-29.603073, -67.083247);
         var mapCanvas = document.getElementById('map');
