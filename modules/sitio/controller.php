@@ -420,6 +420,10 @@ class SitioController {
 		$this->view->ver_frm_nuevosuministroreconexion_inquilino($html);
 	}
 
+	function nnss_reconexion_precario($arg) {
+		$this->view->nnss_reconexion_precario($arg);
+	}
+
 	function guardar_tramite() {
 		$array_gestionescomerciales_online = array(1, 3, 4, 5, 6, 7);
 		$nombre = filter_input(INPUT_POST, 'nombre');
@@ -495,6 +499,8 @@ class SitioController {
 				$tmp_dgcm = new DetalleNuevoSuministroReconexion();
 				$tmp_dgcm->detallenuevosuministroreconexion_id = $detallenuevosuministroreconexion_id;
 				$tmp_dgcm->get();
+				
+				$url = filter_input(INPUT_POST, 'url');
 	      		break;
 			case 5:
 				$tmp_dgcm = New DetalleBajaVoluntaria();

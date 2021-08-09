@@ -44,7 +44,7 @@
                 <div class="contacts__address" id="requisitos" style="display: none;">
                   <address class="contacts__address-item">
                     <div class="col-lg-12">
-                      <span class="contacts__address-title" style="color: #f28c33">NUEVO SUMINISTRO - RECONEXIÓN: PROPIETARIO</span>
+                      <span class="contacts__address-title" style="color: #f28c33">NUEVO SUMINISTRO - RECONEXIÓN: PRECARIO</span>
                       <dl class="contacts__address-column" style="width: 100%;">
                         <dt class="contacts__address-column__title">REQUISITOS:</dt>
                         <dd>Certificado de domicilio o exposición policial o copia de comodato autenticado por Juez de Paz.</dd>
@@ -85,14 +85,6 @@
                         <div class="form-group form-group--col-6 required">
                           <label for="db_telefono" class="control-label">TELÉFONO</label>
                           <input id="db_telefono" type="text" name="telefono"  class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="tipo_persona" class="control-label">TIPO PERSONA</label>
-                          <select id="tipo_persona" data-placeholder="Tipo Persona" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="tipo_persona" required="">
-                            <option value="Física">Física</option>
-                            <option value="Jurídica">Jurídica</option>
-                            <option value="Física precaria">Física precaria</option>
-                          </select>
                         </div>
                         <div class="form-group form-group--col-12 required">
                           <h4>TÉRMINOS Y CONDICIONES</h4>
@@ -144,9 +136,10 @@
                         <div class="form-group form-group--col-12">
                           <input type="hidden" name="tipo_gestion" value="3">
                           <input type="hidden" name="tipo" value="nnss">
-                          <input type="hidden" name="tipo_titularidad" value="Propietario">
+                          <input type="hidden" name="tipo_titularidad" value="Precario">
+                          <input type="hidden" name="tipo_persona" value="Física precaria">
                           <input type="hidden" name="tiempo_baja" value="1">
-                          <input type="hidden" name="url" value="nnss_reconexion_propietario">
+                          <input type="hidden" name="url" value="nnss_reconexion_precario">
                           <button type="submit" class="form__submit">ENVIAR</button>      
                         </div>
                       </div>
@@ -182,14 +175,6 @@
                         <div class="form-group form-group--col-6 required">
                           <label for="dt_telefono" class="control-label">TELÉFONO</label>
                           <input id="dt_telefono" type="text" name="telefono"  class="form-control" required>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="tipo_persona" class="control-label">TIPO PERSONA</label>
-                          <select id="tipo_persona" data-placeholder="Tipo Persona" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="tipo_persona" required="">
-                            <option value="Física">Física</option>
-                            <option value="Jurídica">Jurídica</option>
-                            <option value="Física precaria">Física precaria</option>
-                          </select>
                         </div>
                         <div class="form-group form-group--col-6 required">
                           <label for="db_telefono" class="control-label">TIEMPO DESDE LA BAJA</label>
@@ -234,7 +219,7 @@
                         </div>
                         <div class="form-group form-group--col-6 required">
                           <div class="form-property__upload" style="width: 100%;">
-                            <label for="form-property__upload-title" class="control-label">DOC. QUE AVALE POSESIÓN LEGÍTIMA DEL INMUEBLE</label>
+                            <label for="form-property__upload-title" class="control-label">CERTIFICADO DE ELECTROMECÁNICA MUNICIPAL</label>
                             <div class="form-property__upload-border">
                               <input type="file" class="form-property__upload-btn-choose" name="archivo[]" required>
                             </div>
@@ -246,8 +231,9 @@
                         <div class="form-group form-group--col-12">
                           <input type="hidden" name="tipo_gestion" value="3">
                           <input type="hidden" name="tipo" value="reconexión">
-                          <input type="hidden" name="tipo_titularidad" value="Propietario">
-                          <input type="hidden" name="url" value="nnss_reconexion_propietario">
+                          <input type="hidden" name="tipo_titularidad" value="Precario">
+                          <input type="hidden" name="tipo_persona" value="Física precaria">
+                          <input type="hidden" name="url" value="nnss_reconexion_precario">
                           <button type="submit" class="form__submit">ENVIAR</button>      
                         </div>
                       </div>
