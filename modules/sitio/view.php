@@ -462,7 +462,7 @@ class SitioView extends View {
 	function ver_frm_nuevosuministroreconexion_inquilino($html) {
 		$gui = file_get_contents("static/modules/sitio/{$html}.html");
 		$render = str_replace('{url_app}', URL_APP, $gui);
-		print $gui;
+		print $render;
 	}
 	/* TRAMITES COMERCIALES ************************************************/
 }
