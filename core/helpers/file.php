@@ -3,8 +3,7 @@ $file = (isset($_GET['f'])) ? $_GET['f'] : '';
 $ids = explode("_", $file);
 
 $objeto = $ids[0];
-$propiedad = $ids[1];
-$url = (isset($ids[2])) ? $ids[2] : "";
+$url = (isset($ids[1])) ? $ids[1] : "";
 $archivo = URL_PRIVATE . "{$objeto}/{$url}";
 
 if(file_exists($archivo)) {
