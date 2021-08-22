@@ -2,12 +2,15 @@
 
 
 class SitioView extends View {
-	function home($mantenimientopreventivo_collection) {
+	function home($banner_collection, $mantenimientopreventivo_collection) {
 		$gui = file_get_contents("static/modules/sitio/home.html");
+		$gui_lst_banner = file_get_contents("static/common/lst_banner.html");
+		$gui_lst_banner = $this->render_regex_dict('LST_BANNER', $gui_lst_banner, $banner_collection);
 		$gui_lst_mantenimientopreventivo = file_get_contents("static/common/lst_mantenimientopreventivo.html");
 		$gui_lst_mantenimientopreventivo = $this->render_regex_dict('LST_MANTENIMIENTOPREVENTIVO', $gui_lst_mantenimientopreventivo, $mantenimientopreventivo_collection);
 
 		$render = str_replace('{lst_mantenimientopreventivo}', $gui_lst_mantenimientopreventivo, $gui);
+		$render = str_replace('{lst_banner}', $gui_lst_banner, $render);
 		$template = $this->render_sitio("THEME_HOME", $render);
 		print $template;
 	}
