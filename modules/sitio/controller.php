@@ -655,12 +655,10 @@ class SitioController {
 
 	/* COMMON **************************************************************/
 	function ver_archivo(){
-		SessionHandler()->check_session();
 		require_once "core/helpers/files.php";
 	}
 
 	function ver_archivo_unico(){
-		SessionHandler()->check_session();
 		require_once "core/helpers/file.php";
 	}
 	/* COMMON **************************************************************/
