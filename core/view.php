@@ -17,10 +17,12 @@ abstract class View {
             case 'HOME':
                 # HOME
                 $plantilla = file_get_contents(THEME_HOME_SITIO);
+                $sidebar_movil = file_get_contents(SIDEBAR_SITIO_DEUDA_TURNO_MOVIL);
                 break;
             case 'SECCION':
                 # SECCIÓN
                 $sidebar = file_get_contents(SIDEBAR_SITIO_LOGIN_AUTOGESTION);
+                $sidebar_movil = file_get_contents(SIDEBAR_SITIO_DEUDA_TURNO_MOVIL);
                 $plantilla = file_get_contents(THEME_SECCION_SITIO);
                 break;           
             default:
@@ -41,6 +43,7 @@ abstract class View {
                       "{contenido}"=>$contenido);
         $plantilla = $this->render($dict, $plantilla);
         $plantilla = ($flag_theme == 'SECCION') ? str_replace("{sidebar_login_autogestion}", $sidebar, $plantilla) : $plantilla;
+        $plantilla = str_replace("{sidebar_deuda_turno_movil}", $sidebar_movil, $plantilla);
         $plantilla = str_replace("{url_app}", URL_APP, $plantilla);
         $plantilla = str_replace("{url_static}", URL_STATIC, $plantilla);
         return $plantilla;
