@@ -267,6 +267,12 @@ class SitioView extends View {
 		print $template;
 	}
 
+	function grandes_clientes() {
+		$gui = file_get_contents("static/modules/sitio/grandes_clientes.html");
+		$template = $this->render_sitio("THEME_SECCION", $gui);
+		print $template;
+	}
+
 	function adhesion_debito($tarjetacredito_collection, $msj_alert) {
 		$gui = file_get_contents("static/modules/sitio/adhesion_debito.html");
 		$gui_slt_tarjetacredito = file_get_contents("static/common/slt_tarjetacredito.html");

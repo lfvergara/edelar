@@ -377,6 +377,10 @@ class SitioController {
 		$this->view->tramites_hogares_comercios();
 	}
 
+	function grandes_clientes() {
+		$this->view->grandes_clientes();
+	}
+
 	function adhesion_debito($arg) {
 		$tarjetacredito_collection = Collector()->get('TarjetaCredito');
 		$this->view->adhesion_debito($tarjetacredito_collection, $arg);
