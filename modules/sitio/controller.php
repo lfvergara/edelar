@@ -466,6 +466,26 @@ class SitioController {
 		$gchgcm = New GestionComercialHistoricoGestionComercial($gcm);
 		$gchgcm->save();
 
+		Object::set('OV_GestionHistorico');
+		$gestionhistorico = New OV_GestionHistorico();
+		$gestionhistorico->fecha = date('Y-m-d');
+		$gestionhistorico->hora = date('h:i:s');
+		$gestionhistorico->ov_estadogestion = 1;
+
+		Object::set('OV_Gestion');
+		$gestion = New OV_Gestion();
+		$gestion->suministro = $nis;
+		$gestion->fecha = date('Y-m-d');
+		$gestion->dni = $dni;
+		$gestion->nombre = $nombre;
+		$gestion->apellido = $apellido;
+		$gestion->correoelectronico = $correo;
+		$gestion->telefono = $telefono;
+		$gestion->ov_tipogestion = $tipo_gestion;
+		$gestion->ov_gestionhistorico_collection = array();
+		$gestion->ov_gestionhistorico_collection[] = $gestionhistorico;
+		$gestion->archivo_collection = array();
+
 		switch ($tipo_gestion) {
 			case 1:
 				$tmp_dgcm = New DetalleAdhesionFacturaDigital();
@@ -484,6 +504,16 @@ class SitioController {
 				$tmp_dgcm = new DetalleAdhesionFacturaDigital();
 				$tmp_dgcm->detalleadhesionfacturadigital_id = $detalleadhesionfacturadigital_id;
 				$tmp_dgcm->get();
+
+				Object::set('OV_DetalleGestionAdhesion');
+				$tipogestion = new OV_DetalleGestionAdhesion();
+				$tipogestion->numero_tramite = $gestioncomercial_id;
+				$tipogestion->termino_condiciones = filter_input(INPUT_POST, 'termino_condiciones');
+				$tipogestion->fecha_termino_condiciones = date('Y-m-d h:i:s');
+				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
+				$tipogestion->so = $_SERVER['HTTP_USER_AGENT'];
+				$tipogestion->tipo = filter_input(INPUT_POST, 'tipo');
+				$tipogestion->ov_gestion = $gestion;
 
 				$url = 'adhesion_facturadigital';
 				break;
@@ -644,9 +674,11 @@ class SitioController {
 			}
 
   	  		$tmp_dgcm->gestioncomercial->archivos_collection = $tmp_array;
+  	  		$tipogestion->ov_gestion->archivo_collection = $tmp_array;
 	 	}
 
-	 	$argumento = json_encode($tmp_dgcm);
+	 	$argumento = json_encode($tipogestion);
+	 	print_r($argumento);exit;
 		if (in_array($tipo_gestion, $array_gestionescomerciales_online)) {
 	 		//$resultado = sincroniza_geco_tramite($argumento);	 		
 	 	} else {
