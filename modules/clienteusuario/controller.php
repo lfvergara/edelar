@@ -52,7 +52,7 @@ class ClienteUsuarioController {
 		//$result = $client->__getFunctions();
 		$result = $client->__soapCall("obtenerPreguntas", $array);
 		
-		print_r($client);exit;
+		print_r($result);exit;
 
 		/*
 		$client = new nusoap_client($wsdl,'wsdl');
