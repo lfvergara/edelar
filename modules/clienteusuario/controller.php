@@ -29,7 +29,7 @@ class ClienteUsuarioController {
 
 	function p2_signup_cliente() {
 		$documento = filter_input(INPUT_POST, 'documento');
-		print_r($documento);exit;
+		print_r($_SESSION["array_registro"]);exit;
 		//FIXME - Integrar API Veraz para generar bandera de documento
 		$flag_dni = true;
 
