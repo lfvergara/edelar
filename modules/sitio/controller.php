@@ -467,14 +467,14 @@ class SitioController {
 		$gchgcm->save();
 
 		eval("class OV_GestionHistorico {};");
-		Object::set('OV_GestionHistorico');
+		//Object::set('OV_GestionHistorico');
 		$gestionhistorico = New OV_GestionHistorico();
 		$gestionhistorico->fecha = date('Y-m-d');
 		$gestionhistorico->hora = date('h:i:s');
 		$gestionhistorico->ov_estadogestion = 1;
 
 		eval("class OV_Gestion {};");
-		Object::set('OV_Gestion');
+		//Object::set('OV_Gestion');
 		$gestion = New OV_Gestion();
 		$gestion->suministro = $nis;
 		$gestion->fecha = date('Y-m-d');
@@ -508,7 +508,7 @@ class SitioController {
 				$tmp_dgcm->get();
 
 				eval("class OV_DetalleGestionAdhesion {};");
-				Object::set('OV_DetalleGestionAdhesion');
+				//Object::set('OV_DetalleGestionAdhesion');
 				$tipogestion = new OV_DetalleGestionAdhesion();
 				$tipogestion->numero_tramite = $gestioncomercial_id;
 				$tipogestion->termino_condiciones = filter_input(INPUT_POST, 'termino_condiciones');
