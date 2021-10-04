@@ -467,14 +467,12 @@ class SitioController {
 		$gchgcm->save();
 
 		eval("class OV_GestionHistorico {};");
-		//Object::set('OV_GestionHistorico');
 		$gestionhistorico = New OV_GestionHistorico();
 		$gestionhistorico->fecha = date('Y-m-d');
 		$gestionhistorico->hora = date('h:i:s');
 		$gestionhistorico->ov_estadogestion = 1;
 
 		eval("class OV_Gestion {};");
-		//Object::set('OV_Gestion');
 		$gestion = New OV_Gestion();
 		$gestion->suministro = $nis;
 		$gestion->fecha = date('Y-m-d');
@@ -507,8 +505,8 @@ class SitioController {
 				$tmp_dgcm->detalleadhesionfacturadigital_id = $detalleadhesionfacturadigital_id;
 				$tmp_dgcm->get();
 
+				// PARA WS
 				eval("class OV_DetalleGestionAdhesion {};");
-				//Object::set('OV_DetalleGestionAdhesion');
 				$tipogestion = new OV_DetalleGestionAdhesion();
 				$tipogestion->numero_tramite = $gestioncomercial_id;
 				$tipogestion->termino_condiciones = filter_input(INPUT_POST, 'termino_condiciones');
@@ -517,6 +515,7 @@ class SitioController {
 				$tipogestion->so = $_SERVER['HTTP_USER_AGENT'];
 				$tipogestion->tipo = filter_input(INPUT_POST, 'tipo');
 				$tipogestion->ov_gestion = $gestion;
+				// PARA WS
 
 				$url = 'adhesion_facturadigital';
 				break;
@@ -542,6 +541,20 @@ class SitioController {
 				$tmp_dgcm->detallenuevosuministroreconexion_id = $detallenuevosuministroreconexion_id;
 				$tmp_dgcm->get();
 				
+				// PARA WS
+				eval("class OV_DetalleGestionNuevoSuministro {};");
+				$tipogestion = New OV_DetalleGestionNuevoSuministro();
+				$tipogestion->numero_tramite = $gestioncomercial_id;
+				$tipogestion->nis_vecino = $nis;
+				$tipogestion->termino_condiciones = filter_input(INPUT_POST, 'termino_condiciones');
+				$tipogestion->fecha_termino_condiciones = date('Y-m-d h:i:s');
+				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
+				$tipogestion->so = $_SERVER['HTTP_USER_AGENT'];
+				$tipogestion->tipo = filter_input(INPUT_POST, 'tipo');
+				$tipogestion->tipo_titularidad = filter_input(INPUT_POST, 'tipo_titularidad');
+				$tipogestion->ov_gestion = $gestion;
+				// PARA WS
+
 				$url = filter_input(INPUT_POST, 'url');
 	      		break;
 			case 5:
@@ -562,6 +575,19 @@ class SitioController {
 				$tmp_dgcm->detallebajavoluntaria_id = $detallebajavoluntaria_id;
 				$tmp_dgcm->get();
 
+				// PARA WS
+				eval("class OV_DetalleBajaVoluntaria {};");
+				$tipogestion = New OV_DetalleBajaVoluntaria();
+				$tipogestion->numero_tramite = $gestioncomercial_id;
+				$tipogestion->termino_condiciones = 0;
+				$tipogestion->fecha_termino_condiciones = date('Y-m-d h:i:s');
+				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
+				$tipogestion->so = $_SERVER['HTTP_USER_AGENT'];
+				$tipogestion->tipo_propietario = filter_input(INPUT_POST, 'tipo_propietario');
+				$tipogestion->detalle = 'Gestión comercial online: Baja Voluntaria.';
+				$tipogestion->ov_gestion = $gestion;
+				// PARA WS
+
 				$url = 'baja_voluntaria';
 				break;
 			case 6:
@@ -581,6 +607,18 @@ class SitioController {
 				$tmp_dgcm = new DetalleCambioVencimientoJubilado();
 				$tmp_dgcm->detallecambiovencimientojubilado_id = $detallecambiovencimientojubilado_id;
 				$tmp_dgcm->get();
+
+				// PARA WS
+				eval("class OV_DetalleGestionCambioVencimientoJubilado {};");
+				$tipogestion = New OV_DetalleGestionCambioVencimientoJubilado();
+				$tipogestion->numero_tramite = $gestioncomercial_id;
+				$tipogestion->dia_vencimiento = filter_input(INPUT_POST, 'fecha');
+				$tipogestion->termino_condiciones = filter_input(INPUT_POST, 'termino_condiciones');
+				$tipogestion->fecha_termino_condiciones = date('Y-m-d h:i:s');
+				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
+				$tipogestion->so = $_SERVER['HTTP_USER_AGENT'];
+				$tipogestion->ov_gestion = $gestion;
+				// PARA WS
 
 				$url = 'cambio_vencimiento_jubilados';
 				break;
@@ -615,6 +653,36 @@ class SitioController {
 				$tmp_dgcm = new DetalleAdhesionDebito();
 				$tmp_dgcm->detalleadhesiondebito_id = $detalleadhesiondebito_id;
 				$tmp_dgcm->get();
+
+				// PARA WS
+				$tcm = new TarjetaCredito();
+				$tcm->tarjetacredito_id = filter_input(INPUT_POST, 'dt_tarjetacredito');
+				$tcm->get();
+
+				eval("class OV_Tarjeta {};");
+				$tarjetacredito = new OV_Tarjeta();
+				$tarjetacredito->ov_tarjeta_id = filter_input(INPUT_POST, 'dt_tarjetacredito');
+				$tarjetacredito->denominacion = $tcm->denominacion;
+
+				eval("class OV_DetalleTarjetaDebito {};");
+				$tarjeta = New OV_DetalleTarjetaDebito();
+				$tarjeta->denominacion =  filter_input(INPUT_POST, 'db_institucion_financiera');
+				$tarjeta->denominacion_titular =  filter_input(INPUT_POST, 'titular');
+				$tarjeta->num_cbu =  filter_input(INPUT_POST, 'cbu');
+				$tarjeta->num_tarjeta = filter_input(INPUT_POST, 'dt_numero_tarjeta');
+				$fecha_vencimiento = filter_input(INPUT_POST, 'dt_vencimiento_tarjeta');
+				$fecha_vencimiento = (is_null($fecha_vencimiento)) ? date('Y-m-d') : $fecha_vencimiento . "-01";
+				$tarjeta->fecha_vencimiento =  $fecha_vencimiento;
+				$tarjeta->ov_tarjeta =  $tarjetacredito;
+
+				eval("class OV_DetalleAdhesionDebito {};");
+				$ovdgam->numero_tramite = $gestioncomercial_id;
+				$ovdgam->termino_condiciones = filter_input(INPUT_POST, 'termino_condiciones');
+				$ovdgam->fecha_termino_condiciones = date('Y-m-d h:i:s');
+				$ovdgam->ip = $_SERVER['REMOTE_ADDR'];
+				$ovdgam->so = $_SERVER['HTTP_USER_AGENT'];
+				$ovdgam->ov_gestion = $gestion;
+				$ovdgam->ov_detalletarjetadebito = $tarjeta;
 
 				$url = 'adhesion_debito';
 				break;
@@ -680,7 +748,6 @@ class SitioController {
   	  		$tipogestion->ov_gestion->archivo_collection = $tmp_array;
 	 	}
 
-	 	print_r($tipogestion);exit;
 	 	$argumento = json_encode($tipogestion);
 		if (in_array($tipo_gestion, $array_gestionescomerciales_online)) {
 	 		//$resultado = sincroniza_geco_tramite($argumento);	 		
