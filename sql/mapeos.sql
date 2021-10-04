@@ -144,13 +144,44 @@ VALUES (1, 'admin', 3, 1);
 /* ******************************************************************************************** */
 
 /* NEW DESA************************************************************************************ */
+CREATE TABLE IF NOT EXISTS clienteusuarioregistro (
+    clienteusuarioregistro_id INT(11) NOT NULL
+        AUTO_INCREMENT PRIMARY KEY
+    , fecha_registro DATE
+    , fecha_activacion DATE
+    , token_activacion TEXT
+    , proveedor TEXT
+    , uid TEXT
+) ENGINE=InnoDb;
 
+CREATE TABLE IF NOT EXISTS clienteusuariodetalle (
+    clienteusuariodetalle_id INT(11) NOT NULL
+        AUTO_INCREMENT PRIMARY KEY
+    , apellido TEXT
+    , nombre TEXT
+    , documento INT(8)
+    , telefono BIGINT(15)
+) ENGINE=InnoDb;
+
+CREATE TABLE IF NOT EXISTS clienteusuario (
+    clienteusuario_id INT(11) NOT NULL
+        AUTO_INCREMENT PRIMARY KEY
+    , denominacion VARCHAR(150)
+    , token VARCHAR(150)
+    , clienteusuariodetalle INT(11)
+    , INDEX (clienteusuariodetalle)
+    , FOREIGN KEY (clienteusuariodetalle)
+        REFERENCES clienteusuariodetalle (clienteusuariodetalle_id)
+        ON DELETE CASCADE
+    , clienteusuarioregistro INT(11)
+    , INDEX (clienteusuarioregistro)
+    , FOREIGN KEY (clienteusuarioregistro)
+        REFERENCES clienteusuarioregistro (clienteusuarioregistro_id)
+        ON DELETE CASCADE
+) ENGINE=InnoDb;
 
 
 /* NEW DESA************************************************************************************ */
-
-
-
 
 CREATE TABLE IF NOT EXISTS unicom (
     unicom_id INT(11) NOT NULL
@@ -175,27 +206,9 @@ CREATE TABLE IF NOT EXISTS cliente (
     , telefono5 BIGINT(13)
 ) ENGINE=InnoDb;
 
-CREATE TABLE IF NOT EXISTS clienteusuariodetalle (
-    clienteusuariodetalle_id INT(11) NOT NULL
-        AUTO_INCREMENT PRIMARY KEY
-    , token TEXT
-    , fecha_inscripcion DATE
-    , fecha_activacion DATE
-    , encuesta INT(1)
-    , validacion INT(1)
-    , cliente_id BIGINT(15)
-) ENGINE=InnoDb;
 
-CREATE TABLE IF NOT EXISTS clienteusuario (
-    clienteusuario_id INT(11) NOT NULL
-        AUTO_INCREMENT PRIMARY KEY
-    , denominacion VARCHAR(150)
-    , clienteusuariodetalle INT(11)
-    , INDEX (clienteusuariodetalle)
-    , FOREIGN KEY (clienteusuariodetalle)
-        REFERENCES clienteusuariodetalle (clienteusuariodetalle_id)
-        ON DELETE CASCADE
-) ENGINE=InnoDb;
+
+
 
 CREATE TABLE IF NOT EXISTS cuenta (
     cuenta_id BIGINT(15) NOT NULL

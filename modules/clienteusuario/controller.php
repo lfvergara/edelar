@@ -14,16 +14,14 @@ class ClienteUsuarioController {
 	function p1_signup_cliente() {
 		require_once 'core/helpers/user.cliente.php';
 		$correoelectronico = strtolower(trim(filter_input(INPUT_POST, 'correoelectronico')));
-		$contrasena = filter_input(INPUT_POST, 'contrasena');
-		$action = filter_input(INPUT_POST, 'action');
-		$recaptcha_response = filter_input(INPUT_POST, 'recaptcha_response'); 
+		$dni = filter_input(INPUT_POST, 'dni');
 				
 	    $clienteusuario_id = ClientUser::verificar_correoelectronico($correoelectronico);
 		print_r($clienteusuario_id);exit;
 	    if ($clienteusuario_id > 0) {
 	    	$metodo_registro = ClientUser::verificar_metodo_registro($correoelectronico);
 	    } else {
-            $array_registro = array('correoelectronico'=>$correoelectronico, 'contrasena'=>$contrasena, 'estado'=>'incompleto');
+            $array_registro = array('correoelectronico'=>$correoelectronico, 'dni'=>$dni);
 	    	$_SESSION["array_registro"] = $array_registro;
 	    	header("Location: " . URL_APP . "/sitio/p2_signup_cliente");
 	    }
@@ -31,7 +29,7 @@ class ClienteUsuarioController {
 
 	function p2_signup_cliente() {
 		$documento = filter_input(INPUT_POST, 'documento');
-		
+		print_r($documento);exit;
 		//FIXME - Integrar API Veraz para generar bandera de documento
 		$flag_dni = true;
 
