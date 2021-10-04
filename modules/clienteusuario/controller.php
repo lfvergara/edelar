@@ -14,10 +14,9 @@ class ClienteUsuarioController {
 	function p1_signup_cliente() {
 		require_once 'core/helpers/user.cliente.php';
 		$correoelectronico = strtolower(trim(filter_input(INPUT_POST, 'correoelectronico')));
-		$dni = filter_input(INPUT_POST, 'dni');
+		$dni = filter_input(INPUT_POST, 'documento');
 				
 	    $clienteusuario_id = ClientUser::verificar_correoelectronico($correoelectronico);
-		print_r($clienteusuario_id);exit;
 	    if ($clienteusuario_id > 0) {
 	    	$metodo_registro = ClientUser::verificar_metodo_registro($correoelectronico);
 	    } else {
