@@ -35,22 +35,22 @@ class ClienteUsuarioController {
 		$password = "A238F615267903CD125674A450CF1C09";
 		$sector = "ID";
 		$sucursal = 0;
-		$documentNumber = $documento;
+		$documentNumber = 32588905;
 		$gender = "M";
 		$questionary = 0;
 
-		$array = array('matrix'=>$matrix,
-					   'user'=>$user,
-					   'password'=>$password,
-					   'sector'=>$sector,
-					   'sucursal'=>$sucursal,
-					   'documentNumber'=>$documentNumber,
-					   'gender'=>$gender,
-					   'questionary'=>$questionary);
+		$array = array("matrix"=>$matrix,
+					   "user"=>$user,
+					   "password"=>$password,
+					   "sector"=>$sector,
+					   "sucursal"=>$sucursal,
+					   "documentNumber"=>$documentNumber,
+					   "gender"=>$gender,
+					   "questionary"=>$questionary);
 
 		$client = new SoapClient("https://online.org.veraz.com.ar/WsIDValidator/services/idvalidator?wsdl");
 		//$result = $client->__getFunctions();
-		$result = $client->__soapCall("obtenerPreguntasResponse", $array);
+		$result = $client->__soapCall("obtenerPreguntas", $array);
 		
 		print_r($client);exit;
 
