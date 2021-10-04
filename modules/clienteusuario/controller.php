@@ -22,7 +22,7 @@ class ClienteUsuarioController {
 	    } else {
             $array_registro = array('correoelectronico'=>$correoelectronico, 'dni'=>$dni);
 	    	$_SESSION["array_registro"] = $array_registro;
-	    	header("Location: " . URL_APP . "/sitio/p2_signup_cliente");
+	    	header("Location: " . URL_APP . "/clienteusuario/p2_signup_cliente");
 	    }
 	}
 
