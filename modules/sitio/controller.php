@@ -680,8 +680,8 @@ class SitioController {
   	  		$tipogestion->ov_gestion->archivo_collection = $tmp_array;
 	 	}
 
+	 	print_r($tipogestion);exit;
 	 	$argumento = json_encode($tipogestion);
-	 	print_r($argumento);exit;
 		if (in_array($tipo_gestion, $array_gestionescomerciales_online)) {
 	 		//$resultado = sincroniza_geco_tramite($argumento);	 		
 	 	} else {
