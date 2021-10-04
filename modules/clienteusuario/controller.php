@@ -50,7 +50,8 @@ class ClienteUsuarioController {
 
 		$client = new SoapClient("https://online.org.veraz.com.ar/WsIDValidator/services/idvalidator?wsdl");
 		$result = $client->__soapCall("obtenerPreguntas", $array);
-		print_r($client->__getLastRequest());exit;
+		$last = $client->__getLastRequest();
+		print_r($last);exit;
 
 		/*
 		$client = new nusoap_client($wsdl,'wsdl');
