@@ -34,7 +34,7 @@ class ClienteUsuarioController {
 		$user = "ID3_XML";
 		$password = "A238F615267903CD125674A450CF1C09";
 		$sector = "ID";
-		$sucursal = "0";
+		$sucursal = 0;
 		$documentNumber = $documento;
 		$gender = "M";
 		$questionary = 0;
