@@ -39,14 +39,14 @@ class ClienteUsuarioController {
 		$gender = "M";
 		$questionary = 0;
 
-		$array = array('matrix'=>$matrix,
-					   'user'=>$user,
-					   'password'=>$password,
-					   'sector'=>$sector,
-					   'sucursal'=>$sucursal,
-					   'documentNumber'=>$documentNumber,
-					   'gender'=>$gender,
-					   'questionary'=>$questionary);
+		$array = array('web:matrix'=>$matrix,
+					   'web:user'=>$user,
+					   'web:password'=>$password,
+					   'web:sector'=>$sector,
+					   'web:sucursal'=>$sucursal,
+					   'web:documentNumber'=>$documentNumber,
+					   'web:gender'=>$gender,
+					   'web:questionary'=>$questionary);
 
 		$client = new SoapClient("https://online.org.veraz.com.ar/WsIDValidator/services/idvalidator?wsdl");
 		$result = $client->__soapCall("obtenerPreguntas", $array);
