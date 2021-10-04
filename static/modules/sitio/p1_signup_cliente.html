@@ -1,7 +1,7 @@
-<script src='https://www.google.com/recaptcha/api.js?render=6LfHQs8UAAAAAGkEGsygOS6jGhTDAThjRRzRMeLm'></script>
+<script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
 <div class="center">
     <div class="container">
-        <form action='{url_app}/clienteusuario/p2_signup_cliente' class="form form--flex form--auth js-register-form js-parsley" novalidate="" method="post">
+        <form action='{url_app}/clienteusuario/p1_signup_cliente' class="form form--flex form--auth js-register-form js-parsley" novalidate="" method="post">
             <div class="row">
                 <div class="form-group form-group--col-12">
                     <label for="correoelectronico" class="control-label">Correo Electrónico</label>
@@ -10,6 +10,11 @@
                 <div class="form-group form-group--col-12">
                     <label for="contrasena" class="control-label">Contraseña</label>
                     <input type="password" name="contrasena" id="contrasena" required="" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group form-group--col-12">
+                    <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
                 </div>
             </div>
             <div class="row">
