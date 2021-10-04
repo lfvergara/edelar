@@ -22,12 +22,11 @@ class ClienteUsuarioController {
 	    } else {
             $array_registro = array('correoelectronico'=>$correoelectronico, 'dni'=>$dni);
 	    	$_SESSION["array_registro"] = $array_registro;
-	    	header("Location: " . URL_APP . "/clienteusuario/p2_signup_cliente");
+	    	header("Location: " . URL_APP . "/sitio/p2_signup_cliente");
 	    }
 	}
 
 	function p2_signup_cliente() {
-		print_r($_SESSION["array_registro"]);exit;
 		$documento = filter_input(INPUT_POST, 'documento');
 		//FIXME - Integrar API Veraz para generar bandera de documento
 		$flag_dni = true;
