@@ -13,7 +13,7 @@ class ClienteUsuarioController {
 
 	function p1_signup_cliente() {
 		require_once 'core/helpers/user.cliente.php';
-
+		print_r($_POST);exit;
 		$correoelectronico = strtolower(trim(filter_input(INPUT_POST, 'correoelectronico')));
 		$contrasena = filter_input(INPUT_POST, 'contrasena');
 		$action = filter_input(INPUT_POST, 'action');
