@@ -57,43 +57,37 @@
               <div class="col-lg-12">
                 <div class="contacts__form">                        
                   <form action="{url_app}/sitio/#" method="POST" class="form form--flex js-contact-form form--contacts" enctype="multipart/form-data">
-                    
-                      <div class="row">
-                        <div class="form-group form-group--col-6 required">
-                          <label for="documento" class="control-label">DOCUMENTO</label>
-                          <input id="documento" type="number" name="documento" class="form-control" required>
-                          <small>* Sin puntos</small>
-                        </div>
+                    <div class="row">
+                      <div class="form-group form-group--col-6 required">
+                        <label for="documento" class="control-label">DOCUMENTO</label>
+                        <input id="documento" type="number" name="documento" class="form-control" required>
+                        <small>* Sin puntos</small>
                       </div>
-                      
-                      <div class="row" id="turnos" style="display: none;"></div>
-
-                      <div class="row" id="contenido" style="display: ;">
-
-                        <div class="form-group form-group--col-6 required">
-                          <label for="telefono" class="control-label">Teléfono *</label>
-                          <input id="telefono" type="text" name="telefono" class="form-control" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" required>
-                          <small>* Ingrese el código de área y 15 en celulares. Ej: <b>0380154455678</b></small>
-                        </div>
-
-                        <div class="form-group form-group--col-6 required">
-                          <label for="correoelectronico" class="control-label">Correo *</label>
-                          <input id="correoelectronico" type="email" name="correoelectronico" class="form-control" onchange="validacionCorreoElectronico();" required>
-                          <small>* Ingrese el código de área y 15 en celulares. Ej: <b>0380154455678</b></small>
-                        </div>
-
-                        <div class="form-group form-group--col-6 required">
-                          <label for="unicom" class="control-label">* Localidad</label>
-                          <select id="unicom" data-placeholder="Localidad" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="unicom" id="tramitesForm_select" required="">
-                            {slt_unicom}
-                          </select>                          
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="tramitesForm_defaultReal" class="control-label">* Trámite</label>
-                          <select id="tramitesForm_defaultReal" data-placeholder="Trámite" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="gestion" id="tramitesForm_defaultReal" onchange="obtenerRequisitos();" required="">
-                            {slt_tramite}
-                          </select>                          
-                        </div>
+                    </div>
+                    <div class="row" id="turnos" style="display: none;"></div>
+                    <div class="row" id="contenido" style="display: none;">
+                      <div class="form-group form-group--col-6 required">
+                        <label for="telefono" class="control-label">Teléfono *</label>
+                        <input id="telefono" type="text" name="telefono" class="form-control" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" required>
+                        <small>* Ingrese el código de área y 15 en celulares. Ej: <b>0380154455678</b></small>
+                      </div>
+                      <div class="form-group form-group--col-6 required">
+                        <label for="correoelectronico" class="control-label">Correo *</label>
+                        <input id="correoelectronico" type="email" name="correoelectronico" class="form-control" onchange="validacionCorreoElectronico();" required>
+                        <small>* Ingrese el código de área y 15 en celulares. Ej: <b>0380154455678</b></small>
+                      </div>
+                      <div class="form-group form-group--col-6 required">
+                        <label for="unicom" class="control-label">* Localidad</label>
+                        <select id="unicom" data-placeholder="Localidad" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="unicom" id="tramitesForm_select" required="">
+                          {slt_unicom}
+                        </select>                          
+                      </div>
+                      <div class="form-group form-group--col-6 required">
+                        <label for="tramitesForm_defaultReal" class="control-label">* Trámite</label>
+                        <select id="tramitesForm_defaultReal" data-placeholder="Trámite" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="gestion" id="tramitesForm_defaultReal" onchange="obtenerRequisitos();" required="">
+                          {slt_tramite}
+                        </select>                          
+                      </div>
                         <div class="form-group form-group--col-12" style="display: none;" id="contenidoGestionOnline">
                           <h3 style="background-color: rgba(209,70,65,0.9);font-size: 12px;border-bottom: 0px;">
                             Estimado cliente la gestion seleccionada puede ser realizada de manera online &nbsp;<a  target="_blank" href="" id="urlgestion">Realizar Gestión</a>
