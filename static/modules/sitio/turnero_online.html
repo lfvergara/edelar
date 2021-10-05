@@ -153,6 +153,7 @@
 
   let timeout
   documento.addEventListener('keydown', () => {
+    console.log('Hola');
     clearTimeout(timeout)
     timeout = setTimeout(() => {
       if(documento.value.length < 6 || documento.value.length > 8) {
