@@ -800,7 +800,7 @@ class SitioController {
 		$tm = new Tramite();
 		$tm->tramite_id = $arg;
 		$tm->get();
-		$this->view->gestion_requisitos($tm);
+		$this->view->gestiones_requisitos($tm);
 	}
 
 	function horas_disponibles($arg){

@@ -534,7 +534,7 @@ class SitioView extends View {
 		print $render;
 	}
 
-	function gestion_requisitos($obj_tramite) {
+	function gestiones_requisitos($obj_tramite) {
 		print_r($obj_tramite);exit;
 		/*
 		$gui_slt_requisitos = file_get_contents("static/common/lst_requisitos.html");
