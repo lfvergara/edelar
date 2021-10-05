@@ -263,9 +263,9 @@ class SitioView extends View {
 	/* TRAMITES COMERCIALES ************************************************/
 	function turnero($unicom_collection, $tramite_collection) {
 		$gui = file_get_contents("static/modules/sitio/turnero_online.html");
-		$gui_slt_unicom = file_get_contents("static/common/slt_unicom");
+		$gui_slt_unicom = file_get_contents("static/common/slt_unicom.html");
 		$gui_slt_unicom = $this->render_regex('SLT_UNICOM', $gui_slt_unicom, $unicom_collection);
-		$gui_slt_tramite = file_get_contents("static/common/slt_tramite");
+		$gui_slt_tramite = file_get_contents("static/common/slt_tramite.html");
 		$gui_slt_tramite = $this->render_regex('SLT_TRAMITE', $gui_slt_tramite, $tramite_collection);
 
 		$render = str_replace('{slt_unicom}', $gui_slt_unicom, $gui);
