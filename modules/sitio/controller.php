@@ -14,6 +14,7 @@ require_once "modules/detalleadhesionfacturadigital/model.php";
 require_once "modules/detallecambiovencimientojubilado/model.php";
 require_once "modules/detallebajavoluntaria/model.php";
 require_once "modules/detallenuevosuministroreconexion/model.php";
+require_once "modules/oficina/model.php";
 require_once "modules/turnopendiente/model.php";
 require_once "modules/configuracionturnero/model.php";
 require_once "modules/rangoturnero/model.php";
