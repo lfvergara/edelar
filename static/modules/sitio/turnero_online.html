@@ -214,7 +214,7 @@
     }).responseText;
 
     if (data == 0) {
-      contenido.style.display = 'inline-block';
+      contenido.style.display = 'block';
       slt_turnos.style.display = 'none';
     } else {
       slt_turnos.style.display = 'block';
@@ -239,7 +239,7 @@
       msj_error.innerHTML  = "";
       div_error.style.display = 'none';
       div_notify_error.style.display = 'none';
-      contenido.style.display = 'inline-block';
+      contenido.style.display = 'block';
       slt_dias.innerHTML  = data;
     }
   }
