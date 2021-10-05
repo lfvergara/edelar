@@ -519,7 +519,7 @@ class SitioView extends View {
 		print $template;
 	}
 	/* TRAMITES COMERCIALES ************************************************/
-}
+
 	/* COMMON **************************************************************/
 	function turnos_documento($turnopendiente_collection) {
 		$gui_slt_turnos = file_get_contents("static/common/slt_turnos.html");
@@ -574,4 +574,5 @@ class SitioView extends View {
 		print $gui_slt_no_dias_disponibles;
 	}
 	/* COMMON **************************************************************/
+}
 ?>
