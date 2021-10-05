@@ -1137,7 +1137,6 @@ class SitioController {
 	}
 
 	function mensaje_turno($arg){
-		print_r('Hola');exit;
 		$this->view->mensaje_turno($arg);
 	}
 	/* TURNERO**************************************************************/
