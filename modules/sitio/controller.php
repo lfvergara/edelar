@@ -797,9 +797,10 @@ class SitioController {
 	}
 
 	function gestion_requisitos($arg) {
-		$tm = New Tramite();
+		$tm = new Tramite();
 		$tm->tramite_id = $arg;
 		$tm->get();
+		print_r($tm);exit;
  		$this->view->gestion_requisitos($tm);
 	}
 
