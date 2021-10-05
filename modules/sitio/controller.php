@@ -1019,7 +1019,6 @@ class SitioController {
 			$mensaje ="Seleccione una Fecha Disponible. Vuelva a intentarlo. Gracias";
 			$this->mensaje_turno($mensaje);
 		} elseif (is_null($turno) OR empty($turno) OR $turno == 0) {
-			print_r($_POST);exit;
 			$mensaje ="Seleccione un Horario Disponible. Vuelva a intentarlo. Gracias";
 			$this->mensaje_turno($mensaje);
 		} elseif (is_null($gestion_id) OR empty($gestion_id) OR $gestion_id == 0) {
@@ -1138,6 +1137,7 @@ class SitioController {
 	}
 
 	function mensaje_turno($arg){
+		print_r($_POST);exit;
 		$this->view->mensaje_turno($arg);
 	}
 	/* TURNERO**************************************************************/
