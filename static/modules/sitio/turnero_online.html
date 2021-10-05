@@ -42,13 +42,13 @@
           </h2>
         </header>
         <div class="widget__content">          
-          <div class="alert ui-pnotify-container alert-{class_commit} ui-pnotify-shadow" style="display: {display_commit}">
+          <div class="alert ui-pnotify-container alert-danger ui-pnotify-shadow" id="div_error" style="display: none;">
             <h4 class="ui-pnotify-title">
               <svg class="notify-icon">
-                <use xlink:href="#icon-{icon_commit}"></use>
-              </svg>{msj_commit}
+                <use xlink:href="#icon-check"></use>
+              </svg><font id="msj_error"></font>
             </h4>
-            <div style="display: none;" class="ui-pnotify-text"></div>
+            <div style="display: none;" id="div_notify_error" class="ui-pnotify-text"></div>
           </div>          
         </div>
         <div class="widget__content">
@@ -58,18 +58,60 @@
                 <div class="contacts__form">                        
                   <form action="{url_app}/sitio/#" method="POST" class="form form--flex js-contact-form form--contacts" enctype="multipart/form-data">
                     <div class="row">
-                      <div class="form-group form-group--col-6 required">
-                        <label for="documento" class="control-label">DOCUMENTO</label>
-                        <input id="documento" type="text" name="documento" class="form-control" required><
-                        <small>*Sin puntos</small>
+                      <div class="col-lg-12">
+                        <div class="form-group form-group--col-6 required">
+                          <label for="documento" class="control-label">DOCUMENTO *</label>
+                          <input id="documento" type="number" name="documento" class="form-control" required>
+                          <small>* *Sin puntos</small>
+                        </div>
                       </div>
-                      
-                      <div class="form-group form-group--col-6 required">
-                        <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <button type="submit" class="form__submit">ENVIAR</button>      
+                      <div class="form-group form-group--col-12 required" id="turnos" style="display: none;"></div>
+                      <div class="col-lg-12" id="contenido" style="display: none;">
+                        <div class="form-group form-group--col-6 required">
+                          <label for="telefono" class="control-label">Teléfono *</label>
+                          <input id="telefono" type="text" name="telefono" class="form-control" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" required>
+                          <small>* Ingrese el código de área y 15 en celulares. Ej: <b>0380154455678</b></small>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="correoelectronico" class="control-label">Correo *</label>
+                          <input id="correoelectronico" type="email" name="correoelectronico" class="form-control" onchange="validacionCorreoElectronico();" required>
+                          <small>* Ingrese el código de área y 15 en celulares. Ej: <b>0380154455678</b></small>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="unicom" class="control-label">* Localidad</label>
+                          <select id="unicom" data-placeholder="Localidad" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="unicom" id="tramitesForm_select" required="">
+                            {slt_unicom}
+                          </select>                          
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="tramitesForm_defaultReal" class="control-label">* Trámite</label>
+                          <select id="tramitesForm_defaultReal" data-placeholder="Trámite" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="gestion" id="tramitesForm_defaultReal" onchange="obtenerRequisitos();" required="">
+                            {slt_tramite}
+                          </select>                          
+                        </div>
+                        <div class="form-group form-group--col-12" style="display: none;" id="contenidoGestionOnline">
+                          <h3 style="background-color: rgba(209,70,65,0.9);font-size: 12px;border-bottom: 0px;">
+                            Estimado cliente la gestion seleccionada puede ser realizada de manera online &nbsp;<a  target="_blank" href="" id="urlgestion">Realizar Gestión</a>
+                          </h3>
+                        </div>
+                        <div class="form-group form-group--col-12" id="requisitos" style="display: none;"></div>
+                        <div class="form-group form-group--col-12" id="contenido2" style="display: none;">
+                          <label style="font-size: 15px;">Dias Disponibles *:</label>
+                          <div id="dias"></div>
+                        </div>
+                        <div class="form-group form-group--col-12" id="contenido3" style="display: none;">
+                          <div class="form-group form-group--col-12">
+                            <label style="font-size: 15px;">Horarios Disponibles *:</label><br>
+                            <div id="horas"></div>
+                          </div>  
+                          <div class="form-group form-group--col-12 required">
+                            <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
+                          </div>
+                          <div class="form-group form-group--col-12 required">
+                            <button type="button" onclick="confirma_formulario();" id="btnEnviar" name="btnEnviar" class="form__submit">ENVIAR</button>      
+                          </div>
+                        </div>
+                      </div>                      
                     </div>
                   </form>
                 </div>
@@ -90,3 +132,201 @@
 <div class="row hidden-lg hidden-md">  
   {sidebar_deuda_turno_movil}
 </div>
+<script type="text/javascript" charset="utf-8">
+  var error = document.getElementById("div_error");
+  var div_notify_error = document.getElementById("div_notify_error");
+  var msj_error = document.getElementById("msj_error");
+  var contenido = document.getElementById("contenido");
+  var contenido2 = document.getElementById("contenido2");
+  var contenido3 = document.getElementById("contenido3");
+  var slt_turnos = document.getElementById("turnos");
+  var slt_dias = document.getElementById("dias");
+  var slt_horas = document.getElementById("horas");
+  var btnenviar = document.getElementById("btnEnviar");
+  
+  const documento = document.getElementById('documento');
+  const selectUnicom = document.querySelector('.unicom');
+  btnenviar.setAttribute("disabled", true);
+
+  let timeout
+  documento.addEventListener('keydown', () => {
+    clearTimeout(timeout)
+    timeout = setTimeout(() => {
+      if(documento.value.length < 6 || documento.value.length > 8) {
+        error.style.display = 'block';
+        div_notify_error.style.display = 'block';
+        msj_error.innerHTML  = "Por favor verifique DNI. Gracias.";
+        contenido.style.display = 'none';
+        slt_turnos.style.display = 'none';
+      } else {
+        verificar_dni();
+        contenido2.style.display = 'none';
+        contenido3.style.display = 'none';
+        document.getElementById("tramitesForm_select").selectedIndex = "0";
+
+        msj_error.innerHTML  = "";
+        div_error.style.display = 'none';
+        div_notify_error.style.display = 'none';
+
+        selectUnicom.addEventListener('change', (event) => {
+          var unicom = event.target.value;
+          if (unicom === null || unicom === "") {
+            div_error.style.display = 'block';
+            div_notify_error.style.display = 'block';
+            msj_error.innerHTML  = "Por favor seleccione una Localidad. Gracias.";
+            contenido2.style.display = 'none';
+            contenido3.style.display = 'none';
+          } else {
+            msj_error.innerHTML  = "";
+            div_error.style.display = 'none';
+            div_notify_error.style.display = 'none';
+            contenido2.style.display = 'block';
+            contenido3.style.display = 'none';
+
+            consultar_dia(unicom);
+            document.querySelector('.fecha').addEventListener('change', (event) => {
+              var fecha =  event.target.value;
+              if (fecha === null || fecha === "") {
+                error.style.display = 'block';
+                error.innerHTML  = "Por favor seleccione una Fecha. Gracias.";
+                contenido3.style.display = 'none';
+              } else {
+                error.innerHTML  = "";
+                error.style.display = 'none';
+                contenido3.style.display = 'block';
+
+                consultar_horario();
+                jQuery('#turnos').stackcolumns();
+              }
+            });/*FECHA*/
+          }
+        });/*unicom*/
+      }
+      clearTimeout(timeout)
+    },1000)
+  })/*DNI*/
+
+  function verificar_dni(){
+    var data = jQuery.ajax({
+      url: "{url_app}/sitio/verificar_dni/" + documento.value,
+      dataType: 'text',
+      async: false
+    }).responseText;
+
+    if (data == 0) {
+      contenido.style.display = 'block';
+      slt_turnos.style.display = 'none';
+    } else {
+      slt_turnos.style.display = 'block';
+      contenido.style.display = 'none';
+      slt_turnos.innerHTML  = data;
+    }
+  }
+
+  function consultar_dia(unicom) {
+    var data = jQuery.ajax({
+      url: "{url_app}/sitio/horas_disponibles/" + documento.value + "@" + unicom,
+      dataType: 'text',
+      async: false
+    }).responseText;
+
+    if (data == 0) {
+      div_error.style.display = 'block';
+      div_notify_error.style.display = 'block';
+      msj_error.innerHTML  = "No existen turnos disponibles. Gracias";
+      contenido.style.display = 'none';
+    } else {
+      msj_error.innerHTML  = "";
+      div_error.style.display = 'none';
+      div_notify_error.style.display = 'none';
+      contenido.style.display = 'block';
+      slt_dias.innerHTML  = data;
+    }
+  }
+
+  function consultar_horario() {
+    var unicom = document.getElementsByName('unicom')[0].value;
+    var fecha_turno = document.getElementsByName('fecha_turno')[0].value;
+
+    var data = jQuery.ajax({
+      url: "{url_app}/sitio/dias_disponibles/" + fecha_turno + "@" + unicom,
+      dataType: 'text',
+      async: false
+    }).responseText;
+
+    slt_horas.innerHTML  = data;
+  }
+
+  function obtenerRequisitos() {
+    var gestion = document.getElementsByName("gestion")[0].value;
+    var requisitos = document.getElementById("requisitos");
+
+    if (gestion === null || gestion === "") {
+      requisitos.style.display = 'none';
+      document.getElementById("contenidoGestionOnline").style.display = 'none';
+    } else {
+      requisitos.style.display = 'block';
+
+      var data = jQuery.ajax({
+        url: "{url_app}/sitio/gestion_requisitos/" + gestion,
+        dataType: 'text',
+        async: false
+      }).responseText;
+      document.getElementById("requisitos").innerHTML = data;
+
+      if (gestion == 14 || gestion == 13 ||  gestion == 6) {
+        document.getElementById("contenidoGestionOnline").style.display = 'block';
+        var urltipogestion = "";
+        switch (gestion) {
+          case '14':
+            urltipogestion = 'adhesion_debito';
+            break;
+          case '13':
+            urltipogestion = 'adhesion_facturadigital';
+            break;
+          case '6':
+            urltipogestion = 'cambio_vencimiento_jubilados';
+            break;
+          default:
+            urltipogestion = '';
+            break;
+        }
+        
+        jQuery(document).ready(function($) {
+          $("#urlgestion").attr("href", "{url_app}/sitio/" + urltipogestion);
+        });
+      } else {
+        document.getElementById("contenidoGestionOnline").style.display = 'none';
+      }
+    }
+  }
+
+  function validacionCorreoElectronico() {
+    var correoelectronico = document.getElementsByName("correoelectronico")[0].value;
+
+    if (correoelectronico === null || correoelectronico.length == 0 || correoelectronico === "") {
+    } else {
+      msj_error.innerHTML = "";
+      div_error.style.display = 'none';
+      div_notify_error.style.display = 'none';
+      var data = jQuery.ajax( {
+        url: "{url_app}/sitio/get_validar_correoelectronico/" + correoelectronico,
+        dataType: 'text',
+        async: false
+      } ).responseText;
+      data = "ok";
+      if (data === "ok") {
+        msj_error.innerHTML  = "";
+        div_error.style.display = 'none';
+        div_notify_error.style.display = 'none';
+        btnenviar.removeAttribute("disabled");
+      } else {
+        btnenviar.setAttribute("disabled", true);
+        correoelectronico.value= "";
+        div_error.style.display = 'block';
+        div_notify_error.style.display = 'block';
+        error.innerHTML  = "Por favor ingrese un correo electrónico válido. Gracias.";
+      }
+    }
+  }
+</script>

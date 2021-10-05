@@ -206,10 +206,6 @@ CREATE TABLE IF NOT EXISTS cliente (
     , telefono5 BIGINT(13)
 ) ENGINE=InnoDb;
 
-
-
-
-
 CREATE TABLE IF NOT EXISTS cuenta (
     cuenta_id BIGINT(15) NOT NULL
         AUTO_INCREMENT PRIMARY KEY
@@ -577,3 +573,28 @@ ADD edad INT(2) NULL AFTER telefono,
 ADD estudio VARCHAR(15) NULL AFTER edad,
 ADD titulo VARCHAR(250) NULL AFTER estudio,
 ADD estadocivil VARCHAR(100) NULL AFTER titulo;
+
+CREATE TABLE IF NOT EXISTS turnopendiente (
+    turnopendiente_id INT(11) NOT NULL
+        AUTO_INCREMENT PRIMARY KEY
+    , numero TEXT
+    , documento INT(8)
+    , fecha_hasta DATE
+    , hora_solicitud TIME
+    , telefono BIGINT(15)
+    , correoelectronico VARCHAR(150)
+    , estado VARCHAR(150)
+    , token_fecha DATE
+    , token TEXT
+    , turnopendiente_id INT(11)
+    , oficina INT(11)
+    , INDEX (oficina)
+    , FOREIGN KEY (oficina)
+      REFERENCES oficina (oficina_id)
+      ON DELETE CASCADE
+    , tipogestioncomercial INT(11)
+    , INDEX (tipogestioncomercial)
+    , FOREIGN KEY (tipogestioncomercial)
+      REFERENCES tipogestioncomercial (tipogestioncomercial_id)
+      ON DELETE CASCADE
+) ENGINE=InnoDb;

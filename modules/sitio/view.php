@@ -261,9 +261,16 @@ class SitioView extends View {
 	/* MANTENIMIENTOS PREVENTIVOS ******************************************/
 	
 	/* TRAMITES COMERCIALES ************************************************/
-	function turnero() {
+	function turnero($unicom_collection, $tramite_collection) {
 		$gui = file_get_contents("static/modules/sitio/turnero_online.html");
-		$template = $this->render_sitio("THEME_SECCION", $gui);
+		$gui_slt_unicom = file_get_contents("static/common/slt_unicom");
+		$gui_slt_unicom = $this->render_regex('SLT_UNICOM', $gui_slt_unicom, $unicom_collection);
+		$gui_slt_tramite = file_get_contents("static/common/slt_tramite");
+		$gui_slt_tramite = $this->render_regex('SLT_TRAMITE', $gui_slt_tramite, $tramite_collection);
+
+		$render = str_replace('{slt_unicom}', $gui_slt_unicom, $gui);
+		$render = str_replace('{slt_tramite}', $gui_slt_tramite, $render);
+		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 	}
 
@@ -513,4 +520,54 @@ class SitioView extends View {
 	}
 	/* TRAMITES COMERCIALES ************************************************/
 }
+	/* COMMON **************************************************************/
+	function turnos_documento($turnopendiente_collection) {
+		$gui_slt_turnos = file_get_contents("static/common/slt_turnos.html");
+		$gui_slt_turnos_documento = file_get_contents("static/common/slt_turnos_documento.html");
+
+ 		$cantidad = ($turnopendiente_collection[0]['CANTIDAD'] >= 2) ? '' : '<button type="button" onclick="solicitarTurno();" id="btnEnviar" name="btnEnviar" value="Solicitar Turno" style=" background-color: #191967;"> Solicitar Turno </button>';
+		$gui_slt_turnos_documento = $this->render_regex_dict('SLT_TURNOS', $gui_slt_turnos_documento, $turnopendiente_collection);
+
+		$render = str_replace('{slt_turnos}',$gui_slt_turnos_documento, $gui_slt_turnos);
+		$render = str_replace('{cantidad}',$cantidad, $render);
+		$render = str_replace('{url_app}', URL_APP, $render);
+		print $render;
+	}
+
+	function gestion_requisitos($obj_tramite){
+		$gui_slt_requisitos = file_get_contents("static/common/lst_requisitos.html");
+		print_r($gui_slt_requisitos);
+	}
+
+	function dias_disponibles($resultado) {
+		$gui_slt_dias_disponibles = file_get_contents("static/common/slt_dias_disponibles.html");
+
+		$array_turnos = array();
+		foreach ($resultado as $clave=>$valor) {
+			$array_turnos[$clave]['TURNOS'] = $resultado[$clave]['TURNOS'];
+			$array_turnos[$clave]['OFICINA'] = $resultado[$clave]['OFICINA'];
+ 			unset($resultado[$clave]['TURNOS']);
+		}
+
+		$gui_slt_dias_disponibles = $this->render_regex_dict('SLT_DIAS_DISPONIBLES', $gui_slt_dias_disponibles, $resultado);
+		$render_horario = '';
+		foreach ($array_turnos as $c=>$v) {
+			$horario_disponibles = '';
+			foreach ($v['TURNOS'] as $clave=>$valor) {
+				$horario_disponibles .= '<label><input onmousedown="return false;" type="radio" id="hora_turno" name="hora_turno" value="'.$valor.'@'.$v['OFICINA'].'">'.$valor.'</label><br>';
+			}
+
+			$horarios_disponibles = '<td>'.$horario_disponibles.'</td>';
+			$render_horario .= $horarios_disponibles;
+		}
+
+		$render_horario = str_replace('<!--HORARIOS_DISPONIBLES-->', $render_horario, $gui_slt_dias_disponibles);
+		print $render_horario;
+	}
+
+	function dias_no_disponibles() {
+		$gui_slt_no_dias_disponibles = file_get_contents("static/common/slt_dias_no_disponibles.html");
+		print $gui_slt_no_dias_disponibles;
+	}
+	/* COMMON **************************************************************/
 ?>

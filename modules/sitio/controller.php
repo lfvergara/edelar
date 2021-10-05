@@ -2,8 +2,10 @@
 require_once "modules/sitio/view.php";
 require_once "modules/areainteres/model.php";
 require_once "modules/provincia/model.php";
+require_once "modules/unicom/model.php";
 require_once "modules/curriculum/model.php";
 require_once "modules/tarjetacredito/model.php";
+require_once "modules/tramite/model.php";
 require_once "modules/gestioncomercial/model.php";
 require_once "modules/gestioncomercialhistorico/model.php";
 require_once "modules/detalletarjetadebito/model.php";
@@ -12,6 +14,10 @@ require_once "modules/detalleadhesionfacturadigital/model.php";
 require_once "modules/detallecambiovencimientojubilado/model.php";
 require_once "modules/detallebajavoluntaria/model.php";
 require_once "modules/detallenuevosuministroreconexion/model.php";
+require_once "modules/turnopendiente/model.php";
+require_once "modules/configuracionturnero/model.php";
+require_once "modules/rangoturnero/model.php";
+require_once "modules/configuracionturnerodni/model.php";
 
 
 class SitioController {
@@ -374,7 +380,9 @@ class SitioController {
 
 	/* GESTIONES COMERCIALES ***********************************************/
 	function turnero() {
-		$this->view->turnero();
+		$unicom_collection = Collector()->get('Unicom');
+		$tramite_collection = Collector()->get('Tramite');
+		$this->view->turnero($unicom_collection, $tramite_collection);
 	}
 
 	function tramites_hogares_comercios() {
@@ -770,6 +778,227 @@ class SitioController {
 
 	function ver_archivo_unico(){
 		require_once "core/helpers/file.php";
+	}
+
+	function verificar_dni($arg){
+		$fecha = date('Y-m-d');
+		$documento = $arg;
+		$select = "tp.to_turnopendiente_id AS ID, tp.documento AS DOCUMENTO, tp.numero AS NUMERO, tp.fecha_hasta AS FECHA_HASTA, tp.hora_solicitud AS HORA_SOLICITUD, tp.estado AS ESTADO, of.denominacion AS OFICINA, tgc.denominacion AS GESTION, (SELECT COUNT(*) FROM turnopendiente WHERE documento = '{$documento}' AND fecha_hasta >= '{$fecha}' AND estado = 'solicitado') AS CANTIDAD";
+		$from = "turnopendiente tp INNER JOIN oficina of ON tp.oficina = of.oficina_id INNER JOIN tipogestioncomercial tgc ON tp.tipogestioncomercial = tgc.tipogestioncomercial_id";
+		$where = "tp.documento = '{$documento}' AND tp.fecha_hasta > '{$fecha}' AND tp.estado = 'solicitado'";
+		$turnopendiente_collection = CollectorCondition()->get('TurnoPendiente', $where, 4,$from, $select);
+
+		if (is_array($turnopendiente_collection)) {
+			$this->view->turnos_documento($turnopendiente_collection);
+		} else {
+			$turnopendiente_collection = 0;
+			print_r($turnopendiente_collection);
+		}
+	}
+
+	function gestion_requisitos($arg) {
+		$tm = New Tramite();
+		$tm->tramite_id = $arg;
+		$tm->get();
+ 		$this->view->gestion_requisitos($tm);
+	}
+
+	function horas_disponibles($arg){
+		$var = explode('@',$arg);
+		$unicom_id = $var[1];
+		$terminacion = substr($var[0], -1);
+
+		$select = "ctd.dia AS dia";
+		$from = "configuracionturnerodni ctd";
+		$where = "ctd.terminacion LIKE '%{$terminacion}%'";
+		$configuracionturnerodni_collection = CollectorCondition()->get('ConfiguracionTurneroDni', $where, 4,$from, $select);
+
+		$select = "rt.fecha_desde AS FECHA_DESDE, rt.fecha_hasta AS FECHA_HASTA";
+		$from = "rangoturnero rt";
+		$where = "rt.estado = 1";
+		$rangoturnero_collection = CollectorCondition()->get('RangoTurnero', $where, 4,$from, $select);
+
+		if (is_array($rangoturnero_collection)) {
+			$array_dia = array();
+			foreach ($rangoturnero_collection as $key => $value) {
+				$fecha_desde = $value["FECHA_DESDE"];
+				$fecha_hasta = $value["FECHA_HASTA"];
+				$fechaaamostar = $fecha_desde;
+				$array = array();
+				$bandera = 0;
+				while(strtotime($fecha_hasta) >= strtotime($fecha_desde)) {
+					if(strtotime($fecha_hasta) != strtotime($fechaaamostar)) {
+						$array[$bandera]['fecha'] = $fechaaamostar;
+						$array[$bandera]['dia'] = date("N", strtotime($fechaaamostar));
+						$fechaaamostar = date("Y-m-d", strtotime($fechaaamostar . " + 1 day"));
+						$bandera++;
+					} else {
+						$array[$bandera]['fecha'] = $fechaaamostar;
+						$array[$bandera]['dia'] = date("N", strtotime($fechaaamostar));
+						break;
+					}
+				}
+			 	$array_dia[$key] = $array;
+			}
+
+			$temp_array = array();
+			foreach($array_dia as $key => $val) {
+				if (!in_array($val, $temp_array)) $temp_array[$key] = $val;
+			}
+
+			$array= array_reduce($temp_array, 'array_merge', array());
+
+			/*ELIMINA FECHAS DUPLICADAS*/
+			$temp_array = array();
+	    	$i = 0;
+	    	$key_array = array();
+   			$key  = 'fecha';
+		    foreach($array as $val) {
+		        if (!in_array($val[$key], $key_array)) {
+		            $key_array[$i] = $val[$key];
+		            $temp_array[$i] = $val;
+		        }
+		        $i++;
+		    }
+			
+			$array = $temp_array;
+			/*ELIMINA FECHAS DUPLICADAS*/
+
+			/*ELIMINA TERMINCIONES DE DNI*/
+			$dif = array_diff(array_column($array,'dia'), array_column($configuracionturnerodni_collection,'dia'));
+			foreach ($dif as $key => $dia_dif) unset($array[$key]);
+			/*ELIMINA TERMINCIONES DE DNI*/
+
+			/*ELIMINA DIAS VENCIDOS*/
+			foreach ($array as $key => $dia) {
+				if(strtotime(date("d-m-Y")) > strtotime($dia["fecha"])) unset($array[$key]);
+			}
+			/*ELIMINA DIAS VENCIDOS*/
+
+			if (empty($array)) {
+				print_r(0);
+			} else {
+				$this->view->horas_disponibles($array);
+			}
+		} else {
+			 print_r(0);
+		}
+	}
+
+	function dias_disponibles($arg){
+		$var = explode('@',$arg);
+		$fecha = $var[0];
+		$unicom = $var[1];
+
+		/*BUSCO CONFIGURACION POR UNICOM Y FECHA*/
+		$select = "rt.fecha_desde AS FECHA_DESDE, rt.fecha_hasta AS FECHA_HASTA, ct.cantidad_gestores AS CANTIDAD, of.oficina_id AS OFICINA, of.denominacion AS DENOMINACION, of.direccion AS DIRECCION";
+		$from = "rangoturnero rt INNER JOIN configuracionturnero ct ON rt.rangoturnero_id = ct.rangoturnero_id INNER JOIN configuracionturnerooficina cto ON ct.configuracionturnero_id = cto.compositor INNER JOIN oficina of ON cto.compuesto = of.oficina_id";
+		$where = "'{$fecha}' BETWEEN rt.fecha_desde AND rt.fecha_hasta AND rt.estado = 1 AND of.unicom = {$unicom} AND of.turnero_online = 1";
+		$configuracion_unicom_collection = CollectorCondition()->get('RangoTurnero', $where, 4,$from, $select);
+		/*BUSCO CONFIGURACION POR UNICOM Y FECHA*/
+
+		if (is_array($configuracion_unicom_collection)) {
+			/*BUSCO CONFIGURACION DE HORARIOS OFICINAS*/
+			$select = "of.hora_desde AS HORA_DESDE, of.hora_hasta AS HORA_HASTA, of.oficina_id AS OFICINA";
+			$from = "oficina of";
+			$where = "of.unicom = {$unicom}";
+			$configuracion_horario_collection = CollectorCondition()->get('Oficina', $where, 4,$from, $select);
+			/*BUSCO CONFIGURACION DE HORARIOS OFICINAS*/
+
+			/*CREANDO SECUENCIA DE HORARIO*/
+			foreach($configuracion_unicom_collection as $clave=>$valor){
+				if (is_array($configuracion_horario_collection)) {
+					$clave = array_search($valor['OFICINA'], array_column($configuracion_horario_collection, 'OFICINA'));
+					$configuracion_unicom_collection[$clave]['HORA_DESDE'] = $configuracion_horario_collection[$clave]['HORA_DESDE'];
+					$configuracion_unicom_collection[$clave]['HORA_HASTA'] = $configuracion_horario_collection[$clave]['HORA_HASTA'];
+				} else {
+					$configuracion_unicom_collection[$clave]['HORA_DESDE'] = '07:00:00';
+					$configuracion_unicom_collection[$clave]['HORA_HASTA'] = '13:00:00';
+				}
+			}
+
+			foreach ($configuracion_unicom_collection as $clave=>$valor) {
+				$hora_desde	= $valor['HORA_DESDE'];
+				$hora_hasta	= $valor['HORA_HASTA'];
+
+				$horaaamostar = $hora_desde;
+				$array_hora = array();
+				$bandera = 0;
+				while(strtotime($hora_hasta) >= strtotime($hora_desde)) {
+					if(strtotime($hora_hasta) != strtotime($horaaamostar)) {
+						$array_hora[$bandera] = $horaaamostar;
+						$horaaamostar = date("H:i:s", strtotime($horaaamostar . " + 30 minute"));
+						$bandera++;
+					} else {
+						$array_hora[$bandera] = $horaaamostar;
+						break;
+					}
+				}
+				$configuracion_unicom_collection[$clave]["TURNOS"] = $array_hora;
+			}
+			/*CREANDO SECUENCIA DE HORARIO*/
+
+			/*TO_TURNOSPENDIENTES*/
+			$select = "COUNT(tp.hora_solicitud) AS CANTIDAD, tp.hora_solicitud AS HORA_SOLICITUD, tp.oficina AS OFICINA";
+			$from = "turnopendiente tp INNER JOIN oficina of ON tp.oficina = of.oficina_id";
+			$where = "of.unicom  = {$unicom} AND tp.fecha_hasta = '{$fecha}' AND tp.estado = 'solicitado'";
+			$groupby = "tp.hora_solicitud, tp.oficina";
+			$turnopendiente_collection = CollectorCondition()->get('TurnoPendiente', $where, 4,$from, $select, $groupby);
+			/*TO_TURNOSPENDIENTES*/
+
+			/*ELIMINO HORARIO NO DISPONIBLE*/
+			if (is_array($turnopendiente_collection)) {
+				foreach ($turnopendiente_collection as $key => $value) {
+					$cantidad = $value['CANTIDAD'];
+					$hora_solicitud = $value['HORA_SOLICITUD'];
+
+					$clave = array_search($value['OFICINA'], array_column($configuracion_unicom_collection, 'OFICINA'));
+					if ($configuracion_unicom_collection[$clave]['CANTIDAD'] == $cantidad) {
+						$key_turno = array_search($hora_solicitud, $configuracion_unicom_collection[$clave]['TURNOS']);
+						unset($configuracion_unicom_collection[$clave]['TURNOS'][$key_turno]);
+					}
+				}
+			}
+			/*ELIMINO HORARIO NO DISPONIBLE*/
+
+			/*ELIMINO HORARIO VENCIDO*/
+			date_default_timezone_set('America/Argentina/La_Rioja');
+			$hora_actual = date('H:i:s');
+			$dia_actual = date('Y-m-d');
+			if ($dia_actual == $fecha) {
+
+				foreach ($configuracion_unicom_collection as $key => $configuracion) {
+					foreach ($configuracion['TURNOS'] as $keys => $values) {
+						if ($values <= $hora_actual) unset($configuracion['TURNOS'][$keys]);
+					}
+					$configuracion_unicom_collection[$key]['TURNOS'] = $configuracion['TURNOS'];
+				}
+			}
+			/*ELIMINO HORARIO VENCIDO*/
+
+			/*VALIDAMOS QUE EXISTAN TURNOS*/
+			$longitud = sizeof($configuracion_unicom_collection);
+			if ($longitud == 1) {
+				if (empty($configuracion_unicom_collection[0]['TURNOS'])) {
+					$this->view->dias_no_disponibles();
+				} else {
+					$this->view->dias_disponibles($configuracion_unicom_collection);
+				}
+			} else {
+				foreach ($configuracion_unicom_collection as $key => $value) {
+					if (empty($value['TURNOS'])) unset($configuracion_unicom_collection[$key]);
+				}
+
+				if (empty($configuracion_unicom_collection)) {
+					$this->view->dias_no_disponibles();
+				} else {
+					$this->view->dias_disponibles($configuracion_unicom_collection);
+				}
+			}
+			/*VALIDAMOS QUE EXISTAN TURNOS*/
+		} else {
+			$this->view->dias_no_disponibles();
+		}
 	}
 	/* COMMON **************************************************************/
 }
