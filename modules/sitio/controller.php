@@ -840,6 +840,7 @@ class SitioController {
 				}
 			 	$array_dia[$key] = $array;
 			}
+			print_r($array_dia);exit;
 
 			$temp_array = array();
 			foreach($array_dia as $key => $val) {
@@ -875,7 +876,6 @@ class SitioController {
 			}
 			/*ELIMINA DIAS VENCIDOS*/
 
-			print_r($array);exit;
 			if (empty($array)) {
 				print_r(0);
 			} else {
