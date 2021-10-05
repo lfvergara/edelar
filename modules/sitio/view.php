@@ -534,13 +534,10 @@ class SitioView extends View {
 		print $render;
 	}
 
-	function gestiones_requisitos($obj_tramite) {
-		print_r($obj_tramite);exit;
-		/*
+	function gestion_requisitos($obj_tramite) {
 		$gui_slt_requisitos = file_get_contents("static/common/lst_requisitos.html");
 		$render = str_replace('{tramite-requisito}', $obj_tramite->requisito, $gui_slt_requisitos);
 		print $render;
-		*/
 	}
 
 	function dias_disponibles($resultado) {
