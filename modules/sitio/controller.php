@@ -817,7 +817,7 @@ class SitioController {
 		$from = "rangoturnero rt";
 		$where = "rt.estado = 1";
 		$rangoturnero_collection = CollectorCondition()->get('RangoTurnero', $where, 4,$from, $select);
-		print_r($configuracionturnerodni_collection);exit;
+		print_r($rangoturnero_collection);exit;
 
 		if (is_array($rangoturnero_collection)) {
 			$array_dia = array();
