@@ -80,13 +80,14 @@
                       </div>
                       <div class="row" style="margin-left: 0%;">
                         <div class="form-group form-group--col-6 required">
-                          <label for="unicom" class="control-label">* Localidad</label>
+                          <label for="tramitesForm_select" class="control-label">Localidad</label>
                           <select data-placeholder="Localidad" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="unicom" id="tramitesForm_select" required="">
+                            <option value="">Seleccionar Localidad</option>
                             {slt_unicom}
                           </select>                          
                         </div>
                         <div class="form-group form-group--col-6 required">
-                          <label for="tramitesForm_defaultReal" class="control-label">* Trámite</label>
+                          <label for="tramitesForm_defaultReal" class="control-label">Trámite</label>
                           <select id="tramitesForm_defaultReal" data-placeholder="Trámite" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="gestion" id="tramitesForm_defaultReal" onchange="obtenerRequisitos();" required="">
                             {slt_tramite}
                           </select>                          
@@ -208,6 +209,11 @@
     },1000)
   })/*DNI*/
 
+  function solicitarTurno() {
+    slt_turnos.style.display = 'none';
+    contenido.style.display = 'block';
+  }
+
   function verificar_dni(){
     var data = jQuery.ajax({
       url: "{url_app}/sitio/verificar_dni/" + documento.value,
@@ -244,19 +250,6 @@
       contenido.style.display = 'block';
       slt_dias.innerHTML  = data;
     }
-  }
-
-  function consultar_horario() {
-    var unicom = document.getElementsByName('unicom')[0].value;
-    var fecha_turno = document.getElementsByName('fecha_turno')[0].value;
-
-    var data = jQuery.ajax({
-      url: "{url_app}/sitio/dias_disponibles/" + fecha_turno + "@" + unicom,
-      dataType: 'text',
-      async: false
-    }).responseText;
-
-    slt_horas.innerHTML  = data;
   }
 
   function obtenerRequisitos() {
@@ -303,9 +296,58 @@
     }
   }
 
+  function consultar_horario() {
+    var unicom = document.getElementsByName('unicom')[0].value;
+    var fecha_turno = document.getElementsByName('fecha_turno')[0].value;
+
+    var data = jQuery.ajax({
+      url: "{url_app}/sitio/dias_disponibles/" + fecha_turno + "@" + unicom,
+      dataType: 'text',
+      async: false
+    }).responseText;
+
+    slt_horas.innerHTML  = data;
+  }
+
+  function confirma_formulario() {
+    var array = new Array();
+    var flag_array = 0;
+
+    var gestion = document.getElementsByName("gestion")[0].value;
+    var fecha_turno = document.getElementsByName("fecha_turno")[0].value;
+    var hora_turno = document.getElementsByName("hora_turno")[0].value;
+    var correoelectronico = document.getElementsByName("correoelectronico")[0].value;
+    var telefono = document.getElementsByName("telefono")[0].value;
+
+
+    if (gestion == null || gestion.length == 0 || gestion == "") {
+      flag_array = 1;
+      error.style.display = 'block';
+      error.innerHTML  = "Por favor seleccione Gestión. Gracias.";
+    } else {
+      flag_array = 0;
+      error.innerHTML  = "";
+      error.style.display = 'none';
+
+      if (hora_turno == null || hora_turno.length == 0 || hora_turno == "") {
+        flag_array = 1;
+        error.style.display = 'block';
+        error.innerHTML  = "Por favor seleccione un Horario Disponible. Gracias.";
+      } else {
+        flag_array = 0;
+        error.innerHTML  = "";
+        error.style.display = 'none';
+      }
+    }
+
+    if (flag_array == 0) {
+      document.tramitesForm.submit();
+      document.tramitesForm.reset();
+    }
+  }
+
   function validacionCorreoElectronico() {
     var correoelectronico = document.getElementsByName("correoelectronico")[0].value;
-
     if (correoelectronico === null || correoelectronico.length == 0 || correoelectronico === "") {
     } else {
       msj_error.innerHTML = "";
