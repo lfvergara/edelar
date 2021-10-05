@@ -586,7 +586,7 @@ CREATE TABLE IF NOT EXISTS turnopendiente (
     , estado VARCHAR(150)
     , token_fecha DATE
     , token TEXT
-    , turnopendiente_id INT(11)
+    , turnero_id INT(11)
     , oficina INT(11)
     , INDEX (oficina)
     , FOREIGN KEY (oficina)

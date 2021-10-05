@@ -1077,10 +1077,9 @@ class SitioController {
 				case (is_object($turno)):
 					  	/*CREAMOS TOKEN*/
 					  	$numero = $turno->numero;
-					  	$turnopendiente_id = $turno->turnopendiente_id;
+					  	$turnero_id = $turno->turnopendiente_id;
 					  	$oficina = $turno->oficina;
 						$tipogestioncomercial = $turno->tipogestion;
-						$token = "{$numero}-{$turnopendiente_id}-{$oficina}-{$tipogestioncomercial}";
 						$fecha_token = date("Y-m-d H:i:s");
 
 						$tpm = new TurnoPendiente();
@@ -1093,10 +1092,12 @@ class SitioController {
 						$tpm->estado = 'solicitado';
 						$tpm->token_fecha = $token_fecha;
 						$tpm->token = $token;
-						$tpm->turnopendiente_id = $turno->turnopendiente_id;
+						$tpm->turnero_id = $turno->turnopendiente_id;
 						$tpm->oficina = $turno->oficina;
 						$tpm->tipogestioncomercial = $turno->tipogestion;
 						$tpm->save();
+						$turnopendiente_id = $tpm->turnopendiente_id;
+						$token = "{$turnopendiente_id}-{$turnero_id}-{$numero}-{$oficina}-{$tipogestioncomercial}";
 						break;
 				case "TURNO_NO_DISPONIBLE":
 						$mensaje ="Turno no disponible. Vuelva a intentarlo. Gracias";

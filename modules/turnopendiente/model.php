@@ -16,7 +16,7 @@ class TurnoPendiente extends StandardObject {
 		$this->estado = '';
 		$this->token_fecha = '';
 		$this->token = '';
-		$this->turnopendiente_id = 0;
+		$this->turnero_id = 0;
 		$this->oficina = $oficina;
 		$this->tipogestioncomercial = $tipogestioncomercial;
 	}
