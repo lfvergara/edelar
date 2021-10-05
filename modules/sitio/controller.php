@@ -876,7 +876,7 @@ class SitioController {
 			}
 			/*ELIMINA DIAS VENCIDOS*/
 
-		print_r($array);exit;
+		
 			if (empty($array)) {
 				print_r(0);
 			} else {

@@ -540,6 +540,12 @@ class SitioView extends View {
 		print $render;
 	}
 
+	function horas_disponibles($resultado) {
+		$gui_slt_horas_disponibles = file_get_contents("static/common/slt_horas_disponibles.html");
+		$gui_slt_horas_disponibles = $this->render_regex_dict('SLT_HORAS_DISPONIBLES', $gui_slt_horas_disponibles, $resultado);
+		print $gui_slt_horas_disponibles;
+	}
+
 	function dias_disponibles($resultado) {
 		$gui_slt_dias_disponibles = file_get_contents("static/common/slt_dias_disponibles.html");
 
