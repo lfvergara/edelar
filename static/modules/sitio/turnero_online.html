@@ -1,0 +1,91 @@
+<script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
+<div class="widget js-widget hidden-xs hidden-sm">
+  <div class="widget__content">
+    <div class="banner js-banner-slider banner--slider">
+      <div class="slider">
+        <div class="slider__block js-slick-slider">
+          <div class="slider__item">
+            <div class="slider__preview">
+              <div class="slider__img"><img src="{url_static}assets/img/header_nosotros.png" class="photo"/></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="widget js-widget hidden-lg hidden-md">
+  <div class="widget__content">
+    <div class="row">
+      <div class="col-sm-12 col-xs-12">
+        <img src="{url_static}assets/img/header_nosotros.png"  alt="" style="width: 100% !important;">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="center">
+  <div class="container">
+    <div class="row">
+      <div class="site site--main">
+        <header class="site__header">
+          <h1 class="site__title">GESTIONES TURNO ONLINE</h1>
+          <h2 class="site__headline">
+            <nav class="breadcrumbs">
+              <div class="container">
+                <ul>
+                  <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link">Home</a></li>
+                  <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link">Centro de Ayuda</a></li>
+                  <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link__current">Trabajá en Edelar</a></li>
+                </ul>
+              </div>
+            </nav>
+          </h2>
+        </header>
+        <div class="widget__content">          
+          <div class="alert ui-pnotify-container alert-{class_commit} ui-pnotify-shadow" style="display: {display_commit}">
+            <h4 class="ui-pnotify-title">
+              <svg class="notify-icon">
+                <use xlink:href="#icon-{icon_commit}"></use>
+              </svg>{msj_commit}
+            </h4>
+            <div style="display: none;" class="ui-pnotify-text"></div>
+          </div>          
+        </div>
+        <div class="widget__content">
+          <div class="contacts">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="contacts__form">                        
+                  <form action="{url_app}/sitio/#" method="POST" class="form form--flex js-contact-form form--contacts" enctype="multipart/form-data">
+                    <div class="row">
+                      <div class="form-group form-group--col-6 required">
+                        <label for="documento" class="control-label">DOCUMENTO</label>
+                        <input id="documento" type="text" name="documento" class="form-control" required>
+                      </div>
+                      
+                      <div class="form-group form-group--col-6 required">
+                        <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <button type="submit" class="form__submit">ENVIAR</button>      
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="widget js-widget widget--sidebar widget--dark">      
+          {sidebar_login_autogestion}
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+<div class="row hidden-lg hidden-md">  
+  {sidebar_deuda_turno_movil}
+</div>
