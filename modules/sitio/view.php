@@ -579,8 +579,8 @@ class SitioView extends View {
 
 	function mensaje_turno($mensaje) {
 		$gui = file_get_contents("static/modules/sitio/mensaje_alerta.html");
+		print_r($gui);exit;
 		$render = str_replace('{mensaje}', $mensaje, $gui);
-		print_r($render);exit;
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 	}
