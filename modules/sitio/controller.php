@@ -813,10 +813,12 @@ class SitioController {
 		$from = "configuracionturnerodni ctd";
 		$where = "ctd.terminacion LIKE '%{$terminacion}%'";
 		$configuracionturnerodni_collection = CollectorCondition()->get('ConfiguracionTurneroDni', $where, 4,$from, $select);
+
 		$select = "rt.fecha_desde AS FECHA_DESDE, rt.fecha_hasta AS FECHA_HASTA";
 		$from = "rangoturnero rt";
 		$where = "rt.estado = 1";
 		$rangoturnero_collection = CollectorCondition()->get('RangoTurnero', $where, 4,$from, $select);
+		print_r($rangoturnero_collection);exit;
 
 		if (is_array($rangoturnero_collection)) {
 			$array_dia = array();
@@ -840,7 +842,6 @@ class SitioController {
 				}
 			 	$array_dia[$key] = $array;
 			}
-			print_r($array_dia);exit;
 
 			$temp_array = array();
 			foreach($array_dia as $key => $val) {
