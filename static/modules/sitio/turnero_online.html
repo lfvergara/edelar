@@ -57,16 +57,18 @@
               <div class="col-lg-12">
                 <div class="contacts__form">                        
                   <form action="{url_app}/sitio/#" method="POST" class="form form--flex js-contact-form form--contacts" enctype="multipart/form-data">
-                    <div class="row">
-                      <div class="col-lg-12">
+                    
+                      <div class="row">
                         <div class="form-group form-group--col-6 required">
                           <label for="documento" class="control-label">DOCUMENTO</label>
                           <input id="documento" type="number" name="documento" class="form-control" required>
                           <small>* Sin puntos</small>
                         </div>
                       </div>
-                      <div class="col-lg-12 required" id="turnos" style="display: none;"></div>
-                      <div class="col-lg-12" id="contenido" style="display: ;">
+                      
+                      <div class="row" id="turnos" style="display: none;"></div>
+
+                      <div class="row" id="contenido" style="display: ;">
 
                         <div class="form-group form-group--col-6 required">
                           <label for="telefono" class="control-label">Teléfono *</label>
@@ -116,7 +118,7 @@
                         </div>
 
                       </div>                      
-                    </div>
+                    
                   </form>
                 </div>
               </div>
