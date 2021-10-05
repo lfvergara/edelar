@@ -817,7 +817,6 @@ class SitioController {
 		$from = "rangoturnero rt";
 		$where = "rt.estado = 1";
 		$rangoturnero_collection = CollectorCondition()->get('RangoTurnero', $where, 4,$from, $select);
-		print_r($rangoturnero_collection);exit;
 
 		if (is_array($rangoturnero_collection)) {
 			$array_dia = array();
@@ -876,6 +875,7 @@ class SitioController {
 			}
 			/*ELIMINA DIAS VENCIDOS*/
 
+			print_r($array);exit;
 			if (empty($array)) {
 				print_r(0);
 			} else {
