@@ -65,18 +65,21 @@
                           <small>* Sin puntos</small>
                         </div>
                       </div>
-                      <div class="form-group form-group--col-12 required" id="turnos" style="display: none;"></div>
-                      <div class="form-group form-group--col-12" id="contenido" style="display: none;">
+                      <div class="col-lg-12 required" id="turnos" style="display: none;"></div>
+                      <div class="col-lg-12" id="contenido" style="display: none;">
+
                         <div class="form-group form-group--col-6 required">
                           <label for="telefono" class="control-label">Teléfono *</label>
                           <input id="telefono" type="text" name="telefono" class="form-control" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" required>
                           <small>* Ingrese el código de área y 15 en celulares. Ej: <b>0380154455678</b></small>
                         </div>
+
                         <div class="form-group form-group--col-6 required">
                           <label for="correoelectronico" class="control-label">Correo *</label>
                           <input id="correoelectronico" type="email" name="correoelectronico" class="form-control" onchange="validacionCorreoElectronico();" required>
                           <small>* Ingrese el código de área y 15 en celulares. Ej: <b>0380154455678</b></small>
                         </div>
+
                         <div class="form-group form-group--col-6 required">
                           <label for="unicom" class="control-label">* Localidad</label>
                           <select id="unicom" data-placeholder="Localidad" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="unicom" id="tramitesForm_select" required="">
@@ -111,6 +114,7 @@
                             <button type="button" onclick="confirma_formulario();" id="btnEnviar" name="btnEnviar" class="form__submit">ENVIAR</button>      
                           </div>
                         </div>
+
                       </div>                      
                     </div>
                   </form>
