@@ -153,7 +153,6 @@
 
   let timeout
   documento.addEventListener('keydown', () => {
-    console.log('Hola');
     clearTimeout(timeout)
     timeout = setTimeout(() => {
       if(documento.value.length < 6 || documento.value.length > 8) {
@@ -169,10 +168,11 @@
         document.getElementById("tramitesForm_select").selectedIndex = "0";
 
         msj_error.innerHTML  = "";
-        div_error.style.display = 'none';
+        error.style.display = 'none';
         div_notify_error.style.display = 'none';
 
         selectUnicom.addEventListener('change', (event) => {
+          console.log('Hola');
           var unicom = event.target.value;
           if (unicom === null || unicom === "") {
             div_error.style.display = 'block';
