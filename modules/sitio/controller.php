@@ -894,11 +894,11 @@ class SitioController {
 
 		/*BUSCO CONFIGURACION POR UNICOM Y FECHA*/
 		$select = "rt.fecha_desde AS FECHA_DESDE, rt.fecha_hasta AS FECHA_HASTA, ct.cantidad_gestores AS CANTIDAD, of.oficina_id AS OFICINA, of.denominacion AS DENOMINACION, of.direccion AS DIRECCION";
-		$from = "rangoturnero rt INNER JOIN configuracionturnero ct ON rt.rangoturnero_id = ct.rangoturnero_id INNER JOIN configuracionturnerooficina cto ON ct.configuracionturnero_id = cto.compositor INNER JOIN oficina of ON cto.compuesto = of.oficina_id";
+		$from = "rangoturnero rt INNER JOIN configuracionturnero ct ON rt.rangoturnero_id = ct.rangoturnero INNER JOIN configuracionturnerooficina cto ON ct.configuracionturnero_id = cto.compositor INNER JOIN oficina of ON cto.compuesto = of.oficina_id";
 		$where = "'{$fecha}' BETWEEN rt.fecha_desde AND rt.fecha_hasta AND rt.estado = 1 AND of.unicom = {$unicom} AND of.turnero_online = 1";
 		$configuracion_unicom_collection = CollectorCondition()->get('RangoTurnero', $where, 4,$from, $select);
 		/*BUSCO CONFIGURACION POR UNICOM Y FECHA*/
-		print_r($unicom);exit;
+		//print_r($unicom);exit;
 		if (is_array($configuracion_unicom_collection)) {
 			/*BUSCO CONFIGURACION DE HORARIOS OFICINAS*/
 			$select = "of.hora_desde AS HORA_DESDE, of.hora_hasta AS HORA_HASTA, of.oficina_id AS OFICINA";
