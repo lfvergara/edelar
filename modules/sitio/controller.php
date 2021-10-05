@@ -813,7 +813,7 @@ class SitioController {
 		$from = "configuracionturnerodni ctd";
 		$where = "ctd.terminacion LIKE '%{$terminacion}%'";
 		$configuracionturnerodni_collection = CollectorCondition()->get('ConfiguracionTurneroDni', $where, 4,$from, $select);
-
+		print_r($configuracionturnerodni_collection);exit;
 		$select = "rt.fecha_desde AS FECHA_DESDE, rt.fecha_hasta AS FECHA_HASTA";
 		$from = "rangoturnero rt";
 		$where = "rt.estado = 1";
@@ -886,7 +886,7 @@ class SitioController {
 		}
 	}
 
-	function dias_disponibles($arg){
+	function dias_disponibles($arg) {
 		$var = explode('@',$arg);
 		$fecha = $var[0];
 		$unicom = $var[1];

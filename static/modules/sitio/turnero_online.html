@@ -185,8 +185,6 @@
             div_notify_error.style.display = 'none';
             contenido2.style.display = 'block';
             contenido3.style.display = 'none';
-            console.log('Hola');
-            console.log(unicom);
             consultar_dia(unicom);
             document.querySelector('.fecha').addEventListener('change', (event) => {
               var fecha =  event.target.value;
@@ -238,7 +236,7 @@
       dataType: 'text',
       async: false
     }).responseText;
-
+    console.log(data);
     if (data == 0) {
       div_error.style.display = 'block';
       div_notify_error.style.display = 'block';
