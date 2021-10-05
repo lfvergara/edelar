@@ -68,53 +68,53 @@
                     <div class="row" id="contenido" style="display: none;">
                       <div class="row" style="margin-left: 0%;">
                         <div class="form-group form-group--col-6 required">
-                          <label for="telefono" class="control-label">Teléfono *</label>
+                          <label for="telefono" class="control-label">Teléfono</label>
                           <input id="telefono" type="text" name="telefono" class="form-control" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" required>
                           <small>* Ingrese el código de área y 15 en celulares. Ej: <b>0380154455678</b></small>
                         </div>
                         <div class="form-group form-group--col-6 required">
-                          <label for="correoelectronico" class="control-label">Correo *</label>
+                          <label for="correoelectronico" class="control-label">Correo</label>
                           <input id="correoelectronico" type="email" name="correoelectronico" class="form-control" onchange="validacionCorreoElectronico();" required>
                           <small>* Ingrese el código de área y 15 en celulares. Ej: <b>0380154455678</b></small>
                         </div>
                       </div>
-                      <div class="form-group form-group--col-6 required">
-                        <label for="unicom" class="control-label">* Localidad</label>
-                        <select id="unicom" data-placeholder="Localidad" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="unicom" id="tramitesForm_select" required="">
-                          {slt_unicom}
-                        </select>                          
+                      <div class="row" style="margin-left: 0%;">
+                        <div class="form-group form-group--col-6 required">
+                          <label for="unicom" class="control-label">* Localidad</label>
+                          <select id="unicom" data-placeholder="Localidad" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="unicom" id="tramitesForm_select" required="">
+                            {slt_unicom}
+                          </select>                          
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="tramitesForm_defaultReal" class="control-label">* Trámite</label>
+                          <select id="tramitesForm_defaultReal" data-placeholder="Trámite" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="gestion" id="tramitesForm_defaultReal" onchange="obtenerRequisitos();" required="">
+                            {slt_tramite}
+                          </select>                          
+                        </div>
                       </div>
-                      <div class="form-group form-group--col-6 required">
-                        <label for="tramitesForm_defaultReal" class="control-label">* Trámite</label>
-                        <select id="tramitesForm_defaultReal" data-placeholder="Trámite" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="gestion" id="tramitesForm_defaultReal" onchange="obtenerRequisitos();" required="">
-                          {slt_tramite}
-                        </select>                          
+                      <div class="form-group form-group--col-12" style="display: none;" id="contenidoGestionOnline">
+                        <h3 style="background-color: rgba(209,70,65,0.9);font-size: 12px;border-bottom: 0px;">
+                          Estimado cliente la gestion seleccionada puede ser realizada de manera online &nbsp;<a  target="_blank" href="" id="urlgestion">Realizar Gestión</a>
+                        </h3>
                       </div>
-                        <div class="form-group form-group--col-12" style="display: none;" id="contenidoGestionOnline">
-                          <h3 style="background-color: rgba(209,70,65,0.9);font-size: 12px;border-bottom: 0px;">
-                            Estimado cliente la gestion seleccionada puede ser realizada de manera online &nbsp;<a  target="_blank" href="" id="urlgestion">Realizar Gestión</a>
-                          </h3>
+                      <div class="form-group form-group--col-12" id="requisitos" style="display: none;"></div>
+                      <div class="form-group form-group--col-12" id="contenido2" style="display: none;">
+                        <label style="font-size: 15px;">Dias Disponibles *:</label>
+                        <div id="dias"></div>
+                      </div>
+                      <div class="form-group form-group--col-12" id="contenido3" style="display: none;">
+                        <div class="form-group form-group--col-12">
+                          <label style="font-size: 15px;">Horarios Disponibles *:</label><br>
+                          <div id="horas"></div>
+                        </div>  
+                        <div class="form-group form-group--col-12 required">
+                          <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
                         </div>
-                        <div class="form-group form-group--col-12" id="requisitos" style="display: none;"></div>
-                        <div class="form-group form-group--col-12" id="contenido2" style="display: none;">
-                          <label style="font-size: 15px;">Dias Disponibles *:</label>
-                          <div id="dias"></div>
+                        <div class="form-group form-group--col-12 required">
+                          <button type="button" onclick="confirma_formulario();" id="btnEnviar" name="btnEnviar" class="form__submit">ENVIAR</button>      
                         </div>
-                        <div class="form-group form-group--col-12" id="contenido3" style="display: none;">
-                          <div class="form-group form-group--col-12">
-                            <label style="font-size: 15px;">Horarios Disponibles *:</label><br>
-                            <div id="horas"></div>
-                          </div>  
-                          <div class="form-group form-group--col-12 required">
-                            <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
-                          </div>
-                          <div class="form-group form-group--col-12 required">
-                            <button type="button" onclick="confirma_formulario();" id="btnEnviar" name="btnEnviar" class="form__submit">ENVIAR</button>      
-                          </div>
-                        </div>
-
-                      </div>                      
-                    
+                      </div>
+                    </div>
                   </form>
                 </div>
               </div>
