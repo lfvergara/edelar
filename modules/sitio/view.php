@@ -261,6 +261,12 @@ class SitioView extends View {
 	/* MANTENIMIENTOS PREVENTIVOS ******************************************/
 	
 	/* TRAMITES COMERCIALES ************************************************/
+	function turnero() {
+		$gui = file_get_contents("static/modules/sitio/turnero_online.html");
+		$template = $this->render_sitio("THEME_SECCION", $gui);
+		print $template;
+	}
+
 	function tramites_hogares_comercios() {
 		$gui = file_get_contents("static/modules/sitio/hogares_comercios_tramites.html");
 		$template = $this->render_sitio("THEME_SECCION", $gui);

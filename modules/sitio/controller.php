@@ -373,6 +373,10 @@ class SitioController {
 	/* PARA PRUEBA DE FORMULARIOS ******************************************/
 
 	/* GESTIONES COMERCIALES ***********************************************/
+	function turnero() {
+		$this->view->turnero();
+	}
+
 	function tramites_hogares_comercios() {
 		$this->view->tramites_hogares_comercios();
 	}
