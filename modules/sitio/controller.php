@@ -1129,6 +1129,10 @@ class SitioController {
 			header("Location: " . URL_APP . $direccion_confirmacion);
 		}
 	}
+
+	function mensaje_turno($arg){
+		$this->view->mensaje_turno($arg);
+	}
 	/* TURNERO**************************************************************/
 }
 ?>
