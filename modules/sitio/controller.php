@@ -800,6 +800,7 @@ class SitioController {
 		$tm = new Tramite();
 		$tm->tramite_id = $arg;
 		$tm->get();
+		print_r($tm);exit;
 		$this->view->gestion_requisitos($tm);
 	}
 
