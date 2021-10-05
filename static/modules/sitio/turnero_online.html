@@ -236,15 +236,15 @@
       dataType: 'text',
       async: false
     }).responseText;
-    console.log(data);
+    
     if (data == 0) {
-      div_error.style.display = 'block';
+      error.style.display = 'block';
       div_notify_error.style.display = 'block';
       msj_error.innerHTML  = "No existen turnos disponibles. Gracias";
       contenido.style.display = 'none';
     } else {
       msj_error.innerHTML  = "";
-      div_error.style.display = 'none';
+      error.style.display = 'none';
       div_notify_error.style.display = 'none';
       contenido.style.display = 'block';
       slt_dias.innerHTML  = data;
