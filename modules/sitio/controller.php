@@ -1015,11 +1015,11 @@ class SitioController {
 	  	$oficina_id = $var[1];
 		$telefono = filter_input(INPUT_POST, 'telefono');
 		$correoelectronico = filter_input(INPUT_POST, 'correoelectronico');
-		print_r($_POST);exit;
 		if (is_null($fecha) OR empty($fecha) OR $fecha == 0) {
 			$mensaje ="Seleccione una Fecha Disponible. Vuelva a intentarlo. Gracias";
 			$this->mensaje_turno($mensaje);
 		} elseif (is_null($turno) OR empty($turno) OR $turno == 0) {
+			print_r($_POST);exit;
 			$mensaje ="Seleccione un Horario Disponible. Vuelva a intentarlo. Gracias";
 			$this->mensaje_turno($mensaje);
 		} elseif (is_null($gestion_id) OR empty($gestion_id) OR $gestion_id == 0) {
