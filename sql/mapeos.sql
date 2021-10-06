@@ -598,3 +598,6 @@ CREATE TABLE IF NOT EXISTS turnopendiente (
       REFERENCES tipogestioncomercial (tipogestioncomercial_id)
       ON DELETE CASCADE
 ) ENGINE=InnoDb;
+
+ALTER TABLE bdedelar.turnopendiente DROP FOREIGN KEY turnopendiente_ibfk_2;
+ALTER TABLE turnopendiente ADD CONSTRAINT turnopendiente_ibfk_2 FOREIGN KEY (tramite) REFERENCES tramite(tramite_id) ON DELETE CASCADE ON UPDATE RESTRICT;
