@@ -522,7 +522,7 @@ class SitioView extends View {
 
 	/* COMMON **************************************************************/
 	function turnos_documento($turnopendiente_collection) {
-		$gui_slt_turnos = file_get_contents("static/common/slt_turnos.html");
+		$gui_slt_turnos = file_get_contents("static/modules/sitio/turnos_documento.html");
 		$gui_slt_turnos_documento = file_get_contents("static/common/slt_turnos_documento.html");
 
  		$cantidad = ($turnopendiente_collection[0]['CANTIDAD'] >= 2) ? '' : '<button type="button" onclick="solicitarTurno();" id="btnEnviar" name="btnEnviar" value="Solicitar Turno" style=" background-color: #191967;"> Solicitar Turno </button>';
