@@ -381,7 +381,6 @@ class SitioController {
 
 	/* GESTIONES COMERCIALES ***********************************************/
 	function turnero() {
-		print_r(date('Y-m-d'));exit;
 		$unicom_collection = Collector()->get('Unicom');
 		$tramite_collection = Collector()->get('Tramite');
 		$this->view->turnero($unicom_collection, $tramite_collection);
@@ -787,9 +786,9 @@ class SitioController {
 	function verificar_dni($arg){
 		$fecha = date('Y-m-d');
 		$documento = $arg;
-		$select = "tp.to_turnopendiente_id AS ID, tp.documento AS DOCUMENTO, tp.numero AS NUMERO, tp.fecha_hasta AS FECHA_HASTA, tp.hora_solicitud AS HORA_SOLICITUD, tp.estado AS ESTADO, of.denominacion AS OFICINA, tgc.denominacion AS GESTION, (SELECT COUNT(*) FROM turnopendiente WHERE documento = '{$documento}' AND fecha_hasta >= '{$fecha}' AND estado = 'solicitado') AS CANTIDAD";
-		$from = "turnopendiente tp INNER JOIN oficina of ON tp.oficina = of.oficina_id INNER JOIN tipogestioncomercial tgc ON tp.tipogestioncomercial = tgc.tipogestioncomercial_id";
-		$where = "tp.documento = '{$documento}' AND tp.fecha_hasta > '{$fecha}' AND tp.estado = 'solicitado'";
+		$select = "tp.turnopendiente_id AS ID, tp.documento AS DOCUMENTO, tp.numero AS NUMERO, tp.fecha_hasta AS FECHA_HASTA, tp.hora_solicitud AS HORA_SOLICITUD, tp.estado AS ESTADO, of.denominacion AS OFICINA, t.denominacion AS GESTION, (SELECT COUNT(*) FROM turnopendiente WHERE documento = '{$documento}' AND fecha_hasta >= '{$fecha}' AND estado = 'solicitado') AS CANTIDAD";
+		$from = "turnopendiente tp INNER JOIN oficina of ON tp.oficina = of.oficina_id INNER JOIN tramite t ON tp.tramite = t.tramite_id";
+		$where = "tp.documento = '{$documento}' AND tp.fecha_hasta >= '{$fecha}' AND tp.estado = 'solicitado'";
 		$turnopendiente_collection = CollectorCondition()->get('TurnoPendiente', $where, 4, $from, $select);
 
 		if (is_array($turnopendiente_collection)) {
