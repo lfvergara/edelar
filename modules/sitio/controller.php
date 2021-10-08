@@ -1149,7 +1149,6 @@ class SitioController {
 		$tramite_collection = Collector()->get('Tramite');
 
 		if ($tpm->documento == $documento) {
-		print_r($tpm);exit;
 			$this->view->editar_turno($tpm, $unicom_collection, $tramite_collection);
 		} else {
 			header("Location: " . URL_APP . "/sitio");

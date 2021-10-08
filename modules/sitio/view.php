@@ -525,7 +525,7 @@ class SitioView extends View {
 		$gui = file_get_contents("static/modules/sitio/editar_turno.html");
 		$gui_slt_unicom = file_get_contents("static/common/slt_unicom.html");
 		$gui_slt_unicom = $this->render_regex('SLT_UNICOM', $gui_slt_unicom, $unicom_collection);
-
+		print_r($gui);exit;
 		$gui_slt_tramite = file_get_contents("static/common/slt_tramite.html");
 		$gui_slt_tramite = $this->render_regex('SLT_TRAMITE', $gui_slt_tramite, $tramite_collection);
 
