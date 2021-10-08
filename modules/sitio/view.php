@@ -532,7 +532,7 @@ class SitioView extends View {
 		$render = $this->render($obj_turnopendiente, $gui);
 		$render = str_replace('{slt_unicom}', $gui_slt_unicom, $render);
 		$render = str_replace('{slt_tipogestion}', $gui_slt_tramite, $render);
-		$template = $this->render_sitio("THEME_SECCION", $gui);
+		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 	}
 
