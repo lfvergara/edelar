@@ -529,11 +529,10 @@ class SitioView extends View {
 		$gui_slt_tramite = $this->render_regex('SLT_TRAMITE', $gui_slt_tramite, $tramite_collection);
 
 		$obj_turnopendiente = $this->set_dict($obj_turnopendiente);
-		print_r($obj_turnopendiente);exit;
 		$render = $this->render($obj_turnopendiente, $gui);
 		$render = str_replace('{slt_unicom}', $gui_slt_unicom, $render);
 		$render = str_replace('{slt_tipogestion}', $gui_slt_tramite, $render);
-		$template = $this->render_sitio($render);
+		$template = $this->render_sitio("THEME_SECCION", $gui);
 		print $template;
 	}
 
