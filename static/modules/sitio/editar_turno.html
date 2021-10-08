@@ -213,108 +213,108 @@
       contenido3.style.display = 'block';
 
       consultar_horario();
-      //jQuery('#turnos').stackcolumns();
+      jQuery('#turnos').stackcolumns();
     }
   });/*FECHA*/
 
-function consultar_dia(unicom) {
-  var dia = '{turnopendiente-fecha_hasta}';
-  var data = jQuery.ajax({
-    url: "{url_app}/sitio/horas_disponibles_edit/" + documento.value+"@"+unicom+"@"+dia,
-    dataType: 'text',
-    async: false
-  }).responseText;
-
-  if (data == 0) {
-    div_error.style.display = 'block';
-    div_notify_error.style.display = 'block';
-    msj_error.innerHTML  = "No existen turnos disponibles. Gracias";
-    contenido.style.display = 'none';
-  }else {
-    msj_error.innerHTML  = "";
-    div_error.style.display = 'none';
-    div_notify_error.style.display = 'none';
-    contenido.style.display = 'block';
-    slt_dias.innerHTML  = data;
-  }
-}
-
-function obtenerRequisitos() {
-  var gestion = document.getElementsByName("gestion")[0].value;
-  var requisitos = document.getElementById("requisitos");
-
-  if (gestion === null || gestion === "") {
-    requisitos.style.display = 'none';
-  }else {
-    requisitos.style.display = 'block';
-
+  function consultar_dia(unicom) {
+    var dia = '{turnopendiente-fecha_hasta}';
     var data = jQuery.ajax({
-      url: "{url_app}/sitio/gestion_requisitos/" + gestion,
-      dataType: 'text',
-      async: false
-    }).responseText;
-    document.getElementById("requisitos").innerHTML = data;
-  }
-
-}
-
-function consultar_horario() {
-    var unicom = document.getElementsByName('unicom')[0].value;
-    var fecha_turno = document.getElementsByName('fecha_turno')[0].value;
-    var horario = '{turnopendiente-hora_solicitud}';
-    var oficina = '{oficina-oficina_id}';
-    var to_turnopendiente_id = '{turnopendiente-turnopendiente_id}';
-
-    var data = jQuery.ajax({
-      url: "{url_app}/sitio/dias_disponibles_edit/" +fecha_turno+"@"+unicom+"@"+horario+"@"+oficina+"@"+to_turnopendiente_id,
+      url: "{url_app}/sitio/horas_disponibles_edit/" + documento.value+"@"+unicom+"@"+dia,
       dataType: 'text',
       async: false
     }).responseText;
 
-    slt_horas.innerHTML  = data;
-}
-
-function confirma_formulario() {
-  var array = new Array();
-  var flag_array = 0;
-
-  var gestion = document.getElementsByName("gestion")[0].value;
-  var fecha_turno = document.getElementsByName("fecha_turno")[0].value;
-  var hora_turno = document.getElementsByName("hora_turno")[0].value;
-
-
-  if (gestion == null || gestion.length == 0 || gestion == "") {
-      flag_array = 1;
+    if (data == 0) {
       div_error.style.display = 'block';
       div_notify_error.style.display = 'block';
-      msj_error.innerHTML  = "Por favor seleccione Gestión. Gracias.";
-  } else {
-      flag_array = 0;
+      msj_error.innerHTML  = "No existen turnos disponibles. Gracias";
+      contenido.style.display = 'none';
+    }else {
       msj_error.innerHTML  = "";
       div_error.style.display = 'none';
       div_notify_error.style.display = 'none';
-
-      if (hora_turno == null || hora_turno.length == 0 || hora_turno == "") {
-          flag_array = 1;
-          div_error.style.display = 'block';
-          div_notify_error.style.display = 'block';
-          msj_error.innerHTML  = "Por favor seleccione un Horario Disponible. Gracias.";
-      } else {
-          flag_array = 0;
-          msj_error.innerHTML  = "";
-          div_error.style.display = 'none';
-          div_notify_error.style.display = 'none';
-      }
+      contenido.style.display = 'block';
+      slt_dias.innerHTML  = data;
+    }
   }
 
-  if (flag_array == 0) {
-    document.tramitesForm.submit();
-    document.tramitesForm.reset();
-  }
-}
+  function obtenerRequisitos() {
+    var gestion = document.getElementsByName("gestion")[0].value;
+    var requisitos = document.getElementById("requisitos");
 
-document.addEventListener('contextmenu', function(evt) {
-  evt.preventDefault();
-  return false;
-});
+    if (gestion === null || gestion === "") {
+      requisitos.style.display = 'none';
+    }else {
+      requisitos.style.display = 'block';
+
+      var data = jQuery.ajax({
+        url: "{url_app}/sitio/gestion_requisitos/" + gestion,
+        dataType: 'text',
+        async: false
+      }).responseText;
+      document.getElementById("requisitos").innerHTML = data;
+    }
+
+  }
+
+  function consultar_horario() {
+      var unicom = document.getElementsByName('unicom')[0].value;
+      var fecha_turno = document.getElementsByName('fecha_turno')[0].value;
+      var horario = '{turnopendiente-hora_solicitud}';
+      var oficina = '{oficina-oficina_id}';
+      var to_turnopendiente_id = '{turnopendiente-turnopendiente_id}';
+
+      var data = jQuery.ajax({
+        url: "{url_app}/sitio/dias_disponibles_edit/" +fecha_turno+"@"+unicom+"@"+horario+"@"+oficina+"@"+to_turnopendiente_id,
+        dataType: 'text',
+        async: false
+      }).responseText;
+
+      slt_horas.innerHTML  = data;
+  }
+
+  function confirma_formulario() {
+    var array = new Array();
+    var flag_array = 0;
+
+    var gestion = document.getElementsByName("gestion")[0].value;
+    var fecha_turno = document.getElementsByName("fecha_turno")[0].value;
+    var hora_turno = document.getElementsByName("hora_turno")[0].value;
+
+
+    if (gestion == null || gestion.length == 0 || gestion == "") {
+        flag_array = 1;
+        div_error.style.display = 'block';
+        div_notify_error.style.display = 'block';
+        msj_error.innerHTML  = "Por favor seleccione Gestión. Gracias.";
+    } else {
+        flag_array = 0;
+        msj_error.innerHTML  = "";
+        div_error.style.display = 'none';
+        div_notify_error.style.display = 'none';
+
+        if (hora_turno == null || hora_turno.length == 0 || hora_turno == "") {
+            flag_array = 1;
+            div_error.style.display = 'block';
+            div_notify_error.style.display = 'block';
+            msj_error.innerHTML  = "Por favor seleccione un Horario Disponible. Gracias.";
+        } else {
+            flag_array = 0;
+            msj_error.innerHTML  = "";
+            div_error.style.display = 'none';
+            div_notify_error.style.display = 'none';
+        }
+    }
+
+    if (flag_array == 0) {
+      document.tramitesForm.submit();
+      document.tramitesForm.reset();
+    }
+  }
+
+  document.addEventListener('contextmenu', function(evt) {
+    evt.preventDefault();
+    return false;
+  });
 </script>
