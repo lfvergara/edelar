@@ -527,9 +527,9 @@ class SitioView extends View {
 		$gui_slt_unicom = $this->render_regex('SLT_UNICOM', $gui_slt_unicom, $unicom_collection);
 		$gui_slt_tramite = file_get_contents("static/common/slt_tramite.html");
 		$gui_slt_tramite = $this->render_regex('SLT_TRAMITE', $gui_slt_tramite, $tramite_collection);
-		print_r($gui_slt_tramite);exit;
 
 		$obj_turnopendiente = $this->set_dict($obj_turnopendiente);
+		print_r($obj_turnopendiente);exit;
 		$render = $this->render($obj_turnopendiente, $gui);
 		$render = str_replace('{slt_unicom}', $gui_slt_unicom, $render);
 		$render = str_replace('{slt_tipogestion}', $gui_slt_tramite, $render);
