@@ -1,0 +1,320 @@
+<script src='https://www.google.com/recaptcha/api.js?hl=es'></script>
+<div class="widget js-widget hidden-xs hidden-sm">
+  <div class="widget__content">
+    <div class="banner js-banner-slider banner--slider">
+      <div class="slider">
+        <div class="slider__block js-slick-slider">
+          <div class="slider__item">
+            <div class="slider__preview">
+              <div class="slider__img"><img src="{url_static}assets/img/header_nosotros.png" class="photo"/></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="widget js-widget hidden-lg hidden-md">
+  <div class="widget__content">
+    <div class="row">
+      <div class="col-sm-12 col-xs-12">
+        <img src="{url_static}assets/img/header_nosotros.png"  alt="" style="width: 100% !important;">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="center">
+  <div class="container">
+    <div class="row">
+      <div class="site site--main">
+        <header class="site__header">
+          <h1 class="site__title">GESTIONES TURNO ONLINE</h1>
+          <h2 class="site__headline">
+            <nav class="breadcrumbs">
+              <div class="container">
+                <ul>
+                  <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link">Home</a></li>
+                  <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link">Centro de Ayuda</a></li>
+                  <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link__current">Trabajá en Edelar</a></li>
+                </ul>
+              </div>
+            </nav>
+          </h2>
+        </header>
+        <div class="widget__content">          
+          <div class="alert ui-pnotify-container alert-danger ui-pnotify-shadow" id="div_error" style="display: none;">
+            <h4 class="ui-pnotify-title">
+              <svg class="notify-icon">
+                <use xlink:href="#icon-error"></use>
+              </svg><font id="msj_error"></font>
+            </h4>
+            <div style="display: none;" id="div_notify_error" class="ui-pnotify-text"></div>
+          </div>          
+        </div>
+        <div class="widget__content">
+          <div class="contacts">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="contacts__form">  
+                  <form method="post" id="tramitesForm" action="{url_app}/sitio/guardar_turno" name="tramitesForm" class="form form--flex js-contact-form form--contacts">
+                    <div class="row">
+                      <div class="form-group form-group--col-6 required">
+                        <label for="documento" class="control-label">DOCUMENTO</label>
+                        <input id="documento" type="number" name="documento" class="form-control" value="{turnopendiente-documento}" required>
+                        <small>* Sin puntos</small>
+                      </div>
+                    </div>
+                    <div class="row" id="turnos" style="display: none;"></div>
+                    <div class="row" id="contenido">
+                      <div class="row" style="margin-left: 0%;">
+                        <div class="form-group form-group--col-6 required">
+                          <label for="telefono" class="control-label">Teléfono</label>
+                          <input id="telefono" type="text" name="telefono" class="form-control" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" value="{turnopendiente-telefono}" required>
+                          <small>* Ingrese el código de área y 15 en celulares. Ej: <b>0380154455678</b></small>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="correoelectronico" class="control-label">Correo</label>
+                          <input id="correoelectronico" type="email" name="correoelectronico" class="form-control" value="{turnopendiente-correoelectronico}" onchange="validacionCorreoElectronico();" required>
+                          <small>* Ingrese el código de área y 15 en celulares. Ej: <b>0380154455678</b></small>
+                        </div>
+                      </div>
+                      <div class="row" style="margin-left: 0%;">
+                        <div class="form-group form-group--col-6 required">
+                          <label for="tramitesForm_select" class="control-label">Localidad</label>
+                          <select data-placeholder="Localidad" class="form-control unicom" tabindex="-1" aria-hidden="true" name="unicom" id="tramitesForm_select" required="">
+                            <option value="{unicom-unicom_id}" selected>{unicom-denominacion}</option>
+                            {slt_unicom}
+                          </select>                          
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="tramitesForm_defaultReal" class="control-label">Trámite</label>
+                          <select id="tramitesForm_defaultReal" data-placeholder="Trámite" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="gestion" id="tramitesForm_defaultReal" onchange="obtenerRequisitos();" required="">
+                            <option value="{tramite-tramite_id}" selected>{tramite-denominacion}</option>
+                            {slt_tramite}
+                          </select>                          
+                        </div>
+                      </div>
+                      <div class="form-group form-group--col-12" style="display: none;" id="contenidoGestionOnline">
+                        <h3 style="background-color: rgba(209,70,65,0.9);font-size: 12px;border-bottom: 0px;">
+                          Estimado cliente la gestion seleccionada puede ser realizada de manera online &nbsp;<a  target="_blank" href="" id="urlgestion">Realizar Gestión</a>
+                        </h3>
+                      </div>
+                      <div class="form-group form-group--col-12" id="requisitos"></div>
+                      <div class="form-group form-group--col-12" id="contenido2">
+                        <label style="font-size: 15px;">Dias Disponibles *:</label>
+                        <div id="dias"></div>
+                      </div>
+                      <div class="form-group form-group--col-12" id="contenido3">
+                        <div class="form-group form-group--col-12">
+                          <label style="font-size: 15px;">Horarios Disponibles *:</label><br>
+                          <div id="horas"></div>
+                        </div>  
+                        <div class="form-group form-group--col-12 required">
+                          <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
+                        </div>
+                        <div class="form-group form-group--col-12 required">
+                          <button type="button" onclick="confirma_formulario();" id="btnEnviar" name="btnEnviar" class="form__submit">ENVIAR</button>      
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="widget js-widget widget--sidebar widget--dark">      
+          {sidebar_login_autogestion}
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+<div class="row hidden-lg hidden-md">  
+  {sidebar_deuda_turno_movil}
+</div>
+<script type="text/javascript" language="javascript" src="{url_static}assets/js/stacktable.js"></script>
+<script type="text/javascript" charset="utf-8">
+  var error = document.getElementById("div_error");
+  var div_notify_error = document.getElementById("div_notify_error");
+  var msj_error = document.getElementById("msj_error");
+  var btnenviar = document.getElementById("btnEnviar");
+  var contenido = document.getElementById("contenido");
+  var contenido2 = document.getElementById("contenido2");
+  var contenido3 = document.getElementById("contenido3");
+
+  var slt_dias = document.getElementById("dias");
+  var slt_horas = document.getElementById("horas");
+  var slt_turnos = document.getElementById("turnos");
+
+  const documento = document.getElementById('documento');
+  const selectUnicom = document.querySelector('.unicom');
+
+  document.getElementById("tramitesForm_select").selectedIndex = "0";
+
+  error.innerHTML  = "";
+  error.style.display = 'none';
+  obtenerRequisitos();
+  consultar_dia({unicom-unicom_id});
+  consultar_horario();
+
+  selectUnicom.addEventListener('change', (event) => {
+    var unicom = event.target.value;
+    if (unicom === null || unicom === "") {
+      div_error.style.display = 'block';
+      div_notify_error.style.display = 'block';
+      msj_error.innerHTML  = "Por favor seleccione una Localidad. Gracias.";
+      contenido2.style.display = 'none';
+      contenido3.style.display = 'none';
+    } else {
+      msj_error.innerHTML  = "";
+      div_error.style.display = 'none';
+      div_notify_error.style.display = 'none';
+      contenido3.style.display = 'none';
+      contenido2.style.display = 'block';
+
+      consultar_dia(unicom);
+      document.querySelector('.fecha').remove(document.querySelector('.fecha').selectedIndex);
+
+      document.querySelector('.fecha').addEventListener('change', (event) => {
+        var fecha =  event.target.value;
+        if (fecha === null || fecha === "") {
+          div_error.style.display = 'block';
+          div_notify_error.style.display = 'block';
+          msj_error.innerHTML  = "Por favor seleccione una Fecha. Gracias.";
+          contenido3.style.display = 'none';
+        } else {
+          msj_error.innerHTML  = "";
+          div_error.style.display = 'none';
+          div_notify_error.innerHTML  = "";
+          contenido3.style.display = 'block';
+
+          consultar_horario();
+           jQuery('#turnos').stackcolumns();
+        }
+      });/*FECHA*/
+    }
+  });/*unicom*/
+
+  document.querySelector('.fecha').addEventListener('change', (event) => {
+    var fecha =  event.target.value;
+    if (fecha === null || fecha === "") {
+      div_error.style.display = 'block';
+      div_notify_error.style.display = 'block';
+      msj_error.innerHTML  = "Por favor seleccione una Fecha. Gracias.";
+      contenido3.style.display = 'none';
+    } else {
+      msj_error.innerHTML  = "";
+      div_error.style.display = 'none';
+      div_notify_error.style.display = 'none';
+      contenido3.style.display = 'block';
+
+      consultar_horario();
+       jQuery('#turnos').stackcolumns();
+    }
+  });/*FECHA*/
+
+function consultar_dia(unicom) {
+  var dia = '{turnopendiente-fecha_hasta}';
+  var data = jQuery.ajax({
+    url: "{url_app}/sitio/horas_disponibles_edit/" + documento.value+"@"+unicom+"@"+dia,
+    dataType: 'text',
+    async: false
+  }).responseText;
+
+  if (data == 0) {
+    div_error.style.display = 'block';
+    div_notify_error.style.display = 'block';
+    msj_error.innerHTML  = "No existen turnos disponibles. Gracias";
+    contenido.style.display = 'none';
+  }else {
+    msj_error.innerHTML  = "";
+    div_error.style.display = 'none';
+    div_notify_error.style.display = 'none';
+    contenido.style.display = 'block';
+    slt_dias.innerHTML  = data;
+  }
+}
+
+function obtenerRequisitos() {
+  var gestion = document.getElementsByName("gestion")[0].value;
+  var requisitos = document.getElementById("requisitos");
+
+  if (gestion === null || gestion === "") {
+    requisitos.style.display = 'none';
+  }else {
+    requisitos.style.display = 'block';
+
+    var data = jQuery.ajax({
+      url: "{url_app}/sitio/gestion_requisitos/" + gestion,
+      dataType: 'text',
+      async: false
+    }).responseText;
+    document.getElementById("requisitos").innerHTML = data;
+  }
+
+}
+
+function consultar_horario() {
+    var unicom = document.getElementsByName('unicom')[0].value;
+    var fecha_turno = document.getElementsByName('fecha_turno')[0].value;
+    var horario = '{turnopendiente-hora_solicitud}';
+    var oficina = '{oficina-oficina_id}';
+    var to_turnopendiente_id = '{turnopendiente-turnopendiente_id}';
+
+    var data = jQuery.ajax({
+      url: "{url_app}/sitio/dias_disponibles_edit/" +fecha_turno+"@"+unicom+"@"+horario+"@"+oficina+"@"+to_turnopendiente_id,
+      dataType: 'text',
+      async: false
+    }).responseText;
+
+    slt_horas.innerHTML  = data;
+}
+
+function confirma_formulario() {
+  var array = new Array();
+  var flag_array = 0;
+
+  var gestion = document.getElementsByName("gestion")[0].value;
+  var fecha_turno = document.getElementsByName("fecha_turno")[0].value;
+  var hora_turno = document.getElementsByName("hora_turno")[0].value;
+
+
+  if (gestion == null || gestion.length == 0 || gestion == "") {
+      flag_array = 1;
+      div_error.style.display = 'block';
+      div_notify_error.style.display = 'block';
+      msj_error.innerHTML  = "Por favor seleccione Gestión. Gracias.";
+  } else {
+      flag_array = 0;
+      msj_error.innerHTML  = "";
+      div_error.style.display = 'none';
+      div_notify_error.style.display = 'none';
+
+      if (hora_turno == null || hora_turno.length == 0 || hora_turno == "") {
+          flag_array = 1;
+          div_error.style.display = 'block';
+          div_notify_error.style.display = 'block';
+          msj_error.innerHTML  = "Por favor seleccione un Horario Disponible. Gracias.";
+      } else {
+          flag_array = 0;
+          msj_error.innerHTML  = "";
+          div_error.style.display = 'none';
+          div_notify_error.style.display = 'none';
+      }
+  }
+
+  if (flag_array == 0) {
+    document.tramitesForm.submit();
+    document.tramitesForm.reset();
+  }
+}
+
+document.addEventListener('contextmenu', function(evt) {
+  evt.preventDefault();
+  return false;
+});
+</script>

@@ -521,6 +521,22 @@ class SitioView extends View {
 	/* TRAMITES COMERCIALES ************************************************/
 
 	/* COMMON **************************************************************/
+	function editar_turno($obj_turnopendiente, $unicom_collection, $tramite_collection) {
+		$gui = file_get_contents("static/modules/sitio/editar_turno.html");
+		$gui_slt_unicom = file_get_contents("static/common/slt_unicom.html");
+		$gui_slt_unicom = $this->render_regex('SLT_UNICOM', $gui_slt_unicom, $unicom_collection);
+
+		$gui_slt_tramite = file_get_contents("static/common/slt_tramite.html");
+		$gui_slt_tramite = $this->render_regex('SLT_TRAMITE', $gui_slt_tramite, $tramite_collection);
+
+		$obj_turnopendiente = $this->set_dict($obj_turnopendiente);
+		$render = $this->render($obj_turnopendiente, $gui);
+		$render = str_replace('{slt_unicom}', $gui_slt_unicom, $render);
+		$render = str_replace('{slt_tipogestion}', $gui_slt_tramite, $render);
+		$template = $this->render_sitio($render);
+		print $template;
+	}
+
 	function turnos_documento($turnopendiente_collection) {
 		$gui_slt_turnos = file_get_contents("static/modules/sitio/turnos_documento.html");
 		$gui_slt_turnos_documento = file_get_contents("static/common/slt_turnos_documento.html");
@@ -543,6 +559,13 @@ class SitioView extends View {
 	function horas_disponibles($resultado) {
 		$gui_slt_horas_disponibles = file_get_contents("static/common/slt_horas_disponibles.html");
 		$gui_slt_horas_disponibles = $this->render_regex_dict('SLT_HORAS_DISPONIBLES', $gui_slt_horas_disponibles, $resultado);
+		print $gui_slt_horas_disponibles;
+	}
+
+	function horas_disponibles_edit($resultado, $dia) {
+		$gui_slt_horas_disponibles = file_get_contents("static/common/slt_horas_disponibles_edit.html");
+		$gui_slt_horas_disponibles = $this->render_regex_dict('SLT_HORAS_DISPONIBLES', $gui_slt_horas_disponibles, $resultado);
+		$gui_slt_horas_disponibles = str_replace('{dia}',$dia, $gui_slt_horas_disponibles);
 		print $gui_slt_horas_disponibles;
 	}
 
