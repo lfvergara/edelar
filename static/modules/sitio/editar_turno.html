@@ -193,7 +193,7 @@
           contenido3.style.display = 'block';
 
           consultar_horario();
-           jQuery('#turnos').stackcolumns();
+           $('#turnos').stackcolumns();
         }
       });/*FECHA*/
     }
@@ -213,13 +213,13 @@
       contenido3.style.display = 'block';
 
       consultar_horario();
-       jQuery('#turnos').stackcolumns();
+       $('#turnos').stackcolumns();
     }
   });/*FECHA*/
 
 function consultar_dia(unicom) {
   var dia = '{turnopendiente-fecha_hasta}';
-  var data = jQuery.ajax({
+  var data = $.ajax({
     url: "{url_app}/sitio/horas_disponibles_edit/" + documento.value+"@"+unicom+"@"+dia,
     dataType: 'text',
     async: false
@@ -248,7 +248,7 @@ function obtenerRequisitos() {
   }else {
     requisitos.style.display = 'block';
 
-    var data = jQuery.ajax({
+    var data = $.ajax({
       url: "{url_app}/sitio/gestion_requisitos/" + gestion,
       dataType: 'text',
       async: false
@@ -265,7 +265,7 @@ function consultar_horario() {
     var oficina = '{oficina-oficina_id}';
     var to_turnopendiente_id = '{turnopendiente-turnopendiente_id}';
 
-    var data = jQuery.ajax({
+    var data = $.ajax({
       url: "{url_app}/sitio/dias_disponibles_edit/" +fecha_turno+"@"+unicom+"@"+horario+"@"+oficina+"@"+to_turnopendiente_id,
       dataType: 'text',
       async: false
