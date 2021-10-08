@@ -1145,7 +1145,7 @@ class SitioController {
 		$tpm = new TurnoPendiente();
 		$tpm->turnopendiente_id = $turnopendiente_id;
 		$tpm->get();
-
+		print_r($tpm);exit;
 		$unicom_collection = Collector()->get('Unicom');
 		$tramite_collection = Collector()->get('Tramite');
 
