@@ -1230,10 +1230,10 @@ class SitioController {
 		$oficina = $var[3];
 		$turnopendiente_id = $var[4];
 
-		$tpm = New TurnoPendiente();
+		$tpm = new TurnoPendiente();
 		$tpm->turnopendiente_id = $turnopendiente_id;
 		$tpm->get();
-
+		print_r($tpm);exit;
 		/*BUSCO CONFIGURACION POR UNICOM Y FECHA*/
 		$select = "rt.fecha_desde AS FECHA_DESDE, rt.fecha_hasta AS FECHA_HASTA, ct.cantidad_gestores AS CANTIDAD, of.oficina_id AS OFICINA, of.denominacion AS DENOMINACION, of.direccion AS DIRECCION";
 		$from = "rangoturnero rt INNER JOIN configuracionturnero ct ON rt.rangoturnero_id = ct.rangoturnero INNER JOIN configuracionturnerooficina cto ON ct.configuracionturnero_id = cto.compositor INNER JOIN oficina of ON cto.compuesto = of.oficina_id";
