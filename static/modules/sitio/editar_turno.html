@@ -219,7 +219,8 @@
 
   function consultar_dia(unicom) {
     var dia = '{turnopendiente-fecha_hasta}';
-    var data = $.ajax({
+    var j = jQuery.noConflict();
+    var data = j.ajax({
       url: "{url_app}/sitio/horas_disponibles_edit/" + documento.value+"@"+unicom+"@"+dia,
       dataType: 'text',
       async: false
