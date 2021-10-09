@@ -1289,7 +1289,6 @@ class SitioController {
 			$groupby = "tp.hora_solicitud, tp.oficina";
 			$turnopendiente_collection = CollectorCondition()->get('TurnoPendiente', $where, 4,$from, $select, $groupby);
 			/*TO_TURNOSPENDIENTES*/
-			print_r($turnopendiente_collection);exit;
 
 			/*ELIMINO HORARIO NO DISPONIBLE*/
 			if (is_array($turnopendiente_collection)) {
@@ -1331,7 +1330,7 @@ class SitioController {
 				}else {
 					$this->view->dias_disponibles_edit($configuracion_unicom_collection,$horario,$oficina,$fecha,$tpm->fecha_hasta);
 				}
-			}else {
+			} else {
 				foreach ($configuracion_unicom_collection as $key => $value) {
 					if (empty($value['TURNOS'])) {
 						 unset($configuracion_unicom_collection[$key]);
@@ -1341,11 +1340,12 @@ class SitioController {
 				if (empty($configuracion_unicom_collection)) {
 					$this->view->dias_no_disponibles();
 				}else {
+					print_r($turnopendiente_collection);exit;
 					$this->view->dias_disponibles_edit($configuracion_unicom_collection,$horario,$oficina,$fecha,$tpm->fecha_hasta);
 				}
 			}
 			/*VALIDAMOS QUE EXISTAN TURNOS*/
- 		}else {
+ 		} else {
 			$this->view->dias_no_disponibles();
  		}
 	}
