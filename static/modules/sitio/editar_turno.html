@@ -157,12 +157,9 @@
 
   error.innerHTML  = "";
   error.style.display = 'none';
-  $(document).ready(function(){
-    
-    obtenerRequisitos();
-    consultar_dia({unicom-unicom_id});
-    consultar_horario();
-  });
+  obtenerRequisitos();
+  consultar_dia({unicom-unicom_id});
+  consultar_horario();
 
   selectUnicom.addEventListener('change', (event) => {
     var unicom = event.target.value;
