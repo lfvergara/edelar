@@ -1340,7 +1340,6 @@ class SitioController {
 				if (empty($configuracion_unicom_collection)) {
 					$this->view->dias_no_disponibles();
 				}else {
-					print_r($turnopendiente_collection);exit;
 					$this->view->dias_disponibles_edit($configuracion_unicom_collection,$horario,$oficina,$fecha,$tpm->fecha_hasta);
 				}
 			}

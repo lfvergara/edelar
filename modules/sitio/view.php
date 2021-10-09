@@ -594,6 +594,46 @@ class SitioView extends View {
 		print $render_horario;
 	}
 
+	function dias_disponibles_edit($resultado, $horario, $oficina, $fecha, $turnopendiente_fecha) {
+		$gui_slt_dias_disponibles = file_get_contents("static/common/slt_dias_disponibles_edit.html");
+
+		$array_turnos = array();
+		foreach ($resultado as $key => $value) {
+
+			$array_turnos[$key]['TURNOS'] = $resultado[$key]['TURNOS'];
+			$array_turnos[$key]['OFICINA'] = $resultado[$key]['OFICINA'];
+			unset($resultado[$key]['TURNOS']);
+		}
+
+		$gui_slt_dias_disponibles = $this->render_regex_dict('SLT_DIAS_DISPONIBLES', $gui_slt_dias_disponibles, $resultado);
+
+		$render_horario = '';
+		foreach ($array_turnos as $key => $value) {
+			if ($value['OFICINA'] == $oficina) {
+ 				$array_search = array_search($horario, $value['TURNOS']);
+				if (empty($array_search)) {
+					array_push($value['TURNOS'], $horario);
+					sort($value['TURNOS']);
+				}
+			}
+
+			$horario_disponibles = '';
+			foreach ($value['TURNOS'] as $clave => $valor) {
+				if ($value['OFICINA'] == $oficina and $valor == $horario and $fecha == $turnopendiente_fecha) {
+					$horario_disponibles .= '<label><input onmousedown="return false;" type="radio" id="hora_turno" name="hora_turno" value="'.$valor.'@'.$value['OFICINA'].'" checked> '.$valor.'</label><br>';
+				}else {
+					$horario_disponibles .= '<label><input onmousedown="return false;" type="radio" id="hora_turno" name="hora_turno" value="'.$valor.'@'.$value['OFICINA'].'"> '.$valor.'</label><br>';
+				}
+ 			}
+
+			$horarios_disponibles = '<td>'.$horario_disponibles.'</td>';
+			$render_horario .= $horarios_disponibles;
+		}
+		$render_horario = str_replace('<!--HORARIOS_DISPONIBLES-->', $render_horario, $gui_slt_dias_disponibles);
+
+		print $render_horario;
+	}
+
 	function dias_no_disponibles() {
 		$gui_slt_no_dias_disponibles = file_get_contents("static/common/slt_dias_no_disponibles.html");
 		print $gui_slt_no_dias_disponibles;
