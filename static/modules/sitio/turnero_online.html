@@ -188,7 +188,7 @@
             contenido3.style.display = 'none';
             consultar_dia(unicom);
 
-            document.getElementById('fecha_turno').addEventListener('change', (event) => {
+            document.querySelector('.fecha').addEventListener('change', (event) => {
               var fecha =  event.target.value;
               if (fecha === null || fecha === "") {
                 error.style.display = 'block';
