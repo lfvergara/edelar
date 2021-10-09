@@ -1137,6 +1137,185 @@ class SitioController {
 		}
 	}
 
+	function guardar_turno_editado(){
+		$turnopendiente_id = filter_input(INPUT_POST, 'turnopendiente_id');
+		$fecha = filter_input(INPUT_POST, 'fecha_turno');
+		$gestion_id = filter_input(INPUT_POST, 'gestion');
+		$documento = filter_input(INPUT_POST, 'documento');
+		$turno = filter_input(INPUT_POST, 'hora_turno');
+		$var = explode('@',$turno);
+		$hora = $var[0];
+		$oficina_id = $var[1];
+		$telefono = filter_input(INPUT_POST, 'telefono');
+		$correoelectronico = filter_input(INPUT_POST, 'correoelectronico');
+
+		if (is_null($fecha) OR empty($fecha) OR $fecha == 0) {
+			$mensaje ="Seleccione una Fecha Disponible. Vuelva a intentarlo. Gracias";
+			$this->mensaje_turno($mensaje);
+		}elseif (is_null($turno) OR empty($turno) OR $turno == 0) {
+			$mensaje ="Seleccione un Horario Disponible. Vuelva a intentarlo. Gracias";
+			$this->mensaje_turno($mensaje);
+		}elseif (is_null($gestion_id) OR empty($gestion_id) OR $gestion_id == 0) {
+			$mensaje ="Seleccione una Gestión Disponible. Vuelva a intentarlo. Gracias";
+			$this->mensaje_turno($mensaje);
+		}elseif (is_null($documento) OR empty($documento) OR $documento == 0) {
+			$mensaje ="Ingrese un Documento. Vuelva a intentarlo. Gracias";
+			$this->mensaje_turno($mensaje);
+		}elseif (is_null($telefono) OR empty($telefono) OR $telefono == 0) {
+			$mensaje ="Ingrese un Telefono. Vuelva a intentarlo. Gracias";
+			$this->mensaje_turno($mensaje);
+		} else {
+			if (!empty($correoelectronico)) {
+				$api_key = "sg2xL6QmK2HMC0dD6e0NObaVN";
+				$j = json_decode(file_get_contents("https://api.millionverifier.com/api/v3/?api=$api_key&email=$correoelectronico"));
+				switch($j->resultcode) {
+					case 1:
+					  	$confirmacion = 1;
+						break;
+					default:
+						$mensaje ="Correo Electrónico Inválido. Vuelva a intentarlo. Gracias";
+						$this->mensaje_turno($mensaje);
+						break;
+				}
+			} else {
+				$confirmacion = 0;
+			}
+
+
+			$select = "ct.cantidad_gestores AS CANTIDAD";
+			$from = "rangoturnero rt INNER JOIN configuracionturnero ct ON rt.rangoturnero_id = ct.rangoturnero INNER JOIN configuracionturnerooficina cto ON ct.configuracionturnero_id = cto.compositor INNER JOIN oficina o ON cto.compuesto = o.oficina_id";
+			$where = "rt.estado = 1 and cto.compuesto = {$oficina_id}";
+			$cantidad_gestores = CollectorCondition()->get('RangoTurnero', $where, 4,$from, $select);
+			$cantidad_gestores = (is_array($cantidad_gestores) AND !empty($cantidad_gestores)) ? $cantidad_gestores[0]['CANTIDAD'] : 0;
+
+			$tpm = new TurnoPendiente();
+			$tpm->turnopendiente_id = $turnopendiente_id;
+			$tpm->get();
+
+			$telefono =str_replace(' ', '', $telefono);
+			$telefono = preg_replace('/[^0-9,.]+/i', '', $telefono);
+
+			/*GUARDA EN TURNERO*/
+			$turno = array('documento'=>$documento,
+						   'fecha'=>$fecha,
+						   'hora_solicitud'=>$hora,
+						   'oficina_id'=>$oficina_id,
+						   'gestion_id'=>$gestion_id,
+						   'telefono'=>$telefono,
+						   'correoelectronico'=>$correoelectronico,
+						   'turnopendiente_id'=>$tpm->turnopendiente_id,
+						   'cantidad_gestores'=>$cantidad_gestores);
+
+			$argumento = json_encode($turno);
+			$resultado = sincroniza_geco_turno_modificar_desa($argumento);
+			/*GUARDA EN TURNERO*/
+
+			/*GUARDA EN WEB*/
+			$turno = json_decode($resultado);
+			switch ($turno) {
+				case (is_object($turno)):
+
+						$tpm->numero = $turno->numero;
+						$tpm->fecha_hasta = $turno->fecha;
+						$tpm->hora_solicitud = $turno->hora_solicitud;
+						$tpm->to_oficina =  $turno->oficina;
+						$tpm->to_tipogestion =  $turno->tipogestion;
+						$tpm->telefono = $turno->telefono;
+						$tpm->correoelectronico = $turno->correoelectronico;
+						$tpm->save();
+
+						header("Location: " . URL_APP . "/sitio/comprobante_turno/{$documento}@{$turnopendiente_id}");
+						break;
+				case "TURNO_NO_DISPONIBLE":
+						$mensaje ="Turno no disponible. Vuelva a intentarlo. Gracias";
+						$this->mensaje_turno($mensaje);
+						break;
+				default:
+						$mensaje = "Error al solicitar turno. Vuelva a intentarlo. Gracias";
+						$this->mensaje_turno($mensaje);
+						break;
+			}
+			/*GUARDA EN WEB*/
+
+			switch($confirmacion) {
+				case 0:
+					/*MANDARIA SMS*/
+					/* FIX INTEGRAR API PARA EL ENVÍO DE SMS */
+
+					$mensaje = "Se ha enviado un mensaje al teléfono indicado en la solicitud. Por favor confirme el , de lo contrario el mismo será cancelado. Gracias";
+					$this->mensaje_turno($mensaje);
+					
+					break;
+				case 1:
+					require_once 'core/helpers/emailHelper.php';
+					$emailHelper = new EmailHelper();
+					$emailHelper->envia_turnoweb_confirmacion($correoelectronico, $token);
+					
+					$mensaje = "Se ha enviado un mensaje al correo electrónico indicado en la solicitud. Por favor confirme el , de lo contrario el mismo será cancelado. Gracias";
+					$this->mensaje_turno($mensaje);
+					break;
+				default:
+					$mensaje = "Error al solicitar turno. Vuelva a intentarlo. Gracias";
+					$this->mensaje_turno($mensaje);
+					break;
+			}
+		}
+
+		header("Location: " . URL_APP . $direccion_confirmacion);
+	}
+
+	function cancelar_turno($arg) {
+		$var = explode('@',$arg);
+		$documento = $var[0];
+		$turnopendiente_id = $var[1];
+
+		if ($turnopendiente_id !=0) {
+			$tpm = new TurnoPendiente();
+			$tpm->turnopendiente_id = $turnopendiente_id;
+			$tpm->get();
+
+			if ($tpm->documento == $documento) {
+				/*GUARDA EN TURNERO*/
+				$turno = array('fecha'=>$tpm->fecha_hasta,
+							   'hora_solicitud'=>$tpm->hora_solicitud,
+							   'oficina_id'=>$tpm->oficina,
+							   'gestion_id'=>$tpm->tramite,
+							   'telefono'=>$tpm->telefono,
+							   'correoelectronico'=>$tpm->correoelectronico,
+							   'turnopendiente_id'=>$tpm->turnopendiente_id,
+							   'cantidad_gestores'=>0);
+
+				$argumento = json_encode($turno);
+				$resultado = sincroniza_geco_turno_cancelar_desa($argumento);
+				/*GUARDA EN TURNERO*/
+
+				/*GUARDA EN WEB*/
+				$resultado = json_decode($resultado);
+				switch ($resultado) {
+					case ("OK"):
+							$tpm->estado = 'cancelado';
+							$tpm->save();
+
+							$this->view->cancelar_turno();
+	 						break;
+					case "TURNO_NO_DISPONIBLE":
+							$mensaje ="Turno no disponible. Vuelva a intentarlo. Gracias";
+							$this->mensaje_turno($mensaje);
+							break;
+					default:
+							$mensaje = "Error al cancelar turno. Vuelva a intentarlo. Gracias";
+							$this->mensaje_turno($mensaje);
+							break;
+				}
+				/*GUARDA EN WEB*/
+			} else {
+				header("Location: " . URL_APP . "/sitio");
+			}
+		} else {
+			header("Location: " . URL_APP . "/sitio");
+		}
+	}
+
 	function editar_turno($arg) {
 		$var = explode('@',$arg);
 		$documento = $var[0];
@@ -1153,6 +1332,32 @@ class SitioController {
 		} else {
 			header("Location: " . URL_APP . "/sitio");
 		}
+	}
+
+	function imprimir_turno($arg) {
+		$ids = explode('@', $arg);
+		$documento = $ids[0];
+		$turnopendiente_id = $ids[1];
+
+		$select = "tp.turnopendiente_id AS ID, tp.numero AS NUMERO,	tp.documento AS DOCUMENTO, tp.fecha_hasta AS FECHA, tp.hora_solicitud AS HORA, o.denominacion AS OFICINA, t.denominacion AS GESTION, o.direccion AS DIRECCION, t.tramite_id AS TIPO";
+		$from = "turnopendiente tp INNER JOIN oficina o ON tp.oficina = o.oficina_id INNER JOIN tramite t ON tp.tramite = t.tramite_id";
+		$where = "tp.documento = {$documento} AND tp.turnopendiente_id = {$turnopendiente_id}";
+		$turnopendiente_collection = CollectorCondition()->get('TO_TurnoPendiente', $where, 4,$from, $select);
+
+		$tramite_id = $turnopendiente_collection[0]['TIPO'];
+
+		$tm = new Tramite();
+		$tm->tramite_id = $tramite_id;
+		$tm->get();
+
+		$gui = $this->view->imprimir_turno($turnopendiente_collection, $tm);
+		$mipdf = new DOMPDF();
+		$mipdf->set_paper("A4", "portrait");
+		$mipdf->load_html($gui);
+		$mipdf->render();
+		$mipdf->output();
+		$mipdf->stream('CuponTurnoEDELAR.pdf');
+		exit;
 	}
 
 	function horas_disponibles_edit($arg){

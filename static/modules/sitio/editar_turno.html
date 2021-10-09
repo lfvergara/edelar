@@ -56,7 +56,7 @@
             <div class="row">
               <div class="col-lg-12">
                 <div class="contacts__form">  
-                  <form method="post" id="tramitesForm" action="{url_app}/sitio/guardar_turno" name="tramitesForm" class="form form--flex js-contact-form form--contacts">
+                  <form method="post" id="tramitesForm" action="{url_app}/sitio/guardar_turno_editado" name="tramitesForm" class="form form--flex js-contact-form form--contacts">
                     <div class="row">
                       <div class="form-group form-group--col-6 required">
                         <label for="documento" class="control-label">DOCUMENTO</label>
@@ -113,7 +113,8 @@
                           <div class="g-recaptcha" data-sitekey="6Lck8w8UAAAAAKOmdloT5kRLC5STDcbBVop3HvBG"></div>
                         </div>
                         <div class="form-group form-group--col-12 required">
-                          <button type="button" onclick="confirma_formulario();" id="btnEnviar" name="btnEnviar" class="form__submit">ENVIAR</button>      
+                          <input type="hidden" id="turnopendiente_id" name="turnopendiente_id" value="{turnopendiente-turnopendiente_id}">
+                          <button type="button" onclick="confirma_formulario();" id="btnEnviar" name="btnEnviar" class="form__submit">ENVIAR</button>
                         </div>
                       </div>
                     </div>

@@ -645,6 +645,27 @@ class SitioView extends View {
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 	}
+
+	function imprimir_turno($turnopendiente_collection,$obj_tramite) {
+		$gui = file_get_contents("static/common/comprobante_turno.html");
+
+		$fecha = $turnopendiente_collection[0]['FECHA'];
+		$fechaEntera = strtotime($fecha);
+		$anio = date("Y", $fechaEntera);
+		$mes = date("m", $fechaEntera);
+		$dia = date("d", $fechaEntera);
+		$fecha_turno = $dia.'-'.$mes.'-'.$anio;
+
+		$render = str_replace('{documento}', $turnopendiente_collection[0]['DOCUMENTO'], $gui);
+		$render = str_replace('{numero}', $turnopendiente_collection[0]['NUMERO'], $render);
+		$render = str_replace('{fecha}', $fecha_turno, $render);
+		$render = str_replace('{hora}', $turnopendiente_collection[0]['HORA'], $render);
+		$render = str_replace('{oficina}', $turnopendiente_collection[0]['OFICINA'], $render);
+		$render = str_replace('{direccion}', $turnopendiente_collection[0]['DIRECCION'], $render);
+		$render = str_replace('{gestion}', $turnopendiente_collection[0]['GESTION'], $render);
+		$render = str_replace('{requisitos}', $obj_tramite->requisito, $render);
+ 		return $render;
+	}
 	/* COMMON **************************************************************/
 }
 ?>
