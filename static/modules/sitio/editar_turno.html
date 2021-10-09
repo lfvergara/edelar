@@ -177,9 +177,9 @@
       contenido2.style.display = 'block';
 
       consultar_dia(unicom);
-      document.querySelector('.fecha').remove(document.querySelector('.fecha').selectedIndex);
+      document.querySelector('.slt_turnero_fecha').remove(document.querySelector('.slt_turnero_fecha').selectedIndex);
 
-      document.querySelector('.fecha').addEventListener('change', (event) => {
+      document.querySelector('.slt_turnero_fecha').addEventListener('change', (event) => {
         var fecha =  event.target.value;
         if (fecha === null || fecha === "") {
           div_error.style.display = 'block';
