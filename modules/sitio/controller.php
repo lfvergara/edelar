@@ -1239,7 +1239,6 @@ class SitioController {
 		$where = "'{$fecha}' BETWEEN rt.fecha_desde AND rt.fecha_hasta AND rt.estado = 1 AND of.unicom = {$unicom} AND of.turnero_online = 1";
 		$configuracion_unicom_collection = CollectorCondition()->get('RangoTurnero', $where, 4,$from, $select);
 		/*BUSCO CONFIGURACION POR UNICOM Y FECHA*/
-		print_r($configuracion_unicom_collection);exit;
 
 		if (is_array($configuracion_unicom_collection)) {
 			/*BUSCO CONFIGURACION DE HORARIOS OFICINAS*/
@@ -1290,6 +1289,7 @@ class SitioController {
 			$groupby = "tp.hora_solicitud, tp.oficina";
 			$turnopendiente_collection = CollectorCondition()->get('TurnoPendiente', $where, 4,$from, $select, $groupby);
 			/*TO_TURNOSPENDIENTES*/
+			print_r($turnopendiente_collection);exit;
 
 			/*ELIMINO HORARIO NO DISPONIBLE*/
 			if (is_array($turnopendiente_collection)) {
