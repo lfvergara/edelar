@@ -656,6 +656,7 @@ class SitioView extends View {
 		$dia = date("d", $fechaEntera);
 		$fecha_turno = $dia.'-'.$mes.'-'.$anio;
 		$obj_tramite->requisito = '<ul>' . $obj_tramite->requisito . '</ul>';
+		print_r($obj_tramite);exit;
 		$render = str_replace('{documento}', $turnopendiente_collection[0]['DOCUMENTO'], $gui);
 		$render = str_replace('{numero}', $turnopendiente_collection[0]['NUMERO'], $render);
 		$render = str_replace('{fecha}', $fecha_turno, $render);
