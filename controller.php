@@ -11,7 +11,6 @@
 * @version    2.0b
 **/
 header('Content-Type: text/html; charset=utf8');
-print_r('Hola');exit;
 require_once 'settings.php';
 require_once 'core/database.php';
 require_once 'core/collector.php';
