@@ -1,4 +1,5 @@
 <?php
+use Dompdf\Dompdf;
 require_once "modules/sitio/view.php";
 require_once "modules/areainteres/model.php";
 require_once "modules/provincia/model.php";
@@ -256,7 +257,6 @@ class SitioController {
 	}
 
 	function imprimir_factura($arg) {
-		//use Dompdf\Dompdf;
 		require_once 'common/libs/ndompdf/autoload.inc.php';
 		require_once "tools/getDeuda.php";
 		$ids = explode('@', $arg);
