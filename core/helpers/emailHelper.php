@@ -1,6 +1,6 @@
 <?php
 require_once 'common/libs/PHPMailer/class.phpmailer.php';
-require_once 'common/libs/domPDF/dompdf_config.inc.php';
+require_once 'common/libs/ndompdf/autoload.inc.php';
 
 
 class EmailHelper extends View {
