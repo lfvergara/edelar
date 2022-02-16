@@ -256,7 +256,7 @@ class SitioController {
 	}
 
 	function imprimir_factura($arg) {
-		use Dompdf\Dompdf;
+		//use Dompdf\Dompdf;
 		require_once 'common/libs/ndompdf/autoload.inc.php';
 		require_once "tools/getDeuda.php";
 		$ids = explode('@', $arg);
