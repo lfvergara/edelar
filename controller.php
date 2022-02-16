@@ -39,11 +39,12 @@ if(empty($recurso)) { $recurso = DEFAULT_ACTION; }
 if(!file_exists("modules/{$modulo}/controller.php")) {
     $modulo = DEFAULT_MODULE;
 }
-$archivo = "modules/{$modulo}/controller.php";
 
+$archivo = "modules/{$modulo}/controller.php";
 require_once $archivo;
 $controller_name = ucwords($modulo) . 'Controller';
 $controller = new $controller_name;
+
 $recurso = (method_exists($controller, $recurso)) ? $recurso : DEFAULT_ACTION;
 $controller->$recurso($argumento);
 ?>
