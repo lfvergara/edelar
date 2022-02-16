@@ -228,7 +228,10 @@ class SitioController {
 		$metodo = filter_input(INPUT_POST, 'metodo');
 		$valor = filter_input(INPUT_POST, 'valor');
 		
-		$deuda_collection = getDeuda()->getDeuda($metodo, $valor);
+		$deuda = new getDeuda();
+		$deuda_collection = $deuda->getDeudaFunction($metodo, $valor);
+		//$deuda_collection = getDeuda()->getDeuda($metodo, $valor);
+		//print_r($deuda_collection);exit;
 		$this->view->ver_deuda($deuda_collection, $metodo);
 	}
 
@@ -238,7 +241,8 @@ class SitioController {
 		$suministro = $ids[0];
 		$factura_id = $ids[1];
 		
-		$deuda_collection = getDeuda()->getDeuda('nis', $suministro);
+		$deuda = new getDeuda();
+		$deuda_collection = $deuda->getDeudaFunction('nis', $suministro);
 		$obj_deuda = null;
 		$deuda_collection = json_decode($deuda_collection);
 		$deuda_collection = $deuda_collection[0];
@@ -254,11 +258,12 @@ class SitioController {
 	function imprimir_factura($arg) {
 		require_once "tools/getDeuda.php";
 		require_once 'common/libs/domPDF/dompdf_config.inc.php';
-	    $ids = explode('@', $arg);
+		$ids = explode('@', $arg);
 		$suministro = $ids[0];
 		$factura_id = $ids[1];
-
-		$deuda_collection = getDeuda()->getDeuda('nis', $suministro);
+		
+		$deuda = new getDeuda();
+		$deuda_collection = $deuda->getDeudaFunction('nis', $suministro);
 		$obj_deuda = null;
 		$deuda_collection = json_decode($deuda_collection);
 		$deuda_collection = $deuda_collection[0];
@@ -270,12 +275,12 @@ class SitioController {
 
 		$gui = $this->view->imprimir_factura_ajax($obj_deuda, $factura_id, $suministro);
 		$mipdf = new DOMPDF();
-        $mipdf->set_paper("A4", "portrait");
-        $mipdf->load_html($gui);
-        $mipdf->render();
-        $mipdf->output();
-        $mipdf->stream('CuponPagoEDELAR.pdf');
-        exit;
+	        $mipdf->set_paper("A4", "portrait");
+        	$mipdf->load_html($gui);
+	        $mipdf->render();
+        	$mipdf->output();
+	        $mipdf->stream('CuponPagoEDELAR.pdf');
+        	exit;
 	}
 	/* MENU = DEUDA ********************************************************/
 

@@ -84,6 +84,7 @@
   }
   
   function consultaFactura(suministro, factura_id) {
+console.log('Hola');
     var consultar_factura_ajax = $.ajax({
       url: '{url_app}/sitio/consultar_factura_ajax/' + suministro + '@' + factura_id,
       dataType: 'text',

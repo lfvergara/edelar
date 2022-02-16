@@ -5,8 +5,8 @@ require_once "common/libs/sha256encript/AESEncrypter.php";
 
 
 class getDeuda {
-	function getDeuda($metodo, $valor) {
-		$ip= '144.217.5.1';
+	function getDeudaFunction($metodo, $valor) {
+		$ip= '137.184.46.15';
 		$usuario = 'PROVEEDORWEB_7894265917';
 		$clave = 'TY3tTnOj7QTf9HDgsFg9KOYT7k5F85T9VcrjFtp9';
 		$secretKey = 'PROVEEDOR_cwcFscHTl6UD9MWsnqUHE17wxXqfvHLmaDC9PfHl_WEB'; 
@@ -39,5 +39,5 @@ class getDeuda {
 	}
 }
 
-function getDeuda() { return new getDeuda(); }
+//function getDeuda() { return new getDeuda(); }
 ?>

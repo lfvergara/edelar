@@ -169,8 +169,13 @@ class SitioView extends View {
 		$gui_tbl_deuda = file_get_contents("static/common/tbl_deuda.html");
 		$deuda_collection = json_decode($array_deuda);
 		$deuda_collection = $deuda_collection[0];
+		
+		if(!empty($deuda_collection) AND is_array($deuda_collection)) {
+			foreach ($deuda_collection as $clave=>$valor) $deuda_collection[$clave]->nis = $valor->suministro->id;
+		} else {
+			$deuda_collection = array();
+		}
 
-		foreach ($deuda_collection as $clave=>$valor) $deuda_collection[$clave]->nis = $valor->suministro->id;
 		$gui_tbl_deuda = $this->render_regex('TBL_DEUDA', $gui_tbl_deuda, $deuda_collection);		
 		$render = str_replace('{tbl_deuda}', $gui_tbl_deuda, $gui);
 		$render = str_replace('{fecha_sys}', date('d/m/Y'), $render);
