@@ -256,8 +256,9 @@ class SitioController {
 	}
 
 	function imprimir_factura($arg) {
-		require_once "tools/getDeuda.php";
+		use Dompdf\Dompdf;
 		require_once 'common/libs/ndompdf/autoload.inc.php';
+		require_once "tools/getDeuda.php";
 		$ids = explode('@', $arg);
 		$suministro = $ids[0];
 		$factura_id = $ids[1];
@@ -275,12 +276,12 @@ class SitioController {
 
 		$gui = $this->view->imprimir_factura_ajax($obj_deuda, $factura_id, $suministro);
 		$mipdf = new DOMPDF();
-	        $mipdf->set_paper("A4", "portrait");
-        	$mipdf->load_html($gui);
-	        $mipdf->render();
-        	$mipdf->output();
-	        $mipdf->stream('CuponPagoEDELAR.pdf');
-        	exit;
+        $mipdf->set_paper("A4", "portrait");
+    	$mipdf->load_html($gui);
+        $mipdf->render();
+    	$mipdf->output();
+        $mipdf->stream('CuponPagoEDELAR.pdf');
+    	exit;
 	}
 	/* MENU = DEUDA ********************************************************/
 
