@@ -1,0 +1,149 @@
+<div class="widget js-widget hidden-xs hidden-sm">
+  <div class="widget__content">
+    <div class="banner js-banner-slider banner--slider">
+      <div class="slider">
+        <div class="slider__block js-slick-slider">
+          <div class="slider__item">
+            <div class="slider__preview">
+              <div class="slider__img"><img src="{url_static}assets/img/header_nosotros.png" class="photo"/></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="widget js-widget hidden-lg hidden-md">
+  <div class="widget__content">
+    <div class="row">
+      <div class="col-sm-12 col-xs-12">
+        <img src="{url_static}assets/img/header_nosotros.png"  alt="" style="width: 100% !important;">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row hidden-lg hidden-md">  
+  {sidebar_deuda_turno_movil}
+</div>
+<div class="center">
+  <div class="container">
+    <div class="row">
+      <div class="site site--main">
+        <header class="site__header">
+          <h1 class="site__title">OFICINA VIRTUAL</h1>
+          <h2 class="site__headline">
+            <nav class="breadcrumbs">
+              <div class="container">
+                <ul>
+                  <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link">Home</a></li>
+                  <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link">Oficina Virtual</a></li>
+                  <li class="breadcrumbs__item"><a href="" class="breadcrumbs__link__current">Consulta de Deuda</a></li>
+                </ul>
+              </div>
+            </nav>
+          </h2>
+        </header> 
+
+        <div class="site site--dashboard">
+          <div class="site__main">
+            <div class="widget js-widget widget--dashboard">
+              <div class="widget__header">
+                <h2 class="widget__title">Favorite search</h2>
+              </div>
+              <div class="widget__content">               
+                <div class="listing--items listing--list">
+                  <div class="listing__list">
+                    <dl class="listing__item">
+                      <dt class="listing__title">Kuala Lumpur - 3 bedrooms apartments</dt>
+                      <dd class="listing__body">
+                        <div class="listing__category">Luxury apartments</div>
+                        <ul class="listing__list">
+                          <li class="listing__param">Keyword: <strong>Penthouse</strong></li>
+                          <li class="listing__param">Listing Type: <strong>For sale</strong></li>
+                          <li class="listing__param">Propert Type: <strong>Private apartment</strong></li>
+                          <li class="listing__param">Tenure: <strong>Estate</strong></li>
+                          <li class="listing__param">Bedrooms: <strong>3</strong></li>
+                          <li class="listing__param">Agent: <strong>Josh Hartnett</strong></li>
+                          <li class="listing__param">Location administrative level 1: <strong>Malaysia</strong></li>
+                          <li class="listing__param">Location administrative level 2: <strong>Kuala Lumpur</strong></li>
+                          <li class="listing__param">Price: <strong>RM 50,000 - RM 400,000</strong></li>
+                          <li class="listing__param">Commision: <strong>2% - 6%</strong></li>
+                          <li class="listing__param">Area: <strong>65 Sq Ft - 135 Sq Ft</strong></li>
+                          <li class="listing__param">Date: <strong>15/03/2016 - 23/03/2016</strong></li>
+                        </ul>
+                        <button class="listing__view">View & Edit</button>
+                        <button class="listing__delete">Delete</button>
+                      </dd>
+                    </dl>
+                  </div>
+                  <div class="widget__footer"><a class="widget__more">Show more</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="widget js-widget widget--main" style="margin-top: 20px;">
+          <div class="widget__content" id="div_listado_deuda">
+            <div class="datatable datatable--properties">
+              <div class="datatable__wrap">
+                <table class="js-properties-table" style="width: 100%;">
+                  <thead>
+                    <tr>
+                      <th class="datatable__head-1 datatable__head-sort">NIS</th>
+                      <th class="datatable__head-2 datatable__head-sort">N° FACT</th>
+                      <th class="datatable__head-3 datatable__head-sort">PER</th>
+                      <th class="datatable__head-4 datatable__head-sort">VTO</th>
+                      <th class="datatable__head-5 datatable__head-sort">TOTAL</th>
+                      <th class="datatable__head-6"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tbl_deuda}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="widget__content" id="div_factura_deuda"></div>
+        </div>
+      </div>
+      <div class="sidebar">
+        <div class="widget js-widget widget--sidebar widget--dark">      
+          {sidebar_login_autogestion}
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+<script>
+  function verListadoDeuda() {
+    document.getElementById('div_factura_deuda').style.display = 'none';
+    document.getElementById('div_listado_deuda').style.display = 'block';
+  }
+  
+  function consultaFactura(suministro, factura_id) {
+console.log('Hola');
+    var consultar_factura_ajax = $.ajax({
+      url: '{url_app}/sitio/consultar_factura_ajax/' + suministro + '@' + factura_id,
+      dataType: 'text',
+      async: false
+    }).responseText;
+
+    document.getElementById('div_factura_deuda').innerHTML = consultar_factura_ajax;
+    document.getElementById('div_factura_deuda').style.display = 'block';
+    document.getElementById('div_listado_deuda').style.display = 'none';
+  }
+
+  function consultarTransaccion(suministro,id_deuda) {
+    var data = $.ajax({
+      url: '{url_app}/psitio/obtener_transaccion/'+ suministro + '@' + id_deuda,
+      dataType: 'text',
+      async: false
+    }).responseText;
+
+    document.getElementById('TransaccionComercioId').value = data;
+    document.pagosForm.submit();
+  }
+</script>
