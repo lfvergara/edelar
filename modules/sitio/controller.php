@@ -1564,5 +1564,24 @@ class SitioController {
 		$this->view->mensaje_turno($arg);
 	}
 	/* TURNERO**************************************************************/
+	
+	/* OFICINA VIRTUAL******************************************************/
+	function ofivirtual() {
+		require_once "tools/getDeuda.php";
+	
+		$documento = 32588905;
+		$metodo = 'dni';
+		$valor = $documento;
+		
+		$deuda = new getDeuda();
+		$deuda_collection = $deuda->getDeudaFunction($metodo, $valor);
+		
+		print_r($deuda_collection);exit;
+		
+		$this->view->ver_deuda($deuda_collection, $metodo);
+	
+	}
+
+	/* OFICINA VIRTUAL******************************************************/
 }
 ?>
