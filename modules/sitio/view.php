@@ -531,7 +531,7 @@ class SitioView extends View {
 		//$gui_tbl_deuda = file_get_contents("static/common/tbl_deuda.html");
 		$deuda_collection = json_decode($array_deuda);
 		$obj_cliente = $deuda_collection[0];
-
+		$obj_cliente = $this->set_dict($obj_cliente);
 
 		//print_r($deuda_collection);exit;
 		
@@ -549,7 +549,8 @@ class SitioView extends View {
 		$render = str_replace('{fecha_sys}', date('d/m/Y'), $render);
 		$render = str_replace('{hora_sys}', date('h:i:s'), $render);
 		*/
-		$template = $this->render_sitio("THEME_SECCION", $gui);
+		$render = $this->render($obj_cliente, $gui);
+		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 	}
 	/* OFICINA VIRTUAL *****************************************************/
