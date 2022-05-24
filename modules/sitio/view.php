@@ -525,6 +525,32 @@ class SitioView extends View {
 	}
 	/* TRAMITES COMERCIALES ************************************************/
 
+	/* OFICINA VIRTUAL *****************************************************/
+	function ofivirtual($array_deuda, $metodo) {
+		//$gui = file_get_contents("static/modules/sitio/ofivirtual.html");
+		//$gui_tbl_deuda = file_get_contents("static/common/tbl_deuda.html");
+		$deuda_collection = json_decode($array_deuda);
+		print_r($deuda_collection);exit;
+		$deuda_collection = $deuda_collection[0];
+		
+
+
+
+		if(!empty($deuda_collection) AND is_array($deuda_collection)) {
+			foreach ($deuda_collection as $clave=>$valor) $deuda_collection[$clave]->nis = $valor->suministro->id;
+		} else {
+			$deuda_collection = array();
+		}
+
+		$gui_tbl_deuda = $this->render_regex('TBL_DEUDA', $gui_tbl_deuda, $deuda_collection);		
+		$render = str_replace('{tbl_deuda}', $gui_tbl_deuda, $gui);
+		$render = str_replace('{fecha_sys}', date('d/m/Y'), $render);
+		$render = str_replace('{hora_sys}', date('h:i:s'), $render);
+		$template = $this->render_sitio("THEME_SECCION", $render);
+		print $template;
+	}
+	/* OFICINA VIRTUAL *****************************************************/
+
 	/* COMMON **************************************************************/
 	function editar_turno($obj_turnopendiente, $unicom_collection, $tramite_collection) {
 		$gui = file_get_contents("static/modules/sitio/editar_turno.html");

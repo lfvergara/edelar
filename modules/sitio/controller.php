@@ -1569,19 +1569,13 @@ class SitioController {
 	function ofivirtual() {
 		require_once "tools/getDeuda.php";
 	
-		$documento = 5050150;
-		$metodo = 'nis';
-		$valor = $documento;
-		
+		$documento = 32588905;
+		$metodo = 'dni';
+		$valor = $documento;		
 		$deuda = new getDeuda();
 		$deuda_collection = $deuda->getDeudaFunction($metodo, $valor);
-		
-		print_r($deuda_collection);exit;
-		
-		$this->view->ver_deuda($deuda_collection, $metodo);
-	
+		$this->view->ofivirtual($deuda_collection, $metodo);
 	}
-
 	/* OFICINA VIRTUAL******************************************************/
 }
 ?>
