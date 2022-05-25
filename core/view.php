@@ -49,11 +49,9 @@ abstract class View {
                       "{contenido}"=>$contenido);
         $plantilla = $this->render($dict, $plantilla);
         $plantilla = ($flag_theme == 'SECCION') ? str_replace("{sidebar_login_autogestion}", $sidebar, $plantilla) : $plantilla;
-        $plantilla = ($flag_theme == 'SECCION') ? str_replace("{sidebar_deuda_turno_movil}", $sidebar_movil, $plantilla); : $plantilla;
-        /*
+        $plantilla = ($flag_theme == 'SECCION') ? str_replace("{sidebar_deuda_turno_movil}", $sidebar_movil, $plantilla) : $plantilla;
         $plantilla = ($flag_theme == 'AUTOGESTION') ? str_replace("{sidebar_autogestion}", $sidebar, $plantilla) : $plantilla;
         $plantilla = ($flag_theme == 'AUTOGESTION') ? str_replace("{sidebar_autogestion_movil}", $sidebar_movil, $plantilla) : $plantilla;
-        */
         $plantilla = str_replace("{url_app}", URL_APP, $plantilla);
         $plantilla = str_replace("{url_static}", URL_STATIC, $plantilla);
         return $plantilla;
