@@ -24,6 +24,12 @@ abstract class View {
                 $sidebar = file_get_contents(SIDEBAR_SITIO_LOGIN_AUTOGESTION);
                 $sidebar_movil = file_get_contents(SIDEBAR_SITIO_DEUDA_TURNO_MOVIL);
                 $plantilla = file_get_contents(THEME_SECCION_SITIO);
+                break;
+            case 'AUTOGESTION':
+                # AUTOGESTIÓN
+                $sidebar = file_get_contents(SIDEBAR_SITIO_LOGIN_AUTOGESTION);
+                $sidebar_movil = file_get_contents(SIDEBAR_SITIO_DEUDA_TURNO_MOVIL);
+                $plantilla = file_get_contents(THEME_AUTOGESTION_SITIO);
                 break;           
             default:
                 # 404
