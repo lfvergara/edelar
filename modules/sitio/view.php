@@ -526,13 +526,14 @@ class SitioView extends View {
 	/* TRAMITES COMERCIALES ************************************************/
 
 	/* OFICINA VIRTUAL *****************************************************/
-	function ofivirtual($array_deuda, $metodo) {
+	function ofivirtual($cliente, $metodo) {
 		$gui = file_get_contents("static/modules/sitio/ofivirtual.html");
 		//$gui_tbl_deuda = file_get_contents("static/common/tbl_deuda.html");
-		$deuda_collection = json_decode($array_deuda);
-		$obj_cliente = $deuda_collection[0];
+		$rst_cliente = json_decode($cliente);
+		$obj_cliente = $rst_cliente[0];
 		$obj_cliente = $this->set_dict($obj_cliente);
-		
+
+		$suministro_collection = $rst_cliente[1];
 		//print_r($deuda_collection);exit;
 		
 

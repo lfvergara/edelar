@@ -1583,9 +1583,9 @@ class SitioController {
 		//$documento = 12393896;
 		$metodo = 'dni';
 		$valor = $documento;		
-		$deuda = new getDeuda();
-		$deuda_collection = $deuda->getDeudaFunction($metodo, $valor);
-		$this->view->ofivirtual($deuda_collection, $metodo);
+		$ws = new getDeuda();
+		$cliente = $ws->getClienteFunction($metodo, $valor);
+		$this->view->ofivirtual($cliente, $metodo);
 		
 	}
 	/* OFICINA VIRTUAL******************************************************/
