@@ -559,10 +559,10 @@ class SitioView extends View {
 		$gui = file_get_contents("static/modules/sitio/ofivirtual_suministro.html");
 		//$gui_tbl_deuda = file_get_contents("static/common/tbl_deuda.html");
 		$rst_suministro = json_decode($suministro);
+		print_r($rst_suministro);exit;
 		$obj_suministro = $rst_suministro[0];
 		$obj_suministro = $this->set_dict($obj_suministro);
 
-		print_r($obj_suministro);exit;
 		$suministro_collection = $rst_cliente[1];
 		
 
