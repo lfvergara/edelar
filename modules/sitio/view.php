@@ -589,7 +589,7 @@ class SitioView extends View {
 		print $template;
 	}
 
-	function ofivirtual_deuda() {
+	function ofivirtual_deuda($deuda_collection) {
 		$gui = file_get_contents("static/modules/sitio/ofivirtual_deuda.html");
 		$gui_tbl_deuda = file_get_contents("static/common/ofivirtual_tbl_deuda.html");
 		$deuda_collection = json_decode($array_deuda);
