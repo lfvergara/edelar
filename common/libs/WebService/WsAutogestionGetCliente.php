@@ -12,8 +12,10 @@ class wsAutogestionGetClienteHelper {
 	
 	public function getPorId($id) {
 		$http = new HttpHelper("WsV10");
-		$http->setUser("edelar01");
-		$http->setPw("9183217388123012");
+		//$http->setUser("edelar01");
+		$http->setUser("PROVEEDORWEB_7894265917");
+		//$http->setPw("9183217388123012");
+		$http->setPw("TY3tTnOj7QTf9HDgsFg9KOYT7k5F85T9VcrjFtp9");
 		$http->setServlet("GetCliente");
 		$http->agregarPeticion(Peticiones::ID_CLIENTE, $id);
 		$http->setMetodo(Peticionable::POST);
