@@ -576,12 +576,12 @@ class SitioView extends View {
 
     		$lst_facturadigital = file_get_contents("static/common/ofivirtual_lst_facturadigital.html");
 			$lst_facturadigital = $this->render_regex('LST_FACTURA', $lst_facturadigital, $impreso_collection);
-			$gui = str_replace('{display_lst_impresos}', 'block', $gui);
-			$gui = str_replace('{display_alert_impresos}', 'none', $gui);
+			$gui = str_replace('{display_lst_impreso}', 'block', $gui);
+			$gui = str_replace('{display_alert_impreso}', 'none', $gui);
 			$gui = str_replace('{lst_impresos}', $lst_facturadigital, $gui);
 		} else {
-			$gui = str_replace('{display_lst_impresos}', 'none', $gui);
-			$gui = str_replace('{display_alert_impresos}', 'block', $gui);
+			$gui = str_replace('{display_lst_impreso}', 'none', $gui);
+			$gui = str_replace('{display_alert_impreso}', 'block', $gui);
 			$gui = str_replace('{lst_impresos}', '', $gui);
 		}
 		
