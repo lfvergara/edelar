@@ -1597,11 +1597,11 @@ class SitioController {
 	
 		$suministro = 5050150;
 		$metodo = 'nis';
-		$valor = $documento;		
+		$valor = $suministro;		
 		$ws = new getDeuda();
 		$suministro = $ws->getDeudaFunction($metodo, $valor);
 		print_r($suministro);exit;
-		$this->view->ofivirtual($suministro, $metodo);
+		$this->view->ofivirtual_suministro($suministro, $metodo);
 		
 	}
 	/* OFICINA VIRTUAL******************************************************/
