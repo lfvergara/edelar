@@ -1569,7 +1569,9 @@ class SitioController {
 	function ofivirtual() {
 		require_once "common/libs/WebService/WsAutogestionGetCliente.php";
 		$gcm = new wsAutogestionGetClienteHelper();
-		print_r($gcm);exit;
+
+		$response = $gcm->getPorId(5126854);
+		print_r($response);exit;
 
 
 
