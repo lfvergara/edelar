@@ -1,11 +1,11 @@
 <?php
-class Archivo {
+class Impreso {
     var $id;
     var $nis;
     var $date;
     var $number;
 
-    function Archivo($aa) {
+    function Impreso($aa) {
         foreach ($aa as $k=>$v)
             $this->$k = $aa[$k];
     }
