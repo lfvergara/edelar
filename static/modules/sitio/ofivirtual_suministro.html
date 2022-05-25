@@ -112,13 +112,13 @@
         <div class="row hidden-lg hidden-md">  
           {sidebar_deuda_turno_movil}
         </div>
-      -->
       <div class="sidebar">
         <div class="widget js-widget widget--sidebar">      
           {sidebar_login_autogestion}
         </div>
       </div>
       <div class="clearfix"></div>
+      -->
     </div>
   </div>
 </div>
@@ -129,7 +129,7 @@
   }
   
   function consultaFactura(suministro, factura_id) {
-console.log('Hola');
+    console.log('Hola');
     var consultar_factura_ajax = $.ajax({
       url: '{url_app}/sitio/consultar_factura_ajax/' + suministro + '@' + factura_id,
       dataType: 'text',
