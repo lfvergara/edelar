@@ -556,7 +556,7 @@ class SitioView extends View {
 		print $template;
 	}
 
-	function ofivirtual_suministro($obj_suministro, $rst_deuda, $metodo, $factura_collection) {
+	function ofivirtual_suministro($obj_suministro, $rst_deuda, $metodo, $impreso_collection) {
 		$gui = file_get_contents("static/modules/sitio/ofivirtual_suministro.html");
 		$gui_tbl_deuda = file_get_contents("static/common/ofivirtual_tbl_deuda_suministro.html");
 		$rst_deuda = json_decode($rst_deuda);
@@ -566,16 +566,16 @@ class SitioView extends View {
 		$display_alert_deuda = (is_array($rst_deuda) AND !empty($rst_deuda)) ? 'none' : 'block';
 		$gui_tbl_deuda = $this->render_regex('TBL_DEUDA', $gui_tbl_deuda, $deuda_collection);
 
-		if ($archivo_collection != 0 AND !empty($archivo_collection)) {
+		if ($impreso_collection != 0 AND !empty($impreso_collection)) {
 			$meses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Setiembre', 'Octubre', 'Noviembre', 'Diciembre');
-			foreach ($archivo_collection as $clave=>$valor) {
+			foreach ($impreso_collection as $clave=>$valor) {
         		$mes = (substr($valor->date, 4, 6)) - 1;
         		$valor->mes_txt = $meses[$mes];
         		$valor->anio = substr($valor->date, 0, 4);
 			}
 
     		$lst_facturadigital = file_get_contents("static/common/ofivirtual_lst_facturadigital.html");
-			$lst_facturadigital = $this->render_regex('LST_FACTURA', $lst_facturadigital, $archivo_collection);
+			$lst_facturadigital = $this->render_regex('LST_FACTURA', $lst_facturadigital, $impreso_collection);
 			$gui = str_replace('{lst_impresos}', $lst_facturadigital, $gui);
 		} else {
 			$gui = str_replace('{lst_impresos}', '', $gui);
