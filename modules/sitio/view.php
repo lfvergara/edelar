@@ -594,7 +594,6 @@ class SitioView extends View {
 		$gui_tbl_deuda = file_get_contents("static/common/ofivirtual_tbl_deuda.html");
 		$deuda_collection = json_decode($rst_deuda);
 		$deuda_collection = $deuda_collection[0];
-		print_r($deuda_collection);exit;
 		
 		if(!empty($deuda_collection) AND is_array($deuda_collection)) {
 			foreach ($deuda_collection as $clave=>$valor) $deuda_collection[$clave]->nis = $valor->suministro->id;
@@ -605,6 +604,7 @@ class SitioView extends View {
 			$display_alert_deuda = 'block';
 			$deuda_collection = array();
 		}
+		print_r($deuda_collection);exit;
 
 		$gui_tbl_deuda = $this->render_regex('TBL_DEUDA', $gui_tbl_deuda, $deuda_collection);
 		$render = str_replace('{tbl_deuda}', $gui_tbl_deuda, $gui);
