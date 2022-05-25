@@ -1593,21 +1593,17 @@ class SitioController {
 
 	/* OFICINA VIRTUAL******************************************************/
 	function ofivirtual_suministro() {
-		require_once "tools/getDeuda.php";
-		
+		require_once "tools/getDeuda.php";		
 		//CON DEUDA
 		$suministro = 5050150;
-
 		//SIN DEUDA
 		$suministro = 5171545;
-		
+
 		$metodo = 'nis';
 		$valor = $suministro;		
 		$ws = new getDeuda();
 		$suministro = $ws->getDeudaFunction($metodo, $valor);
-		print_r($suministro);exit;
-		$this->view->ofivirtual_suministro($suministro, $metodo);
-		
+		$this->view->ofivirtual_suministro($suministro, $metodo);		
 	}
 	/* OFICINA VIRTUAL******************************************************/
 }

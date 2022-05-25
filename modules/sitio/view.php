@@ -554,6 +554,35 @@ class SitioView extends View {
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 	}
+
+	function ofivirtual_suministro($suministro, $metodo) {
+		$gui = file_get_contents("static/modules/sitio/ofivirtual_suministro.html");
+		//$gui_tbl_deuda = file_get_contents("static/common/tbl_deuda.html");
+		$rst_suministro = json_decode($suministro);
+		$obj_suministro = $rst_suministro[0];
+		$obj_suministro = $this->set_dict($obj_suministro);
+
+		print_r($obj_suministro);exit;
+		$suministro_collection = $rst_cliente[1];
+		
+
+
+		/*
+		if(!empty($deuda_collection) AND is_array($deuda_collection)) {
+			foreach ($deuda_collection as $clave=>$valor) $deuda_collection[$clave]->nis = $valor->suministro->id;
+		} else {
+			$deuda_collection = array();
+		}
+
+		$gui_tbl_deuda = $this->render_regex('TBL_DEUDA', $gui_tbl_deuda, $deuda_collection);		
+		$render = str_replace('{tbl_deuda}', $gui_tbl_deuda, $gui);
+		$render = str_replace('{fecha_sys}', date('d/m/Y'), $render);
+		$render = str_replace('{hora_sys}', date('h:i:s'), $render);
+		*/
+		$render = $this->render($obj_cliente, $gui);
+		$template = $this->render_sitio("THEME_SECCION", $render);
+		print $template;
+	}
 	/* OFICINA VIRTUAL *****************************************************/
 
 	/* COMMON **************************************************************/
