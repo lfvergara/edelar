@@ -40,17 +40,17 @@ class getDeuda {
 		*/
 
 		//Implementacion cURL DEUDA
-		//$ch = curl_init("https://servicios.edelar.com.ar/api_servicios_desa/wsServicios_deuda.php");
-		$ch = curl_init("https://geco.edelar.com.ar/api_geco/deuda.php");
+		$ch = curl_init("https://servicios.edelar.com.ar/api_servicios_desa/wsServicios_deuda.php");
+		//$ch = curl_init("https://geco.edelar.com.ar/api_geco/deuda.php");
 		/*
 		curl_setopt($ch, CURLOPT_TIMEOUT, 120000);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120000);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 		*/
+		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 		$response = curl_exec($ch);
-		print_r($ch);exit;
+		print_r($response);exit;
 		return $response;
 	}
 }
