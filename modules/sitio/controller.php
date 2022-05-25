@@ -1567,6 +1567,13 @@ class SitioController {
 	
 	/* OFICINA VIRTUAL******************************************************/
 	function ofivirtual() {
+		require_once "common/libs/WebService/WsAutogestionGetCliente.php";
+		$gcm = new wsAutogestionGetClienteHelper();
+		print_r($gcm);exit;
+
+
+
+
 		require_once "tools/getDeuda.php";
 	
 		//$documento = 12393897;
