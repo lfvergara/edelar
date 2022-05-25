@@ -568,7 +568,7 @@ class SitioView extends View {
 
 		}
 
-		print_r($obj_suministro);exit;
+		print_r($deuda_collection);exit;
 		$obj_suministro = $rst_suministro[0];
 		$obj_suministro = $this->set_dict($obj_suministro);
 
