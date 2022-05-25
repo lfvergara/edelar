@@ -565,11 +565,6 @@ class SitioView extends View {
 		$display_tbl_deuda = (is_array($rst_deuda) AND !empty($rst_deuda)) ? 'block' : 'none';
 		$display_alert_deuda = (is_array($rst_deuda) AND !empty($rst_deuda)) ? 'none' : 'block';
 
-		if(!empty($deuda_collection) AND is_array($deuda_collection)) {
-			foreach ($deuda_collection as $clave=>$valor) $deuda_collection[$clave]->nis = $valor->suministro->id;
-		} else {
-			$deuda_collection = array();
-		}
 		$gui_tbl_deuda = $this->render_regex('TBL_DEUDA', $gui_tbl_deuda, $deuda_collection);
 
 		if ($impreso_collection != 0 AND !empty($impreso_collection)) {
