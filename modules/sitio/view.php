@@ -604,7 +604,7 @@ class SitioView extends View {
 			$display_alert_deuda = 'block';
 			$deuda_collection = array();
 		}
-		print_r($deuda_collection);exit;
+		
 
 		$gui_tbl_deuda = $this->render_regex('TBL_DEUDA', $gui_tbl_deuda, $deuda_collection);
 		$render = str_replace('{tbl_deuda}', $gui_tbl_deuda, $gui);
