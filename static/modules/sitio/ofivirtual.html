@@ -78,33 +78,3 @@
     </div>
   </div>
 </div>
-<script>
-  function verListadoDeuda() {
-    document.getElementById('div_factura_deuda').style.display = 'none';
-    document.getElementById('div_listado_deuda').style.display = 'block';
-  }
-  
-  function consultaFactura(suministro, factura_id) {
-console.log('Hola');
-    var consultar_factura_ajax = $.ajax({
-      url: '{url_app}/sitio/consultar_factura_ajax/' + suministro + '@' + factura_id,
-      dataType: 'text',
-      async: false
-    }).responseText;
-
-    document.getElementById('div_factura_deuda').innerHTML = consultar_factura_ajax;
-    document.getElementById('div_factura_deuda').style.display = 'block';
-    document.getElementById('div_listado_deuda').style.display = 'none';
-  }
-
-  function consultarTransaccion(suministro,id_deuda) {
-    var data = $.ajax({
-      url: '{url_app}/psitio/obtener_transaccion/'+ suministro + '@' + id_deuda,
-      dataType: 'text',
-      async: false
-    }).responseText;
-
-    document.getElementById('TransaccionComercioId').value = data;
-    document.pagosForm.submit();
-  }
-</script>
