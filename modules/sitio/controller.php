@@ -225,24 +225,22 @@ class SitioController {
 
 	/* MENU = DEUDA ********************************************************/
 	function ver_deuda() {
-		require_once "tools/getDeuda.php";
+		require_once "tools/getDatosV10.php";
 		$metodo = filter_input(INPUT_POST, 'metodo');
 		$valor = filter_input(INPUT_POST, 'valor');
 		
-		$deuda = new getDeuda();
+		$deuda = new getDatosV10();
 		$deuda_collection = $deuda->getDeudaFunction($metodo, $valor);
-		//$deuda_collection = getDeuda()->getDeuda($metodo, $valor);
-		//print_r($deuda_collection);exit;
 		$this->view->ver_deuda($deuda_collection, $metodo);
 	}
 
 	function consultar_factura_ajax($arg) {
-		require_once "tools/getDeuda.php";
+		require_once "tools/getDatosV10.php";
 		$ids = explode("@", $arg);
 		$suministro = $ids[0];
 		$factura_id = $ids[1];
 		
-		$deuda = new getDeuda();
+		$deuda = new getDatosV10();
 		$deuda_collection = $deuda->getDeudaFunction('nis', $suministro);
 		$obj_deuda = null;
 		$deuda_collection = json_decode($deuda_collection);
@@ -258,12 +256,12 @@ class SitioController {
 
 	function imprimir_factura($arg) {
 		require_once 'common/libs/ndompdf/autoload.inc.php';
-		require_once "tools/getDeuda.php";
+		require_once "tools/getDatosV10.php";
 		$ids = explode('@', $arg);
 		$suministro = $ids[0];
 		$factura_id = $ids[1];
 		
-		$deuda = new getDeuda();
+		$deuda = new getDatosV10();
 		$deuda_collection = $deuda->getDeudaFunction('nis', $suministro);
 		$obj_deuda = null;
 		$deuda_collection = json_decode($deuda_collection);
@@ -1567,33 +1565,31 @@ class SitioController {
 	
 	/* OFICINA VIRTUAL******************************************************/
 	function ofivirtual() {
+		require_once "tools/getDatosV10.php";
+		
+		//CON DEUDA
+		$documento = 12393897;
+		//SIN DEUDA
+		$documento = 12393896;
+		
+		//FIX ME: COMPLETAR CON WS TRAER CLIENTE Y SUMINISTROS
 		/*
-		require_once "common/libs/WebService/WsAutogestionGetCliente.php";
-		$gcm = new wsAutogestionGetClienteHelper();
+		$ws = new getDatosV10();
+		$rst_cliente = $ws->getClienteFunction('dni', $documento);
 
-		$response = $gcm->getPorId(1610093259);
-		print_r($response);exit;
+		$ws = new getDatosV10();
+		$rst_suministros = $ws->getSuministrosFunction('dni', $documento);
 		*/
 
-
-		
-		require_once "tools/getDeuda.php";
-	
-		$documento = 12393897;
-		//$documento = 12393896;
-		//$documento = 32588905;
-		$metodo = 'dni';
-		$valor = $documento;		
-		$ws = new getDeuda();
-		$cliente = $ws->getClienteFunction($metodo, $valor);
-		$this->view->ofivirtual($cliente, $metodo);
+		//$this->view->ofivirtual($rst_cliente, $rst_suministros);
+		$this->view->ofivirtual(); //DELETE ME
 		
 	}
 	/* OFICINA VIRTUAL******************************************************/
 
 	/* OFICINA VIRTUAL: VER SUMINISTRO**************************************/
 	function ofivirtual_suministro() {
-		require_once "tools/getDeuda.php";
+		require_once "tools/getDatosV10.php";
 		require_once "core/helpers/facturaHelper.php";
 		//SIN DEUDA
 		$suministro = 5171545;
@@ -1603,10 +1599,14 @@ class SitioController {
 		$metodo = 'nis';
 		$valor = $suministro;		
 		
-		$ws = new getDeuda();
+		$ws = new getDatosV10();
 		$rst_deuda = $ws->getDeudaFunction($metodo, $valor);
 
 		//FIX ME: COMPLETAR CON WS TRAER SUMINISTRO
+		/*
+		$ws = new getDatosV10();
+		$cliente = $ws->getSuministroFunction('nis', $suministro);
+		*/
 		$suministro_direccion = '';
 		$suministro_facturadigital = 'ADHERIDO';
 		$suministro_flag_facturadigital = 'ADHERIDO';
