@@ -1621,10 +1621,10 @@ class SitioController {
 
 	function ofivirtual_deuda() {
 		require_once "tools/getDatosV10.php";
-		//CON DEUDA
-		$documento = 12393897;
 		//SIN DEUDA
 		$documento = 12393896;
+		//CON DEUDA
+		$documento = 12393897;
 		
 		//FIX ME: COMPLETAR CON WS TRAER CLIENTE Y SUMINISTROS
 		/*
