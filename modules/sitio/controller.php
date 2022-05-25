@@ -1601,9 +1601,20 @@ class SitioController {
 
 		$metodo = 'nis';
 		$valor = $suministro;		
+		
 		$ws = new getDeuda();
-		$suministro = $ws->getDeudaFunction($metodo, $valor);
-		$this->view->ofivirtual_suministro($suministro, $metodo);		
+		$rst_deuda = $ws->getDeudaFunction($metodo, $valor);
+
+		//FIX ME: COMPLETAR CON WS TRAER SUMINISTRO
+		$suministro_direccion = '';
+		$suministro_facturadigital = 'ADHERIDO';
+		$suministro_flag_facturadigital = 'ADHERIDO';
+		$obj_suministro = array('{suministro-nis}'=>$suministro, 
+								'{suministro-direccion}'=>$suministro_direccion, 
+								'{suministro-facturadigital}'=>$suministro_facturadigital,
+								'{suministro-flag_facturadigital}'=>$suministro_flag_facturadigital);
+
+		$this->view->ofivirtual_suministro($obj_suministro, $rst_deuda, $metodo);
 	}
 	/* OFICINA VIRTUAL******************************************************/
 }
