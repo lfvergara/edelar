@@ -84,7 +84,26 @@
       -->
       </div>
       <div class="sidebar" style="margin-top: 0px !important;">        
-          {sidebar_autogestion}
+        <div class="widget js-widget widget--sidebar" style="margin-top: 0px !important;">
+          <div class="widget__content" style="padding: 5% !important; margin-top: 0px !important;">
+            <div data-sr="enter bottom move 80px, scale(0), over 0s" data-animate-end="animate-end" class="worker js-unhide-block vcard worker--sidebar-advanced" style="background: #fff !important; padding: 5% !important; border: 1px solid #ccc !important;">
+              <h3 class="worker__name fn">{stdclass-nombre_completo}</h3>
+              <div class="worker__post">{stdclass-direccion}</div>
+              <div class="worker__intro">
+                <div class="worker__intro-row">
+                  <div class="worker__intro-col">
+                    <div class="worker__contacts">
+                      <div class="tel"><span class="type">Tel.</span><a href="#" class="uri value">{stdclass-telefono1}</a></div>
+                      <div class="email"><span class="type">Email</span><a href="#" class="uri value">{stdclass-email1}</a></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        {sidebar_autogestion}
       </div>
       <div class="clearfix"></div>
     </div>
