@@ -569,6 +569,7 @@ class SitioView extends View {
 			$deuda_collection = array();
 		}
 
+		print_r($deuda_collection);exit;
 		$gui_tbl_deuda = $this->render_regex('TBL_DEUDA', $ofivirtual_tbl_deuda_suministro, $deuda_collection);		
 		$render = str_replace('{tbl_deuda}', $gui_tbl_deuda, $gui);
 		$render = str_replace('{fecha_sys}', date('d/m/Y'), $render);
