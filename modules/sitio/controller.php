@@ -1579,9 +1579,9 @@ class SitioController {
 		
 		require_once "tools/getDeuda.php";
 	
-		//$documento = 12393897;
+		$documento = 12393897;
 		//$documento = 12393896;
-		$documento = 32588905;
+		//$documento = 32588905;
 		$metodo = 'dni';
 		$valor = $documento;		
 		$ws = new getDeuda();

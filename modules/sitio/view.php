@@ -532,6 +532,7 @@ class SitioView extends View {
 		$rst_cliente = json_decode($cliente);
 		$obj_cliente = $rst_cliente[0];
 		$obj_cliente = $this->set_dict($obj_cliente);
+		print_r($obj_cliente);exit;
 
 		$suministro_collection = $rst_cliente[1];
 		//print_r($deuda_collection);exit;
@@ -560,7 +561,13 @@ class SitioView extends View {
 		//$gui_tbl_deuda = file_get_contents("static/common/tbl_deuda.html");
 		$rst_suministro = json_decode($suministro);
 
-		$obj_suministro = (is_array($rst_suministro) AND !empty($rst_suministro)) ? $rst_suministro : array();
+		if (is_array($rst_suministro) AND !empty($rst_suministro)) {
+			$deuda_collection = array();
+		} else {
+			$deuda_collection = array();
+
+		}
+
 		print_r($obj_suministro);exit;
 		$obj_suministro = $rst_suministro[0];
 		$obj_suministro = $this->set_dict($obj_suministro);
