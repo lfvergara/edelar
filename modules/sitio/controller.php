@@ -1605,7 +1605,7 @@ class SitioController {
 		//FIX ME: COMPLETAR CON WS TRAER SUMINISTRO
 		/*
 		$ws = new getDatosV10();
-		$cliente = $ws->getSuministroFunction('nis', $suministro);
+		$suministro = $ws->getSuministroFunction('nis', $suministro);
 		*/
 		$suministro_direccion = '';
 		$suministro_facturadigital = 'ADHERIDO';
@@ -1617,6 +1617,24 @@ class SitioController {
 
 		$impreso_collection=readService("http://provider:123456@200.91.37.167:9190/FacturaProvider/query?nis={$suministro}");
 		$this->view->ofivirtual_suministro($obj_suministro, $rst_deuda, $metodo, $impreso_collection);
+	}
+
+	function ofivirtual_deuda() {
+		require_once "tools/getDatosV10.php";
+		//CON DEUDA
+		$documento = 12393897;
+		//SIN DEUDA
+		$documento = 12393896;
+		
+		//FIX ME: COMPLETAR CON WS TRAER CLIENTE Y SUMINISTROS
+		/*
+		$ws = new getDatosV10();
+		$rst_cliente = $ws->getClienteFunction('dni', $documento);
+		*/
+
+		$deuda = new getDatosV10();
+		$deuda_collection = $deuda->getDeudaFunction('dni', $documento);
+		$this->view->ofivirtual_deuda($deuda_collection, $metodo);
 	}
 
 	/* OFICINA VIRTUAL: DESCARGAR IMPRESO***********************************/

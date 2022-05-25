@@ -529,7 +529,7 @@ class SitioView extends View {
 	//function ofivirtual($rst_cliente, $rst_suministros) {
 	function ofivirtual() { //DELETE ME
 		$gui = file_get_contents("static/modules/sitio/ofivirtual.html");
-		$gui_tbl_suministro = file_get_contents("static/common/tbl_suministro.html");
+		$gui_tbl_suministro = file_get_contents("static/common/ofivirtual_tbl_suministro.html");
 		
 		//FIX ME CON RESULTADO DE CLIENTE
 		/*
@@ -585,6 +585,30 @@ class SitioView extends View {
 		$render = str_replace('{display_tbl_deuda}', $display_tbl_deuda, $render);
 		$render = str_replace('{display_alert_deuda}', $display_alert_deuda, $render);
 		$render = $this->render($obj_suministro, $render);
+		$template = $this->render_sitio("THEME_AUTOGESTION", $render);
+		print $template;
+	}
+
+	function ofivirtual_deuda() {
+		$gui = file_get_contents("static/modules/sitio/ofivirtual_deuda.html");
+		$gui_tbl_deuda = file_get_contents("static/common/ofivirtual_tbl_deuda.html");
+		$deuda_collection = json_decode($array_deuda);
+		$deuda_collection = $deuda_collection[0];
+		
+		if(!empty($deuda_collection) AND is_array($deuda_collection)) {
+			foreach ($deuda_collection as $clave=>$valor) $deuda_collection[$clave]->nis = $valor->suministro->id;
+			$display_tbl_deuda = 'block';
+			$display_alert_deuda = 'none';
+		} else {
+			$display_tbl_deuda = 'none';
+			$display_alert_deuda = 'block';
+			$deuda_collection = array();
+		}
+
+		$gui_tbl_deuda = $this->render_regex('TBL_DEUDA', $gui_tbl_deuda, $deuda_collection);
+		$render = str_replace('{tbl_deuda}', $gui_tbl_deuda, $gui);
+		$render = str_replace('{display_tbl_deuda}', $display_tbl_deuda, $render);
+		$render = str_replace('{display_alert_deuda}', $display_alert_deuda, $render);
 		$template = $this->render_sitio("THEME_AUTOGESTION", $render);
 		print $template;
 	}
