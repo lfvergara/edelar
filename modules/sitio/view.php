@@ -593,8 +593,8 @@ class SitioView extends View {
 		$gui = file_get_contents("static/modules/sitio/ofivirtual_deuda.html");
 		$gui_tbl_deuda = file_get_contents("static/common/ofivirtual_tbl_deuda.html");
 		$deuda_collection = json_decode($rst_deuda);
-		print_r($deuda_collection);exit;
 		$deuda_collection = $deuda_collection[0];
+		print_r($deuda_collection);exit;
 		
 		if(!empty($deuda_collection) AND is_array($deuda_collection)) {
 			foreach ($deuda_collection as $clave=>$valor) $deuda_collection[$clave]->nis = $valor->suministro->id;
