@@ -532,7 +532,7 @@ class SitioView extends View {
 		$deuda_collection = json_decode($array_deuda);
 		$obj_cliente = $deuda_collection[0];
 		$obj_cliente = $this->set_dict($obj_cliente);
-		//print_r($obj_cliente);exit;
+		print_r($obj_cliente);exit;
 
 		//print_r($deuda_collection);exit;
 		
