@@ -1591,7 +1591,7 @@ class SitioController {
 	}
 	/* OFICINA VIRTUAL******************************************************/
 
-	/* OFICINA VIRTUAL******************************************************/
+	/* OFICINA VIRTUAL: VER SUMINISTRO**************************************/
 	function ofivirtual_suministro() {
 		require_once "tools/getDeuda.php";
 		require_once "core/helpers/facturaHelper.php";
@@ -1618,6 +1618,11 @@ class SitioController {
 		$impreso_collection=readService("http://provider:123456@200.91.37.167:9190/FacturaProvider/query?nis={$suministro}");
 		$this->view->ofivirtual_suministro($obj_suministro, $rst_deuda, $metodo, $impreso_collection);
 	}
+
+	/* OFICINA VIRTUAL: DESCARGAR IMPRESO***********************************/
+	function descargar_factura() {
+        require_once "core/helpers/facturaFile.php";
+    }
 	/* OFICINA VIRTUAL******************************************************/
 }
 ?>
