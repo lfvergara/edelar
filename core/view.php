@@ -27,8 +27,8 @@ abstract class View {
                 break;
             case 'AUTOGESTION':
                 # AUTOGESTIÓN
-                $sidebar = file_get_contents(SIDEBAR_SITIO_LOGIN_AUTOGESTION);
-                $sidebar_movil = file_get_contents(SIDEBAR_SITIO_DEUDA_TURNO_MOVIL);
+                $sidebar = file_get_contents(SIDEBAR_SITIO_AUTOGESTION);
+                $sidebar_movil = file_get_contents(SIDEBAR_SITIO_AUTOGESTION_MOVIL);
                 $plantilla = file_get_contents(THEME_AUTOGESTION_SITIO);
                 break;           
             default:
@@ -49,7 +49,9 @@ abstract class View {
                       "{contenido}"=>$contenido);
         $plantilla = $this->render($dict, $plantilla);
         $plantilla = ($flag_theme == 'SECCION') ? str_replace("{sidebar_login_autogestion}", $sidebar, $plantilla) : $plantilla;
-        $plantilla = str_replace("{sidebar_deuda_turno_movil}", $sidebar_movil, $plantilla);
+        $plantilla = ($flag_theme == 'SECCION') ? str_replace("{sidebar_deuda_turno_movil}", $sidebar_movil, $plantilla); : $plantilla;
+        $plantilla = ($flag_theme == 'AUTOGESTION') ? str_replace("{sidebar_autogestion}", $sidebar, $plantilla) : $plantilla;
+        $plantilla = ($flag_theme == 'AUTOGESTION') ? str_replace("{sidebar_autogestion_movil}", $sidebar_movil, $plantilla) : $plantilla;
         $plantilla = str_replace("{url_app}", URL_APP, $plantilla);
         $plantilla = str_replace("{url_static}", URL_STATIC, $plantilla);
         return $plantilla;
