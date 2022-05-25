@@ -1594,10 +1594,10 @@ class SitioController {
 	/* OFICINA VIRTUAL******************************************************/
 	function ofivirtual_suministro() {
 		require_once "tools/getDeuda.php";		
-		//CON DEUDA
-		$suministro = 5050150;
 		//SIN DEUDA
 		$suministro = 5171545;
+		//CON DEUDA
+		$suministro = 5050150;
 
 		$metodo = 'nis';
 		$valor = $suministro;		
