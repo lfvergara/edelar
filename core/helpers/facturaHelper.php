@@ -11,7 +11,7 @@ class Archivo {
     }
 }
         
-function readService($urlService){
+function readService($urlService) {
     //$archivohttp = @file_get_contents($urlService);
     $curl = curl_init();
     curl_setopt_array($curl, array(
@@ -27,7 +27,7 @@ function readService($urlService){
     xml_parser_set_option($parser, XML_OPTION_CASE_FOLDING, 0);
     $result=xml_parse_into_struct($parser, $archivohttp, $values, $tags);
     xml_parser_free($parser);
-    if($result==1){
+    if($result==1) {
         foreach ($tags as $key=>$val) {
             if ($key == "factura") {
                 $factura= $val;
@@ -45,7 +45,7 @@ function readService($urlService){
     }
 }
 
-function parseArchivo($mvalues){
+function parseArchivo($mvalues) {
     for ($i=0; $i < count($mvalues); $i++) {
         $mol[$mvalues[$i]["tag"]] = $mvalues[$i]["value"];
     }
