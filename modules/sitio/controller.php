@@ -1597,7 +1597,7 @@ class SitioController {
 		//SIN DEUDA
 		$suministro = 5171545;
 		//CON DEUDA
-		$suministro = 5050150;
+		$suministro = 5126854;
 
 		$metodo = 'nis';
 		$valor = $suministro;		
