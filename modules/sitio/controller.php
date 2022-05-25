@@ -1593,7 +1593,8 @@ class SitioController {
 
 	/* OFICINA VIRTUAL******************************************************/
 	function ofivirtual_suministro() {
-		require_once "tools/getDeuda.php";		
+		require_once "tools/getDeuda.php";
+		require_once "core/helpers/facturaHelper.php";
 		//SIN DEUDA
 		$suministro = 5171545;
 		//CON DEUDA
