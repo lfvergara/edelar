@@ -568,6 +568,7 @@ class SitioView extends View {
 		
 		$render = str_replace('{tbl_deuda}', $gui_tbl_deuda, $gui);
 		$render = str_replace('{display_tbl_deuda}', $display_tbl_deuda, $render);
+		$render = str_replace('{display_alert_deuda}', $display_tbl_deuda, $render);
 		$render = $this->render($obj_suministro, $render);
 		$template = $this->render_sitio("THEME_AUTOGESTION", $render);
 		print $template;
