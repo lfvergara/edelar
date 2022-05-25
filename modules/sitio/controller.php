@@ -1569,7 +1569,7 @@ class SitioController {
 	function ofivirtual() {
 		require_once "tools/getDeuda.php";
 	
-		$documento = 12478568;
+		$documento = 27544148;
 		$metodo = 'dni';
 		$valor = $documento;		
 		$deuda = new getDeuda();
