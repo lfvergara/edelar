@@ -563,6 +563,7 @@ class SitioView extends View {
 
 		$deuda_collection = (is_array($rst_deuda) AND !empty($rst_deuda)) ? $rst_deuda[0] : array();
 		$display_tbl_deuda = (is_array($rst_deuda) AND !empty($rst_deuda)) ? 'block' : 'none';
+		$display_alert_deuda = (is_array($rst_deuda) AND !empty($rst_deuda)) ? 'none' : 'block';
 		$gui_tbl_deuda = $this->render_regex('TBL_DEUDA', $gui_tbl_deuda, $deuda_collection);		
 		
 		$render = str_replace('{tbl_deuda}', $gui_tbl_deuda, $gui);
