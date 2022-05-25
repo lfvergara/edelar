@@ -50,6 +50,6 @@ function parseArchivo($mvalues) {
         $mol[$mvalues[$i]["tag"]] = $mvalues[$i]["value"];
     }
  
-    return new Archivo($mol);
+    return new Impreso($mol);
 }
 ?>
