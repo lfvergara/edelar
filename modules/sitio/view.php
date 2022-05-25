@@ -562,9 +562,11 @@ class SitioView extends View {
 		$rst_deuda = json_decode($rst_deuda);
 
 		$deuda_collection = (is_array($rst_deuda) AND !empty($rst_deuda)) ? $rst_deuda[0] : array();
+		$display_tbl_deuda = (is_array($rst_deuda) AND !empty($rst_deuda)) ? 'block' : 'none';
 		$gui_tbl_deuda = $this->render_regex('TBL_DEUDA', $gui_tbl_deuda, $deuda_collection);		
 		
 		$render = str_replace('{tbl_deuda}', $gui_tbl_deuda, $gui);
+		$render = str_replace('{display_tbl_deuda}', $display_tbl_deuda, $render);
 		$render = $this->render($obj_suministro, $render);
 		$template = $this->render_sitio("THEME_AUTOGESTION", $render);
 		print $template;
