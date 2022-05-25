@@ -530,7 +530,7 @@ class SitioView extends View {
 		$gui = file_get_contents("static/modules/sitio/ofivirtual.html");
 		//$gui_tbl_deuda = file_get_contents("static/common/tbl_deuda.html");
 		$rst_cliente = json_decode($cliente);
-		print_r($rst_cliente);exit;
+		//print_r($rst_cliente);exit;
 		$obj_cliente = $rst_cliente[0];
 		$obj_cliente = $this->set_dict($obj_cliente);
 
