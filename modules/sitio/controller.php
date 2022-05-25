@@ -1614,7 +1614,7 @@ class SitioController {
 								'{suministro-facturadigital}'=>$suministro_facturadigital,
 								'{suministro-flag_facturadigital}'=>$suministro_flag_facturadigital);
 
-		$factura_collection=readService("http://provider:123456@200.91.37.167:9190/FacturaProvider/query?nis={$suministro}");
+		//$factura_collection=readService("http://provider:123456@200.91.37.167:9190/FacturaProvider/query?nis={$suministro}");
 
 		$this->view->ofivirtual_suministro($obj_suministro, $rst_deuda, $metodo, $factura_collection);
 	}
