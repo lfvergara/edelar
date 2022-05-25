@@ -1633,8 +1633,8 @@ class SitioController {
 		*/
 
 		$deuda = new getDatosV10();
-		$deuda_collection = $deuda->getDeudaFunction('dni', $documento);
-		$this->view->ofivirtual_deuda($deuda_collection);
+		$rst_deuda = $deuda->getDeudaFunction('dni', $documento);
+		$this->view->ofivirtual_deuda($rst_deuda);
 	}
 
 	/* OFICINA VIRTUAL: DESCARGAR IMPRESO***********************************/
