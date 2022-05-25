@@ -556,26 +556,16 @@ class SitioView extends View {
 		print $template;
 	}
 
-	function ofivirtual_suministro($obj_suministro, $rst_suministro, $metodo) {
+	function ofivirtual_suministro($obj_suministro, $rst_deuda, $metodo) {
 		$gui = file_get_contents("static/modules/sitio/ofivirtual_suministro.html");
 		$gui_tbl_deuda = file_get_contents("static/common/ofivirtual_tbl_deuda_suministro.html");
-		$rst_suministro = json_decode($rst_suministro);
+		$rst_deuda = json_decode($rst_deuda);
 
-		$deuda_collection = (is_array($rst_suministro) AND !empty($rst_suministro)) ? $rst_suministro[0] : array();
+		$deuda_collection = (is_array($rst_deuda) AND !empty($rst_deuda)) ? $rst_deuda[0] : array();
+		$gui_tbl_deuda = $this->render_regex('TBL_DEUDA', $gui_tbl_deuda, $deuda_collection);		
 		
-		if(!empty($deuda_collection) AND is_array($deuda_collection)) {
-			foreach ($deuda_collection as $clave=>$valor) $deuda_collection[$clave]->nis = $valor->suministro->id;
-		} else {
-			$deuda_collection = array();
-		}
-
-		print_r($deuda_collection);exit;
-		$gui_tbl_deuda = $this->render_regex('TBL_DEUDA', $ofivirtual_tbl_deuda_suministro, $deuda_collection);		
 		$render = str_replace('{tbl_deuda}', $gui_tbl_deuda, $gui);
-		$render = str_replace('{fecha_sys}', date('d/m/Y'), $render);
-		$render = str_replace('{hora_sys}', date('h:i:s'), $render);
-		
-		$render = $this->render($obj_cliente, $gui);
+		$render = $this->render($obj_suministro, $render);
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
 	}
