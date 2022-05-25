@@ -559,7 +559,7 @@ class SitioView extends View {
 	function ofivirtual_suministro($suministro, $metodo) {
 		$gui = file_get_contents("static/modules/sitio/ofivirtual_suministro.html");
 		//$gui_tbl_deuda = file_get_contents("static/common/tbl_deuda.html");
-		print_r($rst_suministro);exit;
+		print_r($suministro);exit;
 		$rst_suministro = json_decode($suministro);
 
 		if (is_array($rst_suministro) AND !empty($rst_suministro)) {
