@@ -44,6 +44,14 @@
           <div class="widget__header">
             <h2 class="widget__title">DEUDA REGISTRADA AL DÍA</h2>
           </div>
+          <div class="alert ui-pnotify-container alert-success ui-pnotify-shadow" style="display: {display_alert_deuda};">
+            <h4 class="ui-pnotify-title">
+              <svg class="notify-icon">
+                <use xlink:href="#icon-valid"></use>
+              </svg>No posee deuda registrada.
+            </h4>
+            <div style="display: none;" class="ui-pnotify-text"></div>
+          </div>
           <div class="widget__content" id="div_listado_deuda" style="margin-top: 10px !important;">
             <div class="datatable datatable--properties" style="display: {display_tbl_deuda};">
               <div class="datatable__wrap">
