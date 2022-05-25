@@ -1567,12 +1567,13 @@ class SitioController {
 	
 	/* OFICINA VIRTUAL******************************************************/
 	function ofivirtual() {
+		/*
 		require_once "common/libs/WebService/WsAutogestionGetCliente.php";
 		$gcm = new wsAutogestionGetClienteHelper();
 
 		$response = $gcm->getPorId(5126854);
 		print_r($response);exit;
-
+		*/
 
 
 
