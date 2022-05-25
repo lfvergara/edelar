@@ -1567,16 +1567,15 @@ class SitioController {
 	
 	/* OFICINA VIRTUAL******************************************************/
 	function ofivirtual() {
-		/*
 		require_once "common/libs/WebService/WsAutogestionGetCliente.php";
 		$gcm = new wsAutogestionGetClienteHelper();
 
-		$response = $gcm->getPorId(5126854);
+		$response = $gcm->getPorId(1610093259);
 		print_r($response);exit;
-		*/
 
 
 
+		/*
 		require_once "tools/getDeuda.php";
 	
 		//$documento = 12393897;
@@ -1586,6 +1585,7 @@ class SitioController {
 		$deuda = new getDeuda();
 		$deuda_collection = $deuda->getDeudaFunction($metodo, $valor);
 		$this->view->ofivirtual($deuda_collection, $metodo);
+		*/
 	}
 	/* OFICINA VIRTUAL******************************************************/
 }
