@@ -366,6 +366,7 @@ class SitioController {
 	}
 
 	function p2_signup_cliente() {
+		print_r($_SESSION["array_registro"]);exit;
 		if (isset($_SESSION["array_registro"]) AND !empty($_SESSION["array_registro"])) {
 			$this->view->p2_signup_cliente();
 		} else {
@@ -795,15 +796,7 @@ class SitioController {
 	}
 	/* GESTIONES COMERCIALES ***********************************************/
 
-	/* COMMON **************************************************************/
-	function ver_archivo(){
-		require_once "core/helpers/files.php";
-	}
-
-	function ver_archivo_unico(){
-		require_once "core/helpers/file.php";
-	}
-	/* COMMON **************************************************************/
+	
 
 	/* TURNERO**************************************************************/
 	function verificar_dni($arg){
@@ -1663,5 +1656,15 @@ class SitioController {
         require_once "core/helpers/facturaFile.php";
     }
 	/* OFICINA VIRTUAL******************************************************/
+
+	/* COMMON **************************************************************/
+	function ver_archivo(){
+		require_once "core/helpers/files.php";
+	}
+
+	function ver_archivo_unico(){
+		require_once "core/helpers/file.php";
+	}
+	/* COMMON **************************************************************/
 }
 ?>
