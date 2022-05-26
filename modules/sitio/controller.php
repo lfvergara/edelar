@@ -360,6 +360,29 @@ class SitioController {
 	}
 	/* MENU = MANTENIMIENTOS PREVENTIVOS ***********************************/
 
+	/* PARA PRUEBA DE FORMULARIOS ******************************************/
+	function p1_signup_cliente() {
+		$this->view->p1_signup_cliente();
+	}
+
+	function p2_signup_cliente() {
+		if (isset($_SESSION["array_registro"]) AND !empty($_SESSION["array_registro"])) {
+			$this->view->p2_signup_cliente();
+		} else {
+			$this->p1_signup_cliente();
+		}
+	}
+
+	function p3_signup_cliente() {
+		$this->view->p3_signup_cliente();
+	}
+
+	function p4_signup_cliente() {
+		//FIXME - Desarrollar script de verificación de datos
+		$this->view->p3_signup_cliente();
+	}
+	/* PARA PRUEBA DE FORMULARIOS ******************************************/
+
 	/* GESTIONES COMERCIALES ***********************************************/
 	function turnero() {
 		$unicom_collection = Collector()->get('Unicom');
