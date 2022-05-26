@@ -540,7 +540,7 @@ class SitioController {
 				$gestion->ov_tipogestion = $ovtipogestion;
 				$gestion->ov_gestionhistorico_collection = array();
 				$gestion->ov_gestionhistorico_collection[] = $gestionhistorico;
-				$gestion->archivo_collection = array();
+				$gestion->archivos_collection = array();
 
 				eval("class OV_DetalleGestionAdhesion {};");
 				$tipogestion = new OV_DetalleGestionAdhesion();
@@ -548,7 +548,7 @@ class SitioController {
 				$tipogestion->termino_condiciones = 0;
 				$tipogestion->fecha_termino_condiciones = date('Y-m-d');
 				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
-				$tipogestion->so = $_SERVER['HTTP_USER_AGENT'];
+				$tipogestion->so = '';
 				$tipogestion->tipo = filter_input(INPUT_POST, 'tipo');
 				$tipogestion->detalle = '';
 				$tipogestion->ov_gestion = $gestion;
