@@ -800,6 +800,7 @@ class SitioController {
 				eval("class OV_DetalleAdhesionDebito {};");
 				$tipogestion = New OV_DetalleAdhesionDebito();
 				$tipogestion->numero_tramite = $gestioncomercial_id;
+				$tipogestion->metodo_envio = 0;
 				$tipogestion->termino_condiciones = 0;
 				$tipogestion->fecha_termino_condiciones = date('Y-m-d');
 				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
@@ -881,7 +882,7 @@ class SitioController {
 	 	}
 
 	 	$argumento = json_encode($tipogestion);
-	 	print_r($argumento);exit;
+	 	//print_r($argumento);exit;
 	 	if (in_array($tipo_gestion, $array_gestionescomerciales_online)) {
 	 		//$resultado = sincroniza_geco_tramite($argumento);	 		
 		 	//$resultado = sincroniza_geco_tramite_desa($argumento);
