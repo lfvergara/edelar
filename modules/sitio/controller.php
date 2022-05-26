@@ -783,6 +783,7 @@ class SitioController {
 	 	}
 
 	 	$argumento = json_encode($tipogestion);
+	 	print_r($argumento);exit;
 		require_once "tools/postGestionGeCo.php";
 		$ws = new postGestionGeCo();
 		$rst_cliente = $ws->postGestionFunction($argumento);
