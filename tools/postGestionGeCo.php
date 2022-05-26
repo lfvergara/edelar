@@ -16,6 +16,7 @@ class postGestionGeCo {
 		$sha256 = new SHA256Encript();
 		$firma = $sha256->Generate($ip, $secretKey, $ente, $usuario, $clave);
 
+		print_r($firma);exit;
 		$data = array();
 		$data ["firma"]= $firma;
 		$data ["usuario"]= $aes->EncryptString($usuario, $secretKey);
@@ -25,7 +26,6 @@ class postGestionGeCo {
 		$data ["valor"]= $aes->EncryptString($array_datos, $secretKey);
 
 		//$ch = curl_init("https://geco.edelar.com.ar/api_geco/wsGeco_gestion_externos.php");
-		print_r($data);exit;
 		$ch = curl_init("https://geco.edelar.com.ar/api_geco_desa/wsGeco_gestion_externos.php");
 		curl_setopt($ch, CURLOPT_TIMEOUT, 120000);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120000);
