@@ -545,7 +545,7 @@ class SitioController {
 				$tipogestion = new OV_DetalleGestionAdhesion();
 				$tipogestion->numero_tramite = $gestioncomercial_id;
 				$tipogestion->termino_condiciones = 0;
-				$tipogestion->fecha_termino_condiciones = date('Y-m-d h:i:s');
+				$tipogestion->fecha_termino_condiciones = date('Y-m-d');
 				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
 				$tipogestion->so = $_SERVER['HTTP_USER_AGENT'];
 				$tipogestion->tipo = filter_input(INPUT_POST, 'tipo');
