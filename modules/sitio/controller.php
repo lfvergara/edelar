@@ -544,7 +544,7 @@ class SitioController {
 				eval("class OV_DetalleGestionAdhesion {};");
 				$tipogestion = new OV_DetalleGestionAdhesion();
 				$tipogestion->numero_tramite = $gestioncomercial_id;
-				$tipogestion->termino_condiciones = filter_input(INPUT_POST, 'termino_condiciones');
+				$tipogestion->termino_condiciones = 0;
 				$tipogestion->fecha_termino_condiciones = date('Y-m-d h:i:s');
 				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
 				$tipogestion->so = $_SERVER['HTTP_USER_AGENT'];
@@ -793,7 +793,7 @@ class SitioController {
 	 	}
 
 	 	$argumento = json_encode($tipogestion);
-	 	print_r($argumento);exit;
+	 	//print_r($argumento);exit;
 		if (in_array($tipo_gestion, $array_gestionescomerciales_online)) {
 	 		//$resultado = sincroniza_geco_tramite($argumento);	 		
 		 	//$resultado = sincroniza_geco_tramite_desa($argumento);
