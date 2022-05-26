@@ -507,7 +507,8 @@ class SitioController {
 				$tmp_dgcm->termino_condiciones = 0;
 				$tmp_dgcm->fecha_termino_condiciones = date('Y-m-d h:i:s');
 				$tmp_dgcm->ip = $_SERVER['REMOTE_ADDR'];
-				$tmp_dgcm->so = $_SERVER['HTTP_USER_AGENT'];
+				//$tmp_dgcm->so = $_SERVER['HTTP_USER_AGENT'];
+				$tmp_dgcm->so = '';
 				$tmp_dgcm->tipo = filter_input(INPUT_POST, 'tipo');
 				$tmp_dgcm->detalle = 'Gestión comercial online: Adhesión a la Factura Digital.';
 				$tmp_dgcm->gestioncomercial = $gestioncomercial_id;
@@ -794,7 +795,7 @@ class SitioController {
 	 	}
 
 	 	$argumento = json_encode($tipogestion);
-	 	print_r($argumento);exit;
+	 	//print_r($argumento);exit;
 		if (in_array($tipo_gestion, $array_gestionescomerciales_online)) {
 	 		//$resultado = sincroniza_geco_tramite($argumento);	 		
 		 	//$resultado = sincroniza_geco_tramite_desa($argumento);
