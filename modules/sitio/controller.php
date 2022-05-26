@@ -880,8 +880,7 @@ class SitioController {
 
 	 	$argumento = json_encode($tipogestion);
 	 	print_r($argumento);
-	 	print "<hr>";
-		if (in_array($tipo_gestion, $array_gestionescomerciales_online)) {
+	 	if (in_array($tipo_gestion, $array_gestionescomerciales_online)) {
 	 		//$resultado = sincroniza_geco_tramite($argumento);	 		
 		 	//$resultado = sincroniza_geco_tramite_desa($argumento);
 		 	require_once "tools/postGestionGeCo.php";
