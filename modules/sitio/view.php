@@ -161,9 +161,9 @@ class SitioView extends View {
 
 		$integrante = $rst_cliente->return->requestResult->integrantes;
 		$obj_integrante = $this->set_dict($integrante);
-		print "<hr>";
-		print_r($obj_integrante);exit;
 		$preguntas = $rst_cliente->return->requestResult->questions;
+		print "<hr>";
+		print_r($preguntas);exit;
 
 
 		$template = $this->render_sitio("THEME_SECCION", $gui);
