@@ -6,7 +6,6 @@ require_once "common/libs/sha256encript/AESEncrypter.php";
 
 class postGestionGeCo {
 	function postGestionFunction($array_datos) {
-		
 		$ip= '137.184.46.15';
 		$usuario = 'PROVEEDORWEB_7894265917';
 		$clave = 'TY3tTnOj7QTf9HDgsFg9KOYT7k5F85T9VcrjFtp9';
@@ -26,6 +25,7 @@ class postGestionGeCo {
 		$data ["valor"]= $aes->EncryptString($array_datos, $secretKey);
 
 		//$ch = curl_init("https://geco.edelar.com.ar/api_geco/wsGeco_gestion_externos.php");
+		print_r($data);exit;
 		$ch = curl_init("https://geco.edelar.com.ar/api_geco_desa/wsGeco_gestion_externos.php");
 		curl_setopt($ch, CURLOPT_TIMEOUT, 120000);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120000);
