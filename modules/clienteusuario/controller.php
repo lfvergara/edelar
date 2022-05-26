@@ -37,7 +37,7 @@ class ClienteUsuarioController {
 		$sucursal = 0;
 		$documentNumber = $documento;
 		$gender = "M";
-		$questionary = 0;
+		$questionary = 10467;
 
 		$array = array("matrix"=>$matrix,
 					   "user"=>$user,
