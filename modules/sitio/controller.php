@@ -802,7 +802,7 @@ class SitioController {
 					
 					eval("class OV_Tarjeta {};");
 					$tarjetacredito = new OV_Tarjeta();
-					$tarjetacredito->ov_tarjeta_id = filter_input(INPUT_POST, 'dt_tarjetacredito')
+					$tarjetacredito->ov_tarjeta_id = filter_input(INPUT_POST, 'dt_tarjetacredito');
 					$tarjetacredito->denominacion = $tcm->denominacion;
 				}
 				
