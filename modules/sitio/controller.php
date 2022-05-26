@@ -791,6 +791,7 @@ class SitioController {
 
 				eval("class OV_DetalleTarjetaDebito {};");
 				$tarjeta = New OV_DetalleTarjetaDebito();
+				$tarjeta->ov_detalletarjetadebito_id =  0;
 				$tarjeta->denominacion =  filter_input(INPUT_POST, 'db_institucion_financiera');
 				$tarjeta->denominacion_titular =  filter_input(INPUT_POST, 'titular');
 				$tarjeta->num_cbu =  filter_input(INPUT_POST, 'cbu');
