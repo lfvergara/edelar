@@ -641,7 +641,7 @@ class SitioController {
 				$ovtipogestion->ov_tipogestion_id = 5;
 				$ovtipogestion->denominacion = "Baja Voluntaria";
 				$ovtipogestion->cantidadarchivo = 4;
-				$ovtipogestion->codigo = "ABV";
+				$ovtipogestion->codigo = "BAV";
 
 				eval("class OV_Gestion {};");
 				$gestion = New OV_Gestion();
@@ -832,14 +832,6 @@ class SitioController {
 				$tipogestion->ov_gestion = $gestion;
 				$tipogestion->ov_detalletarjetadebito = $tarjeta;
 
-				//$ovdgam->numero_tramite = $gestioncomercial_id;
-				//$ovdgam->termino_condiciones = filter_input(INPUT_POST, 'termino_condiciones');
-				//$ovdgam->fecha_termino_condiciones = date('Y-m-d h:i:s');
-				//$ovdgam->ip = $_SERVER['REMOTE_ADDR'];
-				//$ovdgam->so = $_SERVER['HTTP_USER_AGENT'];
-				//$ovdgam->ov_gestion = $gestion;
-				//$ovdgam->ov_detalletarjetadebito = $tarjeta;
-
 				$url = 'adhesion_debito';
 				break;
 			
@@ -905,7 +897,7 @@ class SitioController {
 	 	}
 
 	 	$argumento = json_encode($tipogestion);
-	 	print_r($argumento);exit;
+	 	//print_r($argumento);exit;
 	 	if (in_array($tipo_gestion, $array_gestionescomerciales_online)) {
 	 		//$resultado = sincroniza_geco_tramite($argumento);	 		
 		 	//$resultado = sincroniza_geco_tramite_desa($argumento);
