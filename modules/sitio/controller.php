@@ -781,16 +781,31 @@ class SitioController {
 				$gestion->archivos_collection = array();
 
 				$dt_tarjetacredito = filter_input(INPUT_POST, 'dt_tarjetacredito');
-				$dt_tarjetacredito = (is_null($dt_tarjetacredito) OR empty($dt_tarjetacredito) OR $dt_tarjetacredito == '') ? 0 : $dt_tarjetacredito;
+				$dt_tarjetacredito = (is_null($dt_tarjetacredito) OR empty($dt_tarjetacredito) OR $dt_tarjetacredito == '') ? null : $dt_tarjetacredito;
 				
-				$tcm = new TarjetaCredito();
-				$tcm->tarjetacredito_id = filter_input(INPUT_POST, 'dt_tarjetacredito');
-				$tcm->get();
+				
 
-				eval("class OV_Tarjeta {};");
-				$tarjetacredito = new OV_Tarjeta();
-				$tarjetacredito->ov_tarjeta_id = $dt_tarjetacredito;
-				$tarjetacredito->denominacion = $tcm->denominacion;
+				$dt_tarjetacredito = filter_input(INPUT_POST, 'dt_tarjetacredito')
+				if (is_null($dt_tarjetacredito) OR empty($dt_tarjetacredito) OR $dt_tarjetacredito == '') {
+					$tcm = new TarjetaCredito();
+					$tcm->tarjetacredito_id = 1;
+					$tcm->get();
+					
+					eval("class OV_Tarjeta {};");
+					$tarjetacredito = new OV_Tarjeta();
+					$tarjetacredito->ov_tarjeta_id = 1;
+					$tarjetacredito->denominacion = $tcm->denominacion;
+				} else {
+					$tcm = new TarjetaCredito();
+					$tcm->tarjetacredito_id = filter_input(INPUT_POST, 'dt_tarjetacredito');
+					$tcm->get();
+					
+					eval("class OV_Tarjeta {};");
+					$tarjetacredito = new OV_Tarjeta();
+					$tarjetacredito->ov_tarjeta_id = filter_input(INPUT_POST, 'dt_tarjetacredito')
+					$tarjetacredito->denominacion = $tcm->denominacion;
+				}
+				
 				
 				eval("class OV_DetalleTarjetaDebito {};");
 				$tarjeta = New OV_DetalleTarjetaDebito();
