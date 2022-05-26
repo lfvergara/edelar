@@ -360,6 +360,10 @@ class SitioController {
 	}
 	/* MENU = MANTENIMIENTOS PREVENTIVOS ***********************************/
 
+	function info() {
+		print phpinfo();
+	}
+
 	/* PARA PRUEBA DE FORMULARIOS ******************************************/
 	function p1_signup_cliente() {
 		$this->view->p1_signup_cliente();
