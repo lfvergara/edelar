@@ -29,6 +29,7 @@ class ClienteUsuarioController {
 	function p2_signup_cliente() {
 		$documento = filter_input(INPUT_POST, 'documento');
 		$sexo = filter_input(INPUT_POST, 'sexo');
+		print_r($_POST);exit;
 		$wsdl = "https://online.org.veraz.com.ar/WsIDValidator/services/idvalidator?wsdl";
 		$matrix = "VN2741";
 		$user = "ID3_XML";
