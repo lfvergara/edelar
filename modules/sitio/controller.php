@@ -781,7 +781,7 @@ class SitioController {
 				$gestion->archivos_collection = array();
 
 				$dt_tarjetacredito = filter_input(INPUT_POST, 'dt_tarjetacredito');
-				$dt_tarjetacredito = (is_null($dt_tarjetacredito) OR empty($dt_tarjetacredito) OR $dt_tarjetacredito == '') ? 0; $dt_tarjetacredito;
+				$dt_tarjetacredito = (is_null($dt_tarjetacredito) OR empty($dt_tarjetacredito) OR $dt_tarjetacredito == '') ? 0 : $dt_tarjetacredito;
 				
 				$tcm = new TarjetaCredito();
 				$tcm->tarjetacredito_id = filter_input(INPUT_POST, 'dt_tarjetacredito');
