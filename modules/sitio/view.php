@@ -532,17 +532,14 @@ class SitioView extends View {
 	/* TRAMITES COMERCIALES ************************************************/
 
 	/* OFICINA VIRTUAL *****************************************************/
-	//function ofivirtual($rst_cliente, $rst_suministros) {
-	function ofivirtual($rst_cliente) { //DELETE ME
+	function ofivirtual($rst_cliente) { 
 		$gui = file_get_contents("static/modules/sitio/ofivirtual.html");
 		$gui_tbl_suministro = file_get_contents("static/common/ofivirtual_tbl_suministro.html");
 		
-		//FIX ME CON RESULTADO DE CLIENTE
-		
 		$rst_cliente = json_decode($rst_cliente);
-		print_r($rst_cliente);exit;
-		//$obj_cliente = $rst_cliente[0];
 		$obj_cliente = $this->set_dict($obj_cliente);
+		
+	
 
 		//FIX ME CON RESULTADO DE SUMINISTROS
 		/*
@@ -552,7 +549,7 @@ class SitioView extends View {
 		$suministro_collection = array(); //DELETE ME
 
 		$render = str_replace('{tbl_suministro}', $gui_tbl_suministro, $gui);
-		//$render = $this->render($obj_cliente, $render);
+		$render = $this->render($obj_cliente, $render);
 		$template = $this->render_sitio("THEME_AUTOGESTION", $render);
 		print $template;
 	}
