@@ -279,6 +279,12 @@ class SitioView extends View {
 		print $template;
 	}
 
+	function tramites_grandes_clientes() {
+		$gui = file_get_contents("static/modules/sitio/grandes_clientes_tramites.html");
+		$template = $this->render_sitio("THEME_SECCION", $gui);
+		print $template;
+	}
+
 	function tramites_hogares_comercios() {
 		$gui = file_get_contents("static/modules/sitio/hogares_comercios_tramites.html");
 		$template = $this->render_sitio("THEME_SECCION", $gui);

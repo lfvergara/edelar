@@ -390,6 +390,10 @@ class SitioController {
 		$this->view->turnero($unicom_collection, $tramite_collection);
 	}
 
+	function tramites_grandes_clientes() {
+		$this->view->tramites_grandes_clientes();
+	}
+
 	function tramites_hogares_comercios() {
 		$this->view->tramites_hogares_comercios();
 	}
