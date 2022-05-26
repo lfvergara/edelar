@@ -49,31 +49,12 @@ class ClienteUsuarioController {
 					   "questionary"=>$questionary);
 
 		$client = new SoapClient("https://online.org.veraz.com.ar/WsIDValidator/services/idvalidator?wsdl");
-		//$result = $client->__getFunctions();
 		$result = $client->__soapCall("obtenerPreguntas", array($array));
-		print_r($result);exit;
 		
-		print_r($result);exit;
-
-		/*
-		$client = new nusoap_client($wsdl,'wsdl');
-		$resultado = $client->call('obtenerPreguntas', $array);
-		*/
-
-
-
-
-
-		print_r($documento);exit;
-		//FIXME - Integrar API Veraz para generar bandera de documento
-		$flag_dni = true;
-
-		if ($flag_dni == true) {
-			//FIXME - Generar variable de sesión con preguntas y respuestas standar
-	    	header("Location: " . URL_APP . "/sitio/p3_signup_cliente");
-		} else {
-			//FIXME - Mostrar cartel de error de DNI
-	    	header("Location: " . URL_APP . "/sitio/p2_signup_cliente");
+		if (is_object($result)) {
+			$this->view->p3_signup_cliente($result);
+		} else {			
+	    	header("Location: " . URL_APP . "/sitio/errorSignUpDNI");
 		}
 	}
 
