@@ -696,6 +696,7 @@ class SitioController {
 
 				eval("class OV_Gestion {};");
 				$gestion = New OV_Gestion();
+				$gestion->ov_gestion = 0;
 				$gestion->suministro = $nis;
 				$gestion->fecha = date('Y-m-d');
 				$gestion->dni = $dni;
