@@ -537,8 +537,8 @@ class SitioView extends View {
 		$gui_tbl_suministro = file_get_contents("static/common/ofivirtual_tbl_suministro.html");
 		
 		$rst_cliente = json_decode($rst_cliente);
-		$obj_cliente = $this->set_dict($obj_cliente);
-		
+		$obj_cliente = $this->set_dict($rst_cliente);
+			
 	
 
 		//FIX ME CON RESULTADO DE SUMINISTROS
