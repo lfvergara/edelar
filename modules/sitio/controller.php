@@ -717,6 +717,7 @@ class SitioController {
 				$tipogestion->fecha_termino_condiciones = date('Y-m-d');
 				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
 				$tipogestion->so = '';
+				$tipogestion->detalle = '';
 				$tipogestion->ov_gestion = $gestion;
 				// PARA WS
 
