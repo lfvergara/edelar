@@ -594,9 +594,13 @@ class SitioView extends View {
 		print $template;
 	}
 
-	function ofivirtual_deuda($rst_deuda) {
+	function ofivirtual_deuda($rst_deuda, $rst_cliente) {
 		$gui = file_get_contents("static/modules/sitio/ofivirtual_deuda.html");
 		$gui_tbl_deuda = file_get_contents("static/common/ofivirtual_tbl_deuda.html");
+
+		$rst_cliente = json_decode($rst_cliente);
+		$obj_cliente = $this->set_dict($rst_cliente);
+
 		$deuda_collection = json_decode($rst_deuda);
 		$deuda_collection = $deuda_collection[0];
 		
@@ -615,6 +619,7 @@ class SitioView extends View {
 		$render = str_replace('{tbl_deuda}', $gui_tbl_deuda, $gui);
 		$render = str_replace('{display_tbl_deuda}', $display_tbl_deuda, $render);
 		$render = str_replace('{display_alert_deuda}', $display_alert_deuda, $render);
+		$render = $this->render($obj_cliente, $render);
 		$template = $this->render_sitio("THEME_AUTOGESTION", $render);
 		print $template;
 	}

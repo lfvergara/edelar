@@ -1650,15 +1650,12 @@ class SitioController {
 		//CON DEUDA
 		$documento = 12393897;
 		
-		//FIX ME: COMPLETAR CON WS TRAER CLIENTE Y SUMINISTROS
-		/*
 		$ws = new getDatosV10();
 		$rst_cliente = $ws->getClienteFunction('dni', $documento);
-		*/
 
 		$deuda = new getDatosV10();
 		$rst_deuda = $deuda->getDeudaFunction('dni', $documento);
-		$this->view->ofivirtual_deuda($rst_deuda);
+		$this->view->ofivirtual_deuda($rst_deuda, $rst_cliente);
 	}
 
 	/* OFICINA VIRTUAL: DESCARGAR IMPRESO***********************************/
