@@ -549,7 +549,7 @@ class SitioController {
 				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
 				$tipogestion->so = '';
 				$tipogestion->tipo = filter_input(INPUT_POST, 'tipo');
-				$tipogestion->detalle = '';
+				$tipogestion->detalle = 'Gestión comercial online: Adhesión a la Factura Digital.';
 				$tipogestion->ov_gestion = $gestion;
 				// PARA WS
 
@@ -609,6 +609,8 @@ class SitioController {
 				$tipogestion->so = '';
 				$tipogestion->tipo = filter_input(INPUT_POST, 'tipo');
 				$tipogestion->tipo_titularidad = filter_input(INPUT_POST, 'tipo_titularidad');
+				$tipogestion->tipo_persona = 'FÍSICA'; //FIX ME FÍSICA / JURÍDICA
+				$tipogestion->detalle = 'Gestión comercial online: Nuevo Suministro - Reconexión.'; //FIX ME FÍSICA / JURÍDICA
 				$tipogestion->ov_gestion = $gestion;
 				// PARA WS
 
@@ -717,7 +719,7 @@ class SitioController {
 				$tipogestion->fecha_termino_condiciones = date('Y-m-d');
 				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
 				$tipogestion->so = '';
-				$tipogestion->detalle = '';
+				$tipogestion->detalle = 'Gestión comercial online: Cambio Vencimiento Jubilados.';
 				$tipogestion->ov_gestion = $gestion;
 				// PARA WS
 
@@ -805,7 +807,7 @@ class SitioController {
 				$tipogestion->fecha_termino_condiciones = date('Y-m-d');
 				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
 				$tipogestion->so = '';
-				$tipogestion->detalle = '';
+				$tipogestion->detalle = 'Gestión comercial online: Adhesión Débito Automático. Débito Bancario.';
 				$tipogestion->ov_gestion = $gestion;
 				$tipogestion->ov_detalletarjetadebito = $tarjeta;
 
