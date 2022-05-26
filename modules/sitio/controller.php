@@ -501,6 +501,7 @@ class SitioController {
 
 		switch ($tipo_gestion) {
 			case 1:
+				//FUNCIONANDO
 				$tmp_dgcm = New DetalleAdhesionFacturaDigital();
 				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
 				//$tmp_dgcm->termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
@@ -618,6 +619,7 @@ class SitioController {
 				$url = filter_input(INPUT_POST, 'url');
 	      		break;
 			case 5:
+				//FUNCIONANDO
 				$tmp_dgcm = New DetalleBajaVoluntaria();
 				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
 				$tmp_dgcm->termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
@@ -673,6 +675,7 @@ class SitioController {
 				$url = 'baja_voluntaria';
 				break;
 			case 6:
+				//FUNCIONANDO
 				$tmp_dgcm = New DetalleCambioVencimientoJubilado();
 				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
 				$tmp_dgcm->dia_vencimiento = filter_input(INPUT_POST, 'fecha');
@@ -728,6 +731,7 @@ class SitioController {
 				$url = 'cambio_vencimiento_jubilados';
 				break;
 			case 7:
+				//FUNCIONANDO
 				$dtdm = New DetalleTarjetaDebito();
 				$dtdm->institucion_financiera =  filter_input(INPUT_POST, 'db_institucion_financiera');
 				$dtdm->titular =  filter_input(INPUT_POST, 'titular');
