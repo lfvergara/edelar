@@ -788,7 +788,7 @@ class SitioController {
 			}
 
   	  		$tmp_dgcm->gestioncomercial->archivos_collection = $tmp_array;
-  	  		$tipogestion->ov_gestion->archivo_collection = $tmp_array;
+  	  		$tipogestion->ov_gestion->archivos_collection = $tmp_array;
 	 	}
 
 	 	$argumento = json_encode($tipogestion);
