@@ -1594,7 +1594,7 @@ class SitioController {
 
 		$ws = new getDatosV10();
 		$rst_cliente = $ws->getClienteFunction('dni', $documento);
-		
+		print_r($rst_cliente);exit;
 		//FIX ME: COMPLETAR CON WS TRAER CLIENTE Y SUMINISTROS
 		/*
 
