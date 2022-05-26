@@ -17,9 +17,9 @@ class postGestionGeCo {
 		$firma = $sha256->Generate($ip, $secretKey, $ente, $usuario, $clave);
 
 		$data = array();
+		$aes = new AESEncrypter();
 		$data ["firma"]= $firma;
 		$data ["usuario"]= $aes->EncryptString($usuario, $secretKey);
-		print_r($data ["usuario"]);exit;
 		$data ["clave"]= $aes->EncryptString($clave, $secretKey);
 		$data ["ente"]= $ente; //Este dato no debe ir encriptado
 		$data ["metodo"]= $aes->EncryptString('registrar_gestion', $secretKey);
