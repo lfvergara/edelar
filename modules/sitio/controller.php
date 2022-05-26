@@ -503,7 +503,8 @@ class SitioController {
 			case 1:
 				$tmp_dgcm = New DetalleAdhesionFacturaDigital();
 				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
-				$tmp_dgcm->termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
+				//$tmp_dgcm->termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
+				$tmp_dgcm->termino_condiciones = 0;
 				$tmp_dgcm->fecha_termino_condiciones = date('Y-m-d h:i:s');
 				$tmp_dgcm->ip = $_SERVER['REMOTE_ADDR'];
 				$tmp_dgcm->so = $_SERVER['HTTP_USER_AGENT'];
