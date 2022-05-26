@@ -29,14 +29,13 @@ class ClienteUsuarioController {
 	function p2_signup_cliente() {
 		$documento = filter_input(INPUT_POST, 'documento');
 		$sexo = filter_input(INPUT_POST, 'sexo');
-		print_r($_POST);exit;
 		$wsdl = "https://online.org.veraz.com.ar/WsIDValidator/services/idvalidator?wsdl";
 		$matrix = "VN2741";
 		$user = "ID3_XML";
 		$password = "A238F615267903CD125674A450CF1C09";
 		$sector = "ID";
 		$sucursal = 0;
-		$documentNumber = 32588905;
+		$documentNumber = $documento;
 		$gender = "M";
 		$questionary = 0;
 
@@ -50,6 +49,7 @@ class ClienteUsuarioController {
 					   "questionary"=>$questionary);
 
 		$client = new SoapClient("https://online.org.veraz.com.ar/WsIDValidator/services/idvalidator?wsdl");
+		print_r($client);exit;
 		//$result = $client->__getFunctions();
 		$result = $client->__soapCall("obtenerPreguntas", array($array));
 		
