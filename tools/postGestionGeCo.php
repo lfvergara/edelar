@@ -6,7 +6,7 @@ require_once "common/libs/sha256encript/AESEncrypter.php";
 
 class postGestionGeCo {
 	function postGestionFunction($array_datos) {
-		
+		print_r($array_datos);exit;
 		$ip= '137.184.46.15';
 		$usuario = 'PROVEEDORWEB_7894265917';
 		$clave = 'TY3tTnOj7QTf9HDgsFg9KOYT7k5F85T9VcrjFtp9';
