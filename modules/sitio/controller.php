@@ -611,7 +611,7 @@ class SitioController {
 				$tipogestion->so = '';
 				$tipogestion->tipo = filter_input(INPUT_POST, 'tipo');
 				$tipogestion->tipo_titularidad = filter_input(INPUT_POST, 'tipo_titularidad');
-				$tipogestion->tipo_persona = 'FÍSICA'; //FIX ME FÍSICA / JURÍDICA
+				$tipogestion->tipo_persona = filter_input(INPUT_POST, 'tipo_persona'); //FIX ME FÍSICA / JURÍDICA
 				$tipogestion->detalle = 'Gestión comercial online: Nuevo Suministro - Reconexión.'; //FIX ME FÍSICA / JURÍDICA
 				$tipogestion->ov_gestion = $gestion;
 				// PARA WS
