@@ -693,13 +693,22 @@ class SitioController {
 				$tarjeta->ov_tarjeta =  $tarjetacredito;
 
 				eval("class OV_DetalleAdhesionDebito {};");
-				$ovdgam->numero_tramite = $gestioncomercial_id;
-				$ovdgam->termino_condiciones = filter_input(INPUT_POST, 'termino_condiciones');
-				$ovdgam->fecha_termino_condiciones = date('Y-m-d h:i:s');
-				$ovdgam->ip = $_SERVER['REMOTE_ADDR'];
-				$ovdgam->so = $_SERVER['HTTP_USER_AGENT'];
-				$ovdgam->ov_gestion = $gestion;
-				$ovdgam->ov_detalletarjetadebito = $tarjeta;
+				$tipogestion = New OV_DetalleAdhesionDebito();
+				$tipogestion->numero_tramite = $gestioncomercial_id;
+				$tipogestion->termino_condiciones = filter_input(INPUT_POST, 'termino_condiciones');
+				$tipogestion->fecha_termino_condiciones = date('Y-m-d h:i:s');
+				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
+				$tipogestion->so = $_SERVER['HTTP_USER_AGENT'];
+				$tipogestion->ov_gestion = $gestion;
+				$tipogestion->ov_detalletarjetadebito = $tarjeta;
+
+				//$ovdgam->numero_tramite = $gestioncomercial_id;
+				//$ovdgam->termino_condiciones = filter_input(INPUT_POST, 'termino_condiciones');
+				//$ovdgam->fecha_termino_condiciones = date('Y-m-d h:i:s');
+				//$ovdgam->ip = $_SERVER['REMOTE_ADDR'];
+				//$ovdgam->so = $_SERVER['HTTP_USER_AGENT'];
+				//$ovdgam->ov_gestion = $gestion;
+				//$ovdgam->ov_detalletarjetadebito = $tarjeta;
 
 				$url = 'adhesion_debito';
 				break;
@@ -768,11 +777,17 @@ class SitioController {
 	 	$argumento = json_encode($tipogestion);
 		if (in_array($tipo_gestion, $array_gestionescomerciales_online)) {
 	 		//$resultado = sincroniza_geco_tramite($argumento);	 		
-	 	} else {
 		 	//$resultado = sincroniza_geco_tramite_desa($argumento);
+
+			require_once "tools/postGestionGeCo.php";
+			$ws = new postGestionGeCo();
+			$rst_cliente = $ws->postGestionFunction($argumento);
+
+		 	header("Location: " . URL_APP . "/sitio/{$url}/okTramite");
+	 	} else {
+		 	header("Location: " . URL_APP . "/sitio/{$url}/errorTramite");
 	 	}
 
-	 	header("Location: " . URL_APP . "/sitio/{$url}/okTramite");
 	}
 	/* GESTIONES COMERCIALES ***********************************************/
 
