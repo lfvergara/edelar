@@ -549,6 +549,7 @@ class SitioController {
 				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
 				$tipogestion->so = $_SERVER['HTTP_USER_AGENT'];
 				$tipogestion->tipo = filter_input(INPUT_POST, 'tipo');
+				$tipogestion->detalle = '';
 				$tipogestion->ov_gestion = $gestion;
 				// PARA WS
 
@@ -793,7 +794,7 @@ class SitioController {
 	 	}
 
 	 	$argumento = json_encode($tipogestion);
-	 	print_r($argumento);exit;
+	 	//print_r($argumento);exit;
 		if (in_array($tipo_gestion, $array_gestionescomerciales_online)) {
 	 		//$resultado = sincroniza_geco_tramite($argumento);	 		
 		 	//$resultado = sincroniza_geco_tramite_desa($argumento);
