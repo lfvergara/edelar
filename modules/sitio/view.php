@@ -161,7 +161,7 @@ class SitioView extends View {
 
 		$integrante = $rst_cliente->return->requestResult->integrantes;
 		$obj_integrante = $this->set_dict($integrante);
-		print_r($integrante);exit;
+		print_r($obj_integrante);exit;
 		$preguntas = $rst_cliente->return->requestResult->questions;
 
 
