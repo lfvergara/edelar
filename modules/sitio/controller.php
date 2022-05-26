@@ -497,19 +497,7 @@ class SitioController {
 		$gestionhistorico->hora = date('h:i:s');
 		$gestionhistorico->ov_estadogestion = 1;
 
-		eval("class OV_Gestion {};");
-		$gestion = New OV_Gestion();
-		$gestion->suministro = $nis;
-		$gestion->fecha = date('Y-m-d');
-		$gestion->dni = $dni;
-		$gestion->nombre = $nombre;
-		$gestion->apellido = $apellido;
-		$gestion->correoelectronico = $correo;
-		$gestion->telefono = $telefono;
-		$gestion->ov_tipogestion = $tipo_gestion;
-		$gestion->ov_gestionhistorico_collection = array();
-		$gestion->ov_gestionhistorico_collection[] = $gestionhistorico;
-		$gestion->archivo_collection = array();
+		
 
 		switch ($tipo_gestion) {
 			case 1:
@@ -531,6 +519,22 @@ class SitioController {
 				$tmp_dgcm->get();
 
 				// PARA WS
+				eval("class OV_TipoGestion {};");
+
+				eval("class OV_Gestion {};");
+				$gestion = New OV_Gestion();
+				$gestion->suministro = $nis;
+				$gestion->fecha = date('Y-m-d');
+				$gestion->dni = $dni;
+				$gestion->nombre = $nombre;
+				$gestion->apellido = $apellido;
+				$gestion->correoelectronico = $correo;
+				$gestion->telefono = $telefono;
+				$gestion->ov_tipogestion = $tipo_gestion;
+				$gestion->ov_gestionhistorico_collection = array();
+				$gestion->ov_gestionhistorico_collection[] = $gestionhistorico;
+				$gestion->archivo_collection = array();
+
 				eval("class OV_DetalleGestionAdhesion {};");
 				$tipogestion = new OV_DetalleGestionAdhesion();
 				$tipogestion->numero_tramite = $gestioncomercial_id;
@@ -783,6 +787,7 @@ class SitioController {
 	 	}
 
 	 	$argumento = json_encode($tipogestion);
+	 	print_r($argumento);exit;
 	 	require_once "tools/postGestionGeCo.php";
 		$ws = new postGestionGeCo();
 		$rst_cliente = $ws->postGestionFunction($argumento);
