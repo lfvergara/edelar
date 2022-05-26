@@ -394,6 +394,10 @@ class SitioController {
 		$this->view->tramites_hogares_comercios();
 	}
 
+	function requisitos_reclamo_artefactos_danados() {
+		$this->view->requisitos_reclamo_artefactos_danados();
+	}
+
 	function grandes_clientes() {
 		$this->view->grandes_clientes();
 	}

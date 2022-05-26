@@ -285,6 +285,11 @@ class SitioView extends View {
 		print $template;
 	}
 
+	function requisitos_reclamo_artefactos_danados() {
+		$gui = file_get_contents("static/modules/sitio/requisitos_reclamo_artefactos_danados.html");
+		print $gui;
+	}	
+
 	function grandes_clientes() {
 		$gui = file_get_contents("static/modules/sitio/grandes_clientes.html");
 		$template = $this->render_sitio("THEME_SECCION", $gui);
