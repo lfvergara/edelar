@@ -48,8 +48,8 @@ class ClienteUsuarioController {
 					   "gender"=>$gender,
 					   "questionary"=>$questionary);
 
+		print_r($array);exit;
 		$client = new SoapClient("https://online.org.veraz.com.ar/WsIDValidator/services/idvalidator?wsdl");
-		print_r($client);exit;
 		//$result = $client->__getFunctions();
 		$result = $client->__soapCall("obtenerPreguntas", array($array));
 		
