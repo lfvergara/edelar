@@ -1,6 +1,7 @@
 <?php
 require_once "modules/clienteusuario/model.php";
 require_once "modules/clienteusuario/view.php";
+require_once "modules/sitio/view.php";
 require_once 'core/helpers/user.cliente.php';
 
 
@@ -36,7 +37,7 @@ class ClienteUsuarioController {
 		$sector = "ID";
 		$sucursal = 0;
 		$documentNumber = $documento;
-		$gender = "M";
+		$gender = $sexo;
 		$questionary = 10467;
 
 		$array = array("matrix"=>$matrix,
@@ -52,7 +53,8 @@ class ClienteUsuarioController {
 		$result = $client->__soapCall("obtenerPreguntas", array($array));
 		
 		if (is_object($result)) {
-			$this->view->p3_signup_cliente($result);
+			$sv = new SitioView();
+			$sv->p3_signup_cliente($result);
 		} else {			
 	    	header("Location: " . URL_APP . "/sitio/errorSignUpDNI");
 		}

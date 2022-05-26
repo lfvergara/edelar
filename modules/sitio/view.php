@@ -156,8 +156,14 @@ class SitioView extends View {
 		print $template;
 	}
 
-	function p3_signup_cliente() {
+	function p3_signup_cliente($rst_cliente) {
 		$gui = file_get_contents("static/modules/sitio/p3_signup_cliente.html");
+
+		$integrante = $rst_cliente->return->requestResult->integrantes;
+		print_r($integrante);exit;
+		$preguntas = $rst_cliente->return->requestResult->questions;
+
+
 		$template = $this->render_sitio("THEME_SECCION", $gui);
 		print $template;	
 	}
