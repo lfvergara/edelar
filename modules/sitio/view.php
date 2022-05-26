@@ -538,8 +538,6 @@ class SitioView extends View {
 		
 		$rst_cliente = json_decode($rst_cliente);
 		$obj_cliente = $this->set_dict($rst_cliente);
-			
-	
 
 		//FIX ME CON RESULTADO DE SUMINISTROS
 		/*
@@ -554,11 +552,14 @@ class SitioView extends View {
 		print $template;
 	}
 
-	function ofivirtual_suministro($obj_suministro, $rst_deuda, $metodo, $impreso_collection) {
+	function ofivirtual_suministro($obj_suministro, $rst_cliente, $rst_deuda, $metodo, $impreso_collection) {
 		$gui = file_get_contents("static/modules/sitio/ofivirtual_suministro.html");
 		$gui_tbl_deuda = file_get_contents("static/common/ofivirtual_tbl_deuda_suministro.html");
-		$rst_deuda = json_decode($rst_deuda);
 
+		$rst_cliente = json_decode($rst_cliente);
+		$obj_cliente = $this->set_dict($rst_cliente);
+
+		$rst_deuda = json_decode($rst_deuda);
 		$deuda_collection = (is_array($rst_deuda) AND !empty($rst_deuda)) ? $rst_deuda[0] : array();
 		$display_tbl_deuda = (is_array($rst_deuda) AND !empty($rst_deuda)) ? 'block' : 'none';
 		$display_alert_deuda = (is_array($rst_deuda) AND !empty($rst_deuda)) ? 'none' : 'block';
@@ -588,6 +589,7 @@ class SitioView extends View {
 		$render = str_replace('{display_tbl_deuda}', $display_tbl_deuda, $render);
 		$render = str_replace('{display_alert_deuda}', $display_alert_deuda, $render);
 		$render = $this->render($obj_suministro, $render);
+		$render = $this->render($obj_cliente, $render);
 		$template = $this->render_sitio("THEME_AUTOGESTION", $render);
 		print $template;
 	}

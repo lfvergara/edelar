@@ -1586,15 +1586,13 @@ class SitioController {
 	function ofivirtual() {
 		require_once "tools/getDatosV10.php";
 		
-		//CON DEUDA
-		$documento = 12393897;
 		//SIN DEUDA
 		$documento = 12393896;
-
+		//CON DEUDA
+		$documento = 12393897;
 
 		$ws = new getDatosV10();
 		$rst_cliente = $ws->getClienteFunction('dni', $documento);
-		
 
 		//FIX ME: COMPLETAR CON WS TRAER CLIENTE Y SUMINISTROS
 		/*
@@ -1616,11 +1614,17 @@ class SitioController {
 		//CON DEUDA
 		$suministro = 5126854;
 
+		//CON DEUDA
+		$documento = 12393897;
+
 		$metodo = 'nis';
 		$valor = $suministro;		
 		
 		$ws = new getDatosV10();
 		$rst_deuda = $ws->getDeudaFunction($metodo, $valor);
+
+		$ws = new getDatosV10();
+		$rst_cliente = $ws->getClienteFunction('dni', $documento);
 
 		//FIX ME: COMPLETAR CON WS TRAER SUMINISTRO
 		/*
@@ -1636,7 +1640,7 @@ class SitioController {
 								'{suministro-flag_facturadigital}'=>$suministro_flag_facturadigital);
 
 		$impreso_collection=readService("http://provider:123456@200.91.37.167:9190/FacturaProvider/query?nis={$suministro}");
-		$this->view->ofivirtual_suministro($obj_suministro, $rst_deuda, $metodo, $impreso_collection);
+		$this->view->ofivirtual_suministro($obj_suministro, $rst_cliente, $rst_deuda, $metodo, $impreso_collection);
 	}
 
 	function ofivirtual_deuda() {
