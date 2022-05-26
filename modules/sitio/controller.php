@@ -780,15 +780,15 @@ class SitioController {
 				$gestion->ov_gestionhistorico_collection[] = $gestionhistorico;
 				$gestion->archivos_collection = array();
 
+				print_r(filter_input(INPUT_POST, 'dt_tarjetacredito'));exit;
 				$tcm = new TarjetaCredito();
 				$tcm->tarjetacredito_id = filter_input(INPUT_POST, 'dt_tarjetacredito');
 				$tcm->get();
 
 				eval("class OV_Tarjeta {};");
 				$tarjetacredito = new OV_Tarjeta();
-				$tarjetacredito->ov_tarjeta_id = 0;
+				$tarjetacredito->ov_tarjeta_id = filter_input(INPUT_POST, 'dt_tarjetacredito');
 				$tarjetacredito->denominacion = $tcm->denominacion;
-
 				eval("class OV_DetalleTarjetaDebito {};");
 				$tarjeta = New OV_DetalleTarjetaDebito();
 				$tarjeta->ov_detalletarjetadebito_id =  0;
