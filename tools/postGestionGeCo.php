@@ -25,6 +25,7 @@ class postGestionGeCo {
 		$data ["valor"]= $aes->EncryptString($array_datos, $secretKey);
 
 		//$ch = curl_init("https://geco.edelar.com.ar/api_geco/wsGeco_gestion_externos.php");
+		print_r('Hola');exit;
 		$ch = curl_init("https://geco.edelar.com.ar/api_geco_desa/wsGeco_gestion_externos.php");
 		curl_setopt($ch, CURLOPT_TIMEOUT, 120000);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120000);
@@ -32,7 +33,6 @@ class postGestionGeCo {
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 		$response = curl_exec($ch);
-		print_r($response);exit;
 		return $response;
 	}	
 }
