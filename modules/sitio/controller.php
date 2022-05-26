@@ -583,7 +583,7 @@ class SitioController {
 				$ovtipogestion->ov_tipogestion_id = 3;
 				$ovtipogestion->denominacion = "Nuevo Suministro - Reconexion";
 				$ovtipogestion->cantidadarchivo = 6;
-				$ovtipogestion->codigo = "NSR";
+				$ovtipogestion->codigo = "NUS";
 
 				eval("class OV_Gestion {};");
 				$gestion = New OV_Gestion();
