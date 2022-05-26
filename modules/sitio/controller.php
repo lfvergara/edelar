@@ -792,14 +792,14 @@ class SitioController {
 	 	}
 
 	 	$argumento = json_encode($tipogestion);
-	 	print_r($argumento);exit;
-		$ws = new postGestionGeCo();
-		$rst_cliente = $ws->postGestionFunction($argumento);
+	 	//print_r($argumento);exit;
 		if (in_array($tipo_gestion, $array_gestionescomerciales_online)) {
 	 		//$resultado = sincroniza_geco_tramite($argumento);	 		
 		 	//$resultado = sincroniza_geco_tramite_desa($argumento);
 		 	require_once "tools/postGestionGeCo.php";
 
+			$ws = new postGestionGeCo();
+			$rst_cliente = $ws->postGestionFunction($argumento);
 
 		 	header("Location: " . URL_APP . "/sitio/{$url}/okTramite");
 	 	} else {
