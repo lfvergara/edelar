@@ -12,19 +12,6 @@ class ClienteUsuarioController {
 	}
 
 	function p1_signup_cliente() {
-		$_SESSION[] = array();
-        if (ini_get("session.use_cookies")) {
-            $params = session_get_cookie_params();
-            setcookie(session_name(), '', time() - 42000,
-                $params["path"], $params["domain"], 
-                $params["secure"], $params["httponly"]
-            );
-        }
-
-        session_destroy();
-        $_SESSION['data-login' . APP_ABREV] = false;
-        $_SESSION['login' . APP_ABREV] = false;
-        exit;
 		require_once 'core/helpers/user.cliente.php';
 		$correoelectronico = strtolower(trim(filter_input(INPUT_POST, 'correoelectronico')));
 		$dni = filter_input(INPUT_POST, 'documento');
