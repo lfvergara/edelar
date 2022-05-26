@@ -520,6 +520,11 @@ class SitioController {
 
 				// PARA WS
 				eval("class OV_TipoGestion {};");
+				$ovtipogestion = new OV_TipoGestion();
+				$ovtipogestion->ov_tipogestion_id = 1;
+				$ovtipogestion->denominacion = "Adhesión Factura Digital";
+				$ovtipogestion->cantidadarchivo = 2;
+				$ovtipogestion->codigo = "AFD";
 
 				eval("class OV_Gestion {};");
 				$gestion = New OV_Gestion();
@@ -530,7 +535,7 @@ class SitioController {
 				$gestion->apellido = $apellido;
 				$gestion->correoelectronico = $correo;
 				$gestion->telefono = $telefono;
-				$gestion->ov_tipogestion = $tipo_gestion;
+				$gestion->ov_tipogestion = $ovtipogestion;
 				$gestion->ov_gestionhistorico_collection = array();
 				$gestion->ov_gestionhistorico_collection[] = $gestionhistorico;
 				$gestion->archivo_collection = array();
@@ -787,7 +792,7 @@ class SitioController {
 	 	}
 
 	 	$argumento = json_encode($tipogestion);
-	 	print_r($argumento);exit;
+	 	//print_r($argumento);exit;
 	 	require_once "tools/postGestionGeCo.php";
 		$ws = new postGestionGeCo();
 		$rst_cliente = $ws->postGestionFunction($argumento);
