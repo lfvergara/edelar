@@ -1594,17 +1594,16 @@ class SitioController {
 
 		$ws = new getDatosV10();
 		$rst_cliente = $ws->getClienteFunction('dni', $documento);
-		print_r($rst_cliente);exit;
+		
+
 		//FIX ME: COMPLETAR CON WS TRAER CLIENTE Y SUMINISTROS
 		/*
-
 		$ws = new getDatosV10();
 		$rst_suministros = $ws->getSuministrosFunction('dni', $documento);
 		*/
 
 		//$this->view->ofivirtual($rst_cliente, $rst_suministros);
-		$this->view->ofivirtual($rst_cliente); //DELETE ME
-		
+		$this->view->ofivirtual($rst_cliente);		
 	}
 	/* OFICINA VIRTUAL******************************************************/
 

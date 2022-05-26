@@ -540,9 +540,9 @@ class SitioView extends View {
 		//FIX ME CON RESULTADO DE CLIENTE
 		
 		$rst_cliente = json_decode($rst_cliente);
-		$obj_cliente = $rst_cliente[0];
-		$obj_cliente = $this->set_dict($obj_cliente);
 		print_r($obj_cliente);exit;
+		//$obj_cliente = $rst_cliente[0];
+		$obj_cliente = $this->set_dict($obj_cliente);
 
 		//FIX ME CON RESULTADO DE SUMINISTROS
 		/*
