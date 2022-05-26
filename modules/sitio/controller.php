@@ -366,7 +366,6 @@ class SitioController {
 	}
 
 	function p2_signup_cliente() {
-		print_r($_SESSION["array_registro"]);exit;
 		if (isset($_SESSION["array_registro"]) AND !empty($_SESSION["array_registro"])) {
 			$this->view->p2_signup_cliente();
 		} else {
