@@ -533,16 +533,16 @@ class SitioView extends View {
 
 	/* OFICINA VIRTUAL *****************************************************/
 	//function ofivirtual($rst_cliente, $rst_suministros) {
-	function ofivirtual() { //DELETE ME
+	function ofivirtual($rst_cliente) { //DELETE ME
 		$gui = file_get_contents("static/modules/sitio/ofivirtual.html");
 		$gui_tbl_suministro = file_get_contents("static/common/ofivirtual_tbl_suministro.html");
 		
 		//FIX ME CON RESULTADO DE CLIENTE
-		/*
+		
 		$rst_cliente = json_decode($rst_cliente);
 		$obj_cliente = $rst_cliente[0];
 		$obj_cliente = $this->set_dict($obj_cliente);
-		*/
+		print_r($obj_cliente);exit;
 
 		//FIX ME CON RESULTADO DE SUMINISTROS
 		/*

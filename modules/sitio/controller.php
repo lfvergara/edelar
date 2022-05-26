@@ -1590,18 +1590,20 @@ class SitioController {
 		$documento = 12393897;
 		//SIN DEUDA
 		$documento = 12393896;
+
+
+		$ws = new getDatosV10();
+		$rst_cliente = $ws->getClienteFunction('dni', $documento);
 		
 		//FIX ME: COMPLETAR CON WS TRAER CLIENTE Y SUMINISTROS
 		/*
-		$ws = new getDatosV10();
-		$rst_cliente = $ws->getClienteFunction('dni', $documento);
 
 		$ws = new getDatosV10();
 		$rst_suministros = $ws->getSuministrosFunction('dni', $documento);
 		*/
 
 		//$this->view->ofivirtual($rst_cliente, $rst_suministros);
-		$this->view->ofivirtual(); //DELETE ME
+		$this->view->ofivirtual($rst_cliente); //DELETE ME
 		
 	}
 	/* OFICINA VIRTUAL******************************************************/
