@@ -791,14 +791,14 @@ class SitioController {
   	  		$tipogestion->ov_gestion->archivo_collection = $tmp_array;
 	 	}
 
-	 	$argumento = json_encode($tipogestion);
-	 	//print_r($argumento);exit;
-	 	require_once "tools/postGestionGeCo.php";
 		$ws = new postGestionGeCo();
 		$rst_cliente = $ws->postGestionFunction($argumento);
 		if (in_array($tipo_gestion, $array_gestionescomerciales_online)) {
 	 		//$resultado = sincroniza_geco_tramite($argumento);	 		
 		 	//$resultado = sincroniza_geco_tramite_desa($argumento);
+		 	$argumento = json_encode($tipogestion);
+		 	print_r($argumento);exit;
+		 	require_once "tools/postGestionGeCo.php";
 
 
 		 	header("Location: " . URL_APP . "/sitio/{$url}/okTramite");
