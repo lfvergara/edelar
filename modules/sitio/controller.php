@@ -785,7 +785,7 @@ class SitioController {
 				
 				
 
-				$dt_tarjetacredito = filter_input(INPUT_POST, 'dt_tarjetacredito')
+				$dt_tarjetacredito = filter_input(INPUT_POST, 'dt_tarjetacredito');
 				if (is_null($dt_tarjetacredito) OR empty($dt_tarjetacredito) OR $dt_tarjetacredito == '') {
 					$tcm = new TarjetaCredito();
 					$tcm->tarjetacredito_id = 1;
