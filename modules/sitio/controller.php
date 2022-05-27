@@ -930,10 +930,11 @@ class SitioController {
 		$from = "turnopendiente tp INNER JOIN oficina of ON tp.oficina = of.oficina_id INNER JOIN tramite t ON tp.tramite = t.tramite_id";
 		$where = "tp.documento = '{$documento}' AND tp.fecha_hasta >= '{$fecha}' AND tp.estado = 'solicitado'";
 		$turnopendiente_collection = CollectorCondition()->get('TurnoPendiente', $where, 4, $from, $select);
-		print_r($turnopendiente_collection);exit;
 		if (is_array($turnopendiente_collection)) {
+			print_r('Hay turnos');exit;
 			$this->view->turnos_documento($turnopendiente_collection);
 		} else {
+			print_r('No Hay turnos');exit;
 			$turnopendiente_collection = 0;
 			print_r($turnopendiente_collection);
 		}
