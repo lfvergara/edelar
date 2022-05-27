@@ -68,18 +68,6 @@
                     <div class="row" id="contenido" style="display: none;">
                       <div class="row" style="margin-left: 0%;">
                         <div class="form-group form-group--col-6 required">
-                          
-                          <label for="telefono" class="control-label">Teléfono</label>
-                          <input id="telefono" type="number" name="telefono" class="form-control" required>
-                          <small>* Ingrese el código de área y 15 en celulares. Ej: <b>0380154455678</b></small>
-                        </div>
-                        <div class="form-group form-group--col-6 required">
-                          <label for="correoelectronico" class="control-label">Correo</label>
-                          <input id="correoelectronico" type="email" name="correoelectronico" class="form-control" onchange="validacionCorreoElectronico();" required>
-                        </div>
-                      </div>
-                      <div class="row" style="margin-left: 0%;">
-                        <div class="form-group form-group--col-6 required">
                           <label for="tramitesForm_select" class="control-label">Localidad</label>
                           <select data-placeholder="Localidad" class="form-control unicom" tabindex="-1" aria-hidden="true" name="unicom" id="tramitesForm_select" required="">
                             <option value="">Seleccionar Localidad</option>
@@ -91,6 +79,17 @@
                           <select id="tramitesForm_defaultReal" data-placeholder="Trámite" class="form-control select2-hidden-accessible" tabindex="-1" aria-hidden="true" name="gestion" id="tramitesForm_defaultReal" onchange="obtenerRequisitos();" required="">
                             {slt_tramite}
                           </select>                          
+                        </div>
+                      </div>
+                      <div class="row" style="margin-left: 0%;">
+                        <div class="form-group form-group--col-6 required">                          
+                          <label for="telefono" class="control-label">Teléfono</label>
+                          <input id="telefono" type="number" name="telefono" class="form-control" required>
+                          <small>* Ingrese el código de área y 15 en celulares. Ej: <b>0380154455678</b></small>
+                        </div>
+                        <div class="form-group form-group--col-6 required">
+                          <label for="correoelectronico" class="control-label">Correo</label>
+                          <input id="correoelectronico" type="email" name="correoelectronico" class="form-control" onchange="validacionCorreoElectronico();" required>
                         </div>
                       </div>
                       <div class="form-group form-group--col-12" style="display: none;" id="contenidoGestionOnline">
