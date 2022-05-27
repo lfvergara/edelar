@@ -468,8 +468,7 @@ class SitioController {
 		$correo = filter_input(INPUT_POST, 'correo');
 		$tipo_gestion = filter_input(INPUT_POST, 'tipo_gestion');
 		$termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
-		print_r($termino_condiciones);exit;
-
+		
 		$gcm = New GestionComercial();
 		$gcm->suministro = $nis;
 		$gcm->fecha = date('Y-m-d');
@@ -497,9 +496,7 @@ class SitioController {
 		$gestionhistorico = New OV_GestionHistorico();
 		$gestionhistorico->fecha = date('Y-m-d');
 		$gestionhistorico->hora = date('h:i:s');
-		$gestionhistorico->ov_estadogestion = 1;
-
-		
+		$gestionhistorico->ov_estadogestion = 1;		
 
 		switch ($tipo_gestion) {
 			case 1:
@@ -507,7 +504,7 @@ class SitioController {
 				$tmp_dgcm = New DetalleAdhesionFacturaDigital();
 				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
 				//$tmp_dgcm->termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
-				$tmp_dgcm->termino_condiciones = 0;
+				$tmp_dgcm->termino_condiciones = $termino_condiciones;
 				$tmp_dgcm->fecha_termino_condiciones = date('Y-m-d h:i:s');
 				$tmp_dgcm->ip = $_SERVER['REMOTE_ADDR'];
 				$tmp_dgcm->so = $_SERVER['HTTP_USER_AGENT'];
@@ -547,7 +544,7 @@ class SitioController {
 				eval("class OV_DetalleGestionAdhesion {};");
 				$tipogestion = new OV_DetalleGestionAdhesion();
 				$tipogestion->numero_tramite = $gestioncomercial_id;
-				$tipogestion->termino_condiciones = 0;
+				$tipogestion->termino_condiciones = $termino_condiciones;
 				$tipogestion->fecha_termino_condiciones = date('Y-m-d');
 				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
 				$tipogestion->so = '';
