@@ -622,7 +622,7 @@ class SitioController {
 				//FUNCIONANDO
 				$tmp_dgcm = New DetalleBajaVoluntaria();
 				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
-				$tmp_dgcm->termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
+				$tmp_dgcm->termino_condiciones = $termino_condiciones;
 				$tmp_dgcm->fecha_termino_condiciones = date('Y-m-d h:i:s');
 				$tmp_dgcm->ip =	$_SERVER['REMOTE_ADDR'];
 				$tmp_dgcm->so = $_SERVER['HTTP_USER_AGENT'];
@@ -663,7 +663,7 @@ class SitioController {
 				eval("class OV_DetalleBajaVoluntaria {};");
 				$tipogestion = New OV_DetalleBajaVoluntaria();
 				$tipogestion->numero_tramite = $gestioncomercial_id;
-				$tipogestion->termino_condiciones = 0;
+				$tipogestion->termino_condiciones = $termino_condiciones;
 				$tipogestion->fecha_termino_condiciones = date('Y-m-d');
 				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
 				$tipogestion->so = '';
