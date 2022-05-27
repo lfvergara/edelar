@@ -164,11 +164,25 @@ class SitioView extends View {
 		$integrante = $rst_cliente->return->requestResult->integrantes;
 		$obj_integrante = $this->set_dict($integrante);
 		$preguntas = $rst_cliente->return->requestResult->questions;
-		print "<hr>";
-		print_r($preguntas);exit;
 
+		$render_preguntas = '';
+		foreach ($preguntas as $clave=>$valor) {
+			$gui_lst_preguntas = file_get_contents("static/modules/sitio/ofivirtual_lst_pregunta.html");
+			$orden = $valor->orden;
+			$pregunta_id = $valor->questionId;
+			$pregunta = $valor->text;
+			$respuestas = $valor->answerOptions;
+			$gui_lst_preguntas = str_replace('{pregunta-texto}', $pregunta, $gui_lst_preguntas);
 
-		$template = $this->render_sitio("THEME_SECCION", $gui);
+			$gui_lst_respuestas = file_get_contents("static/modules/sitio/ofivirtual_lst_respuesta.html");
+			$gui_lst_respuestas = $this->render_regex('LST_RESPUESTA', $gui_lst_respuestas, $respuestas);
+			$gui_lst_preguntas = str_replace('{lst_respuesta}', $gui_lst_respuestas, $gui_lst_preguntas);
+			$gui_lst_preguntas = str_replace('{pregunta_id}', $pregunta_id, $gui_lst_preguntas);
+			$render_preguntas .= $gui_lst_preguntas;
+		}
+
+		$render = str_replace('{lst_preguntas}', $render_preguntas, $gui);
+		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;	
 	}
 	/* PARA PRUEBA DE FORMULARIOS ******************************************/
