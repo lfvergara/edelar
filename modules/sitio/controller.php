@@ -989,7 +989,6 @@ class SitioController {
 			}
 
 			$array= array_reduce($temp_array, 'array_merge', array());
-			print_r($array);exit;
 			/*ELIMINA FECHAS DUPLICADAS*/
 			$temp_array = array();
 	    	$i = 0;
@@ -1005,6 +1004,7 @@ class SitioController {
 			
 			$array = $temp_array;
 			/*ELIMINA FECHAS DUPLICADAS*/
+			print_r($array);exit;
 
 			/*ELIMINA TERMINCIONES DE DNI*/
 			$dif = array_diff(array_column($array,'dia'), array_column($configuracionturnerodni_collection,'dia'));
