@@ -75,13 +75,12 @@
                         <div class="form-group form-group--col-6 required">
                           <label for="correoelectronico" class="control-label">Correo</label>
                           <input id="correoelectronico" type="email" name="correoelectronico" class="form-control" onchange="validacionCorreoElectronico();" required>
-                          <small>* Ingrese el código de área y 15 en celulares. Ej: <b>0380154455678</b></small>
                         </div>
                       </div>
                       <div class="row" style="margin-left: 0%;">
                         <div class="form-group form-group--col-6 required">
-                          <label for="tramitesForm_select" class="control-label">Localidad</label>
-                          <select data-placeholder="Localidad" class="form-control unicom" tabindex="-1" aria-hidden="true" name="unicom" id="tramitesForm_select" required="">
+                          <label for="unicom" class="control-label">Localidad</label>
+                          <select data-placeholder="Localidad" class="form-control unicom" tabindex="-1" aria-hidden="true" name="unicom" id="unicom" required="">
                             <option value="">Seleccionar Localidad</option>
                             {slt_unicom}
                           </select>                          
@@ -167,7 +166,7 @@
         verificar_dni();
         contenido2.style.display = 'none';
         contenido3.style.display = 'none';
-        document.getElementById("tramitesForm_select").selectedIndex = "0";
+        document.getElementById("unicom").selectedIndex = "0";
 
         msj_error.innerHTML  = "";
         error.style.display = 'none';
