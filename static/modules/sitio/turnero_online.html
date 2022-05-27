@@ -159,7 +159,6 @@
         error.style.display = 'block';
         div_notify_error.style.display = 'block';
         msj_error.innerHTML  = "Por favor verifique DNI. Gracias.";
-        alert(msj_error.innerHTML);
         contenido.style.display = 'none';
         slt_turnos.style.display = 'none';
       } else {
@@ -178,7 +177,6 @@
             div_error.style.display = 'block';
             div_notify_error.style.display = 'block';
             msj_error.innerHTML  = "Por favor seleccione una Localidad. Gracias.";
-            alert(msj_error.innerHTML);
             contenido2.style.display = 'none';
             contenido3.style.display = 'none';
           } else {
@@ -235,6 +233,8 @@
   }
 
   function consultar_dia(unicom) {
+    console.log(documento.value);
+    console.log(unicom);
     var data = jQuery.ajax({
       url: "{url_app}/sitio/horas_disponibles/" + documento.value + "@" + unicom,
       dataType: 'text',
