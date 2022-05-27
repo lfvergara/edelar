@@ -299,7 +299,8 @@
   function consultar_horario() {
     var unicom = document.getElementsByName('unicom')[0].value;
     var fecha_turno = document.getElementById('fecha_turno')[0].value;
-    console.log
+    console.log(unicom);
+    console.log(fecha_turno);
     var data = jQuery.ajax({
       url: "{url_app}/sitio/dias_disponibles/" + fecha_turno + "@" + unicom,
       dataType: 'text',
