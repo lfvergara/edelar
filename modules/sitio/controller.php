@@ -1006,8 +1006,8 @@ class SitioController {
 			/*ELIMINA FECHAS DUPLICADAS*/
 
 			/*ELIMINA TERMINCIONES DE DNI*/
-			//$dif = array_diff(array_column($array,'dia'), array_column($configuracionturnerodni_collection,'dia'));
-			//foreach ($dif as $key => $dia_dif) unset($array[$key]);
+			$dif = array_diff(array_column($array,'dia'), array_column($configuracionturnerodni_collection,'dia'));
+			foreach ($dif as $key => $dia_dif) unset($array[$key]);
 			/*ELIMINA TERMINCIONES DE DNI*/
 
 			/*ELIMINA DIAS VENCIDOS*/
@@ -1015,12 +1015,12 @@ class SitioController {
 				if(strtotime(date("d-m-Y")) > strtotime($dia["fecha"])) unset($array[$key]);
 			}
 			/*ELIMINA DIAS VENCIDOS*/
-			print_r($array);exit;
-
-		
+			
 			if (empty($array)) {
+				print_r('No hay días');
 				print_r(0);
 			} else {
+				print_r('Hay días');
 				$this->view->horas_disponibles($array);
 			}
 		} else {
