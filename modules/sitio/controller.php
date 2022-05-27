@@ -733,14 +733,14 @@ class SitioController {
 			case 7:
 				//FUNCIONANDO
 				$dtdm = New DetalleTarjetaDebito();
-				$dtdm->institucion_financiera =  filter_input(INPUT_POST, 'db_institucion_financiera');
-				$dtdm->titular =  filter_input(INPUT_POST, 'titular');
-				$dtdm->cbu =  filter_input(INPUT_POST, 'db_cbu');
-				$dtdm->numero_tarjeta = filter_input(INPUT_POST, 'dt_numero_tarjeta');
+				$dtdm->institucion_financiera = filter_input(INPUT_POST, 'db_institucion_financiera');
+				$dtdm->titular = filter_input(INPUT_POST, 'titular');
+				$dtdm->cbu = str_replace(' ', '', filter_input(INPUT_POST, 'db_cbu'));
+				$dtdm->numero_tarjeta = str_replace(' ', '', filter_input(INPUT_POST, 'dt_numero_tarjeta'));
 				$fecha_vencimiento = filter_input(INPUT_POST, 'dt_vencimiento_tarjeta');
 				$fecha_vencimiento = (is_null($fecha_vencimiento)) ? date('Y-m-d') : $fecha_vencimiento . "-01";
-				$dtdm->fecha_vencimiento =  $fecha_vencimiento;
-				$dtdm->tarjetacredito =  filter_input(INPUT_POST, 'dt_tarjetacredito');
+				$dtdm->fecha_vencimiento = $fecha_vencimiento;
+				$dtdm->tarjetacredito = filter_input(INPUT_POST, 'dt_tarjetacredito');
 				$dtdm->save();
 				$dtdm->get();
 				$detalletarjetadebito_id = $dtdm->detalletarjetadebito_id;
@@ -748,7 +748,7 @@ class SitioController {
 				$tmp_dgcm = New DetalleAdhesionDebito();
 				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
 				$tmp_dgcm->metodo_envio = 1;
-				$tmp_dgcm->termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
+				$tmp_dgcm->termino_condiciones = $termino_condiciones;
 				$tmp_dgcm->fecha_termino_condiciones = date('Y-m-d h:i:s');
 				$tmp_dgcm->ip = $_SERVER['REMOTE_ADDR'];
 				$tmp_dgcm->so = $_SERVER['HTTP_USER_AGENT'];
@@ -784,11 +784,6 @@ class SitioController {
 				$gestion->ov_gestionhistorico_collection = array();
 				$gestion->ov_gestionhistorico_collection[] = $gestionhistorico;
 				$gestion->archivos_collection = array();
-
-				$dt_tarjetacredito = filter_input(INPUT_POST, 'dt_tarjetacredito');
-				$dt_tarjetacredito = (is_null($dt_tarjetacredito) OR empty($dt_tarjetacredito) OR $dt_tarjetacredito == '') ? null : $dt_tarjetacredito;
-				
-				
 
 				$dt_tarjetacredito = filter_input(INPUT_POST, 'dt_tarjetacredito');
 				if (is_null($dt_tarjetacredito) OR empty($dt_tarjetacredito) OR $dt_tarjetacredito == '') {
@@ -828,7 +823,7 @@ class SitioController {
 				$tipogestion = New OV_DetalleAdhesionDebito();
 				$tipogestion->numero_tramite = $gestioncomercial_id;
 				$tipogestion->metodo_envio = 0;
-				$tipogestion->termino_condiciones = 0;
+				$tipogestion->termino_condiciones = $termino_condiciones;
 				$tipogestion->fecha_termino_condiciones = date('Y-m-d');
 				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
 				$tipogestion->so = '';
