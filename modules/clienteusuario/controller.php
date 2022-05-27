@@ -74,23 +74,23 @@ class ClienteUsuarioController {
 		$cuestionario = filter_input(INPUT_POST, 'cuestionario');
 		$preguntas = $_POST['pregunta'];
 		$respuestas = array();
-		foreach ($preguntas as $clave=>$valor) {
-			$array_temp = array("id"=>$valor, "questionId"=>$clave);
-			$respuestas[] = $array_temp;
-		}
-
 		$array = array("matrix"=>$matrix,
 					   "user"=>$user,
 					   "password"=>$password,
 					   "sector"=>$sector,
 					   "sucursal"=>$sucursal,
 					   "lote"=>$lote,
-					   "cuestionario"=>$cuestionario,
-					   "Answers"=>$respuestas);
+					   "idCuestionario"=>$cuestionario);
+
+		foreach ($preguntas as $clave=>$valor) {
+			$array_temp = array("id"=>$valor, "name"=>'', "questionId"=>$clave);
+			$array[] = $array_temp;
+		}
+
+		print_r($array);exit;
 
 		$client = new SoapClient("https://online.org.veraz.com.ar/WsIDValidator/services/idvalidator?wsdl");
 		$result = $client->__soapCall("enviarRespuestas", array($array));
-		print_r($result);exit;
 		//FIXME - Integrar API Veraz para generar bandera de documento
 		$flag_dni = true;
 
