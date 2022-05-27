@@ -149,7 +149,6 @@
   
   const documento = document.getElementById('documento');
   const selectUnicom = document.querySelector('.unicom');
-  console.log(selectUnicom);
   btnenviar.setAttribute("disabled", true);
 
   let timeout
@@ -224,7 +223,7 @@
       dataType: 'text',
       async: false
     }).responseText;
-   
+
     if (data == 0) {
       contenido.style.display = 'block';
       slt_turnos.style.display = 'none';
