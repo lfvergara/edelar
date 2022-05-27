@@ -1207,6 +1207,7 @@ class SitioController {
 
 
 			$argumento = json_encode($turno);
+			print_r($argumento);exit;
 			require_once "tools/postGestionGeCo.php";
 			$ws = new postGestionGeCo();
 			$rst_turno = $ws->postTurneroFunction($argumento, 'crear');
