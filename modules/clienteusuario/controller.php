@@ -88,8 +88,9 @@ class ClienteUsuarioController {
 					   "cuestionario"=>$cuestionario,
 					   "Answers"=>$respuestas);
 
-
-		print_r($array);exit;
+		$client = new SoapClient("https://online.org.veraz.com.ar/WsIDValidator/services/idvalidator?wsdl");
+		$result = $client->__soapCall("enviarRespuestas", array($array));
+		print_r($result);exit;
 		//FIXME - Integrar API Veraz para generar bandera de documento
 		$flag_dni = true;
 
