@@ -233,13 +233,12 @@
   }
 
   function consultar_dia(unicom) {
-    console.log(documento.value);
-    console.log(unicom);
     var data = jQuery.ajax({
       url: "{url_app}/sitio/horas_disponibles/" + documento.value + "@" + unicom,
       dataType: 'text',
       async: false
     }).responseText;
+    console.log(data);
     
     if (data == 0) {
       error.style.display = 'block';

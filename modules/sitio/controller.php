@@ -1017,10 +1017,8 @@ class SitioController {
 			/*ELIMINA DIAS VENCIDOS*/
 			
 			if (empty($array)) {
-				print_r('No hay días');
 				print_r(0);
 			} else {
-				print_r('Hay días');
 				$this->view->horas_disponibles($array);
 			}
 		} else {
