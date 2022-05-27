@@ -160,7 +160,7 @@ class SitioView extends View {
 		$gui = file_get_contents("static/modules/sitio/p3_signup_cliente.html");
 
 		$lote = $rst_cliente->return->requestResult->lote;
-		$cuestionario = $rst_cliente->return->requestResult->integrantes->cuestionario;
+		$cuestionario = $rst_cliente->return->requestResult->questionary;
 		$integrante = $rst_cliente->return->requestResult->integrantes;
 		$obj_integrante = $this->set_dict($integrante);
 		$preguntas = $rst_cliente->return->requestResult->questions;
