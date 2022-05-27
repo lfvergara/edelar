@@ -1004,12 +1004,12 @@ class SitioController {
 			
 			$array = $temp_array;
 			/*ELIMINA FECHAS DUPLICADAS*/
+			print_r($array);exit;
 
 			/*ELIMINA TERMINCIONES DE DNI*/
 			$dif = array_diff(array_column($array,'dia'), array_column($configuracionturnerodni_collection,'dia'));
 			foreach ($dif as $key => $dia_dif) unset($array[$key]);
 			/*ELIMINA TERMINCIONES DE DNI*/
-			print_r($array);exit;
 
 			/*ELIMINA DIAS VENCIDOS*/
 			foreach ($array as $key => $dia) {
