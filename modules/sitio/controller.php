@@ -364,7 +364,7 @@ class SitioController {
 		print phpinfo();
 	}
 
-	/* PARA PRUEBA DE FORMULARIOS ******************************************/
+	/* FORMULARIOS SIGNUP***************************************************/
 	function p1_signup_cliente() {
 		$this->view->p1_signup_cliente();
 	}
@@ -382,10 +382,18 @@ class SitioController {
 	}
 
 	function p4_signup_cliente() {
-		//FIXME - Desarrollar script de verificación de datos
-		$this->view->p3_signup_cliente();
+		$this->view->p4_signup_cliente();
 	}
-	/* PARA PRUEBA DE FORMULARIOS ******************************************/
+
+	function errorSignUp($arg) {
+		$error_id = $arg;
+		$this->view->errorSignUp($error_id);
+	}
+
+	function errorSignUpRespuestas() {
+		$this->view->errorSignUpRespuestas();
+	}
+	/* FORMULARIOS SIGNUP***************************************************/
 
 	/* GESTIONES COMERCIALES ***********************************************/
 	function turnero() {
@@ -1199,8 +1207,15 @@ class SitioController {
 						   'turnopendiente_id' => 0,
 						   'cantidad_gestores' => $cantidad_gestores);
 
+
+			require_once "tools/postGestionGeCo.php";
+			$ws = new postGestionGeCo();
+			$rst_cliente = $ws->postTurneroFunction($argumento, 'crear');
+
+			/*
 			$argumento = json_encode($turno);
 			$resultado = sincroniza_geco_turno_desa($argumento);
+			*/
 			/*GUARDA EN TURNERO*/
 
 			/*GUARDA EN WEB*/
