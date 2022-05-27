@@ -803,8 +803,7 @@ class SitioController {
 					eval("class OV_Tarjeta {};");
 					$tarjetacredito = new OV_Tarjeta();
 					$tarjetacredito->ov_tarjeta_id = filter_input(INPUT_POST, 'dt_tarjetacredito');
-					$tarjetacredito->denominacion = $tcm->denominacion;
-				}
+					$tarjetacredito->denominacion = $tcm->denominacion;				}
 				
 				
 				eval("class OV_DetalleTarjetaDebito {};");
@@ -812,8 +811,8 @@ class SitioController {
 				$tarjeta->ov_detalletarjetadebito_id =  0;
 				$tarjeta->denominacion =  filter_input(INPUT_POST, 'db_institucion_financiera');
 				$tarjeta->denominacion_titular =  filter_input(INPUT_POST, 'titular');
-				$tarjeta->num_cbu =  filter_input(INPUT_POST, 'cbu');
-				$tarjeta->num_tarjeta = filter_input(INPUT_POST, 'dt_numero_tarjeta');
+				$tarjeta->num_cbu =  str_replace(' ', '', filter_input(INPUT_POST, 'db_cbu'));
+				$tarjeta->num_tarjeta = str_replace(' ', '', filter_input(INPUT_POST, 'dt_numero_tarjeta'));
 				$fecha_vencimiento = filter_input(INPUT_POST, 'dt_vencimiento_tarjeta');
 				$fecha_vencimiento = (is_null($fecha_vencimiento)) ? date('Y-m-d') : $fecha_vencimiento . "-01";
 				$tarjeta->fecha_vencimiento =  $fecha_vencimiento;
