@@ -3,19 +3,19 @@
     <div class="container">
       <div class="row">
         <div class="banner__sidebar">
-          <form id="search-form" action="{url_app}/sitio/ver_deuda" class="form form--flex form--banner-sidebar js-parsley" style="background: rgba(0, 0, 0, 0);" method="post">
+          <form id="deuda-movil-form" action="{url_app}/sitio/ver_deuda" class="form form--flex form--banner-sidebar js-parsley" style="background: rgba(0, 0, 0, 0);" method="post">
             <div class="row">
               <div class="col-lg-12">
                 <h4 class="banner__sidebar-title banner__sidebar-title--visible">CONSULTA TU DEUDA</h4>
               </div>
               <div class="col-lg-12">
                 <div class="form-group">
-                  <label for="register-name" class="control-label" id="lbl_consulta_deuda">INGRESE SU SUMINISTRO (NIS)</label>
-                  <input type="text" id="register-name" name="valor" required class="form-control" style="background-color: #FFF;">
+                  <label for="deuda-valor" class="control-label" id="lbl_consulta_deuda">INGRESE SU SUMINISTRO (NIS)</label>
+                  <input type="text" id="deuda-valor" name="valor" required class="form-control" style="background-color: #FFF;">
                 </div>
               </div>
               <div class="form__buttons">
-                <input type="hidden" name="metodo" id="tipo_consulta_deuda" value="nis">
+                <input type="hidden" name="metodo" id="tipo_consulta_deuda_movil" value="nis">
                 <button type="button" class="form__submit" id="btn_dni_movil" onclick="tipoConsultaDeudaMovil(2);" style="background-color: #6f747a !important; font-weight: 500;">DNI/CUIT</button>
                 <button type="button" class="form__submit" id="btn_nis_movil" onclick="tipoConsultaDeudaMovil(1);" style="background-color: #6f747a !important; font-weight: 500; display: none;">NIS</button>
                 <button type="submit" class="form__submit" style="background-color: #6f747a !important; font-weight: 500; padding-right: 30% !important;">CONSULTAR</button>
