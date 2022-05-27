@@ -1206,11 +1206,11 @@ class SitioController {
 						   'cantidad_gestores' => $cantidad_gestores);
 
 
-			print_r($turno);exit;
 			$argumento = json_encode($turno);
 			require_once "tools/postGestionGeCo.php";
 			$ws = new postGestionGeCo();
 			$rst_turno = $ws->postTurneroFunction($argumento, 'crear');
+			print_r($rst_turno);exit;
 
 			/*
 			$resultado = sincroniza_geco_turno_desa($argumento);
