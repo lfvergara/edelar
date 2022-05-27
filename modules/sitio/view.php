@@ -160,7 +160,7 @@ class SitioView extends View {
 		$gui = file_get_contents("static/modules/sitio/p3_signup_cliente.html");
 
 		$lote = $rst_cliente->return->requestResult->lote;
-		$cuestionario = $rst_cliente->return->requestResult->lote;
+		$cuestionario = $rst_cliente->return->requestResult->cuestionario;
 		$integrante = $rst_cliente->return->requestResult->integrantes;
 		$obj_integrante = $this->set_dict($integrante);
 		$preguntas = $rst_cliente->return->requestResult->questions;
@@ -182,6 +182,8 @@ class SitioView extends View {
 		}
 
 		$render = str_replace('{lst_pregunta}', $render_preguntas, $gui);
+		$render = str_replace('{lote}', $lote, $render);
+		$render = str_replace('{cuestionario}', $cuestionario, $render);
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;	
 	}
