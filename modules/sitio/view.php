@@ -181,7 +181,7 @@ class SitioView extends View {
 			$render_preguntas .= $gui_lst_preguntas;
 		}
 
-		$render = str_replace('{lst_preguntas}', $render_preguntas, $gui);
+		$render = str_replace('{lst_pregunta}', $render_preguntas, $gui);
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;	
 	}
