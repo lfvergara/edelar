@@ -467,6 +467,8 @@ class SitioController {
 		$dni = filter_input(INPUT_POST, 'dni');
 		$correo = filter_input(INPUT_POST, 'correo');
 		$tipo_gestion = filter_input(INPUT_POST, 'tipo_gestion');
+		$termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
+		print_r($termino_condiciones);exit;
 
 		$gcm = New GestionComercial();
 		$gcm->suministro = $nis;
@@ -557,6 +559,7 @@ class SitioController {
 				$url = 'adhesion_facturadigital';
 				break;
 			case 3:
+				//FUNCIONANDO
 				$tmp_dgcm = New DetalleNuevoSuministroReconexion();
 				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
 				$tmp_dgcm->nis = $nis;
