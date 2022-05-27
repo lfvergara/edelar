@@ -1152,6 +1152,7 @@ class SitioController {
 	  	$oficina_id = $var[1];
 		$telefono = filter_input(INPUT_POST, 'telefono');
 		$correoelectronico = filter_input(INPUT_POST, 'correoelectronico');
+		print_r($_POST);exit;
 		if (is_null($fecha) OR empty($fecha) OR $fecha == 0) {
 			$mensaje ="Seleccione una Fecha Disponible. Vuelva a intentarlo. Gracias";
 			$this->mensaje_turno($mensaje);
