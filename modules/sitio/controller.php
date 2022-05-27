@@ -1197,7 +1197,7 @@ class SitioController {
 			/*GUARDA EN TURNERO*/
 			$turno = array('documento' => $documento,
 						   'fecha' => $fecha,
-						   'hora_solicitud' => $hora,
+						   'hora_solicitud' => substr($hora, 5,2),
 						   'oficina_id' => $oficina_id,
 						   'gestion_id' => $gestion_id,
 						   'telefono' => $telefono,
