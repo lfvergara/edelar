@@ -61,6 +61,9 @@ class ClienteUsuarioController {
 	}
 
 	function p3_signup_cliente() {
+		print_r($_POST);exit;
+
+
 		//FIXME - Integrar API Veraz para generar bandera de documento
 		$flag_dni = true;
 
