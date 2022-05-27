@@ -237,7 +237,6 @@
       dataType: 'text',
       async: false
     }).responseText;
-    console.log(data);
     
     if (data == 0) {
       error.style.display = 'block';
@@ -298,10 +297,9 @@
   }
 
   function consultar_horario() {
-    alert('Trayendo días');
     var unicom = document.getElementsByName('unicom')[0].value;
-    var fecha_turno = document.getElementsById('fecha_turno')[0].value;
-
+    var fecha_turno = document.getElementById('fecha_turno')[0].value;
+    console.log
     var data = jQuery.ajax({
       url: "{url_app}/sitio/dias_disponibles/" + fecha_turno + "@" + unicom,
       dataType: 'text',
