@@ -1143,16 +1143,16 @@ class SitioController {
 	}
 
 	function guardar_turno() {
+	  	$turno = filter_input(INPUT_POST, 'hora_turno');
+	  	$var = explode('@', $turno);
 		$fecha = filter_input(INPUT_POST, 'fecha_turno');
 	  	$gestion_id = filter_input(INPUT_POST, 'gestion');
 	  	$documento = filter_input(INPUT_POST, 'documento');
-	  	$turno = filter_input(INPUT_POST, 'hora_turno');
-	  	$var = explode('@', $turno);
 	  	$hora = $var[0];
 	  	$oficina_id = $var[1];
 		$telefono = filter_input(INPUT_POST, 'telefono');
 		$correoelectronico = filter_input(INPUT_POST, 'correoelectronico');
-		print_r($_POST);exit;
+		$unicom = filter_input(INPUT_POST, 'unicom');
 		if (is_null($fecha) OR empty($fecha) OR $fecha == 0) {
 			$mensaje ="Seleccione una Fecha Disponible. Vuelva a intentarlo. Gracias";
 			$this->mensaje_turno($mensaje);
@@ -1172,6 +1172,7 @@ class SitioController {
 			if (!empty($correoelectronico)) {
 				$api_key = "sg2xL6QmK2HMC0dD6e0NObaVN";
 				$j = json_decode(file_get_contents("https://api.millionverifier.com/api/v3/?api=$api_key&email=$correoelectronico"));
+				print_r($j);exit;
 				switch($j->resultcode) {
 					case 1:
 					  	$confirmacion = 1;
