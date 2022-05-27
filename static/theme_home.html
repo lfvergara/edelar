@@ -214,6 +214,20 @@
                     document.getElementById('tipo_consulta_deuda').value = 'dni';
                 }
             }
+
+            function tipoConsultaDeudaMovil(tipoConsulta) {
+                if (tipoConsulta == 1) {
+                    document.getElementById('btn_nis_movil').style.display = 'inline-block';
+                    document.getElementById('btn_dni_movil').style.display = 'none';
+                    document.getElementById('lbl_consulta_deuda').innerHTML = 'INGRESE SU SUMINISTRO (NIS)';
+                    document.getElementById('tipo_consulta_deuda').value = 'nis';
+                } else {
+                    document.getElementById('btn_nis_movil').style.display = 'none';
+                    document.getElementById('btn_dni_movil').style.display = 'inline-block';
+                    document.getElementById('lbl_consulta_deuda').innerHTML = 'INGRESE SU DOCUMENTO';
+                    document.getElementById('tipo_consulta_deuda').value = 'dni';
+                }
+            }
         </script>
         <!-- BEGIN SCRIPTS and INCLUDES-->
         <script type="text/javascript" src="https://maps.google.com/maps/api/js?libraries=places,drawing,geometry"></script>
