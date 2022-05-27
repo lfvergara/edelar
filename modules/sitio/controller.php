@@ -1187,6 +1187,8 @@ class SitioController {
 					$turno = array('documento' => $documento,
 								   'fecha' => $fecha,
 								   'hora_solicitud' => substr($hora, 0, -3),
+								   //'hora_solicitud' => substr($hora, 0, -3),
+								   'hora_solicitud' => $hora,
 								   'oficina_id' => $oficina_id,
 								   'gestion_id' => $gestion_id,
 								   'telefono' => $telefono,
@@ -1197,6 +1199,7 @@ class SitioController {
 
 					
 					$argumento = json_encode($turno);
+					print_r($argumento);exit;
 					require_once "tools/postGestionGeCo.php";
 					$ws = new postGestionGeCo();
 					$rst_turno = $ws->postTurneroFunction($argumento, 'crear');
