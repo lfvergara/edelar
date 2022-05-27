@@ -177,7 +177,7 @@ class SitioView extends View {
 			$gui_lst_respuestas = file_get_contents("static/modules/sitio/ofivirtual_lst_respuesta.html");
 			$gui_lst_respuestas = $this->render_regex('LST_RESPUESTA', $gui_lst_respuestas, $respuestas);
 			$gui_lst_preguntas = str_replace('{lst_respuesta}', $gui_lst_respuestas, $gui_lst_preguntas);
-			$gui_lst_preguntas = str_replace('{pregunta_id}', $pregunta_id, $gui_lst_preguntas);
+			$gui_lst_preguntas = str_replace('{pregunta-pregunta_id}', $pregunta_id, $gui_lst_preguntas);
 			$render_preguntas .= $gui_lst_preguntas;
 		}
 
