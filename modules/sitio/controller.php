@@ -468,7 +468,7 @@ class SitioController {
 		$correo = filter_input(INPUT_POST, 'correo');
 		$tipo_gestion = filter_input(INPUT_POST, 'tipo_gestion');
 		$termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
-		print_r($termino_condiciones);exit;
+		
 		$gcm = New GestionComercial();
 		$gcm->suministro = $nis;
 		$gcm->fecha = date('Y-m-d');
@@ -560,7 +560,7 @@ class SitioController {
 				$tmp_dgcm = New DetalleNuevoSuministroReconexion();
 				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
 				$tmp_dgcm->nis = $nis;
-				$tmp_dgcm->termino_condiciones = 0;
+				$tmp_dgcm->termino_condiciones = $termino_condiciones;
 				$tmp_dgcm->fecha_termino_condiciones = date('Y-m-d h:i:s');
 				$tmp_dgcm->ip =	$_SERVER['REMOTE_ADDR'];
 				$tmp_dgcm->so = $_SERVER['HTTP_USER_AGENT'];
@@ -605,7 +605,7 @@ class SitioController {
 				$tipogestion = New OV_DetalleGestionNuevoSuministro();
 				$tipogestion->numero_tramite = $gestioncomercial_id;
 				$tipogestion->nis_vecino = $nis;
-				$tipogestion->termino_condiciones = 0;
+				$tipogestion->termino_condiciones = $termino_condiciones;
 				$tipogestion->fecha_termino_condiciones = date('Y-m-d');
 				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];				
 				$tipogestion->so = '';
