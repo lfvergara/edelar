@@ -399,6 +399,7 @@ class SitioController {
 	function turnero() {
 		$unicom_collection = Collector()->get('Unicom');
 		$tramite_collection = Collector()->get('Tramite');
+		print_r($unicom_collection);exit;
 		$this->view->turnero($unicom_collection, $tramite_collection);
 	}
 
