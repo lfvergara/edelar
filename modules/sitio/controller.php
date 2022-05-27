@@ -679,7 +679,7 @@ class SitioController {
 				$tmp_dgcm = New DetalleCambioVencimientoJubilado();
 				$tmp_dgcm->numero_tramite = $gestioncomercial_id;
 				$tmp_dgcm->dia_vencimiento = filter_input(INPUT_POST, 'fecha');
-				$tmp_dgcm->termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
+				$tmp_dgcm->termino_condiciones = $termino_condiciones;
 				$tmp_dgcm->fecha_termino_condiciones = date('Y-m-d h:i:s');
 				$tmp_dgcm->ip = $_SERVER['REMOTE_ADDR'];
 				$tmp_dgcm->so = $_SERVER['HTTP_USER_AGENT'];
@@ -720,7 +720,7 @@ class SitioController {
 				$tipogestion = New OV_DetalleGestionCambioVencimientoJubilado();
 				$tipogestion->numero_tramite = $gestioncomercial_id;
 				$tipogestion->dia_vencimiento = filter_input(INPUT_POST, 'fecha');
-				$tipogestion->termino_condiciones = 0;
+				$tipogestion->termino_condiciones = $termino_condiciones;
 				$tipogestion->fecha_termino_condiciones = date('Y-m-d');
 				$tipogestion->ip = $_SERVER['REMOTE_ADDR'];
 				$tipogestion->so = '';
