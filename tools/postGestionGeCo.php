@@ -64,6 +64,7 @@ class postGestionGeCo {
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 		$response = curl_exec($ch);
+		print_r($response);exit;
 		return $response;
 	}	
 }
