@@ -84,7 +84,7 @@ class ClienteUsuarioController {
 
 		foreach ($preguntas as $clave=>$valor) {
 			$array_temp = array("id"=>$valor, "name"=>'', "questionId"=>$clave);
-			$array["answers"] = $array_temp;
+			$array["answers"][] = $array_temp;
 		}
 
 		print_r($array);exit;
