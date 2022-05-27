@@ -300,7 +300,7 @@
   function consultar_horario() {
     alert('Trayendo días');
     var unicom = document.getElementsByName('unicom')[0].value;
-    var fecha_turno = document.getElementsByName('fecha_turno')[0].value;
+    var fecha_turno = document.getElementsById('fecha_turno')[0].value;
 
     var data = jQuery.ajax({
       url: "{url_app}/sitio/dias_disponibles/" + fecha_turno + "@" + unicom,
