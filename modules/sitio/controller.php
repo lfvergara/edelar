@@ -1172,7 +1172,6 @@ class SitioController {
 			if (!empty($correoelectronico)) {
 				$api_key = "sg2xL6QmK2HMC0dD6e0NObaVN";
 				$j = json_decode(file_get_contents("https://api.millionverifier.com/api/v3/?api=$api_key&email=$correoelectronico"));
-				print_r($j);exit;
 				switch($j->resultcode) {
 					case 1:
 					  	$confirmacion = 1;
@@ -1207,12 +1206,13 @@ class SitioController {
 						   'cantidad_gestores' => $cantidad_gestores);
 
 
+			print_r($turno);exit;
+			$argumento = json_encode($turno);
 			require_once "tools/postGestionGeCo.php";
 			$ws = new postGestionGeCo();
-			$rst_cliente = $ws->postTurneroFunction($argumento, 'crear');
+			$rst_turno = $ws->postTurneroFunction($argumento, 'crear');
 
 			/*
-			$argumento = json_encode($turno);
 			$resultado = sincroniza_geco_turno_desa($argumento);
 			*/
 			/*GUARDA EN TURNERO*/
