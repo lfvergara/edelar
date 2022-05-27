@@ -60,7 +60,7 @@
                     <div class="row">
                       <div class="form-group form-group--col-6 required">
                         <label for="documento" class="control-label">DOCUMENTO</label>
-                        <input id="documento" type="number" name="documento" class="form-control" onchange="solicitarTurno();" required>
+                        <input id="documento" type="number" name="documento" class="form-control" required>
                         <small>* Sin puntos</small>
                       </div>
                     </div>
@@ -81,7 +81,7 @@
                       <div class="row" style="margin-left: 0%;">
                         <div class="form-group form-group--col-6 required">
                           <label for="tramitesForm_select" class="control-label">Localidad</label>
-                          <select data-placeholder="Localidad" class="form-control unicom" tabindex="-1" aria-hidden="true" name="unicom" id="tramitesForm_select" onchange="consultar_dia();" required="">
+                          <select data-placeholder="Localidad" class="form-control unicom" tabindex="-1" aria-hidden="true" name="unicom" id="tramitesForm_select" required="">
                             <option value="">Seleccionar Localidad</option>
                             {slt_unicom}
                           </select>                          
@@ -125,7 +125,7 @@
       </div>
       <div class="sidebar">
         <div class="widget js-widget widget--sidebar widget--dark">      
-          
+          {sidebar_login_autogestion}
         </div>
       </div>
       <div class="clearfix"></div>
@@ -133,7 +133,7 @@
   </div>
 </div>
 <div class="row hidden-lg hidden-md">  
-  
+  {sidebar_deuda_turno_movil}
 </div>
 <script type="text/javascript" language="javascript" src="{url_static}assets/js/stacktable.js"></script>
 <script type="text/javascript" charset="utf-8">
@@ -151,7 +151,7 @@
   const documento = document.getElementById('documento');
   const selectUnicom = document.querySelector('.unicom');
   btnenviar.setAttribute("disabled", true);
-  /*
+
   let timeout
   documento.addEventListener('keydown', () => {
     clearTimeout(timeout)
@@ -205,14 +205,13 @@
                 consultar_horario();
                 jQuery('#turnos').stackcolumns();
               }
-            });//FECHA
+            });/*FECHA*/
           }
-        });//unicom
+        });/*unicom*/
       }
       clearTimeout(timeout)
     },1000)
-  })//DNI
-  */
+  })/*DNI*/
 
   function solicitarTurno() {
     slt_turnos.style.display = 'none';
