@@ -298,11 +298,13 @@
 
   function consultar_horario() {
     var unicom = document.getElementsByName('unicom')[0].value;
-    var fecha_turno = document.getElementById('fecha_turno')[0].value;
+    var fecha_turno = document.getElementById('fecha_turno');
+    var fecha_turno_seleccionado = fecha_turno.options[fecha_turno.selectedIndex].value;
+    
     console.log(unicom);
-    console.log(fecha_turno);
+    console.log(fecha_turno_seleccionado);
     var data = jQuery.ajax({
-      url: "{url_app}/sitio/dias_disponibles/" + fecha_turno + "@" + unicom,
+      url: "{url_app}/sitio/dias_disponibles/" + fecha_turno_seleccionado + "@" + unicom,
       dataType: 'text',
       async: false
     }).responseText;
