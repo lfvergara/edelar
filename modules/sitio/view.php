@@ -156,7 +156,7 @@ class SitioView extends View {
 		print $template;
 	}
 
-	function p3_signup_cliente($rst_cliente) {
+	function p3_signup_cliente($rst_cliente, $questionary, $correoelectronico, $telefono) {
 		$gui = file_get_contents("static/modules/sitio/p3_signup_cliente.html");
 
 		$lote = $rst_cliente->return->requestResult->lote;
@@ -178,12 +178,14 @@ class SitioView extends View {
 			$gui_lst_respuestas = $this->render_regex('LST_RESPUESTA', $gui_lst_respuestas, $respuestas);
 			$gui_lst_preguntas = str_replace('{lst_respuesta}', $gui_lst_respuestas, $gui_lst_preguntas);
 			$gui_lst_preguntas = str_replace('{pregunta-pregunta_id}', $pregunta_id, $gui_lst_preguntas);
+			$gui_lst_preguntas = str_replace('{correoelectronico}', $correoelectronico, $gui_lst_preguntas);
+			$gui_lst_preguntas = str_replace('{telefono}', $telefono, $gui_lst_preguntas);
 			$render_preguntas .= $gui_lst_preguntas;
 		}
 
 		$render = str_replace('{lst_pregunta}', $render_preguntas, $gui);
 		$render = str_replace('{lote}', $lote, $render);
-		$render = str_replace('{cuestionario}', $cuestionario, $render);
+		$render = str_replace('{cuestionario}', $questionary, $render);
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;	
 	}

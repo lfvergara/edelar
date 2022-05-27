@@ -3,6 +3,8 @@ require_once "modules/clienteusuario/model.php";
 require_once "modules/clienteusuario/view.php";
 require_once "modules/sitio/view.php";
 require_once 'core/helpers/user.cliente.php';
+require_once 'modules/clienteusuarioregistro/model.php';
+require_once 'modules/clienteusuariodetalle/model.php';
 
 
 class ClienteUsuarioController {
@@ -30,6 +32,8 @@ class ClienteUsuarioController {
 	function p2_signup_cliente() {
 		$documento = filter_input(INPUT_POST, 'documento');
 		$sexo = filter_input(INPUT_POST, 'sexo');
+		$correoelectronico = filter_input(INPUT_POST, 'correoelectronico');
+		$telefono = filter_input(INPUT_POST, 'telefono');
 		$wsdl = "https://online.org.veraz.com.ar/WsIDValidator/services/idvalidator?wsdl";
 		$matrix = "VN2741";
 		$user = "ID3_XML";
@@ -51,12 +55,15 @@ class ClienteUsuarioController {
 
 		$client = new SoapClient("https://online.org.veraz.com.ar/WsIDValidator/services/idvalidator?wsdl");
 		$result = $client->__soapCall("obtenerPreguntas", array($array));
-		//print_r($result);exit;
-		if (is_object($result)) {
+		
+		$error_id = $result->return->requestResult->error->id;
+		$error_txt = $result->return->requestResult->error->descripcion;
+
+		if (is_null($error_id) OR empty($error_id) OR $error_id == '') {
 			$sv = new SitioView();
-			$sv->p3_signup_cliente($result);
+			$sv->p3_signup_cliente($result, $questionary, $correoelectronico, $telefono);
 		} else {			
-	    	header("Location: " . URL_APP . "/sitio/errorSignUpDNI");
+	    	header("Location: " . URL_APP . "/sitio/errorSignUp/{$error_id}");
 		}
 	}
 
@@ -69,10 +76,10 @@ class ClienteUsuarioController {
 		$sucursal = 0;
 		$documentNumber = $documento;
 		$gender = $sexo;
-		$questionary = 10467;
+		//$questionary = 10467;
 
 		$lote = filter_input(INPUT_POST, 'lote');
-		$cuestionario = filter_input(INPUT_POST, 'cuestionario');
+		$questionary = filter_input(INPUT_POST, 'cuestionario');
 		$preguntas = $_POST['pregunta'];
 		$respuestas = array();
 		$array = array("matrix"=>$matrix,
@@ -88,19 +95,58 @@ class ClienteUsuarioController {
 			$array["answers"][] = $array_temp;
 		}
 
-
 		$client = new SoapClient("https://online.org.veraz.com.ar/WsIDValidator/services/idvalidator?wsdl");
 		$result = $client->__soapCall("enviarRespuestas", array($array));
-		print_r($result);exit;
-		//FIXME - Integrar API Veraz para generar bandera de documento
-		$flag_dni = true;
+		
+		$error_id = $result->return->requestResult->error->id;
+		$error_txt = $result->return->requestResult->error->descripcion;
+		if (is_null($error_id) OR empty($error_id) OR $error_id == '') {
+			$correoelectronico = filter_input(INPUT_POST, 'correoelectronico');
+			$telefono = filter_input(INPUT_POST, 'telefono');
+			$documento = $result->return->requestResult->integrantes->documento;
+			$denominacion = $result->return->requestResult->integrantes->nombre;
+			$score = $result->return->requestResult->integrantes->score;
+			$corte = $result->return->requestResult->integrantes->valor;
+			$referencia = $result->return->requestResult->integrantes->referencia;
+			if ($score >= $corte) {
+				$nueva_contrasena = substr(uniqid('', true), -8);
+                $token_activacion = substr(uniqid('', true), -8);
 
-		if ($flag_dni == true) {
-			//FIXME - Generar variable de sesión con preguntas y respuestas standar
-	    	header("Location: " . URL_APP . "/sitio/p3_signup_cliente");
-		} else {
-			//FIXME - Mostrar cartel de error de DNI
-	    	header("Location: " . URL_APP . "/sitio/p2_signup_cliente");
+                $user = hash(ALGORITMO_USER, $correoelectronico);
+                $clave = hash(ALGORITMO_PASS, $nueva_contrasena);
+                $hash = hash(ALGORITMO_FINAL, $user . $clave);
+
+                $denominacion_partes = explode(',', $denominacion);
+                $cudm = new ClienteUsuarioDetalle();
+                $cudm->apellido = $denominacion_partes[0];
+		        $cudm->nombre = $denominacion_partes[1];
+		        $cudm->dni = $documento;
+		        $cudm->telefono = $telefono;
+		        $cudm->save();
+		        $clienteusuariodetalle_id = $cudm->clienteusuariodetalle_id;
+
+				$curm = new ClienteUsuarioRegistro();
+				$curm->fecha_registro = date('Y-m-d');
+				$curm->fecha_activacion = '0000-00-00';
+				$curm->token_activacion = $token_activacion;
+				$curm->proveedor = 'Equifax';
+				$curm->uid = $referencia;
+				$curm->save();
+		        $clienteusuarioregistro_id = $curm->clienteusuarioregistro_id;
+
+		        $cum = new ClienteUsuario();
+		        $cum->denominacion = $correoelectronico;
+		        $cum->token = $hash;
+		        $cum->clienteusuariodetalle = $clienteusuariodetalle_id;
+		        $cum->clienteusuarioregistro = $clienteusuarioregistro_id;
+		        $cum->save();
+
+	    		header("Location: " . URL_APP . "/sitio/p4_signup_cliente");
+			} else {
+	    		header("Location: " . URL_APP . "/sitio/errorSignUpRespuestas");
+			}
+		} else {			
+	    	header("Location: " . URL_APP . "/sitio/errorSignUp/{$error_id}");
 		}
 	}
 }
