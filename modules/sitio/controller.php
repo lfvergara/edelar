@@ -1004,7 +1004,6 @@ class SitioController {
 			
 			$array = $temp_array;
 			/*ELIMINA FECHAS DUPLICADAS*/
-			print_r($array);exit;
 
 			/*ELIMINA TERMINCIONES DE DNI*/
 			$dif = array_diff(array_column($array,'dia'), array_column($configuracionturnerodni_collection,'dia'));
@@ -1016,6 +1015,7 @@ class SitioController {
 				if(strtotime(date("d-m-Y")) > strtotime($dia["fecha"])) unset($array[$key]);
 			}
 			/*ELIMINA DIAS VENCIDOS*/
+			print_r($array);exit;
 
 		
 			if (empty($array)) {
