@@ -60,9 +60,36 @@ class ClienteUsuarioController {
 	}
 
 	function p3_signup_cliente() {
-		print_r($_POST);exit;
+		$wsdl = "https://online.org.veraz.com.ar/WsIDValidator/services/idvalidator?wsdl";
+		$matrix = "VN2741";
+		$user = "ID3_XML";
+		$password = "A238F615267903CD125674A450CF1C09";
+		$sector = "ID";
+		$sucursal = 0;
+		$documentNumber = $documento;
+		$gender = $sexo;
+		$questionary = 10467;
+
+		$lote = filter_input(INPUT_POST, 'lote');
+		$cuestionario = filter_input(INPUT_POST, 'cuestionario');
+		$preguntas = $_POST['pregunta'];
+		$respuestas = array();
+		foreach ($preguntas as $clave=>$valor) {
+			$array_temp = array("id"=>$valor, "questionId"=>$clave);
+			$respuestas[] = $array_temp;
+		}
+
+		$array = array("matrix"=>$matrix,
+					   "user"=>$user,
+					   "password"=>$password,
+					   "sector"=>$sector,
+					   "sucursal"=>$sucursal,
+					   "lote"=>$lote,
+					   "cuestionario"=>$cuestionario,
+					   "Answers"=>$respuestas);
 
 
+		print_r($array);exit;
 		//FIXME - Integrar API Veraz para generar bandera de documento
 		$flag_dni = true;
 
