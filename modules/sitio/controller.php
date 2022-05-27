@@ -950,10 +950,12 @@ class SitioController {
 		$unicom_id = $var[1];
 		$terminacion = substr($var[0], -1);
 
+		/*
 		$select = "ctd.dia AS dia";
 		$from = "configuracionturnerodni ctd";
 		$where = "ctd.terminacion LIKE '%{$terminacion}%'";
 		$configuracionturnerodni_collection = CollectorCondition()->get('ConfiguracionTurneroDni', $where, 4,$from, $select);
+		*/
 
 		$select = "rt.fecha_desde AS FECHA_DESDE, rt.fecha_hasta AS FECHA_HASTA";
 		$from = "rangoturnero rt";
@@ -989,7 +991,7 @@ class SitioController {
 			}
 
 			$array= array_reduce($temp_array, 'array_merge', array());
-
+			print_r($array);exit;
 			/*ELIMINA FECHAS DUPLICADAS*/
 			$temp_array = array();
 	    	$i = 0;
