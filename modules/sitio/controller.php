@@ -468,7 +468,7 @@ class SitioController {
 		$correo = filter_input(INPUT_POST, 'correo');
 		$tipo_gestion = filter_input(INPUT_POST, 'tipo_gestion');
 		$termino_condiciones = filter_input(INPUT_POST, 'terminos_condiciones');
-		
+		print_r($termino_condiciones);exit;
 		$gcm = New GestionComercial();
 		$gcm->suministro = $nis;
 		$gcm->fecha = date('Y-m-d');
