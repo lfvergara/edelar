@@ -232,7 +232,7 @@
     }
   }
 
-  function consultar_horario(unicom) {
+  function consultar_dia(unicom) {
     var data = jQuery.ajax({
       url: "{url_app}/sitio/horas_disponibles/" + documento.value + "@" + unicom,
       dataType: 'text',
@@ -298,7 +298,7 @@
     }
   }
 
-  function consultar_dia() {
+  function consultar_horario() {
     alert('Trayendo días');
     var unicom = document.getElementsByName('unicom')[0].value;
     var fecha_turno = document.getElementsByName('fecha_turno')[0].value;

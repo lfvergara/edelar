@@ -693,6 +693,7 @@ class SitioView extends View {
 	function horas_disponibles($resultado) {
 		$gui_slt_horas_disponibles = file_get_contents("static/common/slt_horas_disponibles.html");
 		$gui_slt_horas_disponibles = $this->render_regex_dict('SLT_HORAS_DISPONIBLES', $gui_slt_horas_disponibles, $resultado);
+		$gui_slt_horas_disponibles = str_replace('<!--SLT_HORAS_DISPONIBLES-->', '', $gui_slt_horas_disponibles);
 		print $gui_slt_horas_disponibles;
 	}
 
@@ -726,6 +727,7 @@ class SitioView extends View {
 		}
 
 		$render_horario = str_replace('<!--HORARIOS_DISPONIBLES-->', $render_horario, $gui_slt_dias_disponibles);
+		$render_horario = str_replace('<!--HORARIOS_DISPONIBLES-->', '', $render_horario);
 		print $render_horario;
 	}
 
