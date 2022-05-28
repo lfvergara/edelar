@@ -62,8 +62,8 @@ class getDatosV10 {
 		
 		
 		//Implementacion cURL DEUDA
-		//$ch = curl_init("https://servicios.edelar.com.ar/api_servicios_desa/wsServicios_deuda.php");
-		$ch = curl_init("https://servicios.edelar.com.ar/api_servicios/wsServicios_cliente.php");
+		$ch = curl_init("https://servicios.edelar.com.ar/api_servicios_desa/wsServicios_deuda.php");
+		//$ch = curl_init("https://servicios.edelar.com.ar/api_servicios/wsServicios_cliente.php");
 		curl_setopt($ch, CURLOPT_TIMEOUT, 120000);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120000);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
