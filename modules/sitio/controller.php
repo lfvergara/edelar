@@ -365,34 +365,7 @@ class SitioController {
 	}
 
 	/* FORMULARIOS SIGNUP***************************************************/
-	function p1_signup_cliente() {
-		$this->view->p1_signup_cliente();
-	}
-
-	function p2_signup_cliente() {
-		if (isset($_SESSION["array_registro"]) AND !empty($_SESSION["array_registro"])) {
-			$this->view->p2_signup_cliente();
-		} else {
-			$this->p1_signup_cliente();
-		}
-	}
-
-	function p3_signup_cliente() {
-		$this->view->p3_signup_cliente();
-	}
-
-	function p4_signup_cliente() {
-		$this->view->p4_signup_cliente();
-	}
-
-	function errorSignUp($arg) {
-		$error_id = $arg;
-		$this->view->errorSignUp($error_id);
-	}
-
-	function errorSignUpRespuestas() {
-		$this->view->errorSignUpRespuestas();
-	}
+	
 	/* FORMULARIOS SIGNUP***************************************************/
 
 	/* GESTIONES COMERCIALES ***********************************************/
@@ -918,9 +891,7 @@ class SitioController {
 	 	}
 
 	}
-	/* GESTIONES COMERCIALES ***********************************************/
-
-	
+	/* GESTIONES COMERCIALES ***********************************************/	
 
 	/* TURNERO**************************************************************/
 	function verificar_dni($arg) {
@@ -1797,6 +1768,35 @@ class SitioController {
 	/* TURNERO**************************************************************/
 	
 	/* OFICINA VIRTUAL******************************************************/
+	function p1_signup_cliente() {
+		$this->view->p1_signup_cliente();
+	}
+
+	function p2_signup_cliente() {
+		if (isset($_SESSION["array_registro"]) AND !empty($_SESSION["array_registro"])) {
+			$this->view->p2_signup_cliente();
+		} else {
+			$this->p1_signup_cliente();
+		}
+	}
+
+	function p3_signup_cliente() {
+		$this->view->p3_signup_cliente();
+	}
+
+	function p4_signup_cliente() {
+		$this->view->p4_signup_cliente();
+	}
+
+	function errorSignUp($arg) {
+		$error_id = $arg;
+		$this->view->errorSignUp($error_id);
+	}
+
+	function errorSignUpRespuestas() {
+		$this->view->errorSignUpRespuestas();
+	}
+
 	function ofivirtual() {
 		require_once "tools/getDatosV10.php";
 		
@@ -1818,9 +1818,7 @@ class SitioController {
 		//$this->view->ofivirtual($rst_cliente, $rst_suministros);
 		$this->view->ofivirtual($rst_cliente);		
 	}
-	/* OFICINA VIRTUAL******************************************************/
 
-	/* OFICINA VIRTUAL: VER SUMINISTRO**************************************/
 	function ofivirtual_suministro() {
 		require_once "tools/getDatosV10.php";
 		require_once "core/helpers/facturaHelper.php";
@@ -1873,7 +1871,6 @@ class SitioController {
 		$this->view->ofivirtual_deuda($rst_deuda, $rst_cliente);
 	}
 
-	/* OFICINA VIRTUAL: DESCARGAR IMPRESO***********************************/
 	function descargar_factura() {
         require_once "core/helpers/facturaFile.php";
     }

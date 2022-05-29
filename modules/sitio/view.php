@@ -560,6 +560,29 @@ class SitioView extends View {
 	/* TRAMITES COMERCIALES ************************************************/
 
 	/* OFICINA VIRTUAL *****************************************************/
+	function errorSignUp($error_id) {
+		$gui = file_get_contents("static/modules/sitio/errorOfiVirtual.html");
+
+		$error_sistema = array(-1,0,1,2,3,7,8,12,13,14);
+		$error_dni = array(4,5,6,9);
+		$error_manual = array(10,11,16,17);
+		$error_menor = array(15);
+
+		if (in_array($error_id, $error_sistema)) {
+			$msj = "Ha ocurrido un error en el sistema. Por favor intente nuevamente o dirígase a la oficina más cercana.";
+		} elseif (in_array($error_id, $error_dni)) {
+			$msj = "Ha ocurrido un error con el DNI ingresado. Por favor intente nuevamente o dirígase a la oficina más cercana.";
+		} elseif (in_array($error_id, $error_manual)) {
+			$msj = "Ha ocurrido un error con el DNI ingresado. Por favor dirígase a la oficina más cercana y solicite una habilitación manual del servicio.";
+		} else {
+			$msj = "Ha ingresado el DNI de una persona menor de edad, no es posible continuar con la identificación de identidad. Por favor dirígase a la oficina más cercana y solicite una habilitación manual del servicio.";
+		}
+		
+		$render = str_replace('{msj_alert}', $msj, $gui);
+		$template = $this->render_sitio("THEME_SECCION", $render);
+		print $template;
+	}
+
 	function ofivirtual($rst_cliente) { 
 		$gui = file_get_contents("static/modules/sitio/ofivirtual.html");
 		$gui_tbl_suministro = file_get_contents("static/common/ofivirtual_tbl_suministro.html");

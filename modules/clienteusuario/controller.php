@@ -106,8 +106,8 @@ class ClienteUsuarioController {
 			$corte = $result->return->requestResult->integrantes->valor;
 			$referencia = $result->return->requestResult->integrantes->referencia;
 			
-
 			//FIX ME AGREGAR IF
+			if ($score >= $corte) {
 				$nueva_contrasena = substr(uniqid('', true), -8);
                 $token_activacion = substr(uniqid('', true), -8);
 
@@ -141,7 +141,6 @@ class ClienteUsuarioController {
 		        $cum->save();
 
 	    		header("Location: " . URL_APP . "/sitio/p4_signup_cliente");
-			if ($score >= $corte) {
 			} else {
 	    		header("Location: " . URL_APP . "/sitio/errorSignUpRespuestas");
 			}
