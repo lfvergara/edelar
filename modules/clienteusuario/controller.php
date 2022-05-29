@@ -122,7 +122,6 @@ class ClienteUsuarioController {
 		        $cudm->nombre = $denominacion_partes[1];
 		        $cudm->documento = $documento;
 		        $cudm->telefono = $telefono;
-		        print_r($cudm);exit;
 		        $cudm->save();
 		        $clienteusuariodetalle_id = $cudm->clienteusuariodetalle_id;
 
