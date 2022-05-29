@@ -7,7 +7,7 @@ require_once 'modules/clienteusuarioregistro/model.php';
 require_once 'modules/clienteusuariodetalle/model.php';
 
 
-class ClienteUsuarioController  extends StandardObject {
+class ClienteUsuarioController {
 
 	function __construct() {
 		$this->model = new ClienteUsuario();

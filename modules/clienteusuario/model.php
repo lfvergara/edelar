@@ -3,7 +3,7 @@ require_once "modules/clienteusuariodetalle/model.php";
 require_once "modules/clienteusuarioregistro/model.php";
 
 
-class ClienteUsuario {
+class ClienteUsuario extends StandardObject {
     
     function __construct(ClienteUsuarioDetalle $clienteusuariodetalle=NULL, ClienteUsuarioRegistro $clienteusuarioregistro=NULL) {
         $this->clienteusuario_id = 0;
