@@ -577,7 +577,7 @@ class SitioView extends View {
 		} else {
 			$msj = "Ha ingresado el DNI de una persona menor de edad, no es posible continuar con la identificación de identidad. Por favor dirígase a la oficina más cercana y solicite una habilitación manual del servicio.";
 		}
-		
+		print_r($msj);exit;
 		$render = str_replace('{msj_alert}', $msj, $gui);
 		$template = $this->render_sitio("THEME_SECCION", $render);
 		print $template;
