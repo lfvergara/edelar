@@ -7,7 +7,7 @@ require_once 'modules/clienteusuarioregistro/model.php';
 require_once 'modules/clienteusuariodetalle/model.php';
 
 
-class ClienteUsuarioController {
+class ClienteUsuarioController  extends StandardObject {
 
 	function __construct() {
 		$this->model = new ClienteUsuario();
@@ -74,10 +74,7 @@ class ClienteUsuarioController {
 		$password = "A238F615267903CD125674A450CF1C09";
 		$sector = "ID";
 		$sucursal = 0;
-		$documentNumber = $documento;
-		$gender = $sexo;
-		//$questionary = 10467;
-
+		
 		$lote = filter_input(INPUT_POST, 'lote');
 		$questionary = filter_input(INPUT_POST, 'cuestionario');
 		$preguntas = $_POST['pregunta'];

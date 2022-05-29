@@ -1,7 +1,7 @@
 <?php
 
 
-class ClienteUsuarioDetalle {
+class ClienteUsuarioDetalle extends StandardObject {
     
     function __construct() {
         $this->clienteusuariodetalle_id = 0;
