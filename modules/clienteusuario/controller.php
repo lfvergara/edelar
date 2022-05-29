@@ -106,7 +106,9 @@ class ClienteUsuarioController  extends StandardObject {
 			$score = $result->return->requestResult->integrantes->score;
 			$corte = $result->return->requestResult->integrantes->valor;
 			$referencia = $result->return->requestResult->integrantes->referencia;
-			if ($score >= $corte) {
+			
+
+			//FIX ME AGREGAR IF
 				$nueva_contrasena = substr(uniqid('', true), -8);
                 $token_activacion = substr(uniqid('', true), -8);
 
@@ -140,6 +142,7 @@ class ClienteUsuarioController  extends StandardObject {
 		        $cum->save();
 
 	    		header("Location: " . URL_APP . "/sitio/p4_signup_cliente");
+			if ($score >= $corte) {
 			} else {
 	    		header("Location: " . URL_APP . "/sitio/errorSignUpRespuestas");
 			}
