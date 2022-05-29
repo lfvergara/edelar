@@ -98,6 +98,7 @@ class ClienteUsuarioController  extends StandardObject {
 		$error_id = $result->return->requestResult->error->id;
 		$error_txt = $result->return->requestResult->error->descripcion;
 		if (is_null($error_id) OR empty($error_id) OR $error_id == '') {
+			print_r($result->return->requestResult->integrantes);exit;
 			$correoelectronico = filter_input(INPUT_POST, 'correoelectronico');
 			$telefono = filter_input(INPUT_POST, 'telefono');
 			$documento = $result->return->requestResult->integrantes->documento;
