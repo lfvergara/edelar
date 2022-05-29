@@ -142,55 +142,6 @@ class SitioView extends View {
 	}
 	/* CENTRO DE AYUDA *****************************************************/
 
-	/* PARA PRUEBA DE FORMULARIOS ******************************************/
-	function p1_signup_cliente() {
-		$gui = file_get_contents("static/modules/sitio/p1_signup_cliente.html");
-		$template = $this->render_sitio("THEME_SECCION", $gui);
-		print $template;
-	}
-
-	function p2_signup_cliente() {
-		$gui = file_get_contents("static/modules/sitio/p2_signup_cliente.html");
-		$render = str_replace('{clienteusuario-correoelectronico}', $_SESSION["array_registro"]['correoelectronico'], $gui);
-		$template = $this->render_sitio("THEME_SECCION", $render);
-		print $template;
-	}
-
-	function p3_signup_cliente($rst_cliente, $questionary, $correoelectronico, $telefono) {
-		$gui = file_get_contents("static/modules/sitio/p3_signup_cliente.html");
-
-		$lote = $rst_cliente->return->requestResult->lote;
-		$cuestionario = $rst_cliente->return->requestResult->questionary;
-		$integrante = $rst_cliente->return->requestResult->integrantes;
-		$obj_integrante = $this->set_dict($integrante);
-		$preguntas = $rst_cliente->return->requestResult->questions;
-
-		$render_preguntas = '';
-		foreach ($preguntas as $clave=>$valor) {
-			$gui_lst_preguntas = file_get_contents("static/modules/sitio/ofivirtual_lst_pregunta.html");
-			$orden = $valor->orden;
-			$pregunta_id = $valor->questionId;
-			$pregunta = $valor->text;
-			$respuestas = $valor->answerOptions;
-			$gui_lst_preguntas = str_replace('{pregunta-texto}', $pregunta, $gui_lst_preguntas);
-
-			$gui_lst_respuestas = file_get_contents("static/modules/sitio/ofivirtual_lst_respuesta.html");
-			$gui_lst_respuestas = $this->render_regex('LST_RESPUESTA', $gui_lst_respuestas, $respuestas);
-			$gui_lst_preguntas = str_replace('{lst_respuesta}', $gui_lst_respuestas, $gui_lst_preguntas);
-			$gui_lst_preguntas = str_replace('{pregunta-pregunta_id}', $pregunta_id, $gui_lst_preguntas);
-			$render_preguntas .= $gui_lst_preguntas;
-		}
-
-		$render = str_replace('{lst_pregunta}', $render_preguntas, $gui);
-		$render = str_replace('{lote}', $lote, $render);
-		$render = str_replace('{cuestionario}', $questionary, $render);
-		$render = str_replace('{telefono}', $telefono, $render);
-		$render = str_replace('{correoelectronico}', $correoelectronico, $render);
-		$template = $this->render_sitio("THEME_SECCION", $render);
-		print $template;	
-	}
-	/* PARA PRUEBA DE FORMULARIOS ******************************************/
-
 	/* DEUDA ***************************************************************/
 	function ver_deuda($array_deuda, $metodo) {
 		$gui = file_get_contents("static/modules/sitio/ver_deuda.html");
@@ -560,6 +511,59 @@ class SitioView extends View {
 	/* TRAMITES COMERCIALES ************************************************/
 
 	/* OFICINA VIRTUAL *****************************************************/
+	function p1_signup_cliente() {
+		$gui = file_get_contents("static/modules/sitio/p1_signup_cliente.html");
+		$template = $this->render_sitio("THEME_SECCION", $gui);
+		print $template;
+	}
+
+	function p2_signup_cliente() {
+		$gui = file_get_contents("static/modules/sitio/p2_signup_cliente.html");
+		$render = str_replace('{clienteusuario-correoelectronico}', $_SESSION["array_registro"]['correoelectronico'], $gui);
+		$template = $this->render_sitio("THEME_SECCION", $render);
+		print $template;
+	}
+
+	function p3_signup_cliente($rst_cliente, $questionary, $correoelectronico, $telefono) {
+		$gui = file_get_contents("static/modules/sitio/p3_signup_cliente.html");
+
+		$lote = $rst_cliente->return->requestResult->lote;
+		$cuestionario = $rst_cliente->return->requestResult->questionary;
+		$integrante = $rst_cliente->return->requestResult->integrantes;
+		$obj_integrante = $this->set_dict($integrante);
+		$preguntas = $rst_cliente->return->requestResult->questions;
+
+		$render_preguntas = '';
+		foreach ($preguntas as $clave=>$valor) {
+			$gui_lst_preguntas = file_get_contents("static/modules/sitio/ofivirtual_lst_pregunta.html");
+			$orden = $valor->orden;
+			$pregunta_id = $valor->questionId;
+			$pregunta = $valor->text;
+			$respuestas = $valor->answerOptions;
+			$gui_lst_preguntas = str_replace('{pregunta-texto}', $pregunta, $gui_lst_preguntas);
+
+			$gui_lst_respuestas = file_get_contents("static/modules/sitio/ofivirtual_lst_respuesta.html");
+			$gui_lst_respuestas = $this->render_regex('LST_RESPUESTA', $gui_lst_respuestas, $respuestas);
+			$gui_lst_preguntas = str_replace('{lst_respuesta}', $gui_lst_respuestas, $gui_lst_preguntas);
+			$gui_lst_preguntas = str_replace('{pregunta-pregunta_id}', $pregunta_id, $gui_lst_preguntas);
+			$render_preguntas .= $gui_lst_preguntas;
+		}
+
+		$render = str_replace('{lst_pregunta}', $render_preguntas, $gui);
+		$render = str_replace('{lote}', $lote, $render);
+		$render = str_replace('{cuestionario}', $questionary, $render);
+		$render = str_replace('{telefono}', $telefono, $render);
+		$render = str_replace('{correoelectronico}', $correoelectronico, $render);
+		$template = $this->render_sitio("THEME_SECCION", $render);
+		print $template;	
+	}
+
+	function p4_signup_cliente() {
+		$gui = file_get_contents("static/modules/sitio/p4_signup_cliente.html");
+		$template = $this->render_sitio("THEME_SECCION", $gui);
+		print $template;
+	}
+
 	function errorSignUp($error_id) {
 		$gui = file_get_contents("static/modules/sitio/errorOfiVirtual.html");
 
