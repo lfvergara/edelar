@@ -7,7 +7,7 @@ class ClienteUsuarioDetalle extends StandardObject {
         $this->clienteusuariodetalle_id = 0;
         $this->apellido = '';
         $this->nombre = '';
-        $this->dni = 0;
+        $this->documento = 0;
         $this->telefono = 0;
     }
 }

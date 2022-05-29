@@ -120,7 +120,7 @@ class ClienteUsuarioController {
                 $cudm = new ClienteUsuarioDetalle();
                 $cudm->apellido = $denominacion_partes[0];
 		        $cudm->nombre = $denominacion_partes[1];
-		        $cudm->dni = $documento;
+		        $cudm->documento = $documento;
 		        $cudm->telefono = $telefono;
 		        $cudm->save();
 		        $clienteusuariodetalle_id = $cudm->clienteusuariodetalle_id;
