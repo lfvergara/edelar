@@ -27,21 +27,6 @@ class ClientUser {
 	}
 
 
-	/*
-
-
-
-
-	static function verificar_metodo_registro($clienteusuario_id) {
-	    $sql = "SELECT cumr.proveedor AS PROVEEDOR 
-				FROM clienteusuariometodoregistro cumr 
-				WHERE cumr.clienteusuario_id = ?";
-	    $datos = array($clienteusuario_id);
-        $result = execute_query($sql, $datos);
-        $proveedor = (is_array($result) AND !empty($result)) ? $result[0]['PROVEEDOR'] : 'DEBE REGISTRARSE';
-		return $proveedor;
-	}
-
 	static function get_flag_usuario($usuario) {
 	    $sql = "SELECT 
 	    			clienteusuario_id
@@ -57,6 +42,21 @@ class ClientUser {
 			return 0;
         }
 	}
+	/*
+
+
+
+
+	static function verificar_metodo_registro($clienteusuario_id) {
+	    $sql = "SELECT cumr.proveedor AS PROVEEDOR 
+				FROM clienteusuariometodoregistro cumr 
+				WHERE cumr.clienteusuario_id = ?";
+	    $datos = array($clienteusuario_id);
+        $result = execute_query($sql, $datos);
+        $proveedor = (is_array($result) AND !empty($result)) ? $result[0]['PROVEEDOR'] : 'DEBE REGISTRARSE';
+		return $proveedor;
+	}
+
 
 	
 
