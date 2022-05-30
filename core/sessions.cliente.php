@@ -6,8 +6,8 @@ require_once 'modules/clienteusuariodetalle/model.php';
 
 class SessionClienteBaseHandler {
     function checkin() {
-        $usuario = filter_input(INPUT_POST, 'usuario');
-        $password = filter_input(INPUT_POST, 'contrasena');
+        $usuario = filter_input(INPUT_POST, 'username');
+        $password = filter_input(INPUT_POST, 'password');
         $usuario = strtolower(trim($usuario));
         $user = hash(ALGORITMO_USER, $usuario);
         $clave = hash(ALGORITMO_PASS, $password);
