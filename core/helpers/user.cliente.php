@@ -13,6 +13,7 @@ class ClientUser {
 		return $clienteusuario_id;
 	}
 
+	/*
 	static function get_flag_activacion($clienteusuario_id) {
 		$cum = new ClienteUsuario();
 		$cum->clienteusuario_id = $clienteusuario_id;
@@ -28,12 +29,6 @@ class ClientUser {
 	    
         return $result[0]['validacion'];
 	}
-
-
-	/*
-
-
-
 
 	static function verificar_metodo_registro($clienteusuario_id) {
 	    $sql = "SELECT cumr.proveedor AS PROVEEDOR 
@@ -60,9 +55,6 @@ class ClientUser {
 			return 0;
         }
 	}
-
-	
-
 
 	static function get_clienteusuariodetalle_id($hash) {
 	    $sql = "SELECT 
