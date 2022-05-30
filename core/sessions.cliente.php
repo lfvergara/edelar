@@ -13,15 +13,18 @@ class SessionClienteBaseHandler {
         $clave = hash(ALGORITMO_PASS, $password);
         $hash = hash(ALGORITMO_FINAL, $user . $clave);
         
-        $flag_correo = ClientUser::verificar_correoelectronico($usuario);
-        if ($flag_correo == 0) {
+        $clienteusuario_id = ClientUser::verificar_correoelectronico($usuario);
+        if ($clienteusuario_id == 0) {
             //ERROR USUARIO NO REGISTRADO
             $_SESSION['login'] = false;
             header("Location: " . URL_APP . "/sitio/errorSignUp/3016");
         } else {
+            $cum = new ClienteUsuario();
+            $cum->clienteusuario_id = $$clienteusuario_id;
+            $cum->get();
+            print_r($cum);exit;
             //$clienteusuariodetalle_id = ClientUser::verify_correoelectronico($usuario);
             $flag_activacion = ClientUser::get_flag_activacion($clienteusuariodetalle_id);
-        print_r($flag_correo);exit;
 
             if ($flag_activacion == 0) {
                 //ERROR USUARIO NO ACTIVA DESDE CORREO
