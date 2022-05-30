@@ -41,23 +41,15 @@ class SessionClienteBaseHandler {
                         "clienteusuario-apellido"=>$cum->clienteusuariodetalle->apellido,
                         "clienteusuario-nombre"=>$cum->clienteusuariodetalle->nombre,
                         "clienteusuario-documento"=>$cum->clienteusuariodetalle->documento,
-                        "clienteusuario-correoelectronico"=>$cum->clienteusuariodetalle->correoelectronico,
+                        "clienteusuario-correoelectronico"=>$cum->denominacion,
                         "clienteusuario-telefono"=>$cum->clienteusuariodetalle->telefono);
                     $_SESSION["data-login-clienteusuario"] = $data_login;
-                    print_r($_SESSION);exit;
                     $_SESSION['login'] = true;
                     header("Location: " . URL_APP . "/sitio/ofivirtual");
                 
                 }
             } 
-        } 
-        /*
-        else {
-            #ERROR DE ACTIVACION
-            $_SESSION['login'] = false;
-            header("Location: " . URL_APP . "/sitio/home/erActivacion");
         }
-        */
     }
 
     function check_session() {
@@ -96,43 +88,6 @@ class SessionClienteBaseHandler {
         session_destroy();
         $_SESSION['login'] = false;
         header("Location:" . URL_APP . "/sitio/home");
-    }
-
-    function verifica_encuesta_activa($obj_cliente) {
-        $select_encuesta = "e.encuesta_id AS ID";
-        $from_encuesta = "encuesta e";
-        $where_encuesta = "e.activa = 1 LIMIT 1";
-        $encuesta_id = CollectorCondition()->get('Encuesta', $where_encuesta, 4, $from_encuesta, $select_encuesta);
-
-        if (is_array($encuesta_id) AND !empty($encuesta_id)) {
-            $encuesta_id = $encuesta_id[0]['ID'];
-            $em = new Encuesta();
-            $em->encuesta_id = $encuesta_id;
-            $em->get();
-        } else {
-            $em = NULL;
-        }
-
-        if (is_null($em)) {
-            header("Location: " . URL_APP . "/autogestion/home");
-        } else {
-            $clienteusuario_id = $_SESSION["data-login"]["clienteusuario-clienteusuario_id"];
-            $cum = new ClienteUsuario();
-            $cum->clienteusuario_id = $clienteusuario_id;
-            $cum->get();
-            $clienteusuariodetalle_id = $cum->clienteusuariodetalle->clienteusuariodetalle_id;
-
-            $cudm = new ClienteUsuarioDetalle();
-            $cudm->clienteusuariodetalle_id = $clienteusuariodetalle_id;
-            $cudm->get();
-            $encuesta = $cudm->encuesta;
-
-            if ($encuesta == 1) {
-                header("Location: " . URL_APP . "/autogestion/home");
-            } else {
-                header("Location: " . URL_APP . "/autogestion/encuesta/{$encuesta_id}");
-            }
-        }
     }
 }
 
