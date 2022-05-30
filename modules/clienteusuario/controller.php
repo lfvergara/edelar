@@ -15,7 +15,6 @@ class ClienteUsuarioController {
 	}
 
 	function checkin() {
-		print_r($_POST);exit;
 		SessionClienteHandler()->checkin();
 	}
 
