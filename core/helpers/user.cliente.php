@@ -3,7 +3,7 @@ require_once 'modules/clienteusuario/model.php';
 
 
 class ClientUser {
-	static function verificar_correoelectronico($correoelectronico) {
+	function verificar_correoelectronico($correoelectronico) {
 	    $sql = "SELECT cu.clienteusuario_id AS CUID 
 				FROM clienteusuario cu 
 				WHERE cu.denominacion = ?";
