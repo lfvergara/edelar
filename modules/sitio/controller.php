@@ -1799,21 +1799,12 @@ class SitioController {
 
 	function ofivirtual() {
 		require_once "tools/getDatosV10.php";
-		//SIN DEUDA
+		
 		$documento = $_SESSION['data-login-clienteusuario']['clienteusuario-documento'];
-		print_r($documento);exit;
-
 		$ws = new getDatosV10();
 		$rst_cliente = $ws->getClienteFunction('dni', $documento);
 		print_r($rst_cliente);exit;
 
-		//FIX ME: COMPLETAR CON WS TRAER CLIENTE Y SUMINISTROS
-		/*
-		$ws = new getDatosV10();
-		$rst_suministros = $ws->getSuministrosFunction('dni', $documento);
-		*/
-
-		//$this->view->ofivirtual($rst_cliente, $rst_suministros);
 		$this->view->ofivirtual($rst_cliente);		
 	}
 
