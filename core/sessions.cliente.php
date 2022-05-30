@@ -20,7 +20,7 @@ class SessionClienteBaseHandler {
             header("Location: " . URL_APP . "/sitio/errorSignUp/3016");
         } else {
             $cum = new ClienteUsuario();
-            $cum->clienteusuario_id = $$clienteusuario_id;
+            $cum->clienteusuario_id = $clienteusuario_id;
             $cum->get();
             print_r($cum);exit;
             //$clienteusuariodetalle_id = ClientUser::verify_correoelectronico($usuario);
