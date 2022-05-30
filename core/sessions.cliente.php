@@ -6,15 +6,15 @@ require_once 'modules/clienteusuariodetalle/model.php';
 
 class SessionClienteBaseHandler {
     function checkin() {
-        //$usuario = filter_input(INPUT_POST, 'username');
-        $usuario = 'hu.ce.ro@gmail.com';
-        //$password = filter_input(INPUT_POST, 'password');
-        $password = 'AlfilerL/9';
+        $usuario = filter_input(INPUT_POST, 'username');
+        //$usuario = 'hu.ce.ro@gmail.com';
+        $password = filter_input(INPUT_POST, 'password');
+        //$password = 'AlfilerL/9';
         $usuario = strtolower(trim($usuario));
         $user = hash(ALGORITMO_USER, $usuario);
         $clave = hash(ALGORITMO_PASS, $password);
         $hash = hash(ALGORITMO_FINAL, $user . $clave);
-        print_r($hash);exit;
+        //print_r($hash);exit;
         $clienteusuario_id = ClientUser::verificar_correoelectronico($usuario);
         if ($clienteusuario_id == 0) {
             //ERROR USUARIO NO REGISTRADO
