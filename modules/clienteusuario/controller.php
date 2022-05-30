@@ -14,6 +14,10 @@ class ClienteUsuarioController {
 		$this->view = new ClienteUsuarioView();
 	}
 
+	function checkin() {
+		SessionClienteHandler()->checkin();
+	}
+
 	function p1_signup_cliente() {
 		require_once 'core/helpers/user.cliente.php';
 		$correoelectronico = strtolower(trim(filter_input(INPUT_POST, 'correoelectronico')));
@@ -142,7 +146,7 @@ class ClienteUsuarioController {
 
 	    		header("Location: " . URL_APP . "/sitio/p4_signup_cliente");
 			} else {
-	    		header("Location: " . URL_APP . "/sitio/errorSignUpRespuestas");
+	    		header("Location: " . URL_APP . "/sitio/errorSignUp/1630");
 			}
 		} else {			
 	    	header("Location: " . URL_APP . "/sitio/errorSignUp/{$error_id}");

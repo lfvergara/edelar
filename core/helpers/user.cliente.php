@@ -1,4 +1,7 @@
 <?php
+require_once 'modules/clienteusuario/model.php';
+
+
 class ClientUser {
 	static function verificar_correoelectronico($correoelectronico) {
 	    $sql = "SELECT cu.clienteusuario_id AS CUID 
@@ -10,6 +13,25 @@ class ClientUser {
 		return $clienteusuario_id;
 	}
 
+	static function get_flag_activacion($clienteusuario_id) {
+		$cum = new ClienteUsuario();
+		$cum->clienteusuario_id = $clienteusuario_id;
+		$cum->get();
+		print_r($cum);exit;
+		$flag_activacion = $cum->clienteusuarioregistro->token_activacion;
+		if ($token_activacion == 0) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+
+	/*
+
+
+
+
 	static function verificar_metodo_registro($clienteusuario_id) {
 	    $sql = "SELECT cumr.proveedor AS PROVEEDOR 
 				FROM clienteusuariometodoregistro cumr 
@@ -19,13 +41,6 @@ class ClientUser {
         $proveedor = (is_array($result) AND !empty($result)) ? $result[0]['PROVEEDOR'] : 'DEBE REGISTRARSE';
 		return $proveedor;
 	}
-
-
-	/*
-
-
-
-
 
 	static function get_flag_usuario($usuario) {
 	    $sql = "SELECT 
@@ -45,14 +60,6 @@ class ClientUser {
 
 	
 
-	static function get_flag_activacion($clienteusuariodetalle_id) {
-	    $sql = "SELECT validacion 
-				FROM clienteusuariodetalle 
-				WHERE clienteusuariodetalle_id = ?";
-	    $datos = array($clienteusuariodetalle_id);
-        $result = execute_query($sql, $datos);
-        return $result[0]['validacion'];
-	}
 
 	static function get_clienteusuariodetalle_id($hash) {
 	    $sql = "SELECT 

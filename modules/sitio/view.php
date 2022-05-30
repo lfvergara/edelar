@@ -571,6 +571,8 @@ class SitioView extends View {
 		$error_dni = array(4,5,6,9);
 		$error_manual = array(10,11,16,17);
 		$error_menor = array(15);
+		$error_respuestas = array(1630);
+		$error_checkin = array(3016);
 
 		if (in_array($error_id, $error_sistema)) {
 			$msj = "Ha ocurrido un error en el sistema. Por favor intente nuevamente o dirígase a la oficina más cercana.";
@@ -578,6 +580,10 @@ class SitioView extends View {
 			$msj = "Ha ocurrido un error con el DNI ingresado. Por favor intente nuevamente o dirígase a la oficina más cercana.";
 		} elseif (in_array($error_id, $error_manual)) {
 			$msj = "Ha ocurrido un error con el DNI ingresado. Por favor dirígase a la oficina más cercana y solicite una habilitación manual del servicio.";
+		} elseif (in_array($error_id, $error_respuestas)) {
+			$msj = "Las respuestas brindadas son incorrectas. Por favor intente nuevamente o dirígase a la oficina más cercana y solicite una habilitación manual del servicio.";
+		} elseif (in_array($error_id, $error_checkin)) {
+			$msj = "El correo electrónico no se encuentra registrado. Por favor regístrese en nuestro sistema para gozar de todos nuestros servicios.";
 		} else {
 			$msj = "Ha ingresado el DNI de una persona menor de edad, no es posible continuar con la identificación de identidad. Por favor dirígase a la oficina más cercana y solicite una habilitación manual del servicio.";
 		}
