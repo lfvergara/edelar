@@ -3,7 +3,7 @@ require_once 'modules/clienteusuario/model.php';
 
 
 class ClientUser {
-	function verificar_correoelectronico($correoelectronico) {
+	static function verificar_correoelectronico($correoelectronico) {
 	    $sql = "SELECT cu.clienteusuario_id AS CUID 
 				FROM clienteusuario cu 
 				WHERE cu.denominacion = ?";
@@ -24,8 +24,26 @@ class ClientUser {
 		} else {
 			return 0;
 		}
+
+	    
+        return $result[0]['validacion'];
 	}
 
+
+	/*
+
+
+
+
+	static function verificar_metodo_registro($clienteusuario_id) {
+	    $sql = "SELECT cumr.proveedor AS PROVEEDOR 
+				FROM clienteusuariometodoregistro cumr 
+				WHERE cumr.clienteusuario_id = ?";
+	    $datos = array($clienteusuario_id);
+        $result = execute_query($sql, $datos);
+        $proveedor = (is_array($result) AND !empty($result)) ? $result[0]['PROVEEDOR'] : 'DEBE REGISTRARSE';
+		return $proveedor;
+	}
 
 	static function get_flag_usuario($usuario) {
 	    $sql = "SELECT 
@@ -42,21 +60,6 @@ class ClientUser {
 			return 0;
         }
 	}
-	/*
-
-
-
-
-	static function verificar_metodo_registro($clienteusuario_id) {
-	    $sql = "SELECT cumr.proveedor AS PROVEEDOR 
-				FROM clienteusuariometodoregistro cumr 
-				WHERE cumr.clienteusuario_id = ?";
-	    $datos = array($clienteusuario_id);
-        $result = execute_query($sql, $datos);
-        $proveedor = (is_array($result) AND !empty($result)) ? $result[0]['PROVEEDOR'] : 'DEBE REGISTRARSE';
-		return $proveedor;
-	}
-
 
 	
 
