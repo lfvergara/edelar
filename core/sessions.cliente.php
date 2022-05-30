@@ -13,7 +13,7 @@ class SessionClienteBaseHandler {
         $clave = hash(ALGORITMO_PASS, $password);
         $hash = hash(ALGORITMO_FINAL, $user . $clave);
         
-        ClientUser::verificar_correoelectronico($usuario);
+        $flag_correo = ClientUser::verificar_correoelectronico($usuario);
         print_r($flag_correo);exit;
         if ($flag_correo == 0) {
             //ERROR USUARIO NO REGISTRADO
