@@ -44,6 +44,7 @@ class SessionClienteBaseHandler {
                         "clienteusuario-correoelectronico"=>$cum->clienteusuariodetalle->correoelectronico,
                         "clienteusuario-telefono"=>$cum->clienteusuariodetalle->telefono);
                     $_SESSION["data-login-clienteusuario"] = $data_login;
+                    print_r($_SESSION);exit;
                     $_SESSION['login'] = true;
                     header("Location: " . URL_APP . "/sitio/ofivirtual");
                 
