@@ -22,43 +22,28 @@ class SessionClienteBaseHandler {
             $cum = new ClienteUsuario();
             $cum->clienteusuario_id = $clienteusuario_id;
             $cum->get();
-            print_r($cum);exit;
-            //$clienteusuariodetalle_id = ClientUser::verify_correoelectronico($usuario);
-            $flag_activacion = ClientUser::get_flag_activacion($clienteusuariodetalle_id);
-
-            if ($flag_activacion == 0) {
+            $flag_activacion = $cum->clienteusuarioregistro->token_activacion;
+            $token = $cum->token;
+            
+            if ($flag_activacion != 0) {
                 //ERROR USUARIO NO ACTIVA DESDE CORREO
                 header("Location: " . URL_APP . "/sitio/errorSignUp/163009");
-            } else {
-            
-                $clienteusuariodetalle_id = ClientUser::get_clienteusuariodetalle_id($hash);
-
-                if ($clienteusuario_id == 0) {
+            } else {            
+                if ($token != $hash) {
                     #ERROR DE USUARIO/CONTRASEÑA
                     $_SESSION['login'] = false;
-                    header("Location: " . URL_APP . "/sitio/home/erCredencial");
+                    header("Location: " . URL_APP . "/sitio/errorSignUp/16300902");
                 } else {
-                    $clienteusuario_id = ClientUser::get_clienteusuario_id($clienteusuariodetalle_id);
-
-                    $cum = new ClienteUsuario();
-                    $cum->clienteusuario_id = $clienteusuario_id;
-                    $cum->get();
-
-                    $cm = new Cliente();
-                    $cm->cliente_id = $cum->clienteusuariodetalle->cliente_id;
-                    $cm->get();
-
                     $data_login = array(
-                        "cliente-cliente_id"=>$cm->cliente_id,
-                        "cliente-apellido"=>$cm->apellido,
-                        "cliente-nombre"=>$cm->nombre,
-                        "clienteusuario-clienteusuario_id"=>$cum->clienteusuario_id,
-                        "clienteusuario-denominacion"=>$cum->denominacion);
+                        "clienteusuario-cliente_id"=>$cum->clienteusuario_id,
+                        "clienteusuario-apellido"=>$cum->clienteusuariodetalle->apellido,
+                        "clienteusuario-nombre"=>$cum->clienteusuariodetalle->nombre,
+                        "clienteusuario-documento"=>$cum->clienteusuariodetalle->documento,
+                        "clienteusuario-correoelectronico"=>$cum->clienteusuariodetalle->correoelectronico,
+                        "clienteusuario-telefono"=>$cum->clienteusuariodetalle->telefono);
                     $_SESSION["data-login"] = $data_login;
                     $_SESSION['login'] = true;
-
-                    $this->verifica_encuesta_activa($cm);
-                    // header("Location: " . URL_APP . "/autogestion/home");
+                    header("Location: " . URL_APP . "/sitio/ofivirtual");
                 
                 }
             } 
