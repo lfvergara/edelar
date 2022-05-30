@@ -1,6 +1,5 @@
 <?php
 require_once 'core/helpers/user.cliente.php';
-require_once 'modules/cliente/model.php';
 require_once 'modules/clienteusuario/model.php';
 require_once 'modules/clienteusuariodetalle/model.php';
 
