@@ -28,7 +28,7 @@ class SessionClienteBaseHandler {
                 //ERROR USUARIO NO ACTIVA DESDE CORREO
                 header("Location: " . URL_APP . "/sitio/errorSignUp/163009");
             } else {
-                
+            
                 $clienteusuariodetalle_id = ClientUser::get_clienteusuariodetalle_id($hash);
 
                 if ($clienteusuario_id == 0) {
@@ -57,18 +57,13 @@ class SessionClienteBaseHandler {
 
                     $this->verifica_encuesta_activa($cm);
                     // header("Location: " . URL_APP . "/autogestion/home");
-                    
-                        }
-                    } else {
-                        #ERROR DE ACTIVACION
-                        $_SESSION['login'] = false;
-                        header("Location: " . URL_APP . "/sitio/home/erActivacion");
-                    }
-
-
+                
                 }
-            }   
-            
+            } 
+        } else {
+            #ERROR DE ACTIVACION
+            $_SESSION['login'] = false;
+            header("Location: " . URL_APP . "/sitio/home/erActivacion");
         }
     }
 
