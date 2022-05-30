@@ -600,6 +600,7 @@ class SitioView extends View {
 	}
 
 	function ofivirtual($rst_cliente) { 
+		print_r($ofivirtual);exit;
 		$gui = file_get_contents("static/modules/sitio/ofivirtual.html");
 		$gui_tbl_suministro = file_get_contents("static/common/ofivirtual_tbl_suministro.html");
 		
