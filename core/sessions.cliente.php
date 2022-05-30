@@ -60,11 +60,14 @@ class SessionClienteBaseHandler {
                 
                 }
             } 
-        } else {
+        } 
+        /*
+        else {
             #ERROR DE ACTIVACION
             $_SESSION['login'] = false;
             header("Location: " . URL_APP . "/sitio/home/erActivacion");
         }
+        */
     }
 
     function check_session() {
