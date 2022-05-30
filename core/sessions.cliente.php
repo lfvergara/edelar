@@ -29,6 +29,7 @@ class SessionClienteBaseHandler {
             
             if ($flag_activacion != 0) {
                 //ERROR USUARIO NO ACTIVA DESDE CORREO
+                $_SESSION['login'] = false;
                 header("Location: " . URL_APP . "/sitio/errorSignUp/163009");
             } else {            
                 if ($token != $hash) {
@@ -55,23 +56,6 @@ class SessionClienteBaseHandler {
     function check_session() {
         if($_SESSION['login'] !== true) {
             $this->checkout();
-        }
-    }
-
-    function check_admin_level() {
-        $level = $_SESSION["data-login"]["usuario-nivel"];
-        if ($level != 3) {
-            $this->checkout();
-        }
-    }
-
-    function check_level() {
-        $level = $_SESSION["data-login"]["usuario-nivel"];
-        if ($level > 1 ) {
-            $_SESSION['login'] = true;
-        } else {
-            $_SESSION['login'] = false;
-            exit(header('Location: ' . LOGIN_URI));
         }
     }
 

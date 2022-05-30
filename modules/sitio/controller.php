@@ -1799,11 +1799,9 @@ class SitioController {
 
 	function ofivirtual() {
 		require_once "tools/getDatosV10.php";
-		print_r($_SESSION);exit;
 		//SIN DEUDA
-		$documento = 12393896;
-		//CON DEUDA
-		$documento = 12393897;
+		$documento = $_SESSION['data-login-clienteusuario']['clienteusuario-documento'];
+		print_r($documento);exit;
 
 		$ws = new getDatosV10();
 		$rst_cliente = $ws->getClienteFunction('dni', $documento);
