@@ -60,7 +60,7 @@ class getDatosV10 {
 		$data['metodo'] = $aes->EncryptString($metodo, $secretKey);
 		$data['valor'] = $aes->EncryptString($valor, $secretKey);
 		
-		
+		print_r($data);exit;
 		//Implementacion cURL DEUDA
 		$ch = curl_init("https://servicios.edelar.com.ar/api_servicios_desa/wsServicios_cliente.php");
 		//$ch = curl_init("https://servicios.edelar.com.ar/api_servicios/wsServicios_cliente.php");
