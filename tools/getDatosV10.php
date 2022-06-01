@@ -40,6 +40,7 @@ class getDatosV10 {
 	}
 
 	function getClienteFunction($metodo, $valor) {
+		print_r($metodo);exit;
 		$ip= '137.184.46.15';
 		$usuario = 'PROVEEDORWEB_7894265917';
 		$clave = 'TY3tTnOj7QTf9HDgsFg9KOYT7k5F85T9VcrjFtp9';
@@ -60,7 +61,6 @@ class getDatosV10 {
 		$data['metodo'] = $aes->EncryptString($metodo, $secretKey);
 		$data['valor'] = $aes->EncryptString($valor, $secretKey);
 		
-		print_r($data);exit;
 		//Implementacion cURL DEUDA
 		$ch = curl_init("https://servicios.edelar.com.ar/api_servicios_desa/wsServicios_cliente.php");
 		//$ch = curl_init("https://servicios.edelar.com.ar/api_servicios/wsServicios_cliente.php");
