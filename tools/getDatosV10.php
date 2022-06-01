@@ -40,7 +40,6 @@ class getDatosV10 {
 	}
 
 	function getClienteFunction($metodo, $valor) {
-		print_r($metodo);exit;
 		$ip= '137.184.46.15';
 		$usuario = 'PROVEEDORWEB_7894265917';
 		$clave = 'TY3tTnOj7QTf9HDgsFg9KOYT7k5F85T9VcrjFtp9';
@@ -51,6 +50,7 @@ class getDatosV10 {
 		$sha256 = new SHA256Encript();
 		$firma = $sha256->Generate($ip, $secretKey, $ente, $usuario, $clave);
 
+		print_r($firma);exit;
 		//Creacion de array de envio con los datos encriptados
 		$aes = new AESEncrypter();
 		$data = array();
