@@ -50,7 +50,6 @@ class getDatosV10 {
 		$sha256 = new SHA256Encript();
 		$firma = $sha256->Generate($ip, $secretKey, $ente, $usuario, $clave);
 
-		print_r($firma);exit;
 		//Creacion de array de envio con los datos encriptados
 		$aes = new AESEncrypter();
 		$data = array();
@@ -60,6 +59,7 @@ class getDatosV10 {
 		$data['ente'] = $ente; //Este dato no debe ir encriptado
 		$data['metodo'] = $aes->EncryptString($metodo, $secretKey);
 		$data['valor'] = $aes->EncryptString($valor, $secretKey);
+		print_r($data);exit;
 		
 		//Implementacion cURL DEUDA
 		$ch = curl_init("https://servicios.edelar.com.ar/api_servicios_desa/wsServicios_cliente.php");
