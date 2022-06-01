@@ -1800,7 +1800,7 @@ class SitioController {
 	function ofivirtual() {
 		require_once "tools/getDatosV10.php";
 		$documento = $_SESSION['data-login-clienteusuario']['clienteusuario-documento'];
-		print_r($documento);exit;
+		
 		$ws = new getDatosV10();
 		$rst_cliente = $ws->getClienteFunction('dni', $documento);
 		print_r($rst_cliente);exit;
