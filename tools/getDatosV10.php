@@ -62,7 +62,6 @@ class getDatosV10 {
 		
 		//Implementacion cURL DEUDA
 		$ch = curl_init("https://servicios.edelar.com.ar/api_servicios_desa/wsServicios_cliente.php");
-		print_r($ch);exit;
 		//$ch = curl_init("https://servicios.edelar.com.ar/api_servicios/wsServicios_cliente.php");
 		curl_setopt($ch, CURLOPT_TIMEOUT, 120000);
 		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 120000);
@@ -70,6 +69,7 @@ class getDatosV10 {
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 		curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 		$response = curl_exec($ch);
+		print_r($response);exit;
 		return $response;
 	}
 
